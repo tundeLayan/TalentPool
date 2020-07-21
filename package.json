@@ -7,8 +7,8 @@
     "dev": "nodemon server.js",
     "lint": "eslint Utils/* server.js",
     "start": "node server.js",
-    "test": "mocha",
-    "test-with-coverage": "nyc --check-coverage --lines 90 --per-file --reporter=html mocha"
+    "test": "mocha --recursive",
+    "test-with-coverage": "nyc --check-coverage --lines 90 --per-file --reporter=html mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/hngi/TalentPool#readme",
   "dependencies": {
+    "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
@@ -31,6 +32,7 @@
     "express": "^4.17.1",
     "http-errors": "^1.8.0",
     "morgan": "^1.10.0",
+    "redis": "^3.0.2",
     "uuidv4": "^6.2.0"
   },
   "devDependencies": {
