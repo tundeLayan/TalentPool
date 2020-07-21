@@ -7,6 +7,7 @@ const csrf = require('csurf');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
+const db = require('./Models');
 
 dotenv.config();
 process.env.TALENT_POOL_JWT_SECRET = key(64);
@@ -32,6 +33,9 @@ app.use((req, res, next) => {
   next();
 });
 
+db.sequelize.sync().then(() => {
+  console.log('running database');
+});
 // Cookie Parser
 app.use(cookieParser());
 
