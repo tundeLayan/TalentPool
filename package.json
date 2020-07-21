@@ -33,6 +33,9 @@
     "http-errors": "^1.8.0",
     "morgan": "^1.10.0",
     "redis": "^3.0.2",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.3",
+    "sequelize-cli": "^6.2.0",
     "uuidv4": "^6.2.0"
   },
   "devDependencies": {
