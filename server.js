@@ -5,7 +5,7 @@
  */
 
 const app = require('./app');
-const debug = require('debug')('books:server');
+const debug = require('debug')('talentpool:server');
 const http = require('http');
 const chalk = require('chalk');
 
