@@ -1,0 +1,20 @@
+{
+  "name": "talentpool",
+  "version": "1.0.0",
+  "description": "A website where companies can find talent",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hngi/TalentPool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hngi/TalentPool/issues"
+  },
+  "homepage": "https://github.com/hngi/TalentPool#readme"
+}
