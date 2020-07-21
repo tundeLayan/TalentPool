@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "lint": "eslint Utils/* Routes/* Controllers/* server.js",
+    "lint": "eslint Utils/* Routes/* server.js",
     "start": "node server.js",
     "test": "mocha",
     "test-with-coverage": "nyc --check-coverage --lines 90 --per-file --reporter=html mocha"
