@@ -4,9 +4,10 @@
   "description": "A website where companies can find talent",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
     "dev": "nodemon server.js",
+    "lint": "eslint Utils/* Routes/* Controllers/* server.js",
     "start": "node server.js",
+    "test": "mocha",
     "test-with-coverage": "nyc --check-coverage --lines 90 --per-file --reporter=html mocha"
   },
   "repository": {
@@ -20,17 +21,23 @@
   },
   "homepage": "https://github.com/hngi/TalentPool#readme",
   "dependencies": {
+    "chalk": "^4.1.0",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "csurf": "^1.11.0",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "morgan": "^1.10.0",
+    "uuidv4": "^6.2.0"
   },
   "devDependencies": {
-    "chalk": "^4.1.0",
-    "debug": "^4.1.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2",
     "mocha": "^8.0.1",
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0"
   }

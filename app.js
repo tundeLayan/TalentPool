@@ -2,12 +2,38 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
+const csrf = require('csurf');
+const dotenv = require('dotenv');
 const logger = require('morgan');
+const { key } = require('./Utils/gen-key');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+dotenv.config();
+process.env.TALENT_POOL_JWT_SECRET = key(64);
+process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
+const demo = require('./Routes/demo');
+
+const csrfProtection = csrf();
 const app = express();
+
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    name: 'session',
+    keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
+  }),
+);
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
+// Cookie Parser
+app.use(cookieParser());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +45,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// ************ REGISTER ROUTES HERE ********** //
+app.use('/', demo);
+
+// ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -36,6 +64,7 @@ app.use((err, req, res, next) => {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  next();
 });
 
 module.exports = app;
