@@ -4,15 +4,20 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const csrf = require('csurf');
+const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
+const {
+  active
+} = require('./Middleware/isAuth');
 
 dotenv.config();
 process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const demo = require('./Routes/demo');
+const authRoute = require('./Routes/auth/auth');
 
 const csrfProtection = csrf();
 const app = express();
@@ -24,6 +29,7 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
+app.use(active);
 app.use(csrfProtection);
 app.use((req, res, next) => {
   const token = req.csrfToken();
@@ -38,6 +44,7 @@ app.use(cookieParser());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -47,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
+app.use(authRoute);
 
 // ************ END ROUTE REGISTRATION ********** //
 
