@@ -12,6 +12,8 @@ dotenv.config();
 process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
+const db = require('./Models');
+const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
 
 const csrfProtection = csrf();
@@ -30,6 +32,14 @@ app.use((req, res, next) => {
   res.cookie('csrf-token', token);
   res.locals.csrfToken = req.csrfToken();
   next();
+});
+
+db.sequelize.sync().then(async () => {
+  try {
+    await seedSuperAdmin();
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 // Cookie Parser
