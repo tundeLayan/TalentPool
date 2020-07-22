@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
@@ -13,9 +12,9 @@ passport.serializeUser((user, done) => {
 // deserialize user object
 passport.deserializeUser(async (id, done) => {
   try {
-    done(null, id);
+    return done(null, id);
   } catch (error) {
-    console.log(error);
+    return done(null, false);
   }
 });
 
@@ -41,12 +40,11 @@ passport.use('google-employer',
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
           done(null, data);
-        } else {
-          // create a new user
-          const userData = await createUser(profile, 'ROL-EMPLOYER');
-
-          return done(null, userData);
         }
+        // create a new user
+        const userData = await createUser(req, profile, 'ROL-EMPLOYER', done);
+
+        return done(null, userData);
       } catch (error) {
         return done(null, false, req.flash('error', 'Authentication error'));
       }
@@ -75,12 +73,11 @@ passport.use('google-employee',
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
           done(null, data);
-        } else {
-          // create a new user
-          const userData = await createUser(profile, 'ROL-EMPLOYEE');
-
-          return done(null, userData);
         }
+        // create a new user
+        const userData = await createUser(req, profile, 'ROL-EMPLOYEE', done);
+
+        return done(null, userData);
       } catch (error) {
         return done(null, false, req.flash('error', 'Authentication error'));
       }
@@ -109,12 +106,11 @@ passport.use('github-employer',
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
           done(null, data);
-        } else {
-          // create a new user
-          const userData = await createUser(profile, 'ROL-EMPLOYER');
-
-          return done(null, userData);
         }
+        // create a new user
+        const userData = await createUser(req, profile, 'ROL-EMPLOYER', done);
+
+        return done(null, userData);
       } catch (error) {
         return done(null, false, req.flash('error', 'Authentication error'));
       }
@@ -143,12 +139,11 @@ passport.use('github-employee',
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
           done(null, data);
-        } else {
-          // create a new user
-          const userData = await createUser(profile, 'ROL-EMPLOYEE');
-
-          return done(null, userData);
         }
+        // create a new user
+        const userData = await createUser(req, profile, 'ROL-EMPLOYEE', done);
+
+        return done(null, userData);
       } catch (error) {
         return done(null, false, req.flash('error', 'Authentication error'));
       }

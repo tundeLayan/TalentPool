@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const csrf = require('csurf');
+const flash = require('connect-flash');
+const passport = require('passport');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
@@ -13,8 +15,10 @@ process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
+require('./config/passport');
 const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
+const socailAuth = require('./Routes/auth/auth');
 
 const csrfProtection = csrf();
 const app = express();
@@ -26,6 +30,11 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
+
+// passport js initialization
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 app.use(csrfProtection);
 app.use((req, res, next) => {
   const token = req.csrfToken();
@@ -57,6 +66,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
+app.use('/', socailAuth);
 
 // ************ END ROUTE REGISTRATION ********** //
 
