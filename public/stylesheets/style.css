@@ -6,3 +6,92 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* Fonts */
+
+.manrope-font {
+  font-family: 'Manrope', sans-serif;
+}
+
+.f-40 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.5em;
+  line-height: 120%;
+}
+
+.f-20 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25em;
+  line-height: 1.625em;
+}
+
+.f-12 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75em;
+  line-height: 1em;
+}
+
+.f-24 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 120%;
+}
+
+.f-16 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.3125em;
+}
+
+/* Font-Colours */
+
+.white {
+  color: #FFFFFF !important;
+}
+
+.dark {
+  color: #04172A !important;
+}
+
+/* BgColors */
+
+.purple {
+  background-color: #4D49FF !important;
+}
+
+.card {
+  border-radius: 10px 10px 10px 10px !important;
+}
+
+.card-body {
+  padding-bottom: 0 !important;
+}
+
+.blog-btn {
+  border-radius: 0px 0px 9px 10px !important;
+}
+
+/* Ready-section */
+
+.ready-section {
+  background-image: #F6FCFF !important;
+}
+
+.ready-text {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.background-rec{
+  position: absolute;
+  left:0;
+}
