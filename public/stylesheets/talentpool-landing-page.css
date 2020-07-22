@@ -14,7 +14,7 @@ body {
 }
 
 .landing-page-top .top-section-description {
-    padding: 5em 6em;
+    padding: 5em 6em 2em 6em;
     min-height: 80vh;
 }
 
@@ -59,7 +59,6 @@ body {
 
 .top-section-description .description-container .right {
     padding: 10px 2px 10px 40px;
-    height: 44vh;
 }
 .top-section-description .description-container .right .talents-card-outer {
     margin-bottom: 1.7em;
@@ -106,7 +105,7 @@ body {
 }
 
 .landing-page-top .top-section-footer {
-    padding: 3.9em 16px;
+    padding: 3.3em 16px 2.6em 16px;
     min-height: 125px;
     background: #FFFFFF;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
@@ -117,6 +116,137 @@ body {
     font-weight: normal;
     font-size: 16px;
     color: #04172A;
+}
+.landing-page-top .top-section-footer .trusted-companies .company-logo {
+    padding-right: 3em;
+}
+.landing-page-top .top-section-footer .trusted-companies .company-logo img {
+    width: inherit;
+}
+
+.landing-page-top-previous-clients {
+    min-height: 100vh;
+    padding: 4.5em 0 2em 0;
+    width: 85%;
+    margin: auto;
+}
+.landing-page-top-previous-clients h2.title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    color: #04172A;
+    padding: 0 1.2em;
+}
+.landing-page-top-previous-clients .slider .arrow-pc {
+    cursor: pointer;
+}
+.landing-page-top-previous-clients .slider .arrow-pc:hover {
+    cursor: pointer;
+    background: #f8f9fa;
+    transition: .3s ease-in-out;
+}
+.landing-page-top-previous-clients .slider .arrow-pc img {
+    padding: 8em 0;
+}
+.landing-page-top-previous-clients .slider .col-sm-1 {
+    flex: 0 0 5.333333%;
+    max-width: 5.333333%;
+}
+.landing-page-top-previous-clients .slider .col-sm-10 {
+    flex: 0 0 88.333333%;
+    max-width: 88.333333%;
+}
+.landing-page-top-previous-clients .feedback-card-outer {
+    width: 100%;
+    padding: 14px;
+    display: inline-block;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card {
+    width: 100%;
+    min-height: 260px;
+    max-height: 260px;
+
+    background: #FFFFFF;
+    border: 1px solid rgba(4, 23, 42, 0.1);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px 0;
+}
+
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    color: #04172A;
+    padding: 0 14px;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 4px 18px;
+    opacity: 0.8;
+    min-height: 118px;
+    max-height: 118px;
+    overflow: hidden;
+
+    color: #04172A;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .footer,
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .header {
+    padding: 0 18px;
+}
+
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .blob-outer {
+    padding-bottom: 4px;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .blob-inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    background: #C4C4C4;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talents-details {
+    padding: 4px 0;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talents-details .name {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 2px 0;
+
+    color: #04172A;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talents-details .track {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+
+    color: #04172A;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .content .recent-work {
+    display: block;
+    padding: 4px 0;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .view-profile-footer {
+    text-align: center;
+    height: 50px;
+    background: #4D49FF;
+    color: white;
+    border-radius: 0 0 9px 10px;
+    padding: 12px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
+    min-height: 128px;
+    max-height: 128px;
 }
 
 
@@ -151,7 +281,7 @@ body {
     }
     .top-section-description .description-container .right {
         padding: 10px 2px;
-        height: 44vh;
+        min-height: 44vh;
     }
 }
 @media screen and (max-width: 650px) {
