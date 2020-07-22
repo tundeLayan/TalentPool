@@ -1,6 +1,5 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 a {
@@ -46,7 +45,7 @@ a {
 }
 
 .f-16 {
-  font-family: Manrope;
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 1em;
@@ -84,14 +83,22 @@ a {
 /* Ready-section */
 
 .ready-section {
-  background-image: #F6FCFF !important;
+  background-color: #F6FCFF !important;
 }
 
 .ready-text {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-.background-rec{
+.bg-recb{
   position: absolute;
+  width: 7%;
   left:0;
+  top: 56.375em;
+}
+.bg-recs{
+  position: absolute;
+  width: 2%;
+  left: 1.6875em;
+  top: 68.625em;
 }
