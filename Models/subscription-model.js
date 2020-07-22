@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Subscription = sequelize.define('Subscription', {
     id: {
@@ -38,5 +37,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   });
+
   return Subscription;
 };

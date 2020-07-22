@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Faq = sequelize.define(
     'Faq',
@@ -39,19 +38,9 @@ module.exports = (sequelize, DataTypes) => {
           name: 'question',
           fields: ['question', 'answer'],
         },
-        // {
-        //   type: 'FULLTEXT',
-        //   name: 'answer',
-        //   fields :['answer']
-        // }
       ],
-      // timestamp:false,
     },
   );
-  // eslint-disable-next-line no-unused-vars
-  // User.associate = function(models)
-  // associations can be defined here
-  //   };
   Faq.associate = (model) => {
     Faq.belongsTo(model.User, { foreignKey: 'userId' });
   };

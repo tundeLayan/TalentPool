@@ -7,12 +7,13 @@ const csrf = require('csurf');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
-const db = require('./Models');
 
 dotenv.config();
 process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
+const db = require('./Models');
+const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
 
 const csrfProtection = csrf();
@@ -33,9 +34,14 @@ app.use((req, res, next) => {
   next();
 });
 
-db.sequelize.sync().then(() => {
-  console.log('running database');
+db.sequelize.sync().then(async () => {
+  try {
+    await seedSuperAdmin();
+  } catch (e) {
+    console.log(e);
+  }
 });
+
 // Cookie Parser
 app.use(cookieParser());
 

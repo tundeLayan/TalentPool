@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Team = sequelize.define('Team', {
     id: {
@@ -7,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       type: DataTypes.INTEGER,
     },
-    TeamName: {
+    teamName: {
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Chat = sequelize.define(
     'Chat',
@@ -13,16 +12,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      read_status: {
+      readStatus: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
         allowNull: false,
       },
-      receiver_id: {
+      receiverId: {
         type: DataTypes.STRING(255),
         allowNull: false,
       },
-      user_id: {
+      userId: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -30,13 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       paranoid: true,
       underscored: true,
-      // timestamp:false,
-    }
+    },
   );
-  // eslint-disable-next-line no-unused-vars
-  // User.associate = function(models)
-  // associations can be defined here
-  //   };
   Chat.associate = (model) => {
     Chat.belongsTo(model.User, { foreignKey: 'user_id' });
   };

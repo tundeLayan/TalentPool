@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  const Employerdocument = sequelize.define('Employerdocument', {
+  const EmployerDocument = sequelize.define('EmployerDocument', {
     id: {
       allowNull: false,
       unique: true,
       autoIncrement: true,
       type: DataTypes.INTEGER,
     },
-    documenId: {
+    documentId: {
       type: DataTypes.STRING(255),
       primaryKey: true,
       allowNull: false,
@@ -26,11 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  Employerdocument.associate = (model) => {
-    Employerdocument.belongsTo(model.User, {
+  EmployerDocument.associate = (model) => {
+    EmployerDocument.belongsTo(model.User, {
       foreignKey: 'UserId',
     });
   };
 
-  return Employerdocument;
+  return EmployerDocument;
 };
