@@ -18,7 +18,6 @@ after(async () => {
 describe('Redis Fetch and Set', () => {
   it('should set a token for a user', async () => {
     await client.setAsync(keyId, generateToken(), 'EX', EXPIRETIME);
-    await client.expireAsync(keyId, 1);
     const value = await client.getAsync(keyId);
     assert.strictEqual(typeof (value), 'string');
     assert.strictEqual(value.length, 6);
