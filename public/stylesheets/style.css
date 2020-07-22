@@ -102,3 +102,18 @@ a {
   left: 1.6875em;
   top: 68.625em;
 }
+
+@media only screen and (min-width: 1025px) {
+  .bg-recb{
+    position: absolute;
+    width: 7%;
+    left:0;
+    top: 49.1em;
+  }
+  .bg-recs{
+    position: absolute;
+    width: 2%;
+    left: 1.6875em;
+    top: 67em;
+  }
+}
