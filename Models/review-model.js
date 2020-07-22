@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     id: {

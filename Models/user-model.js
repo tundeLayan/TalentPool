@@ -1,9 +1,3 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable func-names */
-/* eslint-disable comma-dangle */
-/* eslint-disable func-names */
-const crypto = require('crypto');
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -91,16 +85,13 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: '1',
     },
   });
-  // eslint-disable-next-line no-unused-vars
-  // User.associate = function(models)
-  // associations can be defined here
-  //   };
+
   User.associate = (model) => {
     User.hasOne(model.Employee, {
       onDelete: 'cascade',
     });
 
-    User.hasMany(model.Employerdocument, {
+    User.hasMany(model.EmployerDocument, {
       onDelete: 'cascade',
     });
 

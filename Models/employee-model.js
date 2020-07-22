@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Employee = sequelize.define('Employee', {
     id: {
@@ -19,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'Pending',
     },
-    phoneNo: {
+    phoneNumber: {
       type: DataTypes.STRING(250),
       allowNull: false,
       unique: true,
@@ -37,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: null,
     },
-    dob: {
+    dateOfBirth: {
       type: DataTypes.STRING(255),
       defaultValue: null,
     },
@@ -84,5 +83,6 @@ module.exports = (sequelize, DataTypes) => {
   Employee.associate = (model) => {
     Employee.belongsTo(model.User, { foreignKey: 'userId' });
   };
+
   return Employee;
 };

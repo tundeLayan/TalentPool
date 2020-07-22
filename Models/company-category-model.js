@@ -1,7 +1,6 @@
-/* eslint-disable camelcase */
 module.exports = (sequelize, DataTypes) => {
-  const Company_category = sequelize.define(
-    'Company_category',
+  const CompanyCategory = sequelize.define(
+    'CompanyCategory',
     {
       id: {
         allowNull: false,
@@ -9,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         type: DataTypes.INTEGER,
       },
-      category_id: {
+      categoryId: {
         type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
       },
-      category_name: {
+      categoryName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -28,9 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
 
-  Company_category.associate = (model) => {
-    Company_category.hasMany(model.Employer);
+  CompanyCategory.associate = (model) => {
+    CompanyCategory.hasMany(model.Employer);
   };
 
-  return Company_category;
+  return CompanyCategory;
 };

@@ -42,10 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  // eslint-disable-next-line no-unused-vars
-  // User.associate = function(models)
-  // associations can be defined here
-  //   };
+
   Support.associate = (model) => {
     Support.belongsTo(model.User, { foreignKey: 'userId' });
   };

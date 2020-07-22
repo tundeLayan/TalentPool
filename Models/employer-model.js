@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Employer = sequelize.define(
     'Employer',
@@ -23,20 +22,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      sex: {
-        type: DataTypes.ENUM,
-        values: ['Male', 'Female', 'Organization'],
-        allowNull: false,
-        defaultValue: 'Organization',
-      },
-
       verificationStatus: {
         type: DataTypes.ENUM,
         values: ['Approved', 'Disapproved', 'Pending', 'Uploaded'],
         allowNull: false,
         defaultValue: 'Pending',
       },
-      employerPhone: {
+      employerPhoneNumber: {
         type: DataTypes.STRING(255),
         allowNull: false,
       },
@@ -93,10 +85,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
         allowNull: false,
       },
-    }
+    },
   );
   Employer.associate = (model) => {
     Employer.belongsTo(model.User, { foreignKey: 'userId' });
   };
+
   return Employer;
 };

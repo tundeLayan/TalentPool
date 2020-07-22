@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Help = sequelize.define('Help', {
     id: {
@@ -25,12 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  // eslint-disable-next-line no-unused-vars
-  // User.associate = function(models)
-  // associations can be defined here
-  //   };
   Help.associate = (model) => {
     Help.belongsTo(model.User, { foreignKey: 'userId' });
   };
+
   return Help;
 };

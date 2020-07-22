@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Package = sequelize.define('Package', {
     packageName: {
@@ -23,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  // eslint-disable-next-line no-unused-vars
 
   Package.associate = (model) => {
     Package.belongsToMany(model.User, {

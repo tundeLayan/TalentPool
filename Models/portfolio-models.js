@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Portfolio = sequelize.define('Portfolio', {
     id: {
@@ -28,5 +27,6 @@ module.exports = (sequelize, DataTypes) => {
   Portfolio.associate = (model) => {
     Portfolio.belongsTo(model.User, { foreignKey: 'userId' });
   };
+
   return Portfolio;
 };

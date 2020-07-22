@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define('Address', {
     id: {
@@ -7,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       type: DataTypes.INTEGER,
     },
-    phoneNumber1: {
+    phoneNumberOne: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    phoneNumber2: {
+    phoneNumberTwo: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -24,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
       defaultValue: null,
     },
-    postal_code: {
+    postalCode: {
       type: DataTypes.STRING(200),
       defaultValue: null,
     },
@@ -41,5 +40,6 @@ module.exports = (sequelize, DataTypes) => {
   Address.associate = (model) => {
     Address.belongsTo(model.User, { foreignKey: 'userId' });
   };
+
   return Address;
 };

@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 module.exports = (sequelize, DataTypes) => {
   const Role = sequelize.define(
     'Role',
@@ -18,10 +17,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-    }
+    },
   );
-
-  // eslint-disable-next-line no-unused-vars
   Role.associate = (model) => {
     Role.hasMany(model.User);
   };
