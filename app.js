@@ -8,9 +8,6 @@ const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
-const {
-  active
-} = require('./Middleware/is-Auth');
 
 dotenv.config();
 process.env.TALENT_POOL_JWT_SECRET = key(64);
@@ -32,14 +29,8 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
-app.use(active);
-app.use(csrfProtection);
-app.use((req, res, next) => {
-  const token = req.csrfToken();
-  res.cookie('csrf-token', token);
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+
+
 
 db.sequelize.sync().then(async () => {
   try {
@@ -62,7 +53,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  console.log(token);
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 // ************ REGISTER ROUTES HERE ********** //
 
 app.use(authRoutes);
