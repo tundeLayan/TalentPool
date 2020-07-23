@@ -1,7 +1,7 @@
 module.exports = {
   errorUserLogin: (req, res, email, password, errorMessage) => {
     const { isLoggedIn } = req.session;
-    return res.status(401).render('Pages/login', {
+    return res.status(401).render('auth/login', {
       path: '/login',
       pageName: 'Login',
       errorMessage,

@@ -25,6 +25,7 @@
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "csurf": "^1.11.0",

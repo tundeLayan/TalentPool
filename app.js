@@ -6,6 +6,7 @@ const cookieSession = require('cookie-session');
 const csrf = require('csurf');
 const dotenv = require('dotenv');
 const logger = require('morgan');
+const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -16,6 +17,7 @@ const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const employeeRoutes = require('./Routes/employee/index');
 const externalPages = require('./Routes');
+const auth = require('./Routes/auth');
 
 const csrfProtection = csrf();
 const app = express();
@@ -27,6 +29,7 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
+
 app.use(csrfProtection);
 app.use((req, res, next) => {
   const token = req.csrfToken();
@@ -42,7 +45,7 @@ db.sequelize.sync().then(async () => {
     console.log(e);
   }
 });
-
+app.use(flash());
 // Cookie Parser
 app.use(cookieParser());
 
@@ -57,6 +60,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
+app.use('/', auth);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 
@@ -71,7 +75,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'production' ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
