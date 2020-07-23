@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Faq.associate = (model) => {
     Faq.belongsTo(model.User, { foreignKey: 'userId' });
-    Faq.belongsTo(model.FaqCategory, {foreignKey: 'id'})
+    Faq.belongsTo(model.FaqCategory, {foreignKey: 'FaqCategoryId'})
   };
 
 

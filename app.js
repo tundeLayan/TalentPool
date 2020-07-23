@@ -7,15 +7,15 @@ const csrf = require('csurf');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
-
-dotenv.config();
+const bodyParser = require('body-parser');
+dotenv.config('.env');
 process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
-
+const admin = require('./Routes/admin/faq');
 const csrfProtection = csrf();
 const app = express();
 
@@ -26,13 +26,13 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
-app.use(csrfProtection);
-app.use((req, res, next) => {
-  const token = req.csrfToken();
-  res.cookie('csrf-token', token);
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+// app.use(csrfProtection);
+// app.use((req, res, next) => {
+//   const token = req.csrfToken();
+//   res.cookie('csrf-token', token);
+//   res.locals.csrfToken = req.csrfToken();
+//   next();
+// });
 
 db.sequelize.sync().then(async () => {
   try {
@@ -44,7 +44,12 @@ db.sequelize.sync().then(async () => {
 
 // Cookie Parser
 app.use(cookieParser());
-
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  }),
+);
+app.use(bodyParser.json())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -57,13 +62,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
-
+app.use('/admin',admin)
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
+// app.use((req, res, next) => {
+//   next(createError(404));
+// });
 
 // error handler
 app.use((err, req, res, next) => {
@@ -76,5 +81,6 @@ app.use((err, req, res, next) => {
   res.render('error');
   next();
 });
+
 
 module.exports = app;
