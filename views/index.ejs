@@ -5,12 +5,450 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Talent Haven | Desc here</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <%- include('./templates/head.ejs') %>
 </head>
 <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <%- include('./templates/navBar.ejs') %>
+
+
+    <section class="landing-page-top">
+
+        <!--<div class="blob-on-sign-in">-->
+            <!--<img class="left-blob" src="/images/signin-top-right-blob1.svg" alt="">-->
+        <!--</div>-->
+
+        <div class="top-section-description">
+
+            <div class="row pt-5 description-container">
+                <div class="col-md-6 col-12 left">
+
+                    <h1 class="animate__animated animate__slideInLeft">
+                        Find <span>the perfect fit</span> <br>
+                        for your company.
+                    </h1>
+
+                    <div class="what-we-do animate__animated animate__slideInLeft">
+                        We connect companies <wbr>
+                        with top talents <wbr>
+                        perfect for your <br>
+                        tech needs.
+                    </div>
+
+                    <div class="input-group sign-up-out animate__animated animate__zoomIn animate__delay-1s">
+                        <input
+                                type="text" class="form-control"
+                                placeholder="Enter your email"
+                        >
+                        <span class="input-group-text">
+                            Sign Up
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-12 right">
+
+                    <div class="row talents-card-outer animate__animated animate__zoomIn">
+                        <div class="col-md-9 offset-md-2">
+
+                            <div class="row talents-card">
+                                <div class="col-xl-3 col-sm-4 col-4 blob-outer">
+                                    <div class="blob-inner"></div>
+                                </div>
+                                <div class="col-xl-9 col-sm-8 col-8 talents-details">
+                            <span class="name">
+                                Vishnu Chandan Kolaparthi
+                            </span>
+                                    <span class="track">
+                                UI/UX Designer
+                            </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row talents-card-outer animate__animated animate__zoomIn animate__delay-1s">
+                        <div class="col-md-9">
+
+                            <div class="row talents-card">
+                                <div class="col-xl-3 col-sm-4 col-4 blob-outer">
+                                    <div class="blob-inner"></div>
+                                </div>
+                                <div class="col-xl-9 col-sm-8 col-8 talents-details">
+                            <span class="name">
+                                Vishnu Chandan Kolaparthi
+                            </span>
+                                    <span class="track">
+                                UI/UX Designer
+                            </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row talents-card-outer animate__animated animate__zoomIn animate__delay-2s">
+                        <div class="col-md-9 offset-md-3">
+
+                            <div class="row talents-card">
+                                <div class="col-xl-3 col-sm-4 col-4 blob-outer">
+                                    <div class="blob-inner"></div>
+                                </div>
+                                <div class="col-xl-9 col-sm-8 col-8 talents-details">
+                                    <span class="name">
+                                        Vishnu Chandan Kolaparthi
+                                    </span>
+                                    <span class="track">
+                                        UI/UX Designer
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <span class="blob-footer-top">
+            </span>
+
+        </div>
+
+
+        <div class="top-section-footer">
+
+            <img class="left-blob" src="/images/landing-top-left-blob.svg" alt="">
+
+            <div class="trusted-companies">
+
+                <div class="row">
+                    <span class="col-sm-3 title">
+                        Trusted by top companies
+                    </span>
+
+                    <span class="col-sm-9 company-logo">
+                        <img src="/images/trusted-companies.svg" alt="">
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="landing-page-top-previous-clients">
+
+        <h2 class="title add__animate animate__animated">
+            Hear from our previous clients
+        </h2>
+
+        <div class="slider row">
+
+            <div class="col-sm-1 arrow-pc">
+                <img src="/images/carousel-left.svg" alt="">
+            </div>
+
+            <div class="col-sm-10 row">
+
+                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card">
+
+                        <h4>"Exceptional candidates"</h4>
+
+                        <div class="content">
+                            Recruiting through TalentPool has been a breath of fresh air.
+                            The quality of candidates have been exceptional compared to
+                            other job sites.
+                        </div>
+
+                        <hr>
+
+                        <div class="row footer">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card">
+
+                        <h4>"Easy to navigate website"</h4>
+
+                        <div class="content">
+                            The site is easy to navigate. The competent
+                            employees ensure a company's vision is being
+                            executed through their dedication and hard work.
+                        </div>
+
+                        <hr>
+
+                        <div class="row footer">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                Meredith Grey
+                            </span>
+                                <span class="name">
+                                HR at Facebook
+                            </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card">
+
+                        <h4>"Seamless process"</h4>
+
+                        <div class="content">
+                            I have throughly enjoyed my
+                            experience with TalentPool. The process is seamless,
+                            their client representatives are really friendly.
+                        </div>
+
+                        <hr>
+
+                        <div class="row footer">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                Richard Webber
+                            </span>
+                                <span class="name">
+                                CEO of Flutterwave
+                            </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-1 arrow-pc">
+                <img src="/images/carousel-right.svg" alt="">
+            </div>
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <h2 class="title add__animate animate__animated">
+            Meet our talented candidates
+        </h2>
+
+        <div class="slider row">
+
+            <div class="col-sm-1 arrow-pc">
+                <img src="/images/carousel-left.svg" alt="">
+            </div>
+
+            <div class="col-sm-10 row talent-profile-container">
+
+                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card talent-fb-card">
+
+                        <div class="row header">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="content talent-profile">
+                            I am a Product/UX Designer
+                            with 6 years of experience crafting digital
+                            products helping businesses expand their
+                            capacity for impact.
+                            <span class="recent-work">
+                                Previously worked at Google
+                            </span>
+                        </div>
+
+                        <div class="view-profile-footer">
+                            <span>
+                                View Profile <i></i>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card talent-fb-card">
+
+                        <div class="row header">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="content talent-profile">
+                            I am a Product/UX Designer
+                            with 6 years of experience crafting digital
+                            products helping businesses expand their
+                            capacity for impact.
+                            <span class="recent-work">
+                                Previously worked at Google
+                            </span>
+                        </div>
+
+                        <div class="view-profile-footer">
+                            <span>
+                                View Profile <i></i>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card talent-fb-card">
+
+                        <div class="row header">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="content talent-profile">
+                            I am a Product/UX Designer
+                            with 6 years of experience crafting digital
+                            products helping businesses expand their
+                            capacity for impact.
+                            <span class="recent-work">
+                                Previously worked at Google
+                            </span>
+                        </div>
+
+                        <div class="view-profile-footer">
+                            <span>
+                                View Profile <i></i>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-1 arrow-pc">
+                <img src="/images/carousel-right.svg" alt="">
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="the-process-flow">
+        <br>
+
+        <div class="top-section-footer">
+
+            <div class="flow-st">
+
+                <div class="row">
+                    <div class="col-sm-4 col-12">
+                        <img class="blob-count" src="/images/icon-1.svg" alt="">
+                        <div class="process-content">
+                            Create an account
+                        </div>
+                    </div>
+
+                    <hr class="left">
+
+                    <div class="col-sm-4 col-12">
+                        <img class="blob-count" src="/images/icon-2.svg" alt="">
+                        <div class="process-content" style="padding-top: 18px">
+                            Browse list of talented candidates
+                        </div>
+                    </div>
+
+                    <hr class="right">
+
+                    <div class="col-sm-4 col-12">
+                        <img class="blob-count" src="/images/icon-3.svg" alt="">
+                        <div class="process-content">
+                            Hire the best fit
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <img class="left-blob" src="/images/landing-top-right-blob.svg" alt="">
+
+        </div>
+    </section>
+
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/landing-page.js"></script>
 </body>
 </html>
 
