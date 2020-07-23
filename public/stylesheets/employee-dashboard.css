@@ -9,6 +9,8 @@ body{
 }
 
 section{
+  padding: 5px !important;
+  height: calc(100vh - 150px) !important;
   margin-left: 140px !important;
 }
 
@@ -71,6 +73,7 @@ ul.card-portfolio{
 h1.card-title{
   color: #04172A;
   font-weight: bolder !important;
+  font-size: 2.5em !important;
 }
 
 h2.lead{
