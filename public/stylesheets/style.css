@@ -70,6 +70,7 @@ a {
 
 .card {
   border-radius: 10px 10px 10px 10px !important;
+  /* transition: transform .1s; */
 }
 
 .zoom {
