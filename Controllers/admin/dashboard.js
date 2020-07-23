@@ -1,6 +1,27 @@
 const model = require('../../Models/index');
 
 module.exports = {
+  approvedUsers: async () => {
+    const approvedEmployers = await model.Employer.findAll({
+      where: { verificationStatus: 'Approved' },
+    });
+    const approvedEmployees = await model.Employee.findAll({
+      where: { verificationStatus: 'Approved' },
+    });
+    const totalApprovedUsers = approvedEmployers.length + approvedEmployees.length;
+    return totalApprovedUsers;
+  },
+
+  disapprovedUsers: async () => {
+    const disapprovedEmployers = await model.Employer.findAll({
+      where: { verificationStatus: 'Disapproved' },
+    });
+    const disapprovedEmployees = await model.Employee.findAll({
+      where: { verificationStatus: 'Disapproved' },
+    });
+    const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
+    return totalDisapprovedUsers;
+  },
   dashboard: async (req, res) => {
     try {
       const employers = await model.Employer.findAll({});
@@ -50,27 +71,5 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
-  },
-
-  approvedUsers: async () => {
-    const approvedEmployers = await model.Employer.findAll({
-      where: { verificationStatus: 'Approved' },
-    });
-    const approvedEmployees = await model.Employee.findAll({
-      where: { verificationStatus: 'Approved' },
-    });
-    const totalApprovedUsers = approvedEmployers.length + approvedEmployees.length;
-    return totalApprovedUsers;
-  },
-
-  disapprovedUsers: async () => {
-    const disapprovedEmployers = await model.Employer.findAll({
-      where: { verificationStatus: 'Disapproved' },
-    });
-    const disapprovedEmployees = await model.Employee.findAll({
-      where: { verificationStatus: 'Disapproved' },
-    });
-    const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
-    return totalDisapprovedUsers;
   },
 };

@@ -49,6 +49,13 @@ module.exports = {
     }
   },
 
+  getEmployerActivity: async (userId) => {
+    const Activity = await model.Activitylog.findAll({
+      where: { userId },
+    });
+    return (Activity);
+  },
+
   getEmployerProfile: async (req, res) => {
     try {
       const { userId } = req.params;
@@ -81,13 +88,6 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
-  },
-
-  getEmployerActivity: async (userId) => {
-    const Activity = await model.Activitylog.findAll({
-      where: { userId },
-    });
-    return (Activity);
   },
 
   approveEmployer: async (req, res) => {

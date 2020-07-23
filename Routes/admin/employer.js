@@ -23,8 +23,8 @@ router
   .route('/admin/unblock/employer/:userId')
   .patch(unblockEmployer);
 router
-  .route('/admin/approve/employee/:userId')
+  .route('/admin/approve/employer/:userId')
   .patch(approveEmployer);
 router
-  .route('/admin/disapprove/employee/:userId')
+  .route('/admin/disapprove/employer/:userId')
   .patch(disapproveEmployer);
