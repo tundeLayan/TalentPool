@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../templates/head')%>
+  <link href="/stylesheets/dashboardHeader.css" rel="stylesheet" />
+  <link href="/stylesheets/dashboardSidenav.css" rel="stylesheet" />
+
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/stylesheets/bootstrap.css">
   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
@@ -12,7 +16,10 @@
  <title>Dashboard</title>
 </head>
 <body>
-  <section class="container" style="height: 100vh;">
+
+  <%- include('../templates/dashboardHeader') %>
+  <%- include('../templates/employeeDashboardSidebar') %>
+  <section class="container">
     <div class="row my-5">
       <div class="col-md">
           <div class="card custom-card">

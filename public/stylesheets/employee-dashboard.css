@@ -8,13 +8,13 @@ body{
   font: "Manrope", Manrope, sans-serif !important;
 }
 
-.section{
-  background: #E5E5E5;
+section{
+  margin-left: 140px !important;
 }
 
 .card{
   background: #FFFFFF;
-  border: 1px solid rgba(4, 23, 42, 0.1);
+  border: 1px solid rgba(4, 23, 42, 0.1) !important;
   box-sizing: border-box;
   border-radius: 10px;
 }
@@ -37,6 +37,8 @@ ul.card-portfolio{
 }
 
 .custom-card{
+  border:1px solid rgba(4, 23, 42, 0.1) !important;
+  
   min-height: 180px;
   width: 100%;
 }
@@ -146,6 +148,13 @@ h2.lead{
     margin-bottom: .5em;
   }
 }
+
+@media only screen and (max-width: 992px) {
+  section{
+    margin-left: auto !important;
+  }
+}
+
 @media only screen and (max-width: 1001px) {
   .card{
     font-size: .8em !important;
