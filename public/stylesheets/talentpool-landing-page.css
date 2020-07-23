@@ -18,7 +18,7 @@ body {
     position: absolute;
     right: 0;
 }
-.blob-footer-top {
+.landing-page-top .top-section-description .blob-footer-top {
     width: 35px;
     height: 35px;
     background: #49BEFF;
@@ -43,7 +43,7 @@ body {
     animation-timing-function: linear;
 }
 
-.blob-footer-top:hover {
+.landing-page-top .top-section-description .blob-footer-top:hover {
     transition: .2s ease-in-out;
     width: 42px;
     height: 42px;
@@ -93,7 +93,7 @@ body {
 
 .top-section-description .description-container .left h1 {
     color: #04172A;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 45px;
     letter-spacing: 2px;
 }
@@ -135,6 +135,8 @@ body {
 
 .top-section-description .description-container .right {
     padding: 10px 2px 10px 40px;
+    width: 90%;
+    margin: auto;
 }
 .top-section-description .description-container .right .talents-card-outer {
     margin-bottom: 1.7em;
@@ -148,6 +150,10 @@ body {
     border-radius: 10px;
     min-height: 100px;
     height: 100px;
+    box-shadow: 0 0 5px #DCDCDC,
+    0 0 15px #DCDCDC,
+    0 0 25px #DCDCDC,
+    0 0 40px #DCDCDC;
 }
 .top-section-description .description-container .right .talents-card .blob-outer {
     padding: 14px 8px 14px 16px;
@@ -175,7 +181,7 @@ body {
     display: block;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
 
     color: #04172A;
 }
@@ -471,6 +477,20 @@ body {
         max-width: 80px;
         right: 0;
         margin-top: -200px;
+    }
+    .top-section-description .description-container .right .talents-card .blob-outer {
+        padding: 14px 8px 14px 4px;
+    }
+    .top-section-description .description-container .right .talents-card .blob-inner {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+
+        background: #C4C4C4;
+    }
+
+    .top-section-description .description-container .right .talents-card .talents-details {
+        padding: 14px 0;
     }
 }
 @media screen and (max-width: 767px) {
