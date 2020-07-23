@@ -31,6 +31,7 @@ module.exports = {
       const latestTransactions = allTransactions.rows.slice(0, 5);
 
       const totalApprovedUsers = await this.totalApprovedUsers();
+      const totalDisapprovedUsers = await this.totaldisapprovedUsers();
 
       res.render('PageName', {
         pageName: 'Admin | Dashboard',
@@ -44,6 +45,7 @@ module.exports = {
         transactDetails,
         subscriptions,
         totalApprovedUsers,
+        totalDisapprovedUsers,
       });
     } catch (error) {
       console.log(error);
@@ -59,5 +61,16 @@ module.exports = {
     });
     const totalApprovedUsers = approvedEmployers.length + approvedEmployees.length;
     return totalApprovedUsers;
+  },
+
+  disapprovedUsers: async () => {
+    const disapprovedEmployers = await model.Employer.findAll({
+      where: { verificationStatus: 'Disapproved' },
+    });
+    const disapprovedEmployees = await model.Employee.findAll({
+      where: { verificationStatus: 'Disapproved' },
+    });
+    const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
+    return totalDisapprovedUsers;
   },
 };
