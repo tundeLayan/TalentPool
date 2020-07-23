@@ -92,7 +92,7 @@ module.exports = {
             const employerUsers = [...adminChatUsersResult, ...employeeChatUsersResult];
             // const employerbasicInfo = await employerInfo(req, res);
 
-            res.status(200).render('Pages/employer-messages', {
+            res.render('Pages/employer-messages', {
                 pageName: 'Employer Messages',
                 pageTitle: 'TalentPool | Employer Message',
                 EmployerInfo: employerbasicInfo,
