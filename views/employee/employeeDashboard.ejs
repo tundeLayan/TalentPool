@@ -16,9 +16,9 @@
  <title>Dashboard</title>
 </head>
 <body>
-
-  <%- include('../templates/dashboardHeader') %>
-  <%- include('../templates/employeeDashboardSidebar') %>
+  <%- include('../templates/employeeDashboardSidebar.ejs') %>
+  <%- include('../templates/dashboardHeader.ejs') %>
+  <main id="main">
   <section class="container">
     <div class="row mb-5 mt-3">
       <div class="col-md">
@@ -179,5 +179,11 @@
     </div>
   
   </section>
+    
+</main>
+  <script src="/javascripts/dashboardSideNav.js"></script>
+  <script src="/javascripts/bootstrap.js"></script>
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/popper.js"></script>
 </body>
 </html>
