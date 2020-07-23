@@ -110,12 +110,22 @@ body {
     width: 92%;
 }
 .top-section-description .description-container .sign-up-out input {
-    height: 43px;
+    height: 42px;
     font-size: 16px;
+    border: none;
+    border-radius: 0;
+    background: inherit;
+    color: #4D49FF;
+}
+.top-section-description .description-container .sign-up-out input:focus {
+    box-shadow: none;
+    outline: none;
+    transition: .3s ease-in-out;
+    border-bottom: 1px solid #4D49FF;
 }
 .top-section-description .description-container .sign-up-out span {
     background: #4D49FF;
-    border-radius: 5px;
+    border-radius:  0 5px 5px 0;
     color: white;
     margin-left: -3px;
     z-index: 3;
@@ -249,7 +259,7 @@ body {
 }
 
 .landing-page-top-previous-clients .feedback-card-outer .talent-fb-card {
-    max-height: 260px;
+    max-height: 275px;
 }
 
 .landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
@@ -334,9 +344,37 @@ body {
     -ms-transform: scale(1.1); /* IE 9 */
     transform: scale(1.1);
 }
-
-
-
+.the-process-flow .top-section-footer {
+    margin: 3.5em 0;
+    padding: 2em 0;
+    min-height: 185px;
+    background: #F6FCFF;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+}
+.the-process-flow .top-section-footer img.left-blob {
+    position: absolute;
+    min-height: 265px;
+    max-height: 265px;
+    right: 0;
+    margin-top: -160px;
+}
+.the-process-flow .top-section-footer .flow-st {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+.the-process-flow .top-section-footer .flow-st img.blob-count {
+    width: 50px;
+    margin: auto;
+}
+.the-process-flow .top-section-footer .flow-st .process-content {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    padding: 14px 0;
+    color: #04172A;
+}
 /**** TOP SECTION MOBILE AND TAB RESPONSIVENESS ****/
 
 @media screen and (max-width: 1350px) {
@@ -370,6 +408,10 @@ body {
         font-size: 13px;
         min-height: 108px;
     }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
+        font-size: 13px;
+        min-height: 126px;
+    }
     .landing-page-top-previous-clients {
         min-height: 100vh;
         padding: 4.5em 0 2em 0;
@@ -392,7 +434,8 @@ body {
     }
     .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
         font-size: 13px;
-        max-height: 108px;
+        /*max-height: 108px;*/
+        /*min-height: 128px;*/
     }
     .landing-page-top .top-section-footer img.left-blob {
         position: absolute;
@@ -431,7 +474,7 @@ body {
         /*max-height: 100px;*/
     }
     .landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
-        min-height: 120px;
+        min-height: 128px;
         /*max-height: 170px;*/
     }
     .landing-page-top-previous-clients .feedback-card-outer .feedback-card {
@@ -483,6 +526,9 @@ body {
         min-height: 155px;
         max-height: 155px;
         margin-top: -120px;
+    }
+    .the-process-flow .top-section-footer .flow-st .col-12 {
+        margin-top: 16px;
     }
 }
 @media screen and (max-width: 450px) {
