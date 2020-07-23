@@ -108,8 +108,11 @@ module.exports = {
       }
     } catch (err) {
       if (err) {
-        console.log(err);
-        return res.redirect(301, '/login');
+        return errorUserLogin(
+          req,
+          res,
+          'Something Went Wrong! Please try again...',
+        );
       }
     }
   },
