@@ -2,7 +2,7 @@ const { renderPage } = require('../Utils/render-page');
 
 const demo = (req, res) => {
   const data = {
-    message: 'This is an example',
+    message: 'This is a General Home Page',
     firstName: 'John',
     lastName: 'Doe'
   }
