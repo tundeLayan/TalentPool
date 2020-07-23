@@ -6,7 +6,7 @@ const { getUserData, createUser } = require('../Utils/passport-helper');
 
 // serialize user object and send as a cookie
 passport.serializeUser((user, done) => {
-  done(null, user);
+  return done(null, user);
 });
 
 // deserialize user object
@@ -39,7 +39,7 @@ passport.use('google-employer',
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
-          done(null, data);
+         return done(null, data);
         }
         // create a new user
         const userData = await createUser(req, profile, 'ROL-EMPLOYER', done);
@@ -72,7 +72,7 @@ passport.use('google-employee',
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
-          done(null, data);
+          return done(null, data);
         }
         // create a new user
         const userData = await createUser(req, profile, 'ROL-EMPLOYEE', done);
@@ -105,7 +105,7 @@ passport.use('github-employer',
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
-          done(null, data);
+          return done(null, data);
         }
         // create a new user
         const userData = await createUser(req, profile, 'ROL-EMPLOYER', done);
@@ -138,7 +138,7 @@ passport.use('github-employee',
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
-          done(null, data);
+          return done(null, data);
         }
         // create a new user
         const userData = await createUser(req, profile, 'ROL-EMPLOYEE', done);

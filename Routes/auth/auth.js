@@ -2,6 +2,9 @@
 const router = require('express').Router();
 const passport = require('passport');
 const { renderPage } = require('../../Utils/passport-helper');
+const { employerSignup } = require('../../Controllers/auth/auth')
+
+router.get('/employer/register' , employerSignup);
 
 // <----------------------- GOOOGLE ROUTES ------------------------------>
 

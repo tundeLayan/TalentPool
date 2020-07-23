@@ -91,9 +91,9 @@ exports.renderPage = async (req, res, user) => {
   req.session.userId = user.userId;
   req.flash('success', 'Authentication successful!');
   if (user.userRole === 'ROL-EMPLOYER') {
-    return res.redirect('/employer/dashboard');
+    return res.redirect('/employee/dashboard');
   }
   return res.redirect(
-    `/employee/dashboard/${user.userTypeId}?success_message=Login Successful`,
+    '/employee/dashboard',
   );
 };
