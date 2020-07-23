@@ -95,7 +95,7 @@ const verifyEmail = async (req, res) => {
     if (Date.now() <= decoded.exp + Date.now() + 60 * 60) {
       if (!user) {
         req.flash('error', 'Email has not been registered');
-        return res.redirect('/notRegistered');
+        return res.redirect('/employer/register');
       }
       if (user.status === '1') {
         if (user.role_id === 'ROL-EMPLOYER') {
@@ -121,11 +121,11 @@ const verifyEmail = async (req, res) => {
       }
     } else {
       req.flash('error', 'Sorry, this link is either invalid or has expired. ');
-      return res.redirect('/');
+      return res.redirect('/reverifyemail');
     }
   } catch (error) {
     req.flash('error', 'Sorry, this link is either invalid or has expired. ');
-    return res.redirect('/notValid');
+    return res.redirect('/reverifyemail');
   }
 };
 

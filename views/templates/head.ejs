@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
 
 <!-- Dashboard CSS -->
-<link rel="stylesheet" href="/public/stylesheets/dashboardSidenav.css">
-<link rel="stylesheet" href="/public/stylesheets/dashboardHeader.css">
+<link rel="stylesheet" href="/stylesheets/dashboardSidenav.css">
+<link rel="stylesheet" href="/stylesheets/dashboardHeader.css">
 
 <!-- Landing Page CSS -->
 <link rel="stylesheet" href="/stylesheets/header.css">
@@ -18,12 +18,17 @@
 <link rel="stylesheet" href="/stylesheets/footer.css">
 
 <!-- Bootstrap JS -->
-<script src="/public/javascripts/jquery.js"></script>
-<script src="/public/javascripts/bootstrap.min.js"></script>
-<script src="/public/javascripts/popper.js"></script>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/popper.js"></script>
 
 <!-- Dashboard JS -->
-<script src="/public/javascripts/dashboardNav.js"></script>
-<script src="/public/javascripts/dashboardSideNav.js"></script>
+<script src="/javascripts/dashboardSideNav.js"></script>
 
-<title>TalentPool</title>
+
+
+<% if (pageName) { %>
+    <title>Talent Haven | <%= pageName %></title>
+    <%} else { %>
+        <title>TalentPool </title>
+    <% } %>
