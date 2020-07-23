@@ -3,7 +3,7 @@ const { dashboard } = require('../../Controllers/employer/dashboard');
 
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/dashboard', dashboard);
+/* GET Dashboard. */
+router.get('/', dashboard);
 
 module.exports = router;

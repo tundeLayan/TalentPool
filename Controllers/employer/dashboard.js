@@ -1,30 +1,34 @@
 const model = require('../../Models');
 
+let user = '';
+
+const recommendedInterns = model.Employee.findAll({
+  where: {
+    userType: 'HNG',
+    verificationStatus: 'Approved'
+  }
+});
+const allEmployee = model.Employee.findAll({
+  where: {
+    verificationStatus: 'Approved'
+  }
+});
+const pendingHire = model.Team.findAll({
+  where: {
+    userId: user,
+    status: 'Pending'
+  },
+});
+const teamMember = model.Team.findAll({
+  where: {
+    userId: user,
+    status: 'Accepted'
+  },
+});
+
 const dashboard = async (req, res) => {
   try {
-    const recommendedInterns = await model.Employee.findAll({
-      where: {
-        userType: 'HNG',
-        verificationStatus: 'Approved'
-      }
-    });
-    const allEmployee = await model.Employee.findAll({
-      where: {
-        verificationStatus: 'Approved'
-      }
-    });
-    const pendingHire = await model.Team.findAll({
-      where: {
-        userId: req.session.userId,
-        status: 'Pending'
-      },
-    });
-    const teamMember = await model.Team.findAll({
-      where: {
-        userId: req.session.userId,
-        status: 'Accepted'
-      },
-    });
+    user = req.session.id;
     const data = { allEmployee, teamMember, recommendedInterns, pendingHire }
     res.render('employer/employerDashboard', { data, title: 'Employer Dashboard' });
   } catch (err) {
