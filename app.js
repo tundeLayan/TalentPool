@@ -16,6 +16,10 @@ const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
 
+// Admin
+const adminEmployees = require('./Routes/admin/employee');
+const superAdmin = require('./Routes/admin/admin')
+
 const csrfProtection = csrf();
 const app = express();
 
@@ -57,6 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
+app.use('/admin', adminEmployees);
 
 // ************ END ROUTE REGISTRATION ********** //
 
