@@ -1,8 +1,126 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 a {
   color: #00B7FF;
+}
+
+/* Fonts */
+
+.manrope-font {
+  font-family: 'Manrope', sans-serif;
+}
+
+.f-40 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.5em;
+  line-height: 120%;
+}
+
+.f-20 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.25em;
+  line-height: 1.625em;
+}
+
+.f-12 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.75em;
+  line-height: 1em;
+}
+
+.f-24 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 120%;
+}
+
+.f-16 {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.3125em;
+}
+
+/* Font-Colours */
+
+.white {
+  color: #FFFFFF !important;
+}
+
+.dark {
+  color: #04172A !important;
+}
+
+/* BgColors */
+
+.purple {
+  background-color: #4D49FF !important;
+}
+
+.card {
+  border-radius: 10px 10px 10px 10px !important;
+  /* transition: transform .1s; */
+}
+
+.zoom {
+  transition: transform .1s;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding-bottom: 0 !important;
+}
+
+.blog-btn {
+  border-radius: 0px 0px 9px 10px !important;
+}
+
+/* Ready-section */
+
+.ready-section {
+  background-color: #F6FCFF !important;
+  position: relative;
+}
+
+.ready-text {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.bg-rec {
+  position: absolute;
+  width: 7%;
+  left: 0;
+  top: -5em;
+}
+
+.icons {
+  position: absolute;
+  left: 1em;
+  top: -2em;
+}
+
+/*  */
+
+@media only screen and (max-width: 1440px) and (min-width: 1025px) {
+  .bg-rec {
+    position: absolute;
+    width: 7%;
+    left: 0;
+    top: -6.3em;
+  }
 }

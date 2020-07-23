@@ -6,20 +6,71 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Boiler Plate CSS -->
+<link rel="stylesheet" href="/public/stylesheets/bootstrap.min.css">
+
+<!-- Landing Page CSS -->
+<link rel="stylesheet" href="/public/stylesheets/header.css" />
+<link rel="stylesheet" href="/public/stylesheets/footer.css" />
+<link rel="stylesheet" href="/public/stylesheets/animate.css" />
+<link rel="stylesheet" href="/public/stylesheets/talentpool-landing-page.css"/>
+
+<title>TalentPool</title>
     <!-- <title><%= title %></title> -->
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="/stylesheets/bootstrap.css" />
+    <link rel='stylesheet' href='/public/stylesheets/style.css' />
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css" />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
-    <%- include('./templates/head.ejs') %>
 </head>
 
 <body>
 
-    <%- include('./templates/navBar.ejs') %>
-
+    <header>
+        <img class="navDesign d-none d-lg-flex" src="/public/images/landing-page-nav/navDesign2.svg" alt="">
+        <img class="navDesign d-none d-lg-flex" src="/public/images/landing-page-nav/navDesign1.svg" alt="">
+    
+        <nav class="navbar navbar-expand-lg nav-bg">
+            <div class="container">
+                <a class="navbar-brand" href="#"><span style="color: #4D49FF;">Talent</span> Haven</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-padding ml-auto">
+                        <li class="nav-item mr-lg-4">
+                            <a class="nav-link nav-link-black" href="#">Home</a>
+                        </li>
+                        <li class="nav-item mr-lg-4 ">
+                            <a class="nav-link nav-link-black" href="#">About Us </a>
+                        </li>
+                        <li class="nav-item mr-lg-4">
+                            <a class="nav-link nav-link-black" href="#">Directories </a>
+                        </li>
+                        <li class="nav-item mr-lg-4">
+                            <a class="nav-link nav-link-black" href="#">FAQ </a>
+                        </li>
+                        <li class="nav-item mr-lg-4">
+                            <a class="nav-link nav-link-black" href="#">Contact Us </a>
+                        </li>
+                        <li class="nav-item nav-margin-signIn">
+                            <a class="nav-link nav-link-white" href="#">Sign In -></a>
+                        </li>
+                        <li class="nav-item nav-margin-signUp">
+                            <a class="nav-link nav-link-white" href="#">Sign Up -></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <section class="landing-page-top">
 
@@ -126,7 +177,7 @@
 
         <div class="top-section-footer">
 
-            <img class="left-blob" src="/images/landing-top-left-blob.svg" alt="">
+            <img class="left-blob" src="/public/images/landing-top-left-blob.svg" alt="">
 
             <div class="trusted-companies">
 
@@ -136,7 +187,7 @@
                     </span>
 
                     <span class="col-sm-9 company-logo">
-                        <img src="/images/trusted-companies.svg" alt="">
+                        <img src="/public/images/trusted-companies.svg" alt="">
                     </span>
                 </div>
 
@@ -154,7 +205,7 @@
         <div class="slider row">
 
             <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-left.svg" alt="">
+                <img src="/public/images/carousel-left.svg" alt="">
             </div>
 
             <div class="col-sm-10 row">
@@ -258,7 +309,7 @@
             </div>
 
             <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-right.svg" alt="">
+                <img src="/public/images/carousel-right.svg" alt="">
             </div>
 
         </div>
@@ -274,7 +325,7 @@
         <div class="slider row">
 
             <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-left.svg" alt="">
+                <img src="/public/images/carousel-left.svg" alt="">
             </div>
 
             <div class="col-sm-10 row talent-profile-container">
@@ -402,7 +453,7 @@
             </div>
 
             <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-right.svg" alt="">
+                <img src="/public/images/carousel-right.svg" alt="">
             </div>
 
         </div>
@@ -418,7 +469,7 @@
 
                 <div class="row">
                     <div class="col-sm-4 col-12">
-                        <img class="blob-count" src="/images/icon-1.svg" alt="">
+                        <img class="blob-count" src="/public/images/icon-1.svg" alt="">
                         <div class="process-content">
                             Create an account
                         </div>
@@ -427,7 +478,7 @@
                     <hr class="left">
 
                     <div class="col-sm-4 col-12">
-                        <img class="blob-count" src="/images/icon-2.svg" alt="">
+                        <img class="blob-count" src="/public/images/icon-2.svg" alt="">
                         <div class="process-content" style="padding-top: 18px">
                             Browse list of talented candidates
                         </div>
@@ -436,7 +487,7 @@
                     <hr class="right">
 
                     <div class="col-sm-4 col-12">
-                        <img class="blob-count" src="/images/icon-3.svg" alt="">
+                        <img class="blob-count" src="/public/images/icon-3.svg" alt="">
                         <div class="process-content">
                             Hire the best fit
                         </div>
@@ -445,7 +496,7 @@
 
             </div>
 
-            <img class="left-blob" src="/images/landing-top-right-blob.svg" alt="">
+            <img class="left-blob" src="/public/images/landing-top-right-blob.svg" alt="">
 
         </div>
     </section>
@@ -458,7 +509,7 @@
                 <div class="row my-3 d-flex justify-content-around">
                     <div class="col-md-4 col-lg-4  text-center mb-4 mb-lg-5">
                         <div class="card add__animate animate__animated animate__lightSpeedInLeft zoom h-100 py-4">
-                            <img src="/images/UIUX-icon.svg" alt="UI UX designer icon">
+                            <img src="/public/images/UIUX-icon.svg" alt="UI UX designer icon">
                             <div class="card-body">
                                 <h5 class="card-title ">UI/UX Designers</h5>
                                 <p class="card-text">Create an amazing virtual space for your company with highly
@@ -470,7 +521,7 @@
 
                     <div class="col-md-4 col-lg-4  text-center mb-4 mb-lg-5">
                         <div class="card add__animate animate__animated animate__flipInY zoom h-100 py-4">
-                            <img src="/images/FE-icon.svg" alt="frontend developer icon">
+                            <img src="/public/images/FE-icon.svg" alt="frontend developer icon">
                             <div class="card-body">
                                 <h5 class="card-title">Frontend Developers</h5>
                                 <p class="card-text">Versatile and always eager to tackle new problems with an
@@ -481,7 +532,7 @@
 
                     <div class="col-md-4 col-lg-4  text-center mb-4 mb-lg-5">
                         <div class="card add__animate animate__animated animate__lightSpeedInRight zoom h-100 py-4">
-                            <img src="/images/BE-icon.svg" alt="backend developer icon">
+                            <img src="/public/images/BE-icon.svg" alt="backend developer icon">
                             <div class="card-body">
                                 <h5 class="card-title">Backend Developers</h5>
                                 <p class="card-text"> Our seasoned experts are well known for seamless integration
@@ -492,7 +543,7 @@
 
                     <div class="col-md-4 col-lg-4  text-center  mb-4 mb-lg-5">
                         <div class="card add__animate animate__animated animate__fadeInLeft zoom h-100 py-4">
-                            <img src="/images/MOB-icon.svg" alt="mobile developer icon">
+                            <img src="/public/images/MOB-icon.svg" alt="mobile developer icon">
                             <div class="card-body">
                                 <h5 class="card-title">Mobile Developers</h5>
                                 <p class="card-text"> Mobile app developers possessing superior analytical skills
@@ -503,7 +554,7 @@
 
                     <div class="col-md-4 col-lg-4  text-center mb-4 mb-lg-5">
                         <div class="card add__animate animate__animated animate__fadeInUp zoom h-100 py-4">
-                            <img src="/images/PM-icon.svg" alt="project manager icon">
+                            <img src="/public/images/PM-icon.svg" alt="project manager icon">
                             <div class="card-body">
                                 <h5 class="card-title">Product Managers</h5>
                                 <p class="card-text"> Hire effective product managers that are experienced in a
@@ -515,7 +566,7 @@
 
                     <div class="col-md-4 col-lg-4  text-center mb-4 mb-lg-5">
                         <div class="card add__animate animate__animated animate__fadeInRight zoom h-100 py-4">
-                            <img src="/images/DEVops-icon.svg" alt="DevOps icon">
+                            <img src="/public/images/DEVops-icon.svg" alt="DevOps icon">
                             <div class="card-body">
                                 <h5 class="card-title">DevOp Specialists</h5>
                                 <p class="card-text"> Professional Operations specialists capable of leading teams
@@ -534,7 +585,7 @@
             <div class="row">
                 <div class="col-md-4 my-3 ">
                     <div class="card add__animate animate__animated animate__jello zoom h-100">
-                        <img class="icons" src="/images/icon-1.svg" alt="icon">
+                        <img class="icons" src="/public/images/icon-1.svg" alt="icon">
                         <div class="card-body">
                             <p class="card-text pb-2 pt-4">We analyze the skills needed by professionals in each
                                 space to determine what you need.</p>
@@ -545,7 +596,7 @@
 
                 <div class="col-md-4 my-3">
                     <div class="card add__animate animate__animated animate__jello zoom h-100">
-                        <img class="icons" src="/images/icon-2.svg" alt="icon">
+                        <img class="icons" src="/public/images/icon-2.svg" alt="icon">
                         <div class="card-body">
                             <p class="card-text  pb-2 pt-4">We regularly train our experts to keep them current on
                                 present technological needs.</p>
@@ -555,7 +606,7 @@
 
                 <div class="col-md-4 my-3">
                     <div class="card add__animate animate__animated animate__jello zoom h-100">
-                        <img class="icons" src="/images/icon-3.svg" alt="icon">
+                        <img class="icons" src="/public/images/icon-3.svg" alt="icon">
                         <div class="card-body">
                             <p class="card-text pb-2 pt-4">We scrutinize our process so we can offer you the best
                                 services across various fields.</p>
@@ -566,7 +617,7 @@
         </div>
     </section>
     <section class="ready-section py-5 my-5">
-        <img class="bg-rec d-none d-md-block" src="/images/ready-rec.svg" alt="an image for beauty">
+        <img class="bg-rec d-none d-md-block" src="/public/images/ready-rec.svg" alt="an image for beauty">
         <div class="container px-5">
             <p
                 class="ready-text col-md-6 col-12 d-inline-block f-40 animate__animated animate__bounceIn manrope-font dark">
@@ -587,7 +638,7 @@
             <div class="row">
                 <div class="col-md-4 my-3 ">
                     <div class="card">
-                        <img src="/images/blog-img.svg" class="card-img-top" alt="blog image">
+                        <img src="/public/images/blog-img.svg" class="card-img-top" alt="blog image">
                         <div class="card-body">
                             <p class="card-title f-12 dark">John Doe</p>
                             <h5 class="card-title f-20 dark">How to build a design system</h5>
@@ -606,7 +657,7 @@
 
                 <div class="col-md-4 my-3">
                     <div class="card">
-                        <img src="/images/blog-img.svg" class="card-img-top" alt="blog image">
+                        <img src="/public/images/blog-img.svg" class="card-img-top" alt="blog image">
                         <div class="card-body">
                             <p class="card-title f-12 dark">John Doe</p>
                             <h5 class="card-title f-20 dark">How to build a design system</h5>
@@ -624,7 +675,7 @@
                 </div>
                 <div class="col-md-4 my-3">
                     <div class="card">
-                        <img src="/images/blog-img.svg" class="card-img-top" alt="blog image">
+                        <img src="/public/images/blog-img.svg" class="card-img-top" alt="blog image">
                         <div class="card-body">
                             <p class="card-title f-12 dark">John Doe</p>
                             <h5 class="card-title f-20 dark">How to build a design system</h5>
@@ -644,13 +695,75 @@
         </div>
     </section>
 
-    <%- include('./templates/footer.ejs') %>
+    <footer>
+        <div class="container footer-padding">
+            <div class="row">
+                <div class="col-12 col-md mb-4 d-flex flex-column align-items-center align-items-md-start">
+                    <h3 class="footer-title">Talent Haven</h3>
+                    <p class="footer-text mb-4 text-center text-md-left">
+                        We are known for connecting top talents with top companies. We make great possibilities happen.
+                    </p>
+                    <div class="row">
+                        <a href="#"><img class="pl-3 mr-4" src="/public/images/footer/footer-facebook.svg" alt=""></a>
+                        <a href="#"><img class="pl-4 pl-md-0 mr-4" src="/public/images/footer/footer-instagram.svg" alt=""></a>
+                        <a href="#"><img class="pl-3 pl-md-0 mr-4" src="/public/images/footer/footer-twitter.svg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md mb-4 mr-md-5 d-flex flex-column align-items-center align-items-md-start">
+                    <h3 class="footer-title">Get In Touch</h3>
+                    <p class="footer-text">
+                        Lagos NG, 17 Akinsanya St, Ojodu 100213, Ikeja
+                    </p>
+                    <p class="footer-text">
+                        <a href="tel:+11234567890" class="footer-link">+1 12345 67890</a>
+                    </p>
+                    <p class="footer-text">
+                        <a href="mailto:hello@talenthaven.io" class="footer-link">hello@talenthaven.io</a>
+                    </p>
+                </div>
+                <div class="col-6 col-md mb-4 ml-md-5 d-flex flex-column align-items-center align-items-md-start">
+                    <h3 class="footer-title">Explore</h3>
+                    <div>
+                        <a href="#" class="footer-text footer-link">Home</a>
+                    </div>
+                    <div>
+                        <a href="#" class="footer-text footer-link">About</a>
+                    </div>
+                    <div>
+                        <a href="#" class="footer-text footer-link">Directories</a>
+                    </div>
+                    <div>
+                        <a href="#" class="footer-text footer-link">Contact Us</a>
+                    </div>
+                    <div>
+                        <a href="#" class="footer-text footer-link">FAQ</a>
+                    </div>
+                </div>
+                <div class="col-6 col-md mb-4 d-flex flex-column align-items-center align-items-md-start">
+                    <h3 class="footer-title">Legal</h3>
+                    <p class="footer-text">
+                        <a href="#" class="footer-link">Privacy Policy</a>
+                    </p>
+                    <p class="footer-text">
+                        <a href="#" class="footer-link">Terms & Conditions</a>
+                    </p>
+                </div>
+            </div>
+    
+            <hr class="footer-divider">
+    
+            <div class="">
+                <p class="footer-copyright">
+                    2020 Tech Haven &copy; Copyright All rights reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
 
     <script src="/public/javascripts/bootstrap.js"></script>
     <script src="/public/javascripts/jquery.js"></script>
     <script src="/public/javascripts/popper.js"></script>
-    <script src="/javascripts/jquery.js"></script>
-    <script src="/javascripts/landing-page.js"></script>
 </body>
 
 </html>
