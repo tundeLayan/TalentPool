@@ -228,7 +228,7 @@ body {
     transition: .3s ease-in-out;
 }
 .landing-page-top-previous-clients .slider .arrow-pc img {
-    padding: 8em 0;
+    padding: 9.5em 0;
 }
 .landing-page-top-previous-clients .slider .col-sm-1 {
     flex: 0 0 5.333333%;
@@ -377,7 +377,26 @@ body {
     padding: 14px 0;
     color: #04172A;
 }
+
 /**** TOP SECTION MOBILE AND TAB RESPONSIVENESS ****/
+
+@media screen and (min-width: 1340px) and (max-width: 1400px) {
+    .the-process-flow .top-section-footer .flow-st hr.left {
+        border: 1px solid rgba(4, 23, 42, 0.25);
+        width: 340px;
+        position: absolute;
+        left: 296px;
+        margin: 22px 0 0 0;
+    }
+
+    .the-process-flow .top-section-footer .flow-st hr.right {
+        border: 1px solid rgba(4, 23, 42, 0.25);
+        width: 340px;
+        position: absolute;
+        right: 296px;
+        margin: 22px 0 0 0;
+    }
+}
 
 @media screen and (max-width: 1350px) {
     .landing-page-top .top-section-description {
