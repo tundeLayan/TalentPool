@@ -10,7 +10,7 @@ const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
 const {
   active
-} = require('./Middleware/isAuth');
+} = require('./Middleware/is-Auth');
 
 dotenv.config();
 process.env.TALENT_POOL_JWT_SECRET = key(64);
@@ -19,7 +19,7 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
-const authRoute = require('./Routes/auth/auth');
+const authRoutes = require('./Routes/auth/auth');
 
 const csrfProtection = csrf();
 const app = express();
@@ -64,7 +64,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
-app.use(authRoute);
+app.use(authRoutes);
 
 // ************ END ROUTE REGISTRATION ********** //
 

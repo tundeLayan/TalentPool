@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const auth = (req, res, next) => {
     if (!req.session.isLoggedIn) {
       req.flash('You need to re-login to continue');
@@ -14,7 +15,7 @@ const auth = (req, res, next) => {
       if (now > createdAt + process.env.SESSION_ABSOLUTE_TIMEOUT) {
         req.session = null;
         req.flash('error', 'Session expired. Login to continue');
-        return res.redirect('/login');
+        return res.redirect('/');
       }
     }
   

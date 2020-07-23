@@ -36,15 +36,13 @@
     "express-validator": "^6.6.0",
     "http-errors": "^1.8.0",
     "inquirer": "^7.3.2",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-<<<<<<< HEAD
-    "nodemailer": "^6.4.10",
-=======
     "mysql2": "^2.1.0",
+    "nodemailer": "^6.4.10",
     "redis": "^3.0.2",
     "sequelize": "^6.3.3",
     "sequelize-cli": "^6.2.0",
->>>>>>> 63519f71f3a7dadb486193628c5c53f51d76e30d
     "uuidv4": "^6.2.0"
   },
   "devDependencies": {
