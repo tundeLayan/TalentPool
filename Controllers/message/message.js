@@ -2,38 +2,21 @@
 /* eslint-disable no-undef */
 const Sequelize = require('sequelize');
 const model = require('../../Models/index');
-// const {
-//     errorResMsg,
-//     successResMsg,
-// } = require('../../../Utils/response');
-// const employerInfo = require('./employerInfo');
 
 const {
     Op
 } = Sequelize;
 
 
-const adminChatUsers = async () => {
-    const users = await model.Admin.findAll({
-        raw: true,
-        attributes: ['userId', 'firstName', 'lastName'],
-        include: [{
-            model: model.User,
-            attributes: ['roleId'],
-        }, ],
-    })
-
-    return users
-};
 
 const employerChatUsers = async () => {
     const users = await model.Employer.findAll({
         raw: true,
-        attributes: ['userId', 'employerName', 'employerPhoto'],
+        attributes: ['userId', 'employerPhoto'],
         include: [{
             model: model.User,
             attributes: ['roleId'],
-        }, ],
+        },],
     })
 
     return users
@@ -42,11 +25,11 @@ const employerChatUsers = async () => {
 const employeeChatUsers = async () => {
     const users = model.Employee.findAll({
         raw: true,
-        attributes: ['userId', 'firstName', 'lastName', 'image'],
+        attributes: ['userId', 'image'],
         include: [{
             model: model.User,
             attributes: ['roleId'],
-        }, ],
+        },],
     })
 
     return users
@@ -54,48 +37,17 @@ const employeeChatUsers = async () => {
 
 
 module.exports = {
-    adminMessagePage: async (req, res) => {
-        try {
-            const adminChatUsersResult = await adminChatUsers(req, res);
-            const employerChatUsersResult = await employerChatUsers(req, res);
-            const employeeChatUsersResult = await employeeChatUsers(req, res);
-
-            const allUsers = [
-                ...adminChatUsersResult,
-                ...employerChatUsersResult,
-                ...employeeChatUsersResult,
-            ];
-            console.log(allUsers)
-            res.status(200).render('Pages/admin-dash-messages', {
-                pageName: 'Admin Messages',
-                pageTitle: 'TalentPool | Admin Message',
-                userId: req.session.userId,
-                role: req.session.data.userRole,
-                allUsers,
-                path: 'admin-messages',
-                error: req.flash('error'),
-                errors: req.flash('errors'),
-                success: req.flash('success'),
-                currentUser: req.session.name,
-            });
-        } catch (err) {
-            return errorResMsg(res, 500, 'Ops!, An error occurred');
-        }
-    },
-
+   
     employerMessagePage: async (req, res) => {
         try {
 
-            const adminChatUsersResult = await adminChatUsers(req, res);
             const employeeChatUsersResult = await employeeChatUsers(req, res);
 
-            const employerUsers = [...adminChatUsersResult, ...employeeChatUsersResult];
-            // const employerbasicInfo = await employerInfo(req, res);
+            const employerUsers = [...employeeChatUsersResult];
 
             res.status(200).render('Pages/employer-messages', {
                 pageName: 'Employer Messages',
                 pageTitle: 'TalentPool | Employer Message',
-                EmployerInfo: employerbasicInfo,
                 userId: req.session.userId,
                 role: req.session.data.userRole,
                 path: '/employer/message',
@@ -106,7 +58,6 @@ module.exports = {
             });
         } catch (err) {
             console.log(err);
-            return errorResMsg(res, 500, 'Ops!, An error occurred');
         }
     },
 
@@ -136,10 +87,8 @@ module.exports = {
 
         try {
             const employerChatUsersResult = await employerChatUsers(req, res);
-            const adminChatUsersResult = await adminChatUsers(req, res);
-            console.log(employerChatUsersResult)
 
-            const employeeUsers = [...employerChatUsersResult, ...adminChatUsersResult];
+            const employeeUsers = [...employerChatUsersResult];
             data = {
                 employee: {
                     image: req.session.profileImage,
@@ -164,7 +113,7 @@ module.exports = {
                 success: req.flash('success'),
             });
         } catch (err) {
-            return errorResMsg(res, 500, 'Ops!, An error occurred');
+            console.log(err);
         }
     },
 
@@ -185,30 +134,30 @@ module.exports = {
                         // eslint-disable-next-line max-len
                         {
                             [Op.and]: [{
-                                    user_id: senderID,
-                                },
-                                {
-                                    receiver_id: receiverID,
-                                },
+                                user_id: senderID,
+                            },
+                            {
+                                receiver_id: receiverID,
+                            },
                             ],
                         },
                         {
                             [Op.and]: [{
-                                    user_id: receiverID,
-                                },
-                                {
-                                    receiver_id: senderID,
-                                },
+                                user_id: receiverID,
+                            },
+                            {
+                                receiver_id: senderID,
+                            },
                             ],
                         },
                     ],
                 },
             });
 
-            return successResMsg(res, 200, usersChatMessages)
+            return usersChatMessages;
 
         } catch (err) {
-            return errorResMsg(res, 500, 'Ops!, An error occurred');
+            console.log(err)
         }
     }
 };
