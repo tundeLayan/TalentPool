@@ -146,7 +146,7 @@ module.exports = {
                     username: req.session.firstName,
                 },
             };
-            res.status(200).render('Pages/employee-messages', {
+            res.render('Pages/employee-messages', {
                 pageName: 'Employee Messages',
                 pageTitle: 'TalentPool | Employee Message',
                 userId,
