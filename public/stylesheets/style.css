@@ -70,8 +70,12 @@ a {
 
 .card {
   border-radius: 10px 10px 10px 10px !important;
+  transition: transform .1s;
 }
 
+.card:hover{
+  transform: scale(1.1);
+}
 .card-body {
   padding-bottom: 0 !important;
 }
