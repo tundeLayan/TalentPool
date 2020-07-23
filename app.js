@@ -16,6 +16,10 @@ const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
 const admin = require('./Routes/admin/faq');
+
+const employeeRoutes = require('./Routes/employee/index');
+const externalPages = require('./Routes');
+
 const csrfProtection = csrf();
 const app = express();
 
@@ -63,6 +67,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
 app.use('/admin',admin)
+app.use('/', externalPages);
+app.use('/employee', employeeRoutes);
+
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
