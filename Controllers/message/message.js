@@ -45,7 +45,7 @@ module.exports = {
 
             const employerUsers = [...employeeChatUsersResult];
 
-            res.status(200).render('Pages/employer-messages', {
+            res.render('Pages/employer-messages', {
                 pageName: 'Employer Messages',
                 pageTitle: 'TalentPool | Employer Message',
                 userId: req.session.userId,
@@ -95,7 +95,7 @@ module.exports = {
                     username: req.session.firstName,
                 },
             };
-            res.status(200).render('Pages/employee-messages', {
+            res.render('Pages/employee-messages', {
                 pageName: 'Employee Messages',
                 pageTitle: 'TalentPool | Employee Message',
                 userId,
