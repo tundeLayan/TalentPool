@@ -1,10 +1,11 @@
 const express = require('express');
 const {
   allEmployers,
-  approveEmployer,
-  disapproveEmployer,
+  getEmployerProfile,
   blockEmployer,
   unblockEmployer,
+  approveEmployer,
+  disapproveEmployer,
 } = require('../../Controllers/admin/employer');
 
 const router = express.Router();
@@ -12,6 +13,9 @@ const router = express.Router();
 router
   .route('/all/employers')
   .patch(allEmployers);
+router
+  .route('/employer/profile/:userId')
+  .patch(getEmployerProfile);
 router
   .route('/block/employer/:userId')
   .patch(blockEmployer);

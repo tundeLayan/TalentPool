@@ -9,7 +9,7 @@ module.exports = {
       const employersAll = await model.Employer.findAll({});
       const individualsArray = [];
       const companyArray = [];
-      const limit = Number(req.query.p) || Number(employersAll.length);
+
       const employers = await model.Employer.findAll({
         include: [
           {
@@ -19,7 +19,6 @@ module.exports = {
             },
           },
         ],
-        limit,
         order: [
           ['id', 'DESC'],
         ],
@@ -48,6 +47,47 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },
+
+  getEmployerProfile: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const employerProfile = await model.Employer.findOne({
+        where: { userId },
+        include: [
+          {
+            model: model.User,
+            include: [
+              {
+                model: model.Team,
+                where: {
+                  userId: { [op.col]: 'Team.userId' },
+                },
+              },
+            ],
+          },
+        ],
+      });
+      if (!employerProfile) {
+        req.flash('error', 'Employer profile not found');
+      }
+      const employerActivity = await this.getEmployerActivity(userId);
+      res.render('PageName', {
+        pageName: 'Admin | Employer profile',
+        path: '',
+        employerProfile,
+        employerActivity,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  getEmployerActivity: async (userId) => {
+    const Activity = await model.Activitylog.findAll({
+      where: { userId },
+    });
+    return (Activity);
   },
 
   approveEmployer: async (req, res) => {
