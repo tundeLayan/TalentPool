@@ -12,6 +12,71 @@ body {
     background: #F6FCFF;
     width: 100%;
 }
+.blob-on-sign-in {
+    width: 300px;
+    position: absolute;
+    right: 0;
+    margin: -120px -100px 0 0;
+}
+.blob-footer-top {
+    width: 35px;
+    height: 35px;
+    background: #49BEFF;
+    position: absolute;
+    right: 0;
+    border-radius: 10px;
+    transform: rotate(45deg);
+    margin: -40px 120px 60px 0;
+
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.blob-footer-top:hover {
+    transition: .2s ease-in-out;
+    width: 42px;
+    height: 42px;
+}
+
+/*ANIMATION INFINITE ROTATE*/
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+/*ANIMATION INFINITE ROTATE END*/
+
+.blob-on-sign-in img {
+    width: inherit;
+}
 
 .landing-page-top .top-section-description {
     padding: 5em 6em 2em 6em;
@@ -283,10 +348,59 @@ body {
         padding: 10px 2px;
         min-height: 44vh;
     }
+    .landing-page-top .top-section-footer .trusted-companies {
+        padding-left: 3.2em;
+    }
+    .landing-page-top .top-section-footer .trusted-companies .company-logo {
+        padding-right: 3em;
+    }
+    .landing-page-top-previous-clients h2.title {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        color: #04172A;
+        padding: 0.3em 1em;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        min-height: 118px;
+        max-height: none;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card {
+        width: 100%;
+        min-height: 260px;
+        max-height: none;
+    }
+    .top-section-description .description-container .left {
+        padding: 0 10px 35px 2px;
+    }
+
+    .top-section-description .description-container .left h1 {
+        color: #04172A;
+        font-weight: bold;
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+    .blob-footer-top {
+        width: 35px;
+        height: 35px;
+        margin: -20px 40px 60px 0;
+    }
 }
 @media screen and (max-width: 650px) {
     .landing-page-top .top-section-description {
         padding: 4em 3em;
+    }
+    .landing-page-top .top-section-footer .trusted-companies {
+        padding-left: 2.2em;
+    }
+    .landing-page-top .top-section-footer .trusted-companies .company-logo {
+        padding-right: 3em;
+    }
+    .landing-page-top-previous-clients .slider .arrow-pc {
+        display: none;
+    }
+    .landing-page-top-previous-clients .slider {
+        padding-left: 3em;
     }
 }
 @media screen and (max-width: 450px) {
