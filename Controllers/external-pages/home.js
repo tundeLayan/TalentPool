@@ -1,6 +1,6 @@
-const { renderPage } = require('../Utils/render-page');
+const { renderPage } = require('../../Utils/render-page');
 
-const demo = (req, res) => {
+const home = (req, res) => {
   const data = {
     message: 'This is a General Home Page',
     firstName: 'John',
@@ -9,4 +9,4 @@ const demo = (req, res) => {
   renderPage(res, 'index', data, 'Demo Page')
 };
 
-module.exports.demo = demo;
+module.exports.home = home;

@@ -15,7 +15,7 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const employeeRoutes = require('./Routes/employee/index');
-const home = require('./Routes/home');
+const externalPages = require('./Routes');
 
 const csrfProtection = csrf();
 const app = express();
@@ -57,7 +57,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
-app.use('/', home);
+app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 
 // ************ END ROUTE REGISTRATION ********** //

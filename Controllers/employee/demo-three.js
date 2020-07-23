@@ -1,4 +1,4 @@
-const { renderPage } = require('../Utils/render-page');
+const { renderPage } = require('../../Utils/render-page');
 
 const demoThree = (req, res) => {
   const data = {
