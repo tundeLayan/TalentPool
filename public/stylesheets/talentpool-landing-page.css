@@ -114,13 +114,14 @@ body {
     font-size: 16px;
     border: none;
     border-radius: 0;
-    background: inherit;
+    background: white;
     color: #4D49FF;
+    transition: .7s ease-in-out;
 }
 .top-section-description .description-container .sign-up-out input:focus {
     box-shadow: none;
     outline: none;
-    transition: .3s ease-in-out;
+    transition: .7s ease-in-out;
     border-bottom: 1px solid #4D49FF;
 }
 .top-section-description .description-container .sign-up-out span {
