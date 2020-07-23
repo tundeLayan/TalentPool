@@ -73,9 +73,14 @@ a {
   /* transition: transform .1s; */
 }
 
-/* .card:hover{
-  transform: scale(1.1); 
-} */
+.zoom {
+  transition: transform .1s;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
 .card-body {
   padding-bottom: 0 !important;
 }
@@ -95,25 +100,27 @@ a {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-.bg-rec{
+
+.bg-rec {
   position: absolute;
   width: 7%;
-  left:0;
+  left: 0;
   top: -5em;
 }
 
-.icons{
+.icons {
   position: absolute;
   left: 1em;
   top: -2em;
 }
 
 /*  */
-@media only screen and (max-width: 1440px) and (min-width: 1025px)  {
-  .bg-rec{
+
+@media only screen and (max-width: 1440px) and (min-width: 1025px) {
+  .bg-rec {
     position: absolute;
     width: 7%;
-    left:0;
+    left: 0;
     top: -6.3em;
   }
 }
