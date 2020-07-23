@@ -1,0 +1,105 @@
+* {
+  font-family: "Manrope", sans-serif;
+  transition: all 0.5s ease-in-out;
+}
+
+@media screen and (min-width: 992px) {
+  main,
+  header {
+    width: calc(100% - 144px);
+    margin-left: auto;
+  }
+
+  .navbar-brand {
+    padding-left: 96px;
+  }
+
+  .user-nav {
+    padding-right: 144px !important;
+  }
+
+  .user-pane {
+    z-index: 100;
+  }
+}
+
+ul li {
+  padding: 15px 10px;
+}
+
+.bg-light {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 24px !important;
+}
+
+.nav-link,
+.user-title {
+  color: #04172a !important;
+  font-weight: 600 !important;
+}
+
+.user-pane {
+  transition: all 0.5s ease-in-out;
+}
+
+.dashHeaderDesign {
+  z-index: 20;
+  position: absolute;
+}
+
+.dashHeaderDesign2 {
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.toggle-btn {
+  transition: all 0.5s ease-in-out;
+}
+
+.card,
+.dropdown-menu {
+  border: none !important;
+}
+
+.card-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.user-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.card-link {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.dropdown-menu {
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+  border-radius: 0 !important;
+}
+
+@media screen and (max-width: 991px) {
+  .dashHeaderDesign,
+  .dashHeaderDesign2 {
+    display: none;
+  }
+}

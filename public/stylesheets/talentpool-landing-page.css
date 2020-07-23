@@ -1,0 +1,605 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px "Manrope", Manrope, sans-serif;
+}
+
+.landing-page-top {
+    min-height: 100vh;
+    background: #F6FCFF;
+    width: 100%;
+}
+.blob-on-sign-in {
+    width: 270px;
+    height: 120px;
+    position: absolute;
+    right: 0;
+}
+.landing-page-top .top-section-description .blob-footer-top {
+    width: 35px;
+    height: 35px;
+    background: #49BEFF;
+    position: absolute;
+    right: 0;
+    border-radius: 10px;
+    transform: rotate(45deg);
+    margin: -40px 120px 60px 0;
+
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.landing-page-top .top-section-description .blob-footer-top:hover {
+    transition: .2s ease-in-out;
+    width: 42px;
+    height: 42px;
+}
+
+/*ANIMATION INFINITE ROTATE*/
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+/*ANIMATION INFINITE ROTATE END*/
+
+.blob-on-sign-in img {
+    width: inherit;
+}
+
+.landing-page-top .top-section-description {
+    padding: 5em 6em 2em 6em;
+    min-height: 80vh;
+}
+
+.top-section-description .description-container {
+    padding: 1em 8em;
+}
+
+.top-section-description .description-container .left {
+    padding: 35px 10px 35px 2px;
+}
+
+.top-section-description .description-container .left h1 {
+    color: #04172A;
+    font-weight: 500;
+    font-size: 45px;
+    letter-spacing: 2px;
+}
+.top-section-description .description-container h1 span {
+    color: #4D49FF;
+}
+.top-section-description .description-container .left .what-we-do {
+    font-size: 16px;
+    padding: 20px 0;
+}
+.top-section-description .description-container .sign-up-out {
+    height: 43px;
+    font-size: 16px;
+    width: 92%;
+}
+.top-section-description .description-container .sign-up-out input {
+    height: 42px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    background: white;
+    color: #4D49FF;
+    transition: .7s ease-in-out;
+}
+.top-section-description .description-container .sign-up-out input:focus {
+    box-shadow: none;
+    outline: none;
+    transition: .7s ease-in-out;
+    border-bottom: 1px solid #4D49FF;
+}
+.top-section-description .description-container .sign-up-out span {
+    background: #4D49FF;
+    border-radius:  0 5px 5px 0;
+    color: white;
+    margin-left: -3px;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.top-section-description .description-container .right {
+    padding: 10px 2px 10px 40px;
+    width: 90%;
+    margin: auto;
+}
+.top-section-description .description-container .right .talents-card-outer {
+    margin-bottom: 1.7em;
+}
+.top-section-description .description-container .right .talents-card {
+    padding: 10px 6px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid rgba(4, 23, 42, 0.1);
+    box-sizing: border-box;
+    border-radius: 10px;
+    min-height: 100px;
+    height: 100px;
+    box-shadow: 0 0 5px #DCDCDC,
+    0 0 15px #DCDCDC,
+    0 0 25px #DCDCDC,
+    0 0 40px #DCDCDC;
+}
+.top-section-description .description-container .right .talents-card .blob-outer {
+    padding: 14px 8px 14px 16px;
+}
+.top-section-description .description-container .right .talents-card .blob-inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    background: #C4C4C4;
+}
+.top-section-description .description-container .right .talents-card .talents-details {
+    padding: 17px 0;
+}
+.top-section-description .description-container .right .talents-card .talents-details .name {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 2px 0;
+
+    color: #04172A;
+}
+.top-section-description .description-container .right .talents-card .talents-details .track {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+
+    color: #04172A;
+}
+
+.landing-page-top .top-section-footer {
+    padding: 3.3em 16px 2.6em 0;
+    min-height: 125px;
+    background: #FFFFFF;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+}
+.landing-page-top .top-section-footer img.left-blob {
+    position: absolute;
+    min-height: 265px;
+    max-height: 265px;
+    margin-top: -110px;
+}
+.landing-page-top .top-section-footer .trusted-companies {
+    padding-left: 8.2em;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #04172A;
+}
+.landing-page-top .top-section-footer .trusted-companies .company-logo {
+    padding-right: 3em;
+}
+.landing-page-top .top-section-footer .trusted-companies .company-logo img {
+    width: inherit;
+}
+
+.landing-page-top-previous-clients {
+    min-height: 100vh;
+    padding: 4.5em 0 2em 0;
+    width: 85%;
+    margin: auto;
+}
+.landing-page-top-previous-clients h2.title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    color: #04172A;
+    padding: 0 1.2em 10px 1.2em;
+}
+.landing-page-top-previous-clients .slider .arrow-pc {
+    cursor: pointer;
+}
+.landing-page-top-previous-clients .slider .arrow-pc:hover {
+    cursor: pointer;
+    background: #f8f9fa;
+    transition: .3s ease-in-out;
+}
+.landing-page-top-previous-clients .slider .arrow-pc img {
+    padding: 9.5em 0;
+}
+.landing-page-top-previous-clients .slider .col-sm-1 {
+    flex: 0 0 5.333333%;
+    max-width: 5.333333%;
+}
+.landing-page-top-previous-clients .slider .col-sm-10 {
+    flex: 0 0 88.333333%;
+    max-width: 88.333333%;
+}
+.landing-page-top-previous-clients .feedback-card-outer {
+    width: 100%;
+    padding: 14px;
+    display: inline-block;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card {
+    width: 100%;
+    /*min-height: 319px;*/
+    /*max-height: 260px;*/
+
+    background: #FFFFFF;
+    border: 1px solid rgba(4, 23, 42, 0.1);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px 0;
+    box-shadow: 0 0 5px #DCDCDC,
+    0 0 25px #DCDCDC,
+    0 0 35px #DCDCDC,
+    0 0 70px #DCDCDC;
+}
+
+.landing-page-top-previous-clients .feedback-card-outer .talent-fb-card {
+    max-height: 275px;
+}
+
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    color: #04172A;
+    padding: 0 14px;
+    min-height: 52px;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 4px 18px;
+    opacity: 0.8;
+    min-height: 162px;
+    /*max-height: 118px;*/
+    overflow: hidden;
+
+    color: #04172A;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .footer,
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .header {
+    padding: 0 18px;
+}
+
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .blob-outer {
+    padding-bottom: 4px;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .blob-inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    background: #C4C4C4;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talents-details {
+    padding: 4px 0;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talents-details .name {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 2px 0;
+
+    color: #04172A;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talents-details .track {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+
+    color: #04172A;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .content .recent-work {
+    display: block;
+    padding: 4px 0;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .view-profile-footer {
+    text-align: center;
+    height: 50px;
+    background: #4D49FF;
+    color: white;
+    border-radius: 0 0 9px 10px;
+    padding: 12px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+.landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
+    min-height: 170px;
+    max-height: 170px;
+}
+.talent-profile-container .feedback-card:hover {
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    -ms-transform: scale(1.1); /* IE 9 */
+    transform: scale(1.1);
+}
+.the-process-flow .top-section-footer {
+    margin: 3.5em 0;
+    padding: 2em 0;
+    min-height: 185px;
+    background: #F6FCFF;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+}
+.the-process-flow .top-section-footer img.left-blob {
+    position: absolute;
+    min-height: 265px;
+    max-height: 265px;
+    right: 0;
+    margin-top: -160px;
+}
+.the-process-flow .top-section-footer .flow-st {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+.the-process-flow .top-section-footer .flow-st img.blob-count {
+    min-width: 49px;
+    max-width: 49px;
+    margin: auto;
+}
+.the-process-flow .top-section-footer .flow-st .process-content {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    padding: 14px 0;
+    color: #04172A;
+}
+
+/**** TOP SECTION MOBILE AND TAB RESPONSIVENESS ****/
+
+@media screen and (min-width: 1340px) and (max-width: 1400px) {
+    .the-process-flow .top-section-footer .flow-st hr.left {
+        border: 1px solid rgba(4, 23, 42, 0.25);
+        width: 340px;
+        position: absolute;
+        left: 296px;
+        margin: 22px 0 0 0;
+    }
+
+    .the-process-flow .top-section-footer .flow-st hr.right {
+        border: 1px solid rgba(4, 23, 42, 0.25);
+        width: 340px;
+        position: absolute;
+        right: 296px;
+        margin: 22px 0 0 0;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .landing-page-top .top-section-description {
+        padding: 5em 4em;
+    }
+
+    .top-section-description .description-container {
+        padding: 1em 6em;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
+        font-size: 18px;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        font-size: 14px;
+        min-height: 138px;
+    }
+}
+@media screen and (max-width: 990px) {
+    .landing-page-top .top-section-description {
+        padding: 5em 2em;
+    }
+
+    .top-section-description .description-container {
+        padding: 1em 4em;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
+        font-size: 18px;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        font-size: 13px;
+        min-height: 108px;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
+        font-size: 13px;
+        min-height: 126px;
+    }
+    .landing-page-top-previous-clients {
+        min-height: 100vh;
+        padding: 4.5em 0 2em 0;
+        width: 95%;
+        margin: auto;
+    }
+}
+@media screen and (max-width: 896px){
+    .landing-page-top-previous-clients .slider .arrow-pc {
+        display: none;
+    }
+    .landing-page-top-previous-clients .slider .col-sm-10 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .landing-page-top-previous-clients .slider .col-sm-10 .col-sm-4 {
+        flex: 0 0 83.333333%;
+        max-width: 43.333333%;
+        margin: auto;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        font-size: 13px;
+        /*max-height: 108px;*/
+        /*min-height: 128px;*/
+    }
+    .landing-page-top .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 225px;
+        max-height: 225px;
+        margin-top: -100px;
+    }
+    .the-process-flow .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 195px;
+        max-height: 195px;
+        max-width: 80px;
+        right: 0;
+        margin-top: -200px;
+    }
+    .top-section-description .description-container .right .talents-card .blob-outer {
+        padding: 14px 8px 14px 4px;
+    }
+    .top-section-description .description-container .right .talents-card .blob-inner {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+
+        background: #C4C4C4;
+    }
+
+    .top-section-description .description-container .right .talents-card .talents-details {
+        padding: 14px 0;
+    }
+}
+@media screen and (max-width: 767px) {
+    .landing-page-top .top-section-description {
+        padding: 4em 5em;
+    }
+
+    .top-section-description .description-container {
+        padding: 1em 3em;
+    }
+    .top-section-description .description-container .right {
+        padding: 10px 2px;
+        min-height: 44vh;
+    }
+    .landing-page-top .top-section-footer .trusted-companies {
+        padding-left: 3.2em;
+    }
+    .landing-page-top .top-section-footer .trusted-companies .company-logo {
+        padding-right: 3em;
+    }
+    .landing-page-top-previous-clients h2.title {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        color: #04172A;
+        padding: 0.3em 1em;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        min-height: 100px;
+        /*max-height: 100px;*/
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
+        min-height: 128px;
+        /*max-height: 170px;*/
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card {
+        width: 100%;
+        min-height: 260px;
+    }
+    .top-section-description .description-container .left {
+        padding: 0 10px 35px 2px;
+    }
+
+    .top-section-description .description-container .left h1 {
+        color: #04172A;
+        font-weight: bold;
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+    .blob-footer-top {
+        width: 35px;
+        height: 35px;
+        margin: -20px 40px 60px 0;
+    }
+    .landing-page-top .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 195px;
+        max-height: 195px;
+        margin-top: -120px;
+    }
+}
+@media screen and (max-width: 650px) {
+    .landing-page-top .top-section-description {
+        padding: 4em 3em;
+    }
+    .landing-page-top .top-section-footer .trusted-companies {
+        padding-left: 2.2em;
+    }
+    .landing-page-top .top-section-footer .trusted-companies .company-logo {
+        padding-right: 3em;
+    }
+    .landing-page-top-previous-clients .slider {
+        padding-left: 3em;
+    }
+    .landing-page-top-previous-clients .slider .col-sm-10 .col-sm-4 {
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+        margin: auto;
+    }
+    .landing-page-top .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 155px;
+        max-height: 155px;
+        margin-top: -120px;
+    }
+    .the-process-flow .top-section-footer .flow-st .col-12 {
+        margin-top: 16px;
+    }
+    .the-process-flow .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 195px;
+        max-height: 195px;
+        max-width: 80px;
+        right: 0;
+        margin-top: -200px;
+    }
+}
+@media screen and (max-width: 450px) {
+    .landing-page-top .top-section-description {
+        padding: 4em 1em;
+    }
+}
+@media screen and (max-width: 390px) {
+    .landing-page-top .top-section-description {
+        padding: 4em 1em;
+    }
+    .top-section-description .description-container {
+        padding: 1em 2em;
+    }
+}
+
+/**** TOP SECTION MOBILE AND TAB RESPONSIVENESS ENDS ****/
