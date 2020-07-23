@@ -102,8 +102,12 @@ a {
   left: 1.6875em;
   top: 68.625em;
 }
-
-@media only screen and (min-width: 1025px) {
+.icons{
+  position: absolute;
+  left: 1em;
+  top: -2em;
+}
+ @media only screen and (min-width: 1025px) {
   .bg-recb{
     position: absolute;
     width: 7%;
@@ -116,4 +120,4 @@ a {
     left: 1.6875em;
     top: 67em;
   }
-}
+} 
