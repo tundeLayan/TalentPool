@@ -25,7 +25,103 @@
 
     <section class="dashboard-settings-container-pt">
 
+        <section class="dashboard-settings-main-pt">
 
+            <div class="container row">
+
+                <%- include('../templates/employerDashboardPrivacyTabs.ejs')%>
+
+                <div class="col-md-9 col-12 privacy-settings">
+                    <h3>
+                        Privacy Settings
+                    </h3>
+
+                    <div class="options">
+                        <table class="table">
+                            <tbody>
+                            <tr class="animate__animated animate__fadeInUp animate__delay-1s">
+                                <td class="content">
+                                    <span>
+                                        Recieve messages from everyone
+                                    </span>
+                                    <span>
+                                        Checking this will enable individuals to send you messages
+                                    </span>
+                                </td>
+
+                                <td class="align-middle action">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="customControlInline1">
+                                        <label class="custom-control-label" for="customControlInline1"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="animate__animated animate__fadeInUp animate__delay-1s">
+                                <td class="content">
+                                    <span>
+                                        Share my location to everyone
+                                    </span>
+                                    <span>
+                                        Checking this will enable individuals to see your location
+                                    </span>
+                                </td>
+
+                                <td class="align-middle action">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" checked class="custom-control-input" id="customControlInline">
+                                        <label class="custom-control-label" for="customControlInline"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="animate__animated animate__fadeInUp animate__delay-2s">
+                                <td class="content">
+                                    <span>
+                                        Show read reciepts
+                                    </span>
+                                    <span>
+                                        Checking this will disable read reciepts for everyone including you
+                                    </span>
+                                </td>
+
+                                <td class="align-middle action">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                                        <label class="custom-control-label" for="customControlInline"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="animate__animated animate__fadeInUp animate__delay-2s">
+                                <td class="content">
+                                    <span>
+                                        Protect my portfolio
+                                    </span>
+                                    <span>
+                                        Checking this will allow only potential employers to see your portfolio
+                                    </span>
+                                </td>
+
+                                <td class="align-middle action">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input type="checkbox" checked class="custom-control-input" id="customControlInline">
+                                        <label class="custom-control-label" for="customControlInline"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <td class="animate__animated animate__pulse animate__delay-1s">
+                                        <div class="btn">Save Changes</div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </section>
 
     </section>
 

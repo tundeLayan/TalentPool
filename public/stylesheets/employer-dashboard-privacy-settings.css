@@ -1,5 +1,102 @@
-.dashboard-settings-container-pt {
-    width: 100%;
-    background-color: red;
-    height: 83vh;
+html {
+    height: 100%;
 }
+body {
+    min-height: calc(100% - 110px);
+    max-height: calc(100% - 110px);
+    height: calc(100% - 110px);
+}
+.dashboard-settings-container-pt {
+    /*width: 100%;*/
+    height: 100%;
+    width: calc(100% - 144px);
+    margin-left: auto;
+    background-color: #F5FCFF;
+}
+.dashboard-settings-main-pt {
+    /*background-color: #F5FCFF;*/
+    /*height: 83vh;*/
+    height: 100%;
+    padding: 2px 0;
+}
+.dashboard-settings-main-pt .container {
+    max-width: 100%;
+    height: 100%;
+}
+.dashboard-settings-main-pt .row {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 0 0 4px;
+}
+.dashboard-settings-main-pt .privacy-settings {
+    background-color: #ffffff;
+    /*height: 60vh;*/
+    padding: 3.2em 2.5em 0;
+}
+
+.dashboard-settings-main-pt .privacy-settings h3 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    align-items: center;
+
+    color: #04172A;
+}
+.dashboard-settings-main-pt .privacy-settings .options {
+    padding-top: 2em;
+    width: 75%;
+}
+.dashboard-settings-main-pt .privacy-settings .options .action {
+    width: 20%;
+}
+.dashboard-settings-main-pt .privacy-settings .options .action .custom-control-label::after {
+    cursor: pointer;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.dashboard-settings-main-pt .privacy-settings .options .action .custom-control-label::before {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.dashboard-settings-main-pt .privacy-settings .options .content span:nth-child(1) {
+    display: block;
+    font-size: 14px;
+}
+.dashboard-settings-main-pt .privacy-settings .options .content span:nth-child(2) {
+    display: block;
+    font-size: 13px;
+    opacity: 0.7;
+}
+.dashboard-settings-main-pt .privacy-settings .options tfoot .btn {
+    background: #4D49FF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 1.5em;
+    padding: .5rem .75rem;
+    transition: .5s ease-in-out;
+    box-shadow: 0 0 3px #4D49FF,
+    0 0 5px #4D49FF,
+    0 0 7px #4D49FF,
+    0 0 10px #4D49FF;
+}
+.dashboard-settings-main-pt .privacy-settings .options tfoot .btn:hover {
+    color: white;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px #4D49FF,
+    0 0 10px #4D49FF,
+    0 0 15px #4D49FF,
+    0 0 25px #4D49FF;
+ }
+
+
+/*MOBILE AND TAB RESPONSIVENESS*/
+
+@media screen and (max-width: 992px) {
+    .dashboard-settings-container-pt {
+        width: 100%;
+    }
+}
+
+/*MOBILE AND TAB RESPONSIVENESS END*/
