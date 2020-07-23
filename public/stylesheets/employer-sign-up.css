@@ -1,0 +1,174 @@
+/* STYLE GUIDE STYLES */
+:root {
+  --prim-colr: #04172a;
+  --accent-colr: #4d49ff;
+  --font-fam: Manrope, 'sans-serif';
+}
+
+body {
+  font-family: var(--font-fam);
+  background-color: rgba(73, 190, 255, 0.05);
+  background-image: url('../images/employer-sign-up/bottom-left.svg'),
+  url('../images/employer-sign-up/blob-diagonal.svg');
+background-size: 30%, 17%;
+background-position: left 0% bottom 0%, right -2% bottom 30%;
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+}
+
+.prj-text-primary {
+  color: var(--prim-colr);
+}
+.prj-text-accent {
+  color: var(--accent-colr);
+}
+
+.prj-header-h1 {
+  font-size: 48px;
+}
+.prj-header-h2 {
+  font-size: 40px;
+}
+.prj-header-h3 {
+  font-size: 32px;
+}
+.prj-header-h4 {
+  font-size: 24px;
+}
+.prj-normal-text {
+  font-size: 14px;
+}
+
+.prj-link,
+.prj-link:hover {
+  color: var(--accent-colr);
+}
+.prj-header-link {
+  font-size: 20px;
+  color: var(--prim-colr);
+}
+.prj-header-link:hover,
+.prj-footer-link:hover,
+.prj-header-link.active,
+.prj-footer-link.active {
+  color: var(--accent-colr);
+}
+.prj-footer-link {
+  font-size: 16px;
+}
+
+.prj-bg-primary {
+  background-color: var(--prim-colr);
+}
+.prj-bg-accent {
+  background-color: var(--accent-colr);
+}
+
+.prj-form-control {
+  border: 1px solid rgba(4, 23, 42, 0.1);
+}
+
+.prj-form-control:focus {
+  box-shadow: none;
+  border: 1px solid #1c7ed6;
+}
+
+.prj-btn-primary {
+  color: #fff;
+  background-color: var(--accent-colr);
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+}
+.prj-btn-primary:hover {
+  color: var(--accent-colr);
+  background-color: #fff;
+  border: 1px solid var(--accent-colr);
+}
+.prj-btn-primary:focus {
+  color: #fff;
+  background-color: var(--accent-colr);
+  border: 1px solid var(--prim-colr);
+}
+.prj-btn-secondary {
+  color: var(--accent-colr);
+  background-color: #fff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
+}
+.prj-btn-secondary:hover {
+  color: #fff;
+  background-color: var(--accent-colr);
+}
+.prj-btn-secondary:focus {
+  color: var(--accent-colr);
+  background-color: #fff;
+  border: 1px solid var(--prim-colr);
+}
+
+.prj-input-invalid {
+  border: 1px solid #d16658;
+}
+.prj-input-valid {
+  border: 1px solid #4cbb88;
+}
+
+.br-5 {
+  border-radius: 5px;
+}
+
+.btn-img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Horizontal lines on both sides of 'or sign up with' */
+.sign-up-alt-text {
+  overflow: hidden;
+}
+.sign-up-alt-text::before,
+.sign-up-alt-text::after {
+  background-color: rgba(4, 23, 42, 0.1);
+  overflow: hidden;
+  content: '';
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 15%;
+}
+.sign-up-alt-text::before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+.sign-up-alt-text::after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+
+.main-container {
+  position: relative;
+  z-index: 20000;
+}
+
+@media screen and (max-width: 575.98px) {
+  .prj-normal-text {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 650px){
+  body {
+    background-image: url('../images/employer-sign-up/bottom-left.svg'),
+      url('../images/employer-sign-up/blob-diagonal.svg');
+    background-size: 25%, 7%;
+    background-position: left 0% bottom 0%, right 4% bottom 30%;
+    background-repeat: no-repeat, no-repeat;
+  }
+}
+
+@media screen and (min-width: 768px){
+  body {
+    background-image: url('../images/employer-sign-up/bottom-left.svg'),
+      url('../images/employer-sign-up/blob-diagonal.svg'), url('../images/employer-sign-up/blob-square.svg');;
+    background-size: 20%, 7%, 5%;
+    background-position: left 0% bottom 0%, right 3% bottom 30%, left 12% bottom 3%;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+  }
+}
