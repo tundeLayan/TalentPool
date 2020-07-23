@@ -37,7 +37,7 @@ module.exports = {
           where: { userId: user.userId },
         });
         if (employee) {
-          userTypeId = employee.userId;
+          userTypeId = user.userId;
         }
       } else if (user.roleId === 'ROL-EMPLOYER') {
         isEmployer = true;
@@ -45,7 +45,7 @@ module.exports = {
           where: { userId: user.userId },
         });
         if (employer) {
-          userTypeId = employer.userId;
+          userTypeId = user.userId;
           verificationStatus = employer.verificationStatus;
         }
       }
