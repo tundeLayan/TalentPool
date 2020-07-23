@@ -1,23 +1,24 @@
 const model = require('../../Models');
 const {errorResMsg,successResMsg} = require('../../Utils/response');
+
 const faqModel = model.Faq;
 const faqCategory = model.FaqCategory;
-const sequelize = model.sequelize;
+const {sequelize} = model;
 exports.createFaq = async (req,res) => {
     console.log(req.body)
     try {
         const {
-        category_id,
+        categoryId,
         question,
         answer
         } = req.body;
         const faq = {
-            FaqCategoryId:category_id,
+            FaqCategoryId:categoryId,
             question,
             answer,
             userId: "62686950-cce5-496f-9343-9bbc857e2977"
         }
-        const faqInstance = await faqModel.create(faq);
+        await faqModel.create(faq);
         return successResMsg(res,200, "FAQ created successfully");
     } catch (error){
         return errorResMsg(res,500,error);
@@ -27,7 +28,7 @@ exports.createFaq = async (req,res) => {
 
 exports.getFaq = async (req,res) => {
     try{    
-        const allFaq = await faqModel.findAll({
+        await faqModel.findAll({
             attributes : ['question','answer']
         });
         return successResMsg(res,200,"FAQs fetched successfully!");
@@ -40,13 +41,13 @@ exports.getFaq = async (req,res) => {
 exports.updateFaq = async (req,res) => {
     try{
         const {
-            category_id,
+            categoryId,
             question,
             answer,
             id
         } = req.body;
         await faqModel.update({
-            FaqCategoryId:category_id,
+            FaqCategoryId:categoryId,
             question,
             answer
         },{ where: {
@@ -74,7 +75,7 @@ exports.deleteFaq = async (req,res) => {
 
 }
 
-async function isBlocked(id){
+async function isBlocked(req,res,id){
     try{
         const state = faqModel.findOne({
             raw:true,
@@ -93,8 +94,8 @@ async function isBlocked(id){
 exports.toggleBlockedFaq = async (req,res) => {
     try{
         const {id} = req.body;
-        let faqState = (await (isBlocked(id))).blocked;
-        faqState = (faqState==1)?0:1;
+        let faqState = (await (isBlocked(req,res,id))).blocked;
+        faqState = (faqState===1)?0:1;
         await faqModel.update({
             blocked: faqState
         }, { where:{ 
@@ -105,6 +106,21 @@ exports.toggleBlockedFaq = async (req,res) => {
         return errorResMsg(res,500,"An error occurred while blocking FAQ!");
     }
 
+}
+
+exports.searchFaq = async (req, res) => {
+    console.log(req.body)
+    try{
+        const {searchKey} = req.body;
+        const filterFaq = await sequelize.query("SELECT question,answer from Faqs where match(question,answer) against (:searchKey IN BOOLEAN MODE)",{
+            replacements: {searchKey},
+            type: sequelize.QueryTypes.SELECT
+        })
+        return successResMsg(res,200,filterFaq);
+    }
+    catch(error){
+        return errorResMsg(res,500,"An error occurred while searching for FAQ");
+    }
 }
 
 exports.addCategory = async (req, res) => {
@@ -121,18 +137,36 @@ exports.addCategory = async (req, res) => {
 
 }
 
-
-exports.searchFaq = async (req, res) => {
-    console.log(req.body)
+exports.deleteCategory = async(req,res) => {
     try{
-        const {searchKey} = req.body;
-        const filterFaq = await sequelize.query("SELECT question,answer from Faqs where match(question,answer) against (:searchKey IN BOOLEAN MODE)",{
-            replacements: {searchKey},
-            type: sequelize.QueryTypes.SELECT
+        const {categoryId} = req.body;
+        await faqCategory.destroy({
+            where : {
+                id:categoryId
+            },
+            force:true
         })
-        return successResMsg(res,200,filterFaq);
+        return successResMsg(res,200,"Category deleted successfully!")
+    } catch(error){
+        return errorResMsg(res,500,"An error occurred while deleting category!");
     }
-    catch(error){
-        return errorResMsg(res,500,"An error occurred while searching for FAQ");
+}
+
+exports.updateCategory = async(req, res) => {
+    try{
+        const {
+            categoryId,
+            name
+        } = req.body;
+        await faqCategory.update({
+            name
+        },{
+            where:{
+                id:categoryId
+            }
+        })
+        return successResMsg(res,200,"FAQ category updated successfully!");
+    } catch (error) {
+        return errorResMsg(res,500,"An error occurred while updating category!");
     }
 }
