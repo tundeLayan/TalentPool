@@ -95,21 +95,25 @@ a {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-.bg-recb{
+.bg-rec{
   position: absolute;
   width: 7%;
   left:0;
-  top:-10em;
+  top: -5em;
 }
-.bg-recs{
-  position: absolute;
-  width: 2%;
-  left: 1.6875em;
-  top: 2.2em;
-  ;
-}
+
 .icons{
   position: absolute;
   left: 1em;
   top: -2em;
+}
+
+/*  */
+@media only screen and (max-width: 1440px) and (min-width: 1025px)  {
+  .bg-rec{
+    position: absolute;
+    width: 7%;
+    left:0;
+    top: -6.3em;
+  }
 }
