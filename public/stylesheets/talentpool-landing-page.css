@@ -13,10 +13,10 @@ body {
     width: 100%;
 }
 .blob-on-sign-in {
-    width: 300px;
+    width: 270px;
+    height: 120px;
     position: absolute;
     right: 0;
-    margin: -120px -100px 0 0;
 }
 .blob-footer-top {
     width: 35px;
@@ -170,10 +170,16 @@ body {
 }
 
 .landing-page-top .top-section-footer {
-    padding: 3.3em 16px 2.6em 16px;
+    padding: 3.3em 16px 2.6em 0;
     min-height: 125px;
     background: #FFFFFF;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+}
+.landing-page-top .top-section-footer img.left-blob {
+    position: absolute;
+    min-height: 265px;
+    max-height: 265px;
+    margin-top: -110px;
 }
 .landing-page-top .top-section-footer .trusted-companies {
     padding-left: 8.2em;
@@ -198,9 +204,9 @@ body {
 .landing-page-top-previous-clients h2.title {
     font-style: normal;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 36px;
     color: #04172A;
-    padding: 0 1.2em;
+    padding: 0 1.2em 10px 1.2em;
 }
 .landing-page-top-previous-clients .slider .arrow-pc {
     cursor: pointer;
@@ -228,14 +234,22 @@ body {
 }
 .landing-page-top-previous-clients .feedback-card-outer .feedback-card {
     width: 100%;
-    min-height: 260px;
-    max-height: 260px;
+    /*min-height: 319px;*/
+    /*max-height: 260px;*/
 
     background: #FFFFFF;
     border: 1px solid rgba(4, 23, 42, 0.1);
     box-sizing: border-box;
     border-radius: 10px;
     padding: 12px 0;
+    box-shadow: 0 0 5px #DCDCDC,
+    0 0 25px #DCDCDC,
+    0 0 35px #DCDCDC,
+    0 0 70px #DCDCDC;
+}
+
+.landing-page-top-previous-clients .feedback-card-outer .talent-fb-card {
+    max-height: 260px;
 }
 
 .landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
@@ -244,6 +258,7 @@ body {
     font-size: 22px;
     color: #04172A;
     padding: 0 14px;
+    min-height: 52px;
 }
 .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
     font-style: normal;
@@ -251,8 +266,8 @@ body {
     font-size: 16px;
     padding: 4px 18px;
     opacity: 0.8;
-    min-height: 118px;
-    max-height: 118px;
+    min-height: 162px;
+    /*max-height: 118px;*/
     overflow: hidden;
 
     color: #04172A;
@@ -310,8 +325,14 @@ body {
     cursor: pointer;
 }
 .landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
-    min-height: 128px;
-    max-height: 128px;
+    min-height: 170px;
+    max-height: 170px;
+}
+.talent-profile-container .feedback-card:hover {
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    -ms-transform: scale(1.1); /* IE 9 */
+    transform: scale(1.1);
 }
 
 
@@ -326,6 +347,13 @@ body {
     .top-section-description .description-container {
         padding: 1em 6em;
     }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
+        font-size: 18px;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        font-size: 14px;
+        min-height: 138px;
+    }
 }
 @media screen and (max-width: 990px) {
     .landing-page-top .top-section-description {
@@ -334,6 +362,43 @@ body {
 
     .top-section-description .description-container {
         padding: 1em 4em;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card h4 {
+        font-size: 18px;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        font-size: 13px;
+        min-height: 108px;
+    }
+    .landing-page-top-previous-clients {
+        min-height: 100vh;
+        padding: 4.5em 0 2em 0;
+        width: 95%;
+        margin: auto;
+    }
+}
+@media screen and (max-width: 896px){
+    .landing-page-top-previous-clients .slider .arrow-pc {
+        display: none;
+    }
+    .landing-page-top-previous-clients .slider .col-sm-10 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .landing-page-top-previous-clients .slider .col-sm-10 .col-sm-4 {
+        flex: 0 0 83.333333%;
+        max-width: 43.333333%;
+        margin: auto;
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
+        font-size: 13px;
+        max-height: 108px;
+    }
+    .landing-page-top .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 225px;
+        max-height: 225px;
+        margin-top: -100px;
     }
 }
 @media screen and (max-width: 767px) {
@@ -362,13 +427,16 @@ body {
         padding: 0.3em 1em;
     }
     .landing-page-top-previous-clients .feedback-card-outer .feedback-card .content {
-        min-height: 118px;
-        max-height: none;
+        min-height: 100px;
+        /*max-height: 100px;*/
+    }
+    .landing-page-top-previous-clients .feedback-card-outer .feedback-card .talent-profile {
+        min-height: 120px;
+        /*max-height: 170px;*/
     }
     .landing-page-top-previous-clients .feedback-card-outer .feedback-card {
         width: 100%;
         min-height: 260px;
-        max-height: none;
     }
     .top-section-description .description-container .left {
         padding: 0 10px 35px 2px;
@@ -385,6 +453,12 @@ body {
         height: 35px;
         margin: -20px 40px 60px 0;
     }
+    .landing-page-top .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 195px;
+        max-height: 195px;
+        margin-top: -120px;
+    }
 }
 @media screen and (max-width: 650px) {
     .landing-page-top .top-section-description {
@@ -396,11 +470,19 @@ body {
     .landing-page-top .top-section-footer .trusted-companies .company-logo {
         padding-right: 3em;
     }
-    .landing-page-top-previous-clients .slider .arrow-pc {
-        display: none;
-    }
     .landing-page-top-previous-clients .slider {
         padding-left: 3em;
+    }
+    .landing-page-top-previous-clients .slider .col-sm-10 .col-sm-4 {
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+        margin: auto;
+    }
+    .landing-page-top .top-section-footer img.left-blob {
+        position: absolute;
+        min-height: 155px;
+        max-height: 155px;
+        margin-top: -120px;
     }
 }
 @media screen and (max-width: 450px) {
