@@ -8,6 +8,21 @@
     <title>Talent Haven | Desc here</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
     <%- include('./templates/head.ejs') %>
+
+    <!--<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!--arrow color-->
+    <style>
+        .swiper-button-next:after, .swiper-button-prev:after {
+            color: rgba(4, 23, 42, 0.3);
+        }
+        .landing-page-top-previous-clients .feedback-card-outer {
+            width: 100%;
+            padding: 44px 14px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
 
@@ -147,15 +162,10 @@
             Hear from our previous clients
         </h2>
 
-        <div class="slider row">
-
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-left.svg" alt="">
-            </div>
-
-            <div class="col-sm-10 row">
-
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Exceptional candidates"</h4>
@@ -187,7 +197,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Easy to navigate website"</h4>
@@ -219,7 +229,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Seamless process"</h4>
@@ -251,12 +261,41 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card">
 
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-right.svg" alt="">
-            </div>
+                        <h4>"Exceptional candidates"</h4>
 
+                        <div class="content">
+                            Recruiting through TalentPool has been a breath of fresh air.
+                            The quality of candidates have been exceptional compared to
+                            other job sites.
+                        </div>
+
+                        <hr>
+
+                        <div class="row footer">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
 
         <br>
@@ -267,15 +306,10 @@
             Meet our talented candidates
         </h2>
 
-        <div class="slider row">
-
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-left.svg" alt="">
-            </div>
-
-            <div class="col-sm-10 row talent-profile-container">
-
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -315,7 +349,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -355,7 +389,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -395,12 +429,49 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card talent-fb-card">
 
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-right.svg" alt="">
-            </div>
+                        <div class="row header">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
 
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="content talent-profile">
+                            I am a Product/UX Designer
+                            with 6 years of experience crafting digital
+                            products helping businesses expand their
+                            capacity for impact.
+                            <span class="recent-work">
+                                Previously worked at Google
+                            </span>
+                        </div>
+
+                        <div class="view-profile-footer">
+                            <span>
+                                View Profile <i></i>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
 
     </section>
@@ -447,8 +518,29 @@
     </section>
 
 
+    <!--<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>-->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/javascripts/jquery.js"></script>
     <script src="/javascripts/landing-page.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 </body>
 </html>
 
