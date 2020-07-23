@@ -6,7 +6,7 @@ const about = (req, res) => {
     firstName: 'John',
     lastName: 'Doe'
   }
-  renderPage(res, 'employer/employerPrivacySettings', data, 'Demo Page')
+  renderPage(res, 'index', data, 'Demo Page')
 };
 
 module.exports.about = about;
