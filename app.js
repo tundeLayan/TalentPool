@@ -14,7 +14,7 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
-const employeeRoutes = require('./Routes/employee/index');
+const employeeRoutes = require('./Routes/employee');
 const externalPages = require('./Routes');
 
 const csrfProtection = csrf();
