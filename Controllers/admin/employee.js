@@ -1,5 +1,6 @@
 const sequelize = require('sequelize');
 const model = require('../../Models/index');
+const render = require('../../Utils/render-page');
 
 const op = sequelize.Op;
 
@@ -38,14 +39,14 @@ module.exports = {
 
       const allEmployees = await model.User.findAll({
         where: { roleId: 'ROL-EMPLOYEE' },
-        include: [
-          {
-            model: model.Employee,
-            where: {
-              userId: { [op.col]: 'User.userId' },
-            },
-          },
-        ],
+        // include: [
+        //   {
+        //     model: model.Employee,
+        //     where: {
+        //       userId: { [op.col]: 'User.userId' },
+        //     },
+        //   },
+        // ],
       });
 
       allEmployees.forEach((data) => {
@@ -60,12 +61,16 @@ module.exports = {
         }
       });
 
-      res.status(200).render('pageName', {
+      const data = {
         allEmployees,
         onSiteEmployees: onSite.length,
         remoteEmmployees: remote.length,
         notAvailableEmployees: notAvailable.length,
-      });
+      }
+      res.status(200).json({
+        data
+      })
+      // renderPage(res, 'pageName', data, 'Demo Page')
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -105,12 +110,6 @@ module.exports = {
             },
           },
           {
-            model: model.Review,
-            where: {
-              userID: { [op.col]: 'User.userId' },
-            },
-          },
-          {
             model: model.Activitylog,
             where: {
               userID: { [op.col]: 'User.userId' },
@@ -132,7 +131,7 @@ module.exports = {
       user.block = 1;
       await user.save();
 
-      await logActivity(req.session.userId, `Blocked ${user.firstname} ${user.lastname}`);
+      await logActivity(req.session.userId, `Blocked ${user.firstName} ${user.lastName}`);
       res.redirect('/admin/employees?msg=Employee blocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
@@ -146,7 +145,7 @@ module.exports = {
 
       user.block = 0;
       await user.save();
-      await logActivity(req.session.userId, `Unblocked ${user.firstname} ${user.lastname}`);
+      await logActivity(req.session.userId, `Unblocked ${user.firstName} ${user.lastName}`);
       res.redirect('/admin/employees?msg=Employee unblocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');

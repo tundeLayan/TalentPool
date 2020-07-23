@@ -17,8 +17,7 @@ const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
 
 // Admin
-const adminEmployees = require('./Routes/admin/employee');
-const superAdmin = require('./Routes/admin/admin')
+const adminRoutes = require('./Routes/admin/index');
 
 const csrfProtection = csrf();
 const app = express();
@@ -61,7 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
-app.use('/admin', adminEmployees);
+app.use('/admin', adminRoutes);
 
 // ************ END ROUTE REGISTRATION ********** //
 
