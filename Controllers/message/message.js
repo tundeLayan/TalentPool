@@ -16,10 +16,10 @@ const {
 const adminChatUsers = async () => {
     const users = await model.Admin.findAll({
         raw: true,
-        attributes: ['user_id', 'first_name', 'last_name'],
+        attributes: ['userId', 'firstName', 'lastName'],
         include: [{
             model: model.User,
-            attributes: ['role_id'],
+            attributes: ['roleId'],
         }, ],
     })
 
@@ -29,10 +29,10 @@ const adminChatUsers = async () => {
 const employerChatUsers = async () => {
     const users = await model.Employer.findAll({
         raw: true,
-        attributes: ['user_id', 'employer_name', 'employer_photo'],
+        attributes: ['userId', 'employerName', 'employerPhoto'],
         include: [{
             model: model.User,
-            attributes: ['role_id'],
+            attributes: ['roleId'],
         }, ],
     })
 
@@ -42,10 +42,10 @@ const employerChatUsers = async () => {
 const employeeChatUsers = async () => {
     const users = model.Employee.findAll({
         raw: true,
-        attributes: ['user_id', 'first_name', 'last_name', 'image'],
+        attributes: ['userId', 'firstName', 'lastName', 'image'],
         include: [{
             model: model.User,
-            attributes: ['role_id'],
+            attributes: ['roleId'],
         }, ],
     })
 
