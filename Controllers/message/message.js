@@ -66,7 +66,7 @@ module.exports = {
                 ...employeeChatUsersResult,
             ];
             console.log(allUsers)
-            res.status(200).render('Pages/admin-dash-messages', {
+            res.render('Pages/admin-dash-messages', {
                 pageName: 'Admin Messages',
                 pageTitle: 'TalentPool | Admin Message',
                 userId: req.session.userId,
