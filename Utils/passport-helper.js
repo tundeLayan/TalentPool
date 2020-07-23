@@ -89,19 +89,10 @@ exports.renderPage = async (req, res, user) => {
   req.session.data = data;
   req.session.isLoggedIn = true;
   req.session.userId = user.userId;
+  req.flash('success', 'Authentication successful!');
   if (user.userRole === 'ROL-EMPLOYER') {
-    if ((!user.userTypeId) || user.userTypeId == null) {
-      req.flash('success', 'Authentication successful!');
-      return res.redirect('/employer/profile/create');
-    }
-    req.flash('success', 'Login successful!');
     return res.redirect('/employer/dashboard');
   }
-  if ((!user.userTypeId) || user.userTypeId == null) {
-    req.flash('success', 'Authentication successful!');
-    return res.redirect('/employee/create/profile?success_message=Authentication successful!');
-  }
-  req.flash('success', 'Login successful!');
   return res.redirect(
     `/employee/dashboard/${user.userTypeId}?success_message=Login Successful`,
   );
