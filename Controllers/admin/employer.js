@@ -1,9 +1,28 @@
 const sequelize = require('sequelize');
 const model = require('../../Models/index');
+const { renderPage } = require('../../Utils/render-page');
 
 const op = sequelize.Op;
 
 module.exports = {
+  getEmployerActivity: async (userId) => {
+    const Activity = await model.Activitylog.findAll({
+      where: { userId },
+    });
+    return (Activity);
+  },
+
+  adminLogActivity: async (adminId, userId, message) => {
+    const employer = model.Employer.findOne({
+      where: { userId },
+    })
+    await model.Activitylog.create({
+      message: `${message} ${employer.lastName} ${employer.firstName}` ,
+      userId: adminId,
+      ipAddress: '',
+    });
+  },
+
   allEmployers: async (req, res) => {
     try {
       const employersAll = await model.Employer.findAll({});
@@ -24,7 +43,6 @@ module.exports = {
         ],
       });
 
-      const data = { data: employers };
       const totalEmployers = employersAll.length;
       employersAll.forEach((employer) => {
         if (employer.employer_type.toLowerCase() === 'individual') {
@@ -36,24 +54,20 @@ module.exports = {
         }
       });
 
-      res.render('PageName', {
-        pageName: 'Admin | All Employers',
-        path: '',
-        data,
+      const data = {
+        employers,
         totalCompany: companyArray.length,
         totalIndividual: individualsArray.length,
         totalEmployers,
+      }
+      res.status(200).json({
+        status: 'success',
+        data,
       });
+      //renderPage(res, 'PageName', data, 'Admin | All Employers', 'pathName');
     } catch (err) {
       console.log(err);
     }
-  },
-
-  getEmployerActivity: async (userId) => {
-    const Activity = await model.Activitylog.findAll({
-      where: { userId },
-    });
-    return (Activity);
   },
 
   getEmployerProfile: async (req, res) => {
@@ -68,7 +82,7 @@ module.exports = {
               {
                 model: model.Team,
                 where: {
-                  userId: { [op.col]: 'Team.userId' },
+                  userId: { [op.col]: 'Employer.userId' },
                 },
               },
             ],
@@ -79,12 +93,16 @@ module.exports = {
         req.flash('error', 'Employer profile not found');
       }
       const employerActivity = await this.getEmployerActivity(userId);
-      res.render('PageName', {
-        pageName: 'Admin | Employer profile',
-        path: '',
+      
+      const data = {
         employerProfile,
         employerActivity,
+      }
+      res.status(200).json({
+        status: 'success',
+        data,
       });
+      //renderPage(res, 'PageName', data, 'Admin | Employer profile', 'pathName');
     } catch (error) {
       console.log(error);
     }
@@ -103,6 +121,9 @@ module.exports = {
       if (!result) {
         req.flash('error', 'Employer verification status not updated');
       }
+
+      await this.adminLogActivity(req.session.userId, userId, 'Approved employer');
+
       res.status(200).redirect('back');
     } catch (error) {
       console.log(error);
@@ -122,6 +143,9 @@ module.exports = {
       if (!result) {
         req.flash('error', 'Employer verification status not updated');
       }
+
+      await this.adminLogActivity(req.session.userId, userId, 'Disapproved employer');
+
       res.status(200).redirect('back');
     } catch (error) {
       console.log(error);
@@ -139,7 +163,10 @@ module.exports = {
       if (!result) {
         req.flash('error', 'Employer block status not updated');
       }
-      res.redirect('back');
+
+      await this.adminLogActivity(req.session.userId, userId, 'Blocked employer');
+
+      res.status(200).redirect('back');
     } catch (error) {
       console.log(error);
     }
@@ -156,7 +183,10 @@ module.exports = {
       if (!result) {
         req.flash('error', 'Employer block status not updated');
       }
-      res.redirect('back');
+
+      await this.adminLogActivity(req.session.userId, userId, 'unblocked employer');
+
+      res.status(200).redirect('back');
     } catch (error) {
       console.log(error);
     }

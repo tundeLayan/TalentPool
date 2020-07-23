@@ -11,20 +11,20 @@ const {
 const router = express.Router();
 
 router
-  .route('/admin/all/employers')
+  .route('/all/employers')
   .get(allEmployers);
 router
-  .route('/admin/employer/profile/:userId')
+  .route('/employer/profile/:userId')
   .get(getEmployerProfile);
 router
   .route('/admin/block/employer/:userId')
   .patch(blockEmployer);
 router
-  .route('/admin/unblock/employer/:userId')
+  .route('/unblock/employer/:userId')
   .patch(unblockEmployer);
 router
-  .route('/admin/approve/employer/:userId')
+  .route('/approve/employer/:userId')
   .patch(approveEmployer);
 router
-  .route('/admin/disapprove/employer/:userId')
+  .route('/disapprove/employer/:userId')
   .patch(disapproveEmployer);

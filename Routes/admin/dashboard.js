@@ -6,5 +6,5 @@ const {
 const router = express.Router();
 
 router
-  .route('/admin/dashboard')
+  .route('/dashboard')
   .get(dashboard);

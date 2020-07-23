@@ -1,4 +1,5 @@
 const model = require('../../Models/index');
+const { renderPage } = require('../../Utils/render-page');
 
 module.exports = {
   approvedUsers: async () => {
@@ -22,7 +23,17 @@ module.exports = {
     const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
     return totalDisapprovedUsers;
   },
-  dashboard: async (req, res) => {
+
+  getTableData: async (_modelName, activeStatus) => {
+    const tableData = await model.modelName.findAll({
+      where:{
+        active: activeStatus
+      },
+    });
+    return tableData;
+  },
+
+  dashboard: async (_req, res) => {
     try {
       const employers = await model.Employer.findAll({});
       const employees = await model.Employee.findAll({});
@@ -38,36 +49,32 @@ module.exports = {
           ['id', 'DESC'],
         ],
       });
-      const transactions = await model.Transaction.findAll({
-        where: {
-          active: 1,
-        },
-      });
-      const subscriptions = await model.Subscription.findAll({
-        where: {
-          active: 1,
-        },
-      });
+      const activeTransactions = await this.getTableData(Transaction, 1);
+      const activeSubscriptions = await this.getTableData(Subscription, 1);
+      
       const transactDetails = allTransactions.rows;
       const latestTransactions = allTransactions.rows.slice(0, 5);
 
       const totalApprovedUsers = await this.totalApprovedUsers();
       const totalDisapprovedUsers = await this.totaldisapprovedUsers();
 
-      res.render('PageName', {
-        pageName: 'Admin | Dashboard',
-        path: '',
+      const data = {
         totalEmployer: employers,
         totalEmployee: employees,
         allTransactions: allTransactions.count,
         latestEmployers,
         latestTransactions,
-        activeTransactions: transactions.length,
+        activeTransactions,
         transactDetails,
-        subscriptions,
+        activeSubscriptions,
         totalApprovedUsers,
         totalDisapprovedUsers,
+      }
+      res.status(200).json({
+        status: 'success',
+        data,
       });
+      // renderPage(res, 'PageName', data, 'Admin | Dashboard', 'pathName');
     } catch (error) {
       console.log(error);
     }
