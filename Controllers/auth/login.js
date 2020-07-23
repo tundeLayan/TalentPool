@@ -28,24 +28,15 @@ module.exports = {
       }
 
       // Getting the user type ID
-      let userTypeId = null;
       let verificationStatus = null;
       let isEmployer = false;
 
-      if (user.roleId === 'ROL-EMPLOYEE') {
-        const employee = await model.Employee.findOne({
-          where: { userId: user.userId },
-        });
-        if (employee) {
-          userTypeId = user.userId;
-        }
-      } else if (user.roleId === 'ROL-EMPLOYER') {
+      if (user.roleId === 'ROL-EMPLOYER') {
         isEmployer = true;
         const employer = await model.Employer.findOne({
           where: { userId: user.userId },
         });
         if (employer) {
-          userTypeId = user.userId;
           verificationStatus = employer.verificationStatus;
         }
       }
@@ -71,7 +62,6 @@ module.exports = {
           email: currentUser.email,
           userId: currentUser.userId.toString(),
           userRole: currentUser.roleId,
-          userTypeId,
         };
 
         if (isEmployer) data = { ...data, verificationStatus };
@@ -81,13 +71,13 @@ module.exports = {
         req.session.isLoggedIn = true;
 
         if (user.roleId === 'ROL-EMPLOYER') {
-          req.session.employerId = data.userTypeId;
+          req.session.employerId = user.userId;
           return res.redirect('/employer/dashboard');
         }
         if (user.roleId === 'ROL-EMPLOYEE') {
-          req.session.employeeId = data.userTypeId;
+          req.session.employeeId = user.userId;
           return res.redirect(
-            `/employee/dashboard/${data.userTypeId}?success_message=Login Successful`,
+            `/employee/dashboard/${user.userId}?success_message=Login Successful`,
           );
         }
         if (user.roleId === 'ROL-ADMIN' || user.roleId === 'ROL-SUPERADMIN') {
