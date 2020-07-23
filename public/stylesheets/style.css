@@ -84,6 +84,7 @@ a {
 
 .ready-section {
   background-color: #F6FCFF !important;
+  position: relative;
 }
 
 .ready-text {
@@ -94,30 +95,17 @@ a {
   position: absolute;
   width: 7%;
   left:0;
-  top: 56.375em;
+  top:-10em;
 }
 .bg-recs{
   position: absolute;
   width: 2%;
   left: 1.6875em;
-  top: 68.625em;
+  top: 2.2em;
+  ;
 }
 .icons{
   position: absolute;
   left: 1em;
   top: -2em;
 }
- @media only screen and (min-width: 1025px) {
-  .bg-recb{
-    position: absolute;
-    width: 7%;
-    left:0;
-    top: 49.1em;
-  }
-  .bg-recs{
-    position: absolute;
-    width: 2%;
-    left: 1.6875em;
-    top: 67em;
-  }
-} 
