@@ -21,11 +21,7 @@ section{
 }
 
 .card .name{
-  font-size: 20px;
-}
-
-.card .skill{
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .card-portfolio li{
@@ -144,6 +140,7 @@ h2.lead{
 
   .container{
     margin-left: auto;
+    width: 80%;
   }
 
   .progress{
