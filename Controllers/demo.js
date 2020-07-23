@@ -6,7 +6,7 @@ const demo = (req, res) => {
     firstName: 'John',
     lastName: 'Doe'
   }
-  renderPage(res, 'index', '/', 'Demo Page', data)
+  renderPage(res, 'index', data, 'Demo Page')
 };
 
 module.exports.demo = demo;
