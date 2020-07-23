@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+}
+
+.nav-bg {
+  background: #f6fcff;
+}
+
+.nav-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-brand,
+.navbar-brand:hover {
+  font-size: 24px !important;
+  font-weight: 600;
+  color: #04172a;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav-link-black,
+.nav-link-white {
+  font-size: 16px !important;
+  font-weight: 500;
+}
+
+.nav-link-black {
+  color: #04172a;
+  transition: all 0.5s ease-in-out;
+}
+
+.nav-link-black:hover {
+  color: #4d49ff;
+}
+
+.nav-link-white {
+  color: #ffffff;
+}
+
+.nav-link-white:hover {
+  color: #ffffff;
+}
+
+.nav-item {
+  z-index: 10;
+}
+
+.navDesign {
+  position: absolute;
+  right: 0;
+  z-index: 5;
+}
+
+@media (min-width: 992px) {
+  .nav-margin-signIn {
+    margin-left: 120px;
+  }
+
+  .nav-margin-signUp {
+    margin-left: 70px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .nav-link-white,
+  .nav-link-white:hover {
+    color: #4d49ff;
+  }
+}
