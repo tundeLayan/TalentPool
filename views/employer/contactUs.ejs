@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactUs</title>
+    <link rel="stylesheet" href="/stylesheets/contactUs.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <%- include('../templates/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../templates/employeeDashboardSidebar.ejs') %>
+    <%- include('../templates/dashboardHeader.ejs') %>
+    <main id="main">
+        <section class="my-5 py-3 px-5">
+            <div class="row py-3">
+                <div class="col-12 px-5">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="formGroupExampleInput">First name</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="John">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="formGroupExampleInput">Last name</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Doe">
+                              </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="formGroupExampleInput">Email</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="username@domain.com">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="formGroupExampleInput">Subject</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Your subject">
+                              </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label for="exampleFormControlTextarea1">Message</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Your Message" rows="3"></textarea>
+                              </div>
+                        </div>
+                        <button type="submit" class="btn purple white mt-3 mr-5" >Send Message</button>
+                        <button type="submit" class="btn purple white mt-3 ">Check ticket status</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+
+</html>
