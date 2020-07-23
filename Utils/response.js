@@ -14,19 +14,4 @@ module.exports = {
       validationErrors: [],
     });
   },
-  errorAdminLogin: (req, res, email, password, errorMessage) => {
-    const { isLoggedIn } = req.session;
-    res.status(401).render('Pages/admin-login', {
-      path: '/admin/login',
-      pageName: 'Admin Login',
-      errorMessage,
-      isLoggedIn,
-      success: req.flash('success'),
-      oldInput: {
-        email,
-        password,
-      },
-      validationErrors: [],
-    });
-  },
 };
