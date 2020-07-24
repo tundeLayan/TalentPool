@@ -76,7 +76,8 @@ exports.createUser = async (req, profile, userRole, done) => {
   }
 };
 
-exports.renderPage = async (req, res, user) => {
+exports.renderPage = async (req, res) => {
+  const user = { req };
   const data = {
     firstName: user.firstName,
     lastName: user.lastName,
@@ -97,3 +98,12 @@ exports.renderPage = async (req, res, user) => {
     '/employee/dashboard',
   );
 };
+
+exports.checkUser = async (clause) => {
+  const user = await model.User.findOne({
+    where: {
+      email: clause,
+    },
+  });
+  return user;
+}

@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const router = require('express').Router();
 const passport = require('passport');
 const { renderPage } = require('../../Utils/passport-helper');
@@ -21,6 +20,7 @@ router.get(
   '/auth/employee/google',
   passport.authenticate('google-employee', { scope: ['profile', 'email'] }),
 );
+
 // receive process details from passport.setup
 router.get(
   '/auth/employer/google/callback',
@@ -31,8 +31,7 @@ router.get(
   async (req, res) => {
     try {
       // Successful authentication,
-      const { user } = req;
-      renderPage(req, res, user);
+      renderPage(req, res);
     } catch (error) {
       res.redirect('/login');
     }
@@ -48,8 +47,7 @@ router.get(
   async (req, res) => {
     try {
       // Successful authentication,
-      const { user } = req;
-      renderPage(req, res, user);
+      renderPage(req, res);
     } catch (error) {
       res.redirect('/login');
     }
@@ -70,8 +68,7 @@ router.get(
   }),
   async (req, res) => {
     try {
-      const { user } = req;
-      renderPage(req, res, user);
+      renderPage(req, res);
     } catch (error) {
       res.redirect('/login');
     }
@@ -89,8 +86,7 @@ router.get(
   }),
   async (req, res) => {
     try {
-      const { user } = req;
-      renderPage(req, res, user);
+      renderPage(req, res);
     } catch (error) {
       res.redirect('/login');
     }

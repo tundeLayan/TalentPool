@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
 const model = require('../Models/index');
-const { getUserData, createUser } = require('../Utils/passport-helper');
+const { getUserData, createUser, checkUser } = require('../Utils/passport-helper');
 
 // serialize user object and send as a cookie
 passport.serializeUser((user, done) => {
@@ -30,12 +30,7 @@ passport.use('google-employer',
     async (req, accessToken, refreshToken, profile, done) => {
       try {
         // check user in our db
-        const checkUser = await model.User.findOne({
-          where: {
-            email: profile.emails[0].value,
-          },
-        });
-        const user = await checkUser;
+        const user = await checkUser(profile.emails[0].value);
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
@@ -63,12 +58,7 @@ passport.use('google-employee',
     async (req, accessToken, refreshToken, profile, done) => {
       try {
         // check user in our db
-        const checkUser = await model.User.findOne({
-          where: {
-            email: profile.emails[0].value,
-          },
-        });
-        const user = await checkUser;
+        const user = await checkUser(profile.emails[0].value);
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
@@ -76,7 +66,6 @@ passport.use('google-employee',
         }
         // create a new user
         const userData = await createUser(req, profile, 'ROL-EMPLOYEE', done);
-
         return done(null, userData);
       } catch (error) {
         return done(null, false, req.flash('error', 'Authentication error'));
@@ -96,12 +85,7 @@ passport.use('github-employer',
     async (req, accessToken, refreshToken, profile, done) => {
       try {
         // check user in our db
-        const checkUser = await model.User.findOne({
-          where: {
-            email: profile.emails[0].value,
-          },
-        });
-        const user = await checkUser;
+        const user = await checkUser(profile.emails[0].value);
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
@@ -129,12 +113,7 @@ passport.use('github-employee',
     async (req, accessToken, refreshToken, profile, done) => {
       try {
         // check user in our db
-        const checkUser = await model.User.findOne({
-          where: {
-            email: profile.emails[0].value,
-          },
-        });
-        const user = await checkUser;
+        const user = await checkUser(profile.emails[0].value);
         if (user) {
           // user exists, send user object for serialization
           const data = await getUserData(req, profile, user, done);
