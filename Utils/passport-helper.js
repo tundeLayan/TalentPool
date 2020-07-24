@@ -2,6 +2,7 @@ const passport = require('passport');
 const { uuid } = require('uuidv4');
 const bcrypt = require('bcryptjs');
 const model = require('../Models');
+const { passwordHash } = require('./password-hash')
 
 const getUserData = async (req, profile, user, done) => {
   const { 
@@ -56,8 +57,7 @@ const getUserData = async (req, profile, user, done) => {
 const createUser = async (req, profile, userRole, done) => {
   try {
     const password = process.env.TALENT_POOL_JWT_SECRET;
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = passwordHash(password);
 
     const userSave = {
       firstName: profile.name.givenName,
@@ -74,7 +74,7 @@ const createUser = async (req, profile, userRole, done) => {
       firstName: userSave.firstName,
       lastName: userSave.lastName,
       email: userSave.email,
-      userId: userSave.userId.toString(),
+      userId: userSave.userId,
       userRole: userSave.roleId,
       userTypeId: null,
     };
@@ -102,10 +102,10 @@ const renderPage = async (req, res) => {
   req.session.userId = user.userId;
   req.flash('success', 'Authentication successful!');
   if (user.userRole === 'ROL-EMPLOYER') {
-    return res.redirect('/employee/dashboard');
+    return res.redirect('/employer/dashboard');
   }
   return res.redirect(
-    '/employee/dashboard',
+    `/employee/dashboard/${user.userId}?success_message=Login Successful`,
   );
 };
 
