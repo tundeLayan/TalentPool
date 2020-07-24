@@ -7,7 +7,7 @@
  * @param {Object} rest - Additional object to be passed to the page
  * @returns {Object} - Page rendered
  */
-exports.renderPage = (res, page, rest, title='', path = '') => res.render(page, {
+exports.renderPage = (res, page, rest, title='', path= '') => res.render(page, {
       path,
       title,
       ...rest
