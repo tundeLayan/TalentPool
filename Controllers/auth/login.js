@@ -4,39 +4,47 @@ const model = require('../../Models/index');
 const {
   validateUserRequest,
 } = require('../../Utils/validators/login-validator');
-const { errorUserLogin } = require('../../Utils/response');
-
-const getUserByEmail = (models, email) => {
-  return models.User.findOne({ where: { email } });
-};
-const getEmployer = (models, user) => {
-  return models.Employer.findOne({
-    where: { userId: user.userId },
-  });
-};
+const { authErrorRedirect } = require('../../Utils/response');
+const { getUserByEmail, getEmployer } = require('../dao/db-queries');
 
 const checkUserStatus = (req, res, email, password, user) => {
   if (!user) {
-    return errorUserLogin(
+    return authErrorRedirect(
       req,
       res,
       email,
       password,
       'Invalid email or password.',
+      'auth/login',
+      'Login',
+      '/login',
     );
   }
 
   if (user.status === '0') {
-    return errorUserLogin(req, res, email, password, 'User is not verified.');
+    return authErrorRedirect(
+      req,
+      res,
+      email,
+      password,
+      'Invalid email or password.',
+      'auth/login',
+      'Login',
+      '/login',
+    );
   }
 
   if (user.block) {
-    return errorUserLogin(
+    return authErrorRedirect(
       req,
       res,
       email,
       password,
       'User Blocked! Please contact an administrator.',
+      'Invalid email or password.',
+      'auth/login',
+      'Login',
+      '/login',
     );
   }
 };
@@ -106,20 +114,28 @@ module.exports = {
         }
       } else {
         // In the event of a wrong password
-        return errorUserLogin(
+        return authErrorRedirect(
           req,
           res,
           email,
           password,
           'Invalid email or password.',
+          'auth/login',
+          'Login',
+          '/login',
         );
       }
     } catch (err) {
       if (err) {
-        return errorUserLogin(
+        return authErrorRedirect(
           req,
           res,
+          null,
+          null,
           'Something Went Wrong! Please try again...',
+          'auth/login',
+          'Login',
+          '/login',
         );
       }
     }

@@ -1,9 +1,18 @@
 module.exports = {
-  errorUserLogin: (req, res, email, password, errorMessage) => {
+  authErrorRedirect: (
+    req,
+    res,
+    email,
+    password,
+    errorMessage,
+    page,
+    title,
+    pagePath,
+  ) => {
     const { isLoggedIn } = req.session;
-    return res.status(401).render('auth/login', {
-      path: '/login',
-      pageName: 'Login',
+    return res.status(401).render(`${page}`, {
+      path: `${pagePath}`,
+      pageName: `${title}`,
       errorMessage,
       isLoggedIn,
       success: req.flash('success'),
