@@ -38,5 +38,8 @@ employeeChatUsers: async () => {
     })
 
     return users
-}
+},
+  createUser: (models, data) => {
+    return models.User.create(data);
+  }
 };
