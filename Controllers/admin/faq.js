@@ -1,5 +1,6 @@
 const model = require('../../Models');
 const {errorResMsg,successResMsg} = require('../../Utils/response');
+const {renderPage} = require('../../Utils/render-page');
 
 const faqModel = model.Faq;
 const faqCategory = model.FaqCategory;
@@ -26,12 +27,41 @@ exports.createFaq = async (req,res) => {
 
 }
 
+async function getFaqMap(req,res,faqList){
+    try{
+        let faqMap = new Map();
+        for(let i = 0;i< faqList.length;++i){
+            if(faqMap[faqList[i].FaqCategoryId]===undefined){
+                faqMap[faqList[i].FaqCategoryId] = [];
+            }
+            faqMap[faqList[i].FaqCategoryId].push({
+                'question': faqList[i].question,
+                'answer': faqList[i].answer,
+                'id':faqList[i].id
+            })
+        }
+        return faqMap;
+    } catch (error){
+        return error
+    }
+}
+
 exports.getFaq = async (req,res) => {
+    
     try{    
-        await faqModel.findAll({
-            attributes : ['question','answer']
+        const faqList =await faqModel.findAll({
+            raw:true,
+            attributes : ['question','answer','FaqCategoryId','id'],
         });
-        return successResMsg(res,200,"FAQs fetched successfully!");
+        
+        const categoryList = await getCategory(req,res);
+        const faqMap = await getFaqMap(req,res,faqList);
+        const context = {
+            faqMap,
+            categoryList
+        }        
+        return renderPage(res,"admin/admin-faq",context);
+        // return successResMsg(res,200,faqMap)
     } catch (error) {
         return errorResMsg(res,500,"An error occurred while fetching FAQs!");
     }
@@ -121,6 +151,19 @@ exports.searchFaq = async (req, res) => {
     catch(error){
         return errorResMsg(res,500,"An error occurred while searching for FAQ");
     }
+}
+
+async function getCategory(req,res){
+    try{
+        const categoryList = await faqCategory.findAll({
+            raw:true
+        });
+        return categoryList;
+
+    } catch(error){
+        return errorResMsg(res,500,"An error occured while getting categories!");
+    }
+
 }
 
 exports.addCategory = async (req, res) => {
