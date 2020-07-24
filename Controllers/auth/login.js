@@ -6,6 +6,45 @@ const {
 } = require('../../Utils/validators/login-validator');
 const { errorUserLogin } = require('../../Utils/response');
 
+const getUserByEmail = (models, email) => {
+  return models.User.findOne({ where: { email } });
+};
+const getEmployer = (models, user) => {
+  return models.Employer.findOne({
+    where: { userId: user.userId },
+  });
+};
+
+const checkUserStatus = (req, res, email, password, user) => {
+  if (!user) {
+    return errorUserLogin(
+      req,
+      res,
+      email,
+      password,
+      'Invalid email or password.',
+    );
+  }
+
+  if (user.status === '0') {
+    return errorUserLogin(req, res, email, password, 'User is not verified.');
+  }
+
+  if (user.block) {
+    return errorUserLogin(
+      req,
+      res,
+      email,
+      password,
+      'User Blocked! Please contact an administrator.',
+    );
+  }
+};
+
+const decryptPassword = (password, user) => {
+  return bcrypt.compare(password, user.password);
+};
+
 module.exports = {
   login: async (req, res) => {
     try {
@@ -13,55 +52,32 @@ module.exports = {
 
       validateUserRequest(req, res, email, password);
 
-      const query = await model.User.findOne({ where: { email } });
+      const query = await getUserByEmail(model, email);
 
       const user = await query;
 
-      if (!user) {
-        return errorUserLogin(
-          req,
-          res,
-          email,
-          password,
-          'Invalid email or password.',
-        );
-      }
+      // Check User - Blocked or Verified or Existing
+      checkUserStatus(req, res, email, password, user);
 
-      // Getting the user type ID
       let verificationStatus = null;
       let isEmployer = false;
 
+      // Get employer's verification status
       if (user.roleId === 'ROL-EMPLOYER') {
         isEmployer = true;
-        const employer = await model.Employer.findOne({
-          where: { userId: user.userId },
-        });
+        const employer = await getEmployer(model, user);
         if (employer) {
           verificationStatus = employer.verificationStatus;
         }
       }
 
-      if (user.status === '0') {
-        return errorUserLogin(
-          req,
-          res,
-          email,
-          password,
-          'User is not verified',
-        );
-      }
-
-      if (user.block) {
-        return errorUserLogin(req, res, email, password, 'User Blocked!');
-      }
-
-      const currentUser = user;
-      const valid = await bcrypt.compare(password, user.password);
+      // Decrypting User Password
+      const valid = await decryptPassword(password, user);
       if (valid) {
         let data = {
-          email: currentUser.email,
-          userId: currentUser.userId.toString(),
-          userRole: currentUser.roleId,
+          email: user.email,
+          userId: user.userId.toString(),
+          userRole: user.roleId,
         };
 
         if (isEmployer) data = { ...data, verificationStatus };
@@ -70,6 +86,7 @@ module.exports = {
         req.session.createdAt = Date.now();
         req.session.isLoggedIn = true;
 
+        // Role based redirections
         if (user.roleId === 'ROL-EMPLOYER') {
           req.session.employerId = user.userId;
           return res.redirect('/employer/dashboard');
@@ -88,6 +105,7 @@ module.exports = {
           );
         }
       } else {
+        // In the event of a wrong password
         return errorUserLogin(
           req,
           res,
@@ -109,8 +127,8 @@ module.exports = {
   logout: (req, res) => {
     const { employeeId, employerId, adminId } = req.session;
     if (employerId || employeeId || adminId) {
-      req.session = null;
-      res.redirect('/login');
+      req.session.isLoggedIn = false;
+      res.redirect('/');
     }
   },
 };

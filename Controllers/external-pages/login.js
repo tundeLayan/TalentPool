@@ -1,6 +1,6 @@
 const { renderPage } = require('../../Utils/render-page');
 
-const login = (req, res) => {
+const loginPage = (req, res) => {
   const { isLoggedIn, adminId, employeeId, employerId } = req.session;
 
   if (isLoggedIn && adminId) {
@@ -38,4 +38,4 @@ const login = (req, res) => {
   renderPage(res, 'auth/login', data, 'Login', '');
 };
 
-module.exports.login = login;
+module.exports.loginPage = loginPage;
