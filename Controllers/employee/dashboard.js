@@ -5,7 +5,7 @@ const numberOfViews = async (req, res) => {
   try{
     const employee = await model.Employee.findOne({
       where: {
-        userId: 'a52867c3-000c-4102-bbc2-10b1a9041e62'
+        userId: req.session.userId
       }
     })
     res.render('employee/employeeDashboard', {employee, title: 'Employee Dashboard'})
