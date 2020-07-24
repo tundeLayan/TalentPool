@@ -1,15 +1,4 @@
 
-const sessionSuccessResMsg = (res, message, code, token, user) =>
-  res.status(code).json({
-    status: 'success',
-    message,
-    data: {
-      authenticated: true,
-      token,
-      user,
-    },
-  });
-
 const errorUserSignup = (
   req,
   res,
@@ -18,7 +7,7 @@ const errorUserSignup = (
   password,
   errorMessage,
 ) =>
-  res.status(401).render('auth/employerSignUp', {
+  res.render('auth/employerSignUp', {
     pageName: 'Employer Registration',
     path: '/employer/register',
     errorMessage,
@@ -34,4 +23,3 @@ const errorUserSignup = (
 
 
 module.exports.errorUserSignup = errorUserSignup;
-module.exports.sessionSuccessResMsg = sessionSuccessResMsg;

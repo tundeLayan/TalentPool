@@ -1,14 +1,19 @@
 const { uuid } = require('uuidv4');
-const bcrypt = require('bcryptjs');
-const model = require('../../Models/index');
+const redis = require('redis');
 const sendEmail = require('../../Utils/send-email');
 const jsonWT = require('../../Utils/auth-token');
 const { message } = require('../../Utils/email-signup-template');
-const { validateUserRequest, } = require('../../Utils/request-body-validator');
+const { validateUserRequest } = require('../../Utils/request-body-validator');
+const { userCheck ,userCreate,userUpdate } = require('../../Utils/user-check');
+const { passwordHash } = require('../../Utils/password-hash');
 const {
   errorUserSignup,
 } = require('../../Utils/response');
+const { renderPage } = require('../../Utils/render-page');
 
+const REDIS_PORT = process.env.REDIS_PORT || 6379;
+
+const client = redis.createClient(REDIS_PORT);
 const URL =
   process.env.NODE_ENV === 'development' ?
     process.env.TALENT_POOL_DEV_URL :
@@ -23,9 +28,8 @@ const employerSignup= (req, res) => {
   } else {
     errMessage = null;
   }
-  return res.render('auth/employerSignUp', {
+  const data = {
     pageName: 'Employer Registration',
-    path: '/employer/register',
     success,
     errorMessage: errMessage,
     oldInput: {
@@ -33,41 +37,42 @@ const employerSignup= (req, res) => {
       password: '',
     },
     validationErrors: [],
-  });
+  }
+  renderPage(res ,'auth/employerSignUp',data,'Employer Registration','/employer/register' )
+ 
 };
 
 const registerEmployer = async (req, res) => {
-  const user = req.body;
+  const { firstName, lastName, email, password } = req.body;
   const employerUserData = {
-    firstname: req.body.firstName,
-    lastname: req.body.lastName,
-    email: req.body.email,
+    firstName,
+    lastName,
+    email,
+    password,
   };
   try {
-    validateUserRequest(req, res, user.firstName ,user.lastName, user.email, user.password);
-    const { email } = user;
-    const userExists = await model.User.findOne({ where: { email } });
+    validateUserRequest(req, res, firstName ,lastName, email, password);
+    const userExists = await userCheck(email);
     if (userExists !== null) {
-      return errorUserSignup(req, res, user.firstName ,user.lastName, user.email, user.password, 'Someone has already registered this email.',);
+      return errorUserSignup(req, res, firstName ,lastName, email, password, 'Someone has already registered this email.',);
     }
-    const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(user.password, salt);
-    const data = { email: user.email };
+    const hashedPassword = passwordHash(password);
+    const data = { email };
     const token = jsonWT.signJWT(data);
     const userSave = {
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      email,
+      firstName,
+      lastName,
       password: hashedPassword,
       roleId: 'ROL-EMPLOYER',
       userId: uuid(),
     };
     try {
-      await model.User.create(userSave);
+     await userCreate(userSave);
       const verificationUrl = `${URL}/email/verify?verificationCode=${token}`;
       await sendEmail({
-        email: userSave.email,
-        subject: 'TalentPool | Email verification',
+        email,
+        subject: 'TalentPool User Email verification',
         message: await message(verificationUrl),
       });
       req.flash('success', 'Verification email sent!');
@@ -88,44 +93,33 @@ const verifyEmail = async (req, res) => {
   try {
     const { verificationCode } = req.query;
     const decoded = jsonWT.verifyJWT(verificationCode);
-
-    const user = await model.User.findOne({
-      where: { email: decoded.email },
-    });
+    const user = await userCheck(decoded.email);
     if (Date.now() <= decoded.exp + Date.now() + 60 * 60) {
       if (!user) {
         req.flash('error', 'Email has not been registered');
         return res.redirect('/employer/register');
       }
       if (user.status === '1') {
-        if (user.role_id === 'ROL-EMPLOYER') {
-          req.flash('success', 'This email has been verified');
-          return res.redirect('/employer/login');
-        }
+        
         req.flash('success', 'This email has been verified');
-        return res.redirect('/employee/login');
+        return res.redirect('/login');
       }
-      const updateUser = await model.User.update(
-        { status: '1' },
-        { where: { email: user.email,}},
-         
-      );
+      const updateUser = await userUpdate(user.email);
+      const status = "1";
+      client.set(user.email, 3600, status);
       const data = await updateUser;
       if (data[0] === 1) {
-        if (user.role_id === 'ROL-EMPLOYER') {
-          req.flash('success', 'Email verification successful');
-          return res.redirect('/employer/login');
-        }
+        
         req.flash('success', 'Email verification successful');
-        return res.redirect('/employee/login');
+        return res.redirect('/login');
       }
     } else {
-      req.flash('error', 'Sorry, this link is either invalid or has expired. ');
-      return res.redirect('/reverifyemail');
+      req.flash('error', 'Sorry, the verification token is either invalid or has expired. ');
+      return res.redirect('/verify/email/resend');
     }
   } catch (error) {
-    req.flash('error', 'Sorry, this link is either invalid or has expired. ');
-    return res.redirect('/reverifyemail');
+    req.flash('error', 'Sorry, the verification token is either invalid or has expired. ');
+    return res.redirect('/verify/email/resend');
   }
 };
 
