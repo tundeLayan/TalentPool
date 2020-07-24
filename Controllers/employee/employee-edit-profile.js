@@ -143,7 +143,7 @@ module.exports = {
 
       // return updated data
       return res.redirect(
-        `/employee/dashboard?success_message=Profile updated successfully`,
+        `/employee/profile?success_message=Profile updated successfully`,
       );
     } catch (err) {
       req.flash('error', 'Something went wrong. Try again');
