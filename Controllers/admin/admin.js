@@ -4,8 +4,7 @@ const { where } = require('sequelize');
 
 const op = sequelize.Op;
 
-const getAdmin = async function toFindOneFromUser(req, res) {
-  const { userId } = req.params;
+const getAdmin = async function toFindOneFromUser(userId) {
   const admin = await model.User.findOne({
     where: { userId },
     roleId: 'ROL-ADMIN',
@@ -16,43 +15,70 @@ const getAdmin = async function toFindOneFromUser(req, res) {
 module.exports = {
 	getAllAdmin: async (req, res) => {
 		try {
-			const admins = await model.User.findAll({
-				where: { roleId: 'ROL_ADMIN' },
-				include: [
-          {
-            model: model.Activitylog,
-            where: {
-              userId: { [op.col]: 'User.userId' },
-            },
-          },
-        ],
-			});
-			
-			const adminActivities = admins.map((admin) => {
-				const activities = {
-					name: admin.firstname,
-					activity: admin.Activitylog
-				}
-				return activities;
-			});
-
-			res.status(500).render('pageName', {
-				admins,
-				adminActivities,
-			});
+			const admins = await model.User.findAll({ where: { roleId: 'ROL-ADMIN' } });
+    
+      res.status(200).json({
+        admins
+      });
 		} catch (err) {
 			res.status(500).redirect('back');
 		}
-	},
+  },
+  
+  // addAdmin: async (req, res) => {
+  //   const { firstName, lastName, email, password } = req.body;
+  //   const userExists = await model.User.findOne({ where: { email } });
+    
+  //   if (userExists !== null) res.status(404).redirect('back')  
+  //   const token = jsonWT.signJWT({ email });
+
+  //   // hash password
+  //   const salt = bcrypt.genSaltSync(10);
+  //   const hashPassword = await bcrypt.hashSync(password, salt);
+
+  //   const userId = uuid();
+
+  //   const user = await model.User.create({
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     password
+  //   });
+
+  //   // send login details to admin
+  //   const link = `${URL}/admin/login`;
+  //   const options = {
+  //     email,
+  //     subject: 'New Staff Account Created',
+  //     message: `<h5>Login Credentials<h5>
+  //               <p>Email: ${email}<p>
+  //               <p>Password: ${password}<p>
+  //               Click <a href=${link}>here</a> to login`,
+  //   };
+
+  //   try {
+  //     await sendEmail(options);
+  //     res.status(200).json({
+  //       message: 'success',
+  //       data: user
+  //     })
+  //   } catch (err) {
+  //     return res.status(500).redirect('back');
+  //   }
+  // },
 
 	blockAdmin: async (req, res) => {
     try {
-      const user = await getAdmin(req, res);
+      const { userId } = req.params;
+      const user = await getAdmin(userId);
       if (!user) res.status(404).redirect('back');
 
       user.block = 1;
       await user.save();
-      res.redirect('/admin/all?msg=Employee blocked Successfully');
+      res.status(200).json({
+        message: 'success'
+      })
+      // res.redirect('/admin/all?msg=Admin blocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -60,12 +86,16 @@ module.exports = {
 
   unblockAdmin: async (req, res) => {
     try {
-      const user = await getAdmin(req, res);
+      const { userId } = req.params;
+      const user = await getAdmin(userId);
       if (!user) res.status(404).redirect('back');
 
       user.block = 0;
       await user.save();
-      res.redirect('/admin/all?msg=Employee unblocked Successfully');
+      res.status(200).json({
+        message: 'success'
+      })
+      // res.redirect('/admin/all?msg=Admin unblocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -73,11 +103,16 @@ module.exports = {
 	
 	deleteAdmin: async (req, res) => {
 		try{
-			const user = await getAdmin(req, res);
+      const { userId } = req.params;
+			const user = await getAdmin(userId);
       if (!user) res.status(404).redirect('back');
-			await user.destroy({ force: true });
-			res.redirect('/admin/all?msg=Deleted Successfully');
+      await user.destroy({ force: true });
+      res.status(200).json({
+        message: 'success'
+      })
+			// res.redirect('/admin/all?msg=Deleted Successfully');
 		} catch(err) {
+      console.log(err)
 			res.status(500).redirect('back');
 		}
 	}

@@ -4,8 +4,7 @@ const render = require('../../Utils/render-page');
 
 const op = sequelize.Op;
 
-const getUser = async function toFindOneFromUser(req, res) {
-  const { userId } = req.params;
+const getUser = async function toFindOneFromUser(userId) {
   const employee = await model.User.findOne({
     where: { userId },
     roleId: 'ROL-EMPLOYEE',
@@ -13,8 +12,7 @@ const getUser = async function toFindOneFromUser(req, res) {
   return employee;
 };
 
-const getEmployee = async function toFindOneFromEmployee(req, res) {
-  const { userId } = req.params;
+const getEmployee = async function toFindOneFromEmployee(userId) {
   const employee = await model.Employee.findOne({
     where: { userId },
   });
@@ -37,26 +35,25 @@ module.exports = {
       const remote = [];
       const notAvailable = [];
 
-      const allEmployees = await model.User.findAll({
-        where: { roleId: 'ROL-EMPLOYEE' },
-        // include: [
-        //   {
-        //     model: model.Employee,
-        //     where: {
-        //       userId: { [op.col]: 'User.userId' },
-        //     },
-        //   },
-        // ],
+      const allEmployees = await model.Employee.findAll({
+        include: [
+          {
+            model: model.User,
+            where: {
+              userId: { [op.col]: 'Employee.userId' },
+            },
+          },
+        ],
       });
 
       allEmployees.forEach((data) => {
-        if (data.Employee.availability.toLowerCase() === 'not-available') {
+        if (data.availability.toLowerCase() === 'not-available') {
           notAvailable.push(data);
         }
-        if (data.Employee.availability.toLowerCase() === 'on-site') {
+        if (data.availability.toLowerCase() === 'on-site') {
           onSite.push(data);
         }
-        if (data.Employee.availability.toLowerCase() === 'remote') {
+        if (data.availability.toLowerCase() === 'remote') {
           remote.push(data);
         }
       });
@@ -72,52 +69,41 @@ module.exports = {
       })
       // renderPage(res, 'pageName', data, 'Demo Page')
     } catch (err) {
-      res.status(500).redirect('back');
+      console.log(err);
+      // res.status(500).redirect('back');
     }
   },
 
   getEmployeeFullDetails: async (req, res) => {
     try {
       const { userId } = req.params;
-      const getEmployee = await model.User.findOne({
-        where: {
-          roleId: 'ROL-EMPLOYEE',
-          userId,
-        },
+      const getEmployee = await model.Employee.findOne({
+        where: { userId },
         include: [
           {
-            model: model.Employee,
+            model: model.User,
             where: {
-              userId: { [op.col]: 'User.userId' },
-            },
-          },
-          {
-            model: model.Skill,
-            where: {
-              userId: { [op.col]: 'User.userId' },
-            },
-          },
-          {
-            model: model.Portfolio,
-            where: {
-              userId: { [op.col]: 'User.userId' },
-            },
-          },
-          {
-            model: model.Team,
-            where: {
-              employeeId: { [op.col]: 'User.userId' },
-            },
-          },
-          {
-            model: model.Activitylog,
-            where: {
-              userID: { [op.col]: 'User.userId' },
+              userId: { [op.col]: 'Employee.userId' },
             },
           },
         ],
       });
-      res.status(200).render('pageName', { getEmployee });
+      const getEmployeeSkills = await model.Skill.findAll({ where: { userId } })
+      const getEmployeeTeam = await model.Team.findAll({ where: { employeeId: userId} })
+      const getEmployeeActivity = await model.Activitylog.findAll({ where: { userId } })
+      const getEmployeePortfolio = await model.Portfolio.findAll({ where: { userId } })
+
+      const data = {
+        getEmployee,
+        getEmployeeSkills,
+        getEmployeeTeam,
+        getEmployeeActivity,
+        getEmployeePortfolio,
+      }
+      res.status(200).json({
+        data
+      });
+       // renderPage(res, 'pageName', data, 'Demo Page')
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -125,14 +111,18 @@ module.exports = {
 
   blockEmployee: async (req, res) => {
     try {
-      const user = await getUser(req, res);
+      const { userId } = req.params;
+      const user = await getUser(userId);
       if (!user) res.status(404).redirect('back');
 
       user.block = 1;
       await user.save();
 
-      await logActivity(req.session.userId, `Blocked ${user.firstName} ${user.lastName}`);
-      res.redirect('/admin/employees?msg=Employee blocked Successfully');
+      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Blocked ${user.firstName} ${user.lastName}`);
+      res.status(200).json({
+        message: "success"
+      });
+      // res.redirect('/admin/employees?msg=Employee blocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -140,13 +130,18 @@ module.exports = {
 
   unblockEmployee: async (req, res) => {
     try {
-      const user = await getUser(req, res);
+      const { userId } = req.params;
+      const user = await getUser(userId);
       if (!user) res.status(404).redirect('back');
 
       user.block = 0;
       await user.save();
-      await logActivity(req.session.userId, `Unblocked ${user.firstName} ${user.lastName}`);
-      res.redirect('/admin/employees?msg=Employee unblocked Successfully');
+      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Unblocked ${user.firstName} ${user.lastName}`);
+
+      res.status(200).json({
+        message: "success"
+      });
+      // res.redirect('/admin/employees?msg=Employee unblocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -154,12 +149,19 @@ module.exports = {
 
   approveEmployee: async (req, res) => {
     try {
-      const employee = await getEmployee(req, res);
+      const { userId } = req.params;
+      const employee = await getEmployee(userId);
       if (!employee) res.status(404).redirect('back');
 
       employee.verificationStatus = 'Approved';
       await employee.save();
-      res.redirect('/admin/employees?msg=Successfully approved Employee');
+
+      res.status(200).json({
+        message: "success"
+      });
+
+      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Approved ${employee.userName}`);
+      // res.redirect('/admin/employees?msg=Successfully approved Employee');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -167,12 +169,18 @@ module.exports = {
 
   disapproveEmployee: async (req, res) => {
     try {
-      const employee = await getEmployee(req, res);
+      const { userId } = req.params;
+      const employee = await getEmployee(userId);
       if (!employee) res.status(404).redirect('back');
 
       employee.verificationStatus = 'Disapproved';
       await employee.save();
-      res.redirect('/admin/employees?msg=Successfully disapproved Employee');
+
+      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Disapproved ${employee.userName}`);
+      res.status(200).json({
+        message: "success"
+      });
+      // res.redirect('/admin/employees?msg=Successfully disapproved Employee');
     } catch (err) {
       res.status(500).redirect('back');
     }

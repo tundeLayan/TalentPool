@@ -9,12 +9,12 @@ const {
     disapproveEmployee,
 } = require('../../Controllers/admin/employee');
 
-route.get('/employees', getAllEmployees);
+route.get('/all/employees', getAllEmployees);
 route.get('/employee/:userId', getEmployeeFullDetails);
-route.patch('/employee/:userId/block', blockEmployee);
-route.patch('/employee/:userId/block', unblockEmployee);
-route.patch('/employee/:userId/approve', approveEmployee);
-route.patch('/employee/:userId/disapprove', disapproveEmployee);
+route.patch('/employee/block/:userId', blockEmployee);
+route.patch('/employee/unblock/:userId', unblockEmployee);
+route.patch('/employee/approve/:userId', approveEmployee);
+route.patch('/employee/disapprove/:userId', disapproveEmployee);
 
 
 module.exports = route;
