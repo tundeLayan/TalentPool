@@ -4,9 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const csrf = require('csurf');
+const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const logger = require('morgan');
-const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -15,6 +15,7 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
+const authRoutes = require('./Routes/auth/auth');
 const employeeRoutes = require('./Routes/employee/index');
 const externalPages = require('./Routes');
 const auth = require('./Routes/auth');
@@ -33,13 +34,13 @@ app.use(
 db.sequelize.sync().then(async () => {
   await seedSuperAdmin();
 });
-app.use(flash());
 // Cookie Parser
 app.use(cookieParser());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -54,9 +55,9 @@ app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
-
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', auth);
+app.use(authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 app.use('/admin',adminRoutes)
