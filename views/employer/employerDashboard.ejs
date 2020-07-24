@@ -1,5 +1,5 @@
 <head>
-  <%- include('../templates/head')%>
+  <%- include('../templates/dashboardHead')%>
   <link rel="stylesheet" href="/stylesheets/employer-dashboard.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -10,135 +10,300 @@
 
   <%- include('../templates/employerDashboardSidebar.ejs') %>
   <%- include('../templates/dashboardHeader.ejs') %>
-  
-    <main id="main">
-      <div class="container-fluid">
-      <div class="container wrap mx-auto row">
-      <!-- <div class="row"> -->
-        <div class="col-md-4">
-          <p>Contacted Interns</p>
+
+  <main id="main">
+    <div id="employerDashboard" class="container">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <h5 class="dashboard-header">Contacted Interns</h5>
           <div class="card">
-            <a class="view-talents" href="#">
-            <div class="line1"></div>
-            <div class="line2"></div>
-          </a>
-            <div class="text">No one contacted yet Click to view talented cadidates</div>
-          </div>
-        </div>
 
-        <div class="col-md-4">
-          <p>Recommended Interns</p>
-          <div class="card">
-            <div class="overflow-auto">
-              <div class="card-content">
-                <div class="employee">
-                  <img src="https://i.imgur.com/GVbfcRD.jpeg">
-                  <div class="employee-details">
-                    <p class="employee-name">Orefejo Adepeju</p>
-                    <div class="employee-track">Frontend Development</div>
-                    <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
-                    <!-- <div class="employee-border"></div> -->
-                  </div>
-                </div>
-                <div class="employee">
-
-                  <img src="https://i.imgur.com/GVbfcRD.jpeg">
-                  <div class="employee-details">
-                    <p class="employee-name">Orefejo Adepeju</p>
-                    <div class="employee-track">Frontend Development</div>
-                    <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div class="employee">
-                  <img src="https://i.imgur.com/GVbfcRD.jpeg">
-                  <div class="employee-details">
-                    <p class="employee-name">Orefejo Adepeju</p>
-                    <div class="employee-track">Frontend Development</div>
-                    <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div class="employee">
-                  <img src="https://i.imgur.com/GVbfcRD.jpeg">
-                  <div class="employee-details">
-                    <p class="employee-name">Orefejo Adepeju</p>
-                    <div class="employee-track">Frontend Development</div>
-                    <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
-                  </div>
-                </div>
-
-              </div>
+            <!-- If card is empty -->
+            <div class="empty-card d-flex flex-column align-items-center justify-content-center">
+              <a class="mb-4" href="#">
+                <img src="/images/employer-dashboard/add.svg" alt="">
+              </a>
+              <p class="empty-card-text">No one contacted yet Click to view talented cadidates</p>
             </div>
+            <!-- End -->
+
           </div>
         </div>
-        <div class="col-md-4">
-          <!-- col-lg-4 col-md-4 col-sm-12 col-xs-12 -->
-          <p>Team Members</p>
+
+        <div class="col-12 col-md-4">
+          <h5 class="dashboard-header">Recommended Interns</h5>
           <div class="card">
-            <a class="addTeam-member" href="#">
-            <div class="line1"></div>
-            <div class="line2"></div>
-          </a>
-            <div class="text">No team members Click to add a team member</div>
-          </div>
-        </div>
-      <!-- </div> -->
-      <div class="bottom">
-        <div class="row">
-          <!-- <p>My Employees</p> -->
-          <div class="col border">
 
-            <canvas id="chart-line" style="height: 250; width: 250;"></canvas>
-          </div>
-
-
-
-          <div class="col">
-            <div class="card">
-              <div class="overflow-auto">
-                <div class="card-content">
-
-                  <div class="employee">
-                    <img src="https://i.imgur.com/GVbfcRD.jpeg">
-                    <div class="employee-details">
-                      <p class="employee-name">Orefejo Adepeju</p>
-                      <div class="employee-track">Frontend Development</div>
-                      <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
+            <ul class="list-group list-group-flush card-list">
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">UI/UX Designer</span>
                     </div>
                   </div>
-
-                  <div class="employee">
-                    <img src="https://i.imgur.com/GVbfcRD.jpeg">
-                    <div class="employee-details">
-                      <p class="employee-name">Orefejo Adepeju</p>
-                      <div class="employee-track">Frontend Development</div>
-                      <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
-                    </div>
-
-                    <div class="employee">
-                      <img src="https://i.imgur.com/GVbfcRD.jpeg">
-                      <div class="employee-details">
-                        <p class="employee-name">Orefejo Adepeju</p>
-                        <div class="employee-track">Frontend Development</div>
-                        <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- <div class="card-footer">
-                      <text>
-                        See all candidates  <i class="fa fa-arrow-right" id="right-arrow" aria-hidden="true"></i>
-                      </text>
-                    </div> -->
-                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
                 </div>
-
-
-
               </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Frontend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Backend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">UI/UX Designer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Frontend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Backend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+
+            </ul>
+
+            <div class="see-all d-flex justify-content-center align-items-center">
+              <span class="see-all-text">See all candidates </span>
+              <a href="#" class="col-2 btn">
+                <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+              </a>
             </div>
+
           </div>
         </div>
-    </main>
- 
+
+
+
+        <div class="col-12 col-md-4">
+          <h5 class="dashboard-header">Team Members</h5>
+          <div class="card">
+
+            <!-- If card is empty -->
+            <div class="empty-card d-flex flex-column align-items-center justify-content-center">
+              <a class="mb-4" href="#">
+                <img src="/images/employer-dashboard/add.svg" alt="">
+              </a>
+              <p class="empty-card-text">No team members Click to add a team member</p>
+            </div>
+            <!-- End -->
+
+          </div>
+        </div>
+      </div>
+
+      <h5 class="dashboard-header mt-4">Your Employees</h5>
+      <div class="row mb-5">
+        <div class="col-12 col-md-6">
+          <div class="card">
+
+            <div class="col border">
+              <canvas id="chart-line" style="height: 250; width: 250;"></canvas>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="card">
+
+            <ul class="list-group list-group-flush card-list">
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">UI/UX Designer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Frontend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Backend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">UI/UX Designer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Frontend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-10">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 40px;
+                                height: 40px; border-radius: 25px">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                      <span class="card-user-name">Eureka</span>
+                      <span class="card-user-title">Backend Developer</span>
+                    </div>
+                  </div>
+                  <a href="#" class="d-flex justify-content-end col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+              </div>
+
+            </ul>
+
+            <div class="see-all d-flex justify-content-center align-items-center">
+              <span class="see-all-text">See all employees</span>
+              <a href="#" class="col-2 btn">
+                <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+  </main>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
   <script>
     $(document).ready(function () {
