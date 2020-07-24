@@ -1,11 +1,12 @@
 const { uuid } = require('uuidv4');
 const { validationResult } = require('express-validator');
 
-const userModel = require('./auth-model');
 const sendEmail = require('../../Utils/send-email');
 const jsonWT = require('../../Utils/auth-token');
 const { message } = require('../../Utils/email-signup-template');
 const { renderPage } = require('../../Utils/render-page');
+const { createUser, getUserByEmail} = require('../dao/db-queries');
+const { employeeSignupRedirect } = require('../../Utils/response');
 
 const URL = process.env.NODE_ENV === 'development' ? process.env.TALENT_POOL_DEV_URL : process.env.TALENT_POOL_FRONT_END_URL;
 
@@ -34,17 +35,14 @@ const registerEmployee = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const errResponse = errors.array({ onlyFirstError: true });
-      req.flash('error', errResponse[0].msg);
-      req.flash('oldInput', employeeUserData);
-      return res.redirect('/employee/register');
+      return employeeSignupRedirect(req, res, errResponse[0].msg, employeeUserData);
     }
 
     // const userExists = await model.User.findOne({ where: { email } });
-    const userExists = await userModel.findUser(email);
+    const userExists = await getUserByEmail(email);
     if (userExists) {
-      req.flash('error', 'Someone has already registered this email');
-      req.flash('oldInput', employeeUserData);
-      return res.redirect('/employee/register');
+      const errmessage = 'Someone has already registered this email';
+      return employeeSignupRedirect(req, res, errmessage, employeeUserData);
     }
 
     const hashedPassword = await jsonWT.hashPassword(password); 
@@ -72,8 +70,7 @@ const registerEmployee = async (req, res) => {
 
     // create new user and send verification mail
     try {
-      // await model.User.create(userSave);
-      await userModel.createUser(userSave);
+      createUser(userSave);
       // if (user.hngId) {
       //   await model.Employee.create(employeeSave);
       // }
@@ -85,16 +82,15 @@ const registerEmployee = async (req, res) => {
       });
       req.flash('success', 'Verification email sent!');
       return res.redirect('/employee/register');
+
     } catch (error) {
       console.log(error)
-      req.flash('error', 'An Error occoured, try again.');
-      req.flash('oldInput', employeeUserData);
-      return res.redirect('/employee/register');
+      const errmessage = 'An Error occoured, try again.';
+      return employeeSignupRedirect(req, res, errmessage, employeeUserData);
     }
   } catch (error) {
-    req.flash('error', 'An Error occoured');
-    req.flash('oldInput', employeeUserData);
-    return res.redirect('/employee/register');
+    const errmessage = 'An Error occoured';
+    return employeeSignupRedirect(req, res, errmessage, employeeUserData);
   }
 };
 
@@ -112,7 +108,7 @@ const resendVerificationLink = async (req, res) => {
   }
 
   // check if user exist
-  const checkUser = userModel.findUser(email);
+  const checkUser = getUserByEmail(email);
   if (!checkUser) {
     req.flash('error', 'Invalid email');
     return res.redirect('/verify/email');
