@@ -1,10 +1,10 @@
 const express = require('express');
 const route = express.Router();
-const { getAllAdmin, blockAdmin, unblockAdmin, deleteAdmin } = require('../../Controllers/admin/admin');
+const { getAllAdmin, blockAdmin, unblockAdmin, getAdminFullDetails } = require('../../Controllers/admin/admin');
 
 route.get('/all', getAllAdmin);
+route.get('/:userId', getAdminFullDetails);
 route.patch('/block/:userId', blockAdmin);
 route.patch('/unblock/:userId', unblockAdmin);
-route.delete('/delete/:userId', deleteAdmin);
 
 module.exports = route;
