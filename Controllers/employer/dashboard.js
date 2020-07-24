@@ -59,8 +59,17 @@ const teamRender = async (req, res, teamName) => {
       'employer/add-team',
     );
   }
-  renderPage(res, 'employer/employerAddTeam', pageData, 'Team', '');
+  return renderPage(res, 'employer/employerAddTeam', pageData, 'Team', '');
 };
+
+const dashboardHandler = async (req, res) =>{
+  const data = {
+    message: 'This is an example',
+    firstName: 'John',
+    lastName: 'Doe'
+  }
+  renderPage(res, 'employer/employerDashboard', data, 'employer dashboard')
+}
 
 // the main module
 module.exports = {
@@ -69,4 +78,5 @@ module.exports = {
     const countTeam = await teamFind(employerTeam, db);
     await teamRender(req, res, countTeam);
   },
+  dashboardHandler,
 };

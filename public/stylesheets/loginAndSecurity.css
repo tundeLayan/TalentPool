@@ -27,6 +27,10 @@ label{
   font-size: 14px;
 }
 
+.privacy-settings{
+  /* margin-top: 94px; */
+}
+
 @media only screen and (max-width: 480px) {
   .security{
     margin: auto;
@@ -34,6 +38,11 @@ label{
   }
 }
 
+@media only screen and (max-width: 992px) {
+  .container{
+    margin-top: 113.69px;
+  }
+}
 @media only screen and (min-width: 480px) and (max-width: 990px) {
   .security{
     margin: auto;
