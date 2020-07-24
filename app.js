@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
-const flash = require('connect-flash');
 const csrf = require('csurf');
 const dotenv = require('dotenv');
 const logger = require('morgan');
@@ -42,7 +41,6 @@ app.use(cookieParser());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());

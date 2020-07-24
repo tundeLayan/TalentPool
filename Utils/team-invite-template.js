@@ -2,7 +2,7 @@ exports.message = async (url) => {
   const html = `<table width="100%" max-width="500px"style="padding: 0 40px 0 40px; background-color:#ffffff; margin: 100px auto;">
     <tr>
       <td align="center" style="background-color:#ffffff; margin: 0 50px 0 50px;">
-        <a><img src="https://res.cloudinary.com/lolamedina/image/upload/v1593451396/talentpool_header_logo_hyd9sg.svg" alt="Logo" width="120" height="100" style="display: block;"></a>
+        <a><img src="https://res.cloudinary.com/rachellite/image/upload/v1595616979/TalentHaven/TalentHaven_naakuy.png" alt="Logo" width="120" height="100" style="display: block;"></a>
       </td>
     </tr>
     <tr>
@@ -23,12 +23,12 @@ exports.message = async (url) => {
           <tr>
             <td align="center" style="text-align: center;">
               <a style="width:250px; display:inline-block; text-decoration: none; font-size: 18px; text-align:center;
-        background-color:#55acee; border-radius:2px; color:white; height:32px; cursor: pointer; margin: 30px auto; padding-top:9px;"
+        background-color:#55acee; border-radius:2px; color:white; height:30px; cursor: pointer; margin: 30px auto; padding-top:9px;"
                 href=${url}&response=accept>
                 Accept
               </a>
               <a style="width:250px; display:inline-block; text-decoration: none; font-size: 18px; text-align:center;
-        background-color:Red; border-radius:2px; color:white; height:32px; cursor: pointer; margin: 30px auto; padding-top:9px;"
+        background-color:Red; border-radius:2px; color:white; height:30px; cursor: pointer; margin: 30px auto; padding-top:9px;"
                 href=${url}&response=reject>
                 Reject
               </a>

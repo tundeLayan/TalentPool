@@ -28,10 +28,9 @@ const teamRender = async (req, res, teamName) => {
   console.log(data);
 
   const pageData = {
-    errorMessage: '',
-    success: '',
+    errorMessage: req.flash('error'),
+    success: req.flash('success'),
     data,
-    oldInput: '',
   };
   if (!teamName.dataValues.teamName) {
     return renderPage(

@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 const model = require('../../Models');
 
 const URL =
@@ -8,10 +9,10 @@ const URL =
 const sendEmail = require('../../Utils/send-email');
 const { message } = require('../../Utils/team-invite-template');
 const { renderPage } = require('../../Utils/render-page');
+const { getEmployer } = require('../dao/db-queries');
 
 const team = async (req) => {
-  // const { userId } = req.session;
-  const userId = '892dd61a-af18-4553-aa1f-5d3c2bfa1e9d';
+  const { userId } = req.session;
   const { teamName } = await model.Employer.findOne({ where: { userId } });
 
   return teamName;
@@ -19,22 +20,26 @@ const team = async (req) => {
 
 const allTeamMembers = async (req) => {
   const data = [];
-  // const { userId } = req.session;
-  const userId = '892dd61a-af18-4553-aa1f-5d3c2bfa1e9d';
+  const { userId } = req.session;
   const teamMembers = await model.Team.findAll({
     where: { userId },
   });
 
   // Find data of each employee
   for (const singleEmployee of teamMembers) {
-    // eslint-disable-next-line no-await-in-loop
-    const user = await model.User.findOne({
+    const { firstName, lastName, email } = await model.User.findOne({
       where: { userId: singleEmployee.dataValues.employeeId },
     });
+
+    const { image } = await model.Employee.findOne({
+      where: { userId: singleEmployee.dataValues.employeeId },
+    });
+
     data.push({
       employeeId: singleEmployee.dataValues.userId,
-      name: `${user.dataValues.firstName} ${user.dataValues.lastName}`,
-      email: `${user.dataValues.email}`,
+      image,
+      name: `${firstName} ${lastName}`,
+      email,
       status: `${singleEmployee.dataValues.status}`,
     });
   }
@@ -43,61 +48,39 @@ const allTeamMembers = async (req) => {
 
 module.exports = {
   sendInvite: async (req, res, next) => {
-    // const { userId } = req.session;
-    const userId = '892dd61a-af18-4553-aa1f-5d3c2bfa1e9d';
+    const { userId } = req.session;
     const { email } = req.body;
     try {
       // Get all members of the employer's team
       const data = await allTeamMembers(req);
 
       const pageInfo = {
-        errorMessage: '',
-        success: '',
+        errorMessage: req.flash('error'),
+        success: req.flash('success'),
         data,
-        oldInput: email,
       };
 
       // Get employer details
       const employer = await model.User.findOne({
         where: { userId },
       });
-      const employerData = await model.Employer.findOne({
-        where: { userId },
-      });
+      const employerData = await getEmployer(model, { userId });
 
       // Get employee details
       const employee = await model.User.findOne({
         where: { email, roleId: 'ROL-EMPLOYEE' },
       });
       if (!employee) {
-        pageInfo.errorMessage = req.flash(
-          'error',
-          'User does not exist or is not an employee!',
-        );
-        return renderPage(
-          res,
-          'employer/AddTeam',
-          pageInfo,
-          'Team',
-          'employer/add-team',
-        );
+        req.flash('error', 'User does not exist or is not an employee!');
+        res.redirect('/employer/add-team');
       }
       const employeeData = await model.Employee.findOne({
         where: { userId: employee.userId },
       });
-      if (!employeeData) {
-        pageInfo.errorMessage = req.flash(
-          'error',
-          'User profile is not set-up',
-        );
 
-        return renderPage(
-          res,
-          'employer/AddTeam',
-          pageInfo,
-          'Team',
-          'employer/add-team',
-        );
+      if (!employeeData) {
+        req.flash('error', 'User profile is not set-up');
+        res.redirect('/employer/add-team');
       }
 
       if (employeeData.hasTeam === true) {
@@ -125,26 +108,15 @@ module.exports = {
       const isInTeam = await model.Team.findOne({
         where: { userId, employeeId: employeeData.userId },
       });
-
-      const teamResult = isInTeam
-        ? renderPage(
-            res,
-            'employer/AddTeam',
-            {
-              errorMessage: req.flash(
-                'error',
-                'User is already in or has been invited to this team',
-              ),
-              success: '',
-              data,
-              oldInput: {
-                email,
-              },
-            },
-            'Team',
-            'employer/add-team',
-          )
-        : await model.Team.create(teamData);
+      if (!isInTeam) {
+        await model.Team.create(teamData);
+      } else {
+        req.flash(
+          'error',
+          'User is already in or has been invited to this team',
+        );
+        res.redirect('/employer/add-team');
+      }
 
       // Send email to user
       const inviteLink = `${URL}/team/verify-invite/?referralCode=${userId}&employee=${employeeData.userId}`;
@@ -155,28 +127,12 @@ module.exports = {
           message: await message(inviteLink),
         });
       } catch (err) {
-        pageInfo.errorMessage = req.flash(
-          'error',
-          'Invite link not sent. Please retry',
-        );
-        return renderPage(
-          res,
-          'employer/AddTeam',
-          pageInfo,
-          'Team',
-          'employer/add-team',
-        );
+        req.flash('error', 'Invite link not sent. Please retry');
+        res.redirect('/employer/add-team');
       }
-      s;
-      pageInfo.success = req.flash('error', 'Invite successfully sent');
-      pageInfo.data = await allTeamMembers(req);
-      return renderPage(
-        res,
-        'employer/AddTeam',
-        pageInfo,
-        'Team',
-        'employer/add-team',
-      );
+
+      req.flash('success', 'Invite successfully sent');
+      res.redirect('/employer/add-team');
     } catch (err) {
       const error = new Error(err);
       error.httpStatusCode = 500;
@@ -187,6 +143,18 @@ module.exports = {
   verifyInvite: async (req, res, next) => {
     const { referralCode, employee, response } = req.query;
 
+    if (!referralCode || !employee || !response) {
+      return renderPage(
+        res,
+        'external-pages/teamInvite',
+        {
+          result:
+            "Whoops! Seems you tampered with the URL. We can't find some data. Please check your email again",
+        },
+        'Team Invite',
+        '/team/verify-invite',
+      );
+    }
     try {
       // Check if the employee-employer record exists in the team
       const doesExist = await model.Team.findOne({
