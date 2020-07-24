@@ -94,7 +94,7 @@ const redirectUser = async (req, res, email, password, user) => {
     if (user.roleId === 'ROL-EMPLOYEE') {
       req.session.employeeId = user.userId;
       return res.redirect(
-        `/employee/dashboard/${user.userId}?success_message=Login Successful`,
+        `/employer/dashboard/`,
       );
     }
     if (user.roleId === 'ROL-ADMIN' || user.roleId === 'ROL-SUPERADMIN') {
