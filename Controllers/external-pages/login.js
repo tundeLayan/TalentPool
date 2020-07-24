@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 const { renderPage } = require('../../Utils/render-page');
 
 const loginPage = (req, res) => {
