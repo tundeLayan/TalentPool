@@ -2,7 +2,7 @@ const sequelize = require('sequelize');
 const uuid = require('uuidV4');
 const bcrypt = require('bcryptjs');
 const model = require('../../Models/index');
-const render = require('../../Utils/render-page');
+const { renderPage } = require('../../Utils/render-page');
 
 const op = sequelize.Op;
 
@@ -19,9 +19,7 @@ module.exports = {
 		try {
 			const admins = await model.User.findAll({ where: { roleId: 'ROL-ADMIN' } });
     
-      res.status(200).json({
-        admins
-      });
+      renderPage(res, 'Talent Haven | Admin List', admins, 'adminList')
 		} catch (err) {
 			res.status(500).redirect('back');
 		}
@@ -36,7 +34,7 @@ module.exports = {
       admin,
       adminAcitvites,
     }
-    res.status(200).json({ data });
+    renderPage(res, 'Talent Haven | Admin Profile', data, 'adminList');
   },
   
   addAdmin: async (req, res) => {
@@ -90,10 +88,7 @@ module.exports = {
 
       user.block = 1;
       await user.save();
-      res.status(200).json({
-        message: 'success'
-      })
-      // res.redirect('/admin/all?msg=Admin blocked Successfully');
+      res.redirect('/admin/all?msg=Admin blocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -107,10 +102,7 @@ module.exports = {
 
       user.block = 0;
       await user.save();
-      res.status(200).json({
-        message: 'success'
-      })
-      // res.redirect('/admin/all?msg=Admin unblocked Successfully');
+      res.redirect('/admin/all?msg=Admin Unblocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }

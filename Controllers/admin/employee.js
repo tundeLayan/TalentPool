@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const model = require('../../Models/index');
-const render = require('../../Utils/render-page');
+const { renderPage } = require('../../Utils/render-page');
 
 const op = sequelize.Op;
 
@@ -23,7 +23,7 @@ const logActivity = async function toLogAdminActivities(adminId, message) {
   const log = await model.Activitylog.create({
     message: message,
     userId: adminId,
-    ipAddress: '192.168.33.10'
+    ipAddress: ''
   })
   return log;
 }
@@ -64,13 +64,10 @@ module.exports = {
         remoteEmmployees: remote.length,
         notAvailableEmployees: notAvailable.length,
       }
-      res.status(200).json({
-        data
-      })
-      // renderPage(res, 'pageName', data, 'Demo Page')
+      renderPage(res, 'Talent Haven | Employees', data, 'employeeList')
     } catch (err) {
-      console.log(err);
-      // res.status(500).redirect('back');
+      // console.log(err);
+      res.status(500).redirect('back');
     }
   },
 
@@ -100,10 +97,7 @@ module.exports = {
         getEmployeeActivity,
         getEmployeePortfolio,
       }
-      res.status(200).json({
-        data
-      });
-       // renderPage(res, 'pageName', data, 'Demo Page')
+      renderPage(res, 'Talent Haven | Employee Details', data, 'employeeList')
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -118,11 +112,8 @@ module.exports = {
       user.block = 1;
       await user.save();
 
-      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Blocked ${user.firstName} ${user.lastName}`);
-      res.status(200).json({
-        message: "success"
-      });
-      // res.redirect('/admin/employees?msg=Employee blocked Successfully');
+      await logActivity(req.session.adminId, `Blocked ${user.firstName} ${user.lastName}`);
+      res.redirect('/admin/employees?msg=Employee blocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -136,12 +127,9 @@ module.exports = {
 
       user.block = 0;
       await user.save();
-      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Unblocked ${user.firstName} ${user.lastName}`);
+      await logActivity(req.session.adminId, `Unblocked ${user.firstName} ${user.lastName}`);
 
-      res.status(200).json({
-        message: "success"
-      });
-      // res.redirect('/admin/employees?msg=Employee unblocked Successfully');
+      res.redirect('/admin/employees?msg=Employee unblocked Successfully');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -155,13 +143,8 @@ module.exports = {
 
       employee.verificationStatus = 'Approved';
       await employee.save();
-
-      res.status(200).json({
-        message: "success"
-      });
-
-      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Approved ${employee.userName}`);
-      // res.redirect('/admin/employees?msg=Successfully approved Employee');
+      await logActivity(req.session.adminId, `Approved ${employee.userName}`);
+      res.redirect('/admin/employees?msg=Successfully approved Employee');
     } catch (err) {
       res.status(500).redirect('back');
     }
@@ -176,11 +159,8 @@ module.exports = {
       employee.verificationStatus = 'Disapproved';
       await employee.save();
 
-      await logActivity('9f8e004f-e847-4c2b-8a04-458689acb043', `Disapproved ${employee.userName}`);
-      res.status(200).json({
-        message: "success"
-      });
-      // res.redirect('/admin/employees?msg=Successfully disapproved Employee');
+      await logActivity(req.session.adminId, `Disapproved ${employee.userName}`);
+      res.redirect('/admin/employees?msg=Successfully disapproved Employee');
     } catch (err) {
       res.status(500).redirect('back');
     }
