@@ -1,1 +1,120 @@
 // Admin Dashboard
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../templates/head.ejs') %>
+    <link rel="stylesheet" href="../../public/stylesheets/adminDashboard.css" />
+    <title>Talent Haven|Admin Dashboard</title>
+  </head>
+  <body>
+      <%- include('../templates/adminDashboardSidebar.ejs') %> 
+      <%- include('../templates/dashboardHeader.ejs') %>
+    <main id="main">
+      <div class="admin-dashboard">
+        <div class="admin-dashboard-figures">
+          <div class="admin-dashboard-figure">
+            <p class="title">Total employees</p>
+            <p class="figure">43</p>
+          </div>
+          <div class="admin-dashboard-figure">
+            <p class="title">Total employers</p>
+            <p class="figure">2</p>
+          </div>
+          <div class="admin-dashboard-figure">
+            <p class="title">Total teams</p>
+            <p class="figure">68</p>
+          </div>
+          <div class="admin-dashboard-figure">
+            <p class="title">Active packages</p>
+            <p class="figure">16</p>
+          </div>
+          <div class="admin-dashboard-figure">
+            <p class="title">Active transactions</p>
+            <p class="figure">0</p>
+            <p class="previous"><span class="previous-figure">0</span> Total</p>
+          </div>
+          <div class="admin-dashboard-figure">
+            <p class="title">Active subscriptions</p>
+            <p class="figure">89</p>
+            <p class="previous">
+              <span class="previous-figure">23</span> Inactive
+            </p>
+          </div>
+          <div class="admin-dashboard-figure">
+            <p class="title">Pending reviews</p>
+            <p class="figure">23</p>
+            <p class="previous">
+              <span class="previous-figure">341</span> Requests
+            </p>
+          </div>
+          <div class="admin-dashboard-figure">
+            <p class="title">Approved reviews</p>
+            <p class="figure">0</p>
+            <p class="previous">
+              <span class="previous-figure">0</span> Disapproved
+            </p>
+          </div>
+        </div>
+        <div class="admin-dashboard-others">
+          <div class="admin-dashboard-graph">
+            <div class="graph-selection">
+              <p>This year</p>
+              <div
+                class="d-flex align-items-center btn dropdown-toggle dropleft"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+              </div>
+            </div>
+            <div class="graph">
+              <p class="text-uppercase">graph placeholder</p>
+            </div>
+          </div>
+          <div class="dashboard-recent-activity">
+            <div class="recent-activity">
+              <div class="activity-info">
+                <img src="../../public/images/rsz_employee-dashboard.png" alt="">
+                <div class="activity-info-text">
+                  <p class="title">John Doe</p>
+                  <p class="status">Joined <span>10</span> mins ago</p>
+                </div>
+              </div>
+              <img class="arrow-right" src="../../public/images/arrow-right.svg" alt="arrow-right">
+            </div>
+            <div class="recent-activity">
+              <div class="activity-info">
+                <img src="../../public/images/rsz_employee-dashboard.png" alt="">
+                <div class="activity-info-text">
+                  <p class="title">John Doe</p>
+                  <p class="status">Joined <span>10</span> mins ago</p>
+                </div>
+              </div>
+              <img class="arrow-right" src="../../public/images/arrow-right.svg" alt="arrow-right">
+            </div>
+            <div class="recent-activity">
+              <div class="activity-info">
+                <img src="../../public/images/rsz_employee-dashboard.png" alt="">
+                <div class="activity-info-text">
+                  <p class="title">John Doe</p>
+                  <p class="status">Joined <span>10</span> mins ago</p>
+                </div>
+              </div>
+              <img class="arrow-right" src="../../public/images/arrow-right.svg" alt="arrow-right">
+            </div>
+            <div class="recent-activity">
+              <div class="activity-info">
+                <img src="../../public/images/rsz_employee-dashboard.png" alt="">
+                <div class="activity-info-text">
+                  <p class="title">John Doe</p>
+                  <p class="status">Joined <span>10</span> mins ago</p>
+                </div>
+              </div>
+              <img class="arrow-right" src="../../public/images/arrow-right.svg" alt="arrow-right">
+            </div>
+          </div>
+      </div>
+    </main>
+  </body>
+</html>
