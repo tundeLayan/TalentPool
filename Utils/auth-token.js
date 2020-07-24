@@ -7,7 +7,7 @@ exports.signJWT = (data, time = '1d') => {
 };
 
 exports.verifyJWT = (token) => {
-  const key = process.env.TALENT_POOL_JWT_SECRET;
+  const key = 'somethinglight';
   const decode = jwt.verify(token, key, (err, decoded) => {
     if (err) {
       return err;
