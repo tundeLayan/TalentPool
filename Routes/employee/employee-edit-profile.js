@@ -4,6 +4,6 @@ const { updateProfile } = require('../../Controllers/employee/employee-edit-prof
 const router = express.Router();
 
 // Update Profile
-router.patch('/employee/update/profile', updateProfile.updateProfile);;
+router.patch('/employee/update/profile', updateProfile);;
 
 module.exports = router;
