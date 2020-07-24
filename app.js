@@ -3,7 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
-const csrf = require('csurf');
+// const csrf = require('csurf');
+const fileupload = require('express-fileupload');
 const dotenv = require('dotenv');
 const logger = require('morgan');
 const { key } = require('./Utils/gen-key');
@@ -15,8 +16,9 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const demo = require('./Routes/demo');
+const employer = require('./Routes/employer/employer-route');
 
-const csrfProtection = csrf();
+// const csrfProtection = csrf();
 const app = express();
 
 app.use(
@@ -26,13 +28,13 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
-app.use(csrfProtection);
-app.use((req, res, next) => {
-  const token = req.csrfToken();
-  res.cookie('csrf-token', token);
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+// app.use(csrfProtection);
+// app.use((req, res, next) => {
+//   const token = req.csrfToken();
+//   res.cookie('csrf-token', token);
+//   res.locals.csrfToken = req.csrfToken();
+//   next();
+// });
 
 db.sequelize.sync().then(async () => {
   try {
@@ -44,6 +46,9 @@ db.sequelize.sync().then(async () => {
 
 // Cookie Parser
 app.use(cookieParser());
+
+// express file upload
+app.use(fileupload({ useTempFiles: true }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,6 +62,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', demo);
+app.use('/employer/', employer);
 
 // ************ END ROUTE REGISTRATION ********** //
 
