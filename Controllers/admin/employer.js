@@ -72,7 +72,7 @@ module.exports = {
         status: 'success',
         data,
       });
-      //renderPage(res, 'PageName', data, 'Admin | All Employers', 'pathName');
+      // enderPage(res, 'PageName', data, 'Admin | All Employers', 'pathName');
     } catch (err) {
       console.log(err);
     }

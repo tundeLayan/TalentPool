@@ -1,5 +1,9 @@
+const sequelize = require('sequelize');
+const moment = require('moment');
 const model = require('../../Models/index');
 const { renderPage } = require('../../Utils/render-page');
+
+const op = sequelize.Op;
 
 const approvedUsers = async () => {
   const approvedEmployers = await model.Employer.findAll({
@@ -76,12 +80,20 @@ module.exports = {
         ],
       });
       const latestEmployers = await model.Employer.findAll({
+        include: [
+          {
+            model: model.User,
+            where: {
+              userId: { [op.col]: 'Employer.userId' },
+            },
+          },
+        ],
         limit: 10,
         order: [
           ['id', 'DESC'],
         ],
       });
-      
+
       const unactiveSubscriptions = filterData(allSubscriptions, false, 'active');
       const activeSubscriptions = filterData(allSubscriptions, true, 'active');
       const totalApprovedUsers = await approvedUsers();
@@ -119,6 +131,7 @@ module.exports = {
         allUsers,
         pendingReviews,
         uploadedEmployers,
+        moment,
       }
 
       renderPage(res, 'admin/adminDashboard', data, 'Admin | Dashboard', 'pathName');

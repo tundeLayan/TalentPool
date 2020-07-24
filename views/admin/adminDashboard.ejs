@@ -72,16 +72,18 @@
             </div>
           </div>
           <div class="dashboard-recent-activity">
+            <% latestEmployers.forEach(function(employer) { %>
             <div class="recent-activity">
               <div class="activity-info">
                 <img src="/images/rsz_employee-dashboard.png" alt="">
                 <div class="activity-info-text">
-                  <p class="title">John Doe</p>
-                  <p class="status">Joined <span>10</span> mins ago</p>
+                  <p class="title"><%= employer.User.firstName%> <%= employer.User.lastName%></p>
+                  <p class="status">Joined <span><%= moment(employer.createdAt).startOf('day').fromNow() %></span></p>
                 </div>
               </div>
               <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">
             </div>
+            <% }) %>
             <div class="recent-activity">
               <div class="activity-info">
                 <img src="/images/rsz_employee-dashboard.png" alt="">
