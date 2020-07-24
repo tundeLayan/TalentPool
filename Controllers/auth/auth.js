@@ -78,7 +78,7 @@ const registerEmployer = async (req, res) => {
       req.flash('success', 'Verification email sent!');
       return res.redirect('/employer/register');
     } catch (error) {
-      return errorUserSignup(req, res, user.firstName ,user.lastName, user.email, user.password, 'An Error occured,try again',);
+      return errorUserSignup(req, res,firstName ,lastName, email, password, 'An Error occured,try again',);
     }
   } catch (error) {
     req.flash('error', 'An Error occured,try again.');
