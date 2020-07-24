@@ -45,11 +45,7 @@ app.use((req, res, next) => {
 });
 
 db.sequelize.sync().then(async () => {
-  try {
-    await seedSuperAdmin();
-  } catch (e) {
-    console.log(e);
-  }
+  await seedSuperAdmin();
 });
 
 // Cookie Parser
@@ -64,6 +60,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 // ************ REGISTER ROUTES HERE ********** //
 // app.use('/', demo);

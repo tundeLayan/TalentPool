@@ -2,9 +2,11 @@
 const router = require('express').Router();
 const passport = require('passport');
 const { renderPage } = require('../../Utils/passport-helper');
-const { employerSignup } = require('../../Controllers/auth/auth')
+const { employerSignup, login } = require('../../Controllers/auth/auth')
 
 router.get('/employer/register' , employerSignup);
+
+router.get('/login', login);
 
 // <----------------------- GOOOGLE ROUTES ------------------------------>
 
@@ -23,7 +25,7 @@ router.get(
 router.get(
   '/auth/employer/google/callback',
   passport.authenticate('google-employer', {
-    failureRedirect: '/employer/login',
+    failureRedirect: '/login',
     failureFlash: true,
   }),
   async (req, res) => {
@@ -32,7 +34,7 @@ router.get(
       const { user } = req;
       renderPage(req, res, user);
     } catch (error) {
-      res.redirect('/employer/login');
+      res.redirect('/login');
     }
   },
 );
@@ -40,7 +42,7 @@ router.get(
 router.get(
   '/auth/employee/google/callback',
   passport.authenticate('google-employee', {
-    failureRedirect: '/employee/login',
+    failureRedirect: '/login',
     failureFlash: true,
   }),
   async (req, res) => {
@@ -49,7 +51,7 @@ router.get(
       const { user } = req;
       renderPage(req, res, user);
     } catch (error) {
-      res.redirect('/employee/login');
+      res.redirect('/login');
     }
   },
 );
@@ -63,7 +65,7 @@ router.get('/auth/employer/github', passport.authenticate('github-employer'));
 router.get(
   '/auth/github/callback',
   passport.authenticate('github-employer', {
-    failureRedirect: '/employer/login',
+    failureRedirect: '/login',
     failureFlash: true,
   }),
   async (req, res) => {
@@ -71,7 +73,7 @@ router.get(
       const { user } = req;
       renderPage(req, res, user);
     } catch (error) {
-      res.redirect('/employer/login');
+      res.redirect('/login');
     }
   },
 );
@@ -90,7 +92,7 @@ router.get(
       const { user } = req;
       renderPage(req, res, user);
     } catch (error) {
-      res.redirect('/employee/login');
+      res.redirect('/login');
     }
   },
 );

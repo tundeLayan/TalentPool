@@ -13,7 +13,14 @@ const employeeDashboard = async (req, res) => {
   })
 }
 
+const login = async (req, res) => {
+  return res.render('auth/login', {
+    pageName: 'login',
+    path: '/login'
+  })
+}
 module.exports = {
   employerSignup,
   employeeDashboard,
+  login,
 }
