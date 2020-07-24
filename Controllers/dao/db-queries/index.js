@@ -12,4 +12,7 @@ module.exports = {
       where: { userId: user.userId },
     });
   },
+  createUser: (models, data) => {
+    return models.User.create(data);
+  }
 };
