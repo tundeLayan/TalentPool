@@ -4,9 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const csrf = require('csurf');
+const flash = require('connect-flash');
+const passport = require('passport');
 const dotenv = require('dotenv');
 const logger = require('morgan');
-const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -14,14 +15,14 @@ process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
+require('./config/passport');
 const { seedSuperAdmin } = require('./Utils/seed');
+const authRoutes = require('./Routes/auth/auth');
 const employeeRoutes = require('./Routes/employee/index');
+const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const auth = require('./Routes/auth');
-
-// Admin
 const adminRoutes = require('./Routes/admin/index');
-
 const csrfProtection = csrf();
 const app = express();
 
@@ -32,24 +33,10 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
-
-db.sequelize.sync().then(async () => {
-  await seedSuperAdmin();
-});
-app.use(flash());
 // Cookie Parser
 app.use(cookieParser());
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(csrfProtection);
 app.use((req, res, next) => {
   const token = req.csrfToken();
@@ -58,12 +45,46 @@ app.use((req, res, next) => {
   next();
 });
 
+// passport js initialization
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+db.sequelize.sync().then(async () => {
+  await seedSuperAdmin();
+});
+// Cookie Parser
+app.use(cookieParser());
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(flash());
+
+app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
+
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 // ************ REGISTER ROUTES HERE ********** //
+app.use(authRoutes);
 app.use('/', auth);
+app.use(authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
+<<<<<<< HEAD
 app.use('/admin', adminRoutes);
 
+=======
+app.use('/employer', employerRoutes);
+app.use('/admin', adminRoutes);
+>>>>>>> 3cde9595b837cf5dc6121c209ab5447d6fda04c5
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
