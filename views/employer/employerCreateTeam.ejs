@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../templates/head")%>
+    <title>TalentPool</title>
+    <!-- | pageName-->
+    <!-- <link rel="stylesheet" href="../stylesheets/employer-create-team.css"> -->
+  </head>
+
+  <body>
+    <!-- Dashboard nav -->
+    <%- include("../templates/employerDashboardSidebar")%>
+    <%- include("../templates/dashboardHeader")%>
+    
+
+    <div class="container-fluid mt-4">
+      <div class="row">
+        <div class="col-lg-3 col-xl-2 d-md-block sticky-top">
+          <!-- Dashboard sidebar -->
+          <div id="body__click"></div>
+        </div>
+
+        <div class="empty__team__container">
+            <img src="/img/vectors/teams-empty.svg" alt="empty team"/>
+            <form action="/employer/team/create" method="POST">
+                <div class="custom__form__group">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <input id="team-name" name="teamName" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="team-name">Team name</label>
+                    <input class='team__create__button' type='submit' value='Create Team' disabled id="submitBtn">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/custom-js/side-nav.js"></script>
+    <script src="./js/bootstrap-js/popper.js"></script>
+    <script src="./js/bootstrap-js/jquery.js"></script>
+    <script src="./js/bootstrap-js/bootstrap.js"></script>
+    <script src="../js/custom-js/employer-dashboard.js"></script>
+    <script>
+        let email = document.querySelector('#team-name');
+        email.addEventListener('keyup', () => {
+            let emailValue = email.value;
+            document.getElementById('submitBtn').disabled = emailValue.length === 0;
+        })
+    </script>
+  </body>
+</html>
