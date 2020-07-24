@@ -1,5 +1,5 @@
 <head>
-  <%- include('../templates/head')%>
+  <%- include('../templates/dashboardHead')%>
   <link rel="stylesheet" href="/stylesheets/employer-dashboard.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -11,11 +11,10 @@
   <%- include('../templates/employerDashboardSidebar.ejs') %>
   <%- include('../templates/dashboardHeader.ejs') %>
   
-    <main id="main">
-      <div class="container-fluid">
-      <div class="container wrap mx-auto row">
-      <!-- <div class="row"> -->
-        <div class="col-md-4">
+    <main id="main" >
+      <div class="container wrap mx-auto">
+      <div class="row">
+        <div class="col">
           <p>Contacted Interns</p>
           <div class="card">
             <a class="view-talents" href="#">
@@ -26,7 +25,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col">
           <p>Recommended Interns</p>
           <div class="card">
             <div class="overflow-auto">
@@ -70,8 +69,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <!-- col-lg-4 col-md-4 col-sm-12 col-xs-12 -->
+        <div class="col">
           <p>Team Members</p>
           <div class="card">
             <a class="addTeam-member" href="#">
@@ -81,7 +79,7 @@
             <div class="text">No team members Click to add a team member</div>
           </div>
         </div>
-      <!-- </div> -->
+      </div>
       <div class="bottom">
         <div class="row">
           <!-- <p>My Employees</p> -->
@@ -136,7 +134,6 @@
               </div>
             </div>
           </div>
-        </div>
     </main>
  
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
