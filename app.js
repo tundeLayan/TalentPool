@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const csrf = require('csurf');
 const dotenv = require('dotenv');
 const logger = require('morgan');
+const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -18,6 +19,7 @@ const { seedSuperAdmin } = require('./Utils/seed');
 const employeeRoutes = require('./Routes/employee/index');
 const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
+const auth = require('./Routes/auth');
 
 const csrfProtection = csrf();
 const app = express();
@@ -33,7 +35,7 @@ app.use(
 db.sequelize.sync().then(async () => {
   await seedSuperAdmin();
 });
-
+app.use(flash());
 // Cookie Parser
 app.use(cookieParser());
 
@@ -57,6 +59,7 @@ app.use((req, res, next) => {
 });
 
 // ************ REGISTER ROUTES HERE ********** //
+app.use('/', auth);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 app.use('/employer', employerRoutes);
