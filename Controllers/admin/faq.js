@@ -29,8 +29,8 @@ exports.createFaq = async (req,res) => {
 
 async function getFaqMap(req,res,faqList){
     try{
-        let faqMap = new Map();
-        for(let i = 0;i< faqList.length;++i){
+        const faqMap = new Map();
+        for(let i = 0;i< faqList.length;i+=1){
             if(faqMap[faqList[i].FaqCategoryId]===undefined){
                 faqMap[faqList[i].FaqCategoryId] = [];
             }
@@ -44,6 +44,19 @@ async function getFaqMap(req,res,faqList){
     } catch (error){
         return error
     }
+}
+
+async function getCategory(req,res){
+    try{
+        const categoryList = await faqCategory.findAll({
+            raw:true
+        });
+        return categoryList;
+
+    } catch(error){
+        return errorResMsg(res,500,"An error occured while getting categories!");
+    }
+
 }
 
 exports.getFaq = async (req,res) => {
@@ -153,18 +166,6 @@ exports.searchFaq = async (req, res) => {
     }
 }
 
-async function getCategory(req,res){
-    try{
-        const categoryList = await faqCategory.findAll({
-            raw:true
-        });
-        return categoryList;
-
-    } catch(error){
-        return errorResMsg(res,500,"An error occured while getting categories!");
-    }
-
-}
 
 exports.addCategory = async (req, res) => {
     console.log(req.body)

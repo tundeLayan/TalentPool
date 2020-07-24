@@ -8,18 +8,17 @@ const dotenv = require('dotenv');
 const logger = require('morgan');
 const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
+
 dotenv.config('.env');
 process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
-const admin = require('./Routes/admin/faq');
-
 const employeeRoutes = require('./Routes/employee/index');
 const externalPages = require('./Routes');
 const auth = require('./Routes/auth');
-
+const adminRoutes = require('./Routes/admin/index');
 const csrfProtection = csrf();
 const app = express();
 
@@ -30,13 +29,6 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
-app.use(csrfProtection);
-app.use((req, res, next) => {
-  const token = req.csrfToken();
-  res.cookie('csrf-token', token);
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
 
 db.sequelize.sync().then(async () => {
   await seedSuperAdmin();
@@ -44,6 +36,7 @@ db.sequelize.sync().then(async () => {
 app.use(flash());
 // Cookie Parser
 app.use(cookieParser());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -54,19 +47,25 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 // ************ REGISTER ROUTES HERE ********** //
-app.use('/admin',admin)
 app.use('/', auth);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
-
+app.use('/admin',adminRoutes)
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
-// app.use((req, res, next) => {
-//   next(createError(404));
-// });
+app.use((req, res, next) => {
+  next(createError(404));
+});
 
 // error handler
 app.use((err, req, res, next) => {
@@ -79,6 +78,5 @@ app.use((err, req, res, next) => {
   res.render('error');
   next();
 });
-
 
 module.exports = app;
