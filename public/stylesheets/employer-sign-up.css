@@ -1,3 +1,4 @@
+/* STYLE GUIDE STYLES */
 :root {
   --prim-colr: #04172a;
   --accent-colr: #4d49ff;
@@ -8,10 +9,10 @@ body {
   font-family: var(--font-fam);
   background-color: rgba(73, 190, 255, 0.05);
   background-image: url('../images/employer-sign-up/bottom-left.svg'),
-    url('../images/employer-sign-up/blob-diagonal.svg');
-  background-size: 30%, 17%;
-  background-position: left 0% bottom 0%, right -2% bottom 30%;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  url('../images/employer-sign-up/blob-diagonal.svg');
+background-size: 30%, 17%;
+background-position: left 0% bottom 0%, right -2% bottom 30%;
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
 }
 
 .prj-text-primary {
@@ -152,7 +153,7 @@ body {
   }
 }
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 650px){
   body {
     background-image: url('../images/employer-sign-up/bottom-left.svg'),
       url('../images/employer-sign-up/blob-diagonal.svg');
@@ -162,14 +163,12 @@ body {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px){
   body {
     background-image: url('../images/employer-sign-up/bottom-left.svg'),
-      url('../images/employer-sign-up/blob-diagonal.svg'),
-      url('../images/employer-sign-up/blob-square.svg');
+      url('../images/employer-sign-up/blob-diagonal.svg'), url('../images/employer-sign-up/blob-square.svg');;
     background-size: 20%, 7%, 5%;
-    background-position: left 0% bottom 0%, right 3% bottom 30%,
-      left 12% bottom 3%;
+    background-position: left 0% bottom 0%, right 3% bottom 30%, left 12% bottom 3%;
     background-repeat: no-repeat, no-repeat, no-repeat;
   }
 }
