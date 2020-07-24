@@ -1,0 +1,100 @@
+#addTeam {
+  margin-top: 45px;
+  z-index: 50;
+  /* position: absolute; */
+}
+
+#addTeam .no-invites-border {
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  box-sizing: border-box;
+  border-radius: 10px;
+  max-height: 400px;
+  height: 400px;
+  width: 100%;
+}
+
+#addTeam .list-group {
+  max-height: 400px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  border-radius: 10px;
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#addTeam .list-group::-webkit-scrollbar {
+  display: none;
+}
+
+#addTeam .list-group-item {
+  padding: 0.45rem 1.25rem !important;
+}
+
+#addTeam .form-control {
+  border: 1px solid rgba(4, 23, 42, 0.1) !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+  line-height: 21px !important;
+  color: #04172a;
+}
+
+#addTeam .invite-text {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  color: #04172a;
+}
+
+#addTeam .no-invites-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #04172a;
+}
+
+#addTeam .list-btn {
+  border: none !important;
+  width: 125px !important;
+  height: 40px !important;
+  font-size: 14px !important;
+}
+
+#addTeam .btn-accepted {
+  background: #3bc751 !important;
+}
+
+#addTeam .btn-invite-sent {
+  background: #4d49ff !important;
+}
+
+#addTeam .btn-rejected {
+  background: #e83131 !important;
+}
+
+#addTeam .table-user-name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+#addTeam .table-user-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(4, 23, 42, 0.8);
+}
+
+.container {
+  width: 80% !important;
+}
