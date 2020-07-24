@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 
 .nav-bg {
@@ -39,10 +39,7 @@
   color: #4d49ff;
 }
 
-.nav-link-white {
-  color: #ffffff;
-}
-
+.nav-link-white,
 .nav-link-white:hover {
   color: #ffffff;
 }
@@ -59,11 +56,11 @@
 
 @media (min-width: 992px) {
   .nav-margin-signIn {
-    margin-left: 120px;
+    margin-left: 124px !important;
   }
 
   .nav-margin-signUp {
-    margin-left: 70px;
+    margin-left: 50px;
   }
 }
 
@@ -71,5 +68,25 @@
   .nav-link-white,
   .nav-link-white:hover {
     color: #4d49ff;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1105px) {
+  .nav-margin-signIn {
+    margin-left: 0 !important;
+  }
+
+  .contact-us {
+    color: #ffffff;
+  }
+}
+
+@media (min-width: 1440px) {
+  .nav-margin-signIn {
+    margin-left: 230px !important;
+  }
+
+  .nav-margin-signUp {
+    margin-left: 24px;
   }
 }

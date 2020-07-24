@@ -1,0 +1,112 @@
+.admin-dashboard {
+  padding: 4rem 6rem;
+  overflow-x: hidden;
+}
+.admin-dashboard-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+  gap: 1rem;
+  color: #04172a;
+}
+.admin-dashboard-figure {
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+}
+.admin-dashboard-figure .figure {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 48px;
+}
+
+.admin-dashboard-others {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 68% 30%;
+  gap: 1rem;
+}
+.admin-dashboard-graph,
+.dashboard-recent-activity {
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.admin-dashboard-graph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.graph-selection {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+}
+.graph-selection p {
+  margin-bottom: 0;
+}
+
+.graph p {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 48px;
+  /* identical to box height */
+  color: rgba(4, 23, 42, 0.1);
+}
+
+.dashboard-recent-activity:last-child {
+  border-bottom: none;
+}
+
+.recent-activity,
+.recent-activity .activity-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recent-activity {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(4, 23, 42, 0.1);
+}
+.activity-info > img {
+  margin-right: 0.5rem;
+}
+.activity-info-text {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.activity-info-text .title {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.activity-info-text .status {
+  margin-bottom: 0.5rem;
+}
+.recent-activity .arrow-right {
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .admin-dashboard-others {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 495px) {
+  .admin-dashboard {
+    padding: 2rem 4rem;
+  }
+}
+
+@media (max-width: 395px) {
+  .admin-dashboard {
+    padding: 2rem 2rem;
+  }
+}

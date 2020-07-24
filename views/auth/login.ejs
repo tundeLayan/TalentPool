@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Login | TalentHaven</title>
+    <%- include('../templates/externalPageHead.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+  </head>
 
 <head>
   <meta charset="UTF-8" />
@@ -99,16 +110,20 @@
 
           <div class="row pb-3">
             <div class="col-12 d-flex justify-content-center">
-              <button class="btn shadow-sm mb-3 d-flex justify-content-around align-items-center">
-                <img class="img-fluid btn-img mr-2" src="/images/icon-google.svg" alt="github button image" />
-                <span class="mb-0">Continue with Google</span>
-              </button>
+              <a href="/auth/employee/google">
+                <button class="btn shadow-sm mb-3 d-flex justify-content-around align-items-center">
+                  <img class="img-fluid btn-img mr-2" src="/images/icon-google.svg" alt="github button image" />
+                  <span class="mb-0">Continue with Google</span>
+                </button>
+              </a>
             </div>
             <div class="col-12 d-flex justify-content-center">
-              <button class="btn shadow-sm d-flex justify-content-around align-items-center">
-                <img class="img-fluid btn-img mr-2" src="/images/icon-github.svg" alt="github button image" />
-                <span class="mb-0">Continue with Github</span>
-              </button>
+              <a href="/auth/employee/github">
+                <button class="btn shadow-sm d-flex justify-content-around align-items-center">
+                  <img class="img-fluid btn-img mr-2" src="/images/icon-github.svg" alt="github button image" />
+                  <span class="mb-0">Continue with Github</span>
+                </button>
+              </a>
             </div>
           </div>
           <div class="row">

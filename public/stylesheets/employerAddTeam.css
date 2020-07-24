@@ -11,7 +11,7 @@
 }
 
 #addTeam {
-  margin-top: 45px;
+  margin-top: 140px;
   z-index: 50;
 }
 
@@ -107,6 +107,12 @@
   font-size: 12px;
   line-height: 18px;
   color: rgba(4, 23, 42, 0.8);
+}
+
+@media screen and (max-width: 430px) {
+  #addTeam {
+    margin-top: 160px;
+  }
 }
 
 @media screen and (max-width: 991px) {

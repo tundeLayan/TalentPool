@@ -1,27 +1,24 @@
-<%- include('../templates/head') %> <%- include('../templates/navBar') %>
+<html>
+<%- include('../templates/head') %>
 <link rel="stylesheet" href="/stylesheets/employee-sign-up.css" />
 
 <body>
-  <main>
-    <div class="container-fluid main-container my-auto">
-      <div class="row py-4 mx-md-4 px-lg-5">
-        <div class="col-md-5 col-lg-4 mx-auto my-auto d-none d-md-block">
+  <%#- include('../templates/navBar') %>
+  <!-- Include nav here -->
+  <main class="mx-auto">
+    <div class="container-fluid main-container mx-auto my-auto">
+      <div class="row py-4 mx-md-4 px-lg-3">
+        <div class="col-md-5 mx-auto my-auto d-none d-md-block">
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <h1>
-              <span class="prj-text-accent">Talent</span>
-              <span class="prj-text-primary">Haven</span>
-            </h1>
+            <h1><span class="prj-text-accent">Talent</span> <span class="prj-text-primary">Haven</span> </h1>
             <p class="text-center">
               <a href="#" class="prj-link">Sign in</a> or
               <a href="#" class="prj-link">Create an account</a>
             </p>
           </div>
         </div>
-        <section
-          class="form-container shadow mx-auto col-10 px-4 col-sm-8 col-md-7 col-lg-6 px-lg-5 col-xl-5 bg-white br-5">
-          <h1 class="prj-header-h4 font-weight-bold text-center py-3">
-            Sign up
-          </h1>
+        <section class="form-container shadow mx-auto px-4 col-11 col-sm-8 col-md-7 col-lg-5 col-xl-4 bg-white br-5">
+          <h1 class="prj-header-h4 font-weight-bold text-center py-3">Sign up</h1>
           <form name="employeeSignUpForm">
             <div class="row">
               <div class="form-group col-12 col-md">
@@ -63,18 +60,18 @@
                   placeholder="Password" autocomplete="new-password" required />
               </div>
             </div>
-            <div class="row pt-2">
+            <div class="row">
               <div class="col">
-                <div class="form-check pb-3">
-                  <input class="form-check-input" type="checkbox" name="isTocChecked" id="isTocChecked" value="true"
-                    required />
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input prj-checkbox" type="checkbox" name="isTocChecked" id="isTocChecked"
+                    value="true" required />
                   <label class="form-check-label prj-normal-text" for="isTocChecked">By clicking, you are agree to our
                     <a href="#" class="prj-link prj-normal-text">Terms and Conditions</a></label>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col">
+              <div class="col mt-3">
                 <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-lg prj-btn-primary br-5">
                     Create account
@@ -82,7 +79,6 @@
                 </div>
               </div>
             </div>
-
           </form>
           <div class="row">
             <div class="col">
@@ -120,3 +116,5 @@
   <script src="/javascripts/bootstrap.js"></script>
   <script src="/javascripts/popper.js"></script>
 </body>
+
+</html>
