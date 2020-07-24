@@ -150,6 +150,7 @@ module.exports = {
         {
           result:
             "Whoops! Seems you tampered with the URL. We can't find some data. Please check your email again",
+          pageName: 'Team Invite',
         },
         'Team Invite',
         '/team/verify-invite',
@@ -164,7 +165,10 @@ module.exports = {
         return renderPage(
           res,
           'external-pages/teamInvite',
-          { result: 'Employer or employee does not exist' },
+          {
+            result: 'Employer or employee does not exist',
+            pageName: 'Team Invite',
+          },
           'Team Invite',
           '/team/verify-invite',
         );
@@ -179,7 +183,10 @@ module.exports = {
         return renderPage(
           res,
           'external-pages/teamInvite',
-          { result: "Sad to see you won't be a member of the team" },
+          {
+            result: "Sad to see you won't be a member of the team",
+            pageName: 'Team Invite',
+          },
           'Team Invite',
           '/team/verify-invite',
         );
@@ -193,7 +200,10 @@ module.exports = {
         return renderPage(
           res,
           'external-pages/teamInvite',
-          { result: "Whoops! You're already a member of a team" },
+          {
+            result: "Whoops! You're already a member of a team",
+            pageName: 'Team Invite',
+          },
           'Team Invite',
           '/team/verify-invite',
         );
@@ -211,7 +221,10 @@ module.exports = {
       return renderPage(
         res,
         'external-pages/teamInvite',
-        { result: 'Congratulations! You have successfully joined the team' },
+        {
+          result: 'Congratulations! You have successfully joined the team',
+          pageName: 'Team Invite',
+        },
         'Team Invite',
         '/team/verify-invite',
       );

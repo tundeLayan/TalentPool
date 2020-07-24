@@ -35,13 +35,13 @@ const teamRender = async (req, res, teamName) => {
   if (!teamName.dataValues.teamName) {
     return renderPage(
       res,
-      'employer/createTeam',
+      'employer/employerCreateTeam',
       pageData,
       'Add Team',
       'employer/add-team',
     );
   }
-  renderPage(res, 'employer/AddTeam', pageData, 'Team', '');
+  renderPage(res, 'employer/employerAddTeam', pageData, 'Team', '');
 };
 
 // the main module
