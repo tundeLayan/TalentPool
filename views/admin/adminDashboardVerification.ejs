@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Talent Haven | Admin Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+
+    <!-- Boiler Plate CSS -->
+    <link rel="stylesheet" href="/stylesheets/datatable css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/stylesheets/datatable css/custom.css">
+
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="/stylesheets/dashboardSidenav.css">
+    <link rel="stylesheet" href="/stylesheets/dashboardHeader.css">
+    <link rel="stylesheet" href="/stylesheets/admin-dashboard-verification.css">
+
+</head>
+<body>
+
+    <%- include('../templates/adminDashboardSidebar.ejs') %>
+    <%- include('../templates/dashboardHeader.ejs') %>
+
+    <section class="admin-dashboard-verification-container-pt">
+
+        <div class="container">
+            
+            <div class="verification-table-container">
+                <div
+                 style="margin: auto; font-size: 13px;"
+                 class="animated fadeInUp"
+                 id="jobTableContainer"
+                >
+                    <br>
+                    <table id="employersTable" class="table table-hover employersTable" style="cursor: pointer;"></table>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Bootstrap JS -->
+    <!-- <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/popper.js"></script> -->
+
+    <!-- Dashboard JS -->
+    <script src="/javascripts/dashboardNav.js"></script>
+    <script src="/javascripts/dashboardSideNav.js"></script>
+
+    <!-- Datatables JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
+
+    <script src="/javascripts/admin-dashboard-verification.js"></script>
+</body>
+</html>
