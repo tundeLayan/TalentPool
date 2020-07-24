@@ -13,8 +13,8 @@ const validateSignup = [
       'Password should contain a minimum of 8 characters (upper and lowercase letters, numbers and at least one special character)',
     )
     .matches(
-      // eslint-disable-next-line no-useless-escape
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/,
+      
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\\$%\\^&\\*\\?|\\+\\(\\)\\[\]\\{}\\.])(?=.{8,})/,
     )
     .withMessage(
       'Password should contain a minimum of 8 characters (upper and lowercase letters, numbers and at least one special character)',
