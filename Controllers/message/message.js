@@ -45,19 +45,19 @@ module.exports = {
                     // eslint-disable-next-line max-len
                     {
                         [Op.and]: [{
-                            user_id: senderID,
+                            userId: senderID,
                         },
                         {
-                            receiver_id: receiverID,
+                            receiverId: receiverID,
                         },
                         ],
                     },
                     {
                         [Op.and]: [{
-                            user_id: receiverID,
+                            userId: receiverID,
                         },
                         {
-                            receiver_id: senderID,
+                            receiverId: senderID,
                         },
                         ],
                     },
