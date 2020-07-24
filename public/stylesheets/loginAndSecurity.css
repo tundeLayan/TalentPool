@@ -1,0 +1,49 @@
+html, body {
+  color: #04172A;
+}
+
+body{
+  height: 100vh;
+  position: relative;
+  font: "Manrope", Manrope, sans-serif !important;
+}
+
+.security{
+  width: 60%;
+}
+
+button.custom-btn{
+  background: #4D49FF;
+  color: #fff;
+}
+
+button.custom-btn:hover{
+  cursor: pointer;
+  background: rgb(47, 43, 255);
+  color: white;
+}
+
+label{
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 480px) {
+  .security{
+    margin: auto;
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 990px) {
+  .security{
+    margin: auto;
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 990px) and (max-width: 1001px) {
+  .security{
+    margin: auto;
+    width: 70%;
+  }
+}
