@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Profile</title>
+    <%- include('../templates/head.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/employeeDashboardSettingsProfileEdit.css" />
+</head>
+
+<body>
+    <%- include('../templates/employeeDashboardSidebar.ejs') %>
+    <%- include('../templates/dashboardHeader.ejs') %>
+
+    <main id="main">
+
+        <section class="my-3 py-3 px-md-5">
+            <div class="col-12 px-5">
+                <div>
+                    <p class="f-20">Company Information</p>
+                </div>
+                <div class="d-flex flex-lg-row flex-column-reverse row">
+                    <div class="col-lg-8 col-12">
+                        <form id="employerDashboardContactUs" action="" method="POST" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">First name</label>
+                                    <input type="text" value="" class="form-control" id="firstName" placeholder="John">
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Last name</label>
+                                    <input type="text" value="" class="form-control" id="lastName" placeholder="Doe">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Phone Number</label>
+                                    <input type="email" value="" class="form-control" id="email"
+                                        placeholder="+2348033333300">
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Your Email Address</label>
+                                    <input type="text" value="" class="form-control" id="contactSubject"
+                                        placeholder="username@domain.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Your Bio</label>
+                                    <input type="email" value="" class="form-control" id="email"
+                                        placeholder="A little bit about yourself">
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Resume</label>
+                                    <input type="text" value="" class="form-control" id="contactSubject"
+                                        placeholder="Upload your resume (PDF)">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Portfolio Website</label>
+                                    <input type="email" value="" class="form-control" id="email"
+                                        placeholder="https://websitedomain.com">
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Facebook Link</label>
+                                    <input type="text" value="" class="form-control" id="contactSubject"
+                                        placeholder="https://websitedomain.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">Twitter Link</label>
+                                    <input type="email" value="" class="form-control" id="email"
+                                        placeholder="https://websitedomain.com">
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <label for="formGroupExampleInput">LinkedIn Link</label>
+                                    <input type="text" value="" class="form-control" id="contactSubject"
+                                        placeholder="https://websitedomain.com">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn col-12 col-lg-3 purple white mt-3 mr-5">Save
+                                Changes</button>
+                        </form>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="form-group"><label>Profile Image</label>
+                            <div class="form-group image-upload">
+                                <label for="file-input">
+                                    <img src="/images/upload-photo.svg" />
+                                </label>
+                                <input id="file-input" value="" type="file" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

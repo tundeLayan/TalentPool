@@ -6,7 +6,7 @@ const home = (req, res) => {
     firstName: 'John',
     lastName: 'Doe'
   }
-  renderPage(res, 'employee/employeeDashboardSettingsProfile', data, 'Demo Page')
+  renderPage(res, 'employee/employeeDashboardSettingsProfileEdit', data, 'Demo Page')
 };
 
 module.exports.home = home;
