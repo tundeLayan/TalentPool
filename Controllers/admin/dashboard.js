@@ -1,44 +1,44 @@
 const model = require('../../Models/index');
 const { renderPage } = require('../../Utils/render-page');
 
+const approvedUsers = async () => {
+  const approvedEmployers = await model.Employer.findAll({
+    where: { verificationStatus: 'Approved' },
+  });
+  const approvedEmployees = await model.Employee.findAll({
+    where: { verificationStatus: 'Approved' },
+  });
+  const totalApprovedUsers = approvedEmployers.length + approvedEmployees.length;
+  return totalApprovedUsers;
+};
+
+const disapprovedUsers = async () => {
+  const disapprovedEmployers = await model.Employer.findAll({
+    where: { verificationStatus: 'Disapproved' },
+  });
+  const disapprovedEmployees = await model.Employee.findAll({
+    where: { verificationStatus: 'Disapproved' },
+  });
+  const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
+  return totalDisapprovedUsers;
+};
+
+const getActiveSubscription = async (activeStatus) => {
+  const activeSubscription = await model.Subscription.findAll({
+    where:{
+      active: activeStatus
+    },
+  });
+  return activeSubscription;
+};
+
 module.exports = {
-  approvedUsers: async () => {
-    const approvedEmployers = await model.Employer.findAll({
-      where: { verificationStatus: 'Approved' },
-    });
-    const approvedEmployees = await model.Employee.findAll({
-      where: { verificationStatus: 'Approved' },
-    });
-    const totalApprovedUsers = approvedEmployers.length + approvedEmployees.length;
-    return totalApprovedUsers;
-  },
-
-  disapprovedUsers: async () => {
-    const disapprovedEmployers = await model.Employer.findAll({
-      where: { verificationStatus: 'Disapproved' },
-    });
-    const disapprovedEmployees = await model.Employee.findAll({
-      where: { verificationStatus: 'Disapproved' },
-    });
-    const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
-    return totalDisapprovedUsers;
-  },
-
-  getTableData: async (_modelName, activeStatus) => {
-    const tableData = await model.modelName.findAll({
-      where:{
-        active: activeStatus
-      },
-    });
-    return tableData;
-  },
-
-  dashboard: async (_req, res) => {
+  dashboard: async (req, res) => {
     try {
       const employers = await model.Employer.findAll({});
       const employees = await model.Employee.findAll({});
 
-      const allTransactions = await model.Transaction.findAndCountAll({
+      const allSubscriptions = await model.Subscription.findAll({
         order: [
           ['id', 'DESC'],
         ],
@@ -49,23 +49,18 @@ module.exports = {
           ['id', 'DESC'],
         ],
       });
-      const activeTransactions = await this.getTableData(Transaction, 1);
-      const activeSubscriptions = await this.getTableData(Subscription, 1);
+
+      const activeSubscriptions = await getActiveSubscription(1);
+      const totalApprovedUsers = await approvedUsers();
+      const totalDisapprovedUsers = await disapprovedUsers();
+      const latestSubscriptions = allSubscriptions.slice(0, 5);
       
-      const transactDetails = allTransactions.rows;
-      const latestTransactions = allTransactions.rows.slice(0, 5);
-
-      const totalApprovedUsers = await this.totalApprovedUsers();
-      const totalDisapprovedUsers = await this.totaldisapprovedUsers();
-
       const data = {
         totalEmployer: employers,
         totalEmployee: employees,
-        allTransactions: allTransactions.count,
+        allSubscriptions: allSubscriptions.length,
         latestEmployers,
-        latestTransactions,
-        activeTransactions,
-        transactDetails,
+        latestSubscriptions,
         activeSubscriptions,
         totalApprovedUsers,
         totalDisapprovedUsers,

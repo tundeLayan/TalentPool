@@ -8,3 +8,5 @@ const router = express.Router();
 router
   .route('/dashboard')
   .get(dashboard);
+
+module.exports = router;

@@ -14,10 +14,10 @@ router
   .route('/all/employers')
   .get(allEmployers);
 router
-  .route('/employer/profile/:userId')
+  .route('/employer/:userId')
   .get(getEmployerProfile);
 router
-  .route('/admin/block/employer/:userId')
+  .route('/block/employer/:userId')
   .patch(blockEmployer);
 router
   .route('/unblock/employer/:userId')
@@ -28,3 +28,5 @@ router
 router
   .route('/disapprove/employer/:userId')
   .patch(disapproveEmployer);
+
+module.exports = router;

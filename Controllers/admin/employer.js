@@ -4,25 +4,33 @@ const { renderPage } = require('../../Utils/render-page');
 
 const op = sequelize.Op;
 
+const getEmployerActivity = async (userId) => {
+  const Activity = await model.Activitylog.findAll({
+    where: { userId },
+  });
+  return (Activity);
+};
+
+const adminLogActivity = async (adminId, userId, message) => {
+  const testId = 'c6a3a120-354c-4e31-8012-b6bccb48997c';
+  const employer = await model.User.findOne({
+    where: { userId },
+  })
+  await model.Activitylog.create({
+    message: `${message} ${employer.lastName} ${employer.firstName}` ,
+    userId: testId,
+    ipAddress: '',
+  });
+};
+
+const getEmployerDocuments = async (userId) => {
+  const employerDocument = await model.EmployerDocument.findAll({
+    where: { userId },
+  });
+  return (employerDocument);
+};
+
 module.exports = {
-  getEmployerActivity: async (userId) => {
-    const Activity = await model.Activitylog.findAll({
-      where: { userId },
-    });
-    return (Activity);
-  },
-
-  adminLogActivity: async (adminId, userId, message) => {
-    const employer = model.Employer.findOne({
-      where: { userId },
-    })
-    await model.Activitylog.create({
-      message: `${message} ${employer.lastName} ${employer.firstName}` ,
-      userId: adminId,
-      ipAddress: '',
-    });
-  },
-
   allEmployers: async (req, res) => {
     try {
       const employersAll = await model.Employer.findAll({});
@@ -45,11 +53,11 @@ module.exports = {
 
       const totalEmployers = employersAll.length;
       employersAll.forEach((employer) => {
-        if (employer.employer_type.toLowerCase() === 'individual') {
+        if (employer.employerType.toLowerCase() === 'individual') {
           individualsArray.push(employer.employer_type);
         }
 
-        if (employer.employer_type.toLowerCase() === 'company') {
+        if (employer.employerType.toLowerCase() === 'company') {
           companyArray.push(employer.employer_type);
         }
       });
@@ -73,29 +81,29 @@ module.exports = {
   getEmployerProfile: async (req, res) => {
     try {
       const { userId } = req.params;
-      const employerProfile = await model.Employer.findOne({
-        where: { userId },
+      const employerProfile = await model.Team.findAll({
         include: [
           {
             model: model.User,
-            include: [
-              {
-                model: model.Team,
-                where: {
-                  userId: { [op.col]: 'Employer.userId' },
-                },
-              },
-            ],
+            where: {
+              userId: { [op.col]: 'Team.userId' }, 
+            },
           },
         ],
       });
-      if (!employerProfile) {
-        req.flash('error', 'Employer profile not found');
-      }
-      const employerActivity = await this.getEmployerActivity(userId);
+      const employer = await model.Employer.findOne({ where: { userId } });
+      const employerActivity = await getEmployerActivity(userId);
+      const employerDocuments = await getEmployerDocuments(userId);
       
+      // if (!employerProfile) {
+      //   req.flash('error', 'Employer profile not found');
+      // }
+      
+
       const data = {
         employerProfile,
+        employerDocuments,
+        employer,
         employerActivity,
       }
       res.status(200).json({
@@ -122,7 +130,7 @@ module.exports = {
         req.flash('error', 'Employer verification status not updated');
       }
 
-      await this.adminLogActivity(req.session.userId, userId, 'Approved employer');
+      await adminLogActivity(req.session.userId, userId, 'Approved employer');
 
       res.status(200).redirect('back');
     } catch (error) {
@@ -144,7 +152,7 @@ module.exports = {
         req.flash('error', 'Employer verification status not updated');
       }
 
-      await this.adminLogActivity(req.session.userId, userId, 'Disapproved employer');
+      await adminLogActivity(req.session.userId, userId, 'Disapproved employer');
 
       res.status(200).redirect('back');
     } catch (error) {
@@ -164,7 +172,7 @@ module.exports = {
         req.flash('error', 'Employer block status not updated');
       }
 
-      await this.adminLogActivity(req.session.userId, userId, 'Blocked employer');
+      await adminLogActivity(req.session.userId, userId, 'Blocked employer');
 
       res.status(200).redirect('back');
     } catch (error) {
@@ -184,7 +192,7 @@ module.exports = {
         req.flash('error', 'Employer block status not updated');
       }
 
-      await this.adminLogActivity(req.session.userId, userId, 'unblocked employer');
+      await adminLogActivity(req.session.userId, userId, 'unblocked employer');
 
       res.status(200).redirect('back');
     } catch (error) {
