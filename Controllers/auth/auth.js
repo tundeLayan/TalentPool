@@ -7,6 +7,7 @@ const { message } = require('../../Utils/email-signup-template');
 const { renderPage } = require('../../Utils/render-page');
 const { createUser, getUserByEmail} = require('../dao/db-queries');
 const { employeeSignupRedirect } = require('../../Utils/response');
+const model = require('../../Models/index');
 
 const URL = process.env.NODE_ENV === 'development' ? process.env.TALENT_POOL_DEV_URL : process.env.TALENT_POOL_FRONT_END_URL;
 
@@ -37,16 +38,14 @@ const registerEmployee = async (req, res) => {
       const errResponse = errors.array({ onlyFirstError: true });
       return employeeSignupRedirect(req, res, errResponse[0].msg, employeeUserData);
     }
-
     // const userExists = await model.User.findOne({ where: { email } });
-    const userExists = await getUserByEmail(email);
+    const userExists = await getUserByEmail(model,email);
     if (userExists) {
       const errmessage = 'Someone has already registered this email';
       return employeeSignupRedirect(req, res, errmessage, employeeUserData);
     }
 
     const hashedPassword = await jsonWT.hashPassword(password); 
-
     // jwtoken
     const data = {
       email,
@@ -70,7 +69,7 @@ const registerEmployee = async (req, res) => {
 
     // create new user and send verification mail
     try {
-      createUser(userSave);
+      createUser(model,userSave);
       // if (user.hngId) {
       //   await model.Employee.create(employeeSave);
       // }
@@ -84,7 +83,6 @@ const registerEmployee = async (req, res) => {
       return res.redirect('/employee/register');
 
     } catch (error) {
-      console.log(error)
       const errmessage = 'An Error occoured, try again.';
       return employeeSignupRedirect(req, res, errmessage, employeeUserData);
     }
@@ -108,7 +106,7 @@ const resendVerificationLink = async (req, res) => {
   }
 
   // check if user exist
-  const checkUser = getUserByEmail(email);
+  const checkUser = getUserByEmail(model,email);
   if (!checkUser) {
     req.flash('error', 'Invalid email');
     return res.redirect('/verify/email');

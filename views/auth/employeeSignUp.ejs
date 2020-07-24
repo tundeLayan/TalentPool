@@ -1,9 +1,9 @@
 <html>
-<%- include('../templates/head') %>
+<%- include('../templates/externalPageHead') %>
 <link rel="stylesheet" href="/stylesheets/employee-sign-up.css" />
 
 <body>
-  <%#- include('../templates/navBar') %>
+  <%- include('../templates/navBar') %>
   <!-- Include nav here -->
   <main class="mx-auto">
     <div class="container-fluid main-container mx-auto my-auto">
@@ -17,7 +17,6 @@
             </p>
           </div>
         </div>
-<<<<<<< HEAD
         <section
           class="form-container shadow mx-auto col-10 px-4 col-sm-8 col-md-7 col-lg-6 px-lg-5 col-xl-5 bg-white br-5">
           <h1 class="prj-header-h4 font-weight-bold text-center py-3">
@@ -30,11 +29,6 @@
                 <div role="alert" class="alert alert-success user-message"><%= success %></div>
             <% } %>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-=======
-        <section class="form-container shadow mx-auto px-4 col-11 col-sm-8 col-md-7 col-lg-5 col-xl-4 bg-white br-5">
-          <h1 class="prj-header-h4 font-weight-bold text-center py-3">Sign up</h1>
-          <form name="employeeSignUpForm">
->>>>>>> c421dc82c58860eaf2893de9c1eaa1af9166c262
             <div class="row">
               <div class="form-group col-12 col-md">
                 <label for="category" class="prj-normal-text">Category</label>
@@ -94,7 +88,6 @@
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
             <div class="row">
               <div class="col">
                 <p class="sign-up-alt-text text-center mb-0 mt-3">
@@ -116,25 +109,6 @@
                   Already have an account?
                   <a href="#" class="text-center prj-link">Sign in</a>
                 </p>
-=======
-          </form>
-          <div class="row">
-            <div class="col">
-              <p class="sign-up-alt-text text-center mb-0 mt-4">
-                or sign up with
-              </p>
-              <div class="col d-flex justify-content-center mt-4">
-                <button class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
-                  <img class="img-fluid btn-img mr-2" src="images/employee-sign-up/icon-google.svg"
-                    alt="github button image" />
-                  <span class="mb-0 prj-normal-text">Google</span>
-                </button>
-                <button class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
-                  <img class="img-fluid btn-img mr-2" src="images/employee-sign-up/icon-github.svg"
-                    alt="github button image" />
-                  <span class="mb-0 prj-normal-text">Github</span>
-                </button>
->>>>>>> c421dc82c58860eaf2893de9c1eaa1af9166c262
               </div>
               <p class="prj-normal-text text-center mt-3">
                 Already have an account?
