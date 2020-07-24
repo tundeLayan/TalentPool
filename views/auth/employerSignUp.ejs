@@ -1,10 +1,15 @@
 <!-- // Employer Sign Up -->
 <html>
-<%- include('../templates/head') %>
+<%- include('../templates/externalPageHead.ejs') %>
 <link rel="stylesheet" href="/stylesheets/employer-sign-up.css" />
+<style>
+  form .invalid {
+    border: 1px solid palevioletred !important;
+  }
+</style>
 
 <body>
-  <%#- include('../templates/navBar') %>
+  <%- include('../templates/navBar.ejs') %>
   <!-- Include nav here -->
   <main class="mx-auto">
     <div class="container-fluid main-container mx-auto my-auto">
@@ -20,33 +25,52 @@
         </div>
         <section class="form-container shadow mx-auto px-4 col-11 col-sm-8 col-md-7 col-lg-5 col-xl-4 bg-white br-5">
           <h1 class="prj-header-h4 font-weight-bold text-center py-3">Sign up</h1>
-          <form name="employerSignUpForm">
+          <% if (errorMessage) { %>
+          <div role="alert" class="alert alert-danger alert-dismissible fade show deposit-alert">
+            <button type="button" class="close" data-dismiss="alert">
+              &times;</button><%= errorMessage %>
+          </div>
+          <% }if (success && success.length > 0) { %>
+          <div role="alert" class="alert alert-success user-message">
+            <button type="button" class="close" data-dismiss="alert">
+              &times;</button>
+            <%= success %>
+          </div>
+          <% } %>
+          <form name="employerSignUpForm" action="/employer/register" method="POST">
             <div class="row">
               <div class="form-group col-12 col-md">
                 <label for="firstName" class="prj-normal-text">First name</label>
-                <input type="text" name="firstName" class="form-control prj-form-control" id="firstName"
-                  placeholder="First name" autocapitalize="on" autocomplete="given-name" required minlength="2" />
+                <input type="text" name="firstName"
+                  class="form-control prj-form-control <%= validationErrors.find(e => e.param === 'firstName') ? 'invalid' : '' %>"
+                  id="firstName" placeholder="First name" autocapitalize="on" autocomplete="name"
+                  value="<%= oldInput.firstName %>" required />
               </div>
               <div class="form-group col-12 col-md">
                 <label for="lastName" class="prj-normal-text">Last name</label>
-                <input type="text" name="lastName" class="form-control prj-form-control" id="lastName"
-                  placeholder="Last name" autocapitalize="on" autocomplete="family-name" required minlength="2" />
+                <input type="text" name="lastName"
+                  class="form-control prj-form-control <%= validationErrors.find(e => e.param === 'lastName') ? 'invalid' : '' %>"
+                  id="lastName" placeholder="Last name" autocapitalize="on" autocomplete="family-name" minlength="2"
+                  value="<%= oldInput.lastName %>" required />
               </div>
             </div>
             <div class="row">
               <div class="form-group col">
                 <label for="email" class="prj-normal-text">Email address</label>
-                <input type="email" name="email" class="form-control prj-form-control" id="email"
-                  placeholder="Email address" autocomplete="email" required />
+                <input type="email" name="email"
+                  class="form-control prj-form-control <%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                  id="email" placeholder="Email address" autocomplete="email" required />
               </div>
             </div>
             <div class="row">
               <div class="form-group col">
                 <label for="password" class="prj-normal-text">Password</label>
-                <input type="password" name="password" minlength="8" class="form-control prj-form-control" id="password"
-                  placeholder="Password" autocomplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required />
+                  <input type="password" name="password"
+                  class="form-control prj-form-control <%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+                  id="password" placeholder="Password" autocomplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" minlength="8" required />
               </div>
             </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="row">
               <div class="col">
                 <div class="form-check d-flex align-items-center">
@@ -73,16 +97,20 @@
                 or sign up with
               </p>
               <div class="col d-flex justify-content-center mt-4">
-                <button class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
-                  <img class="img-fluid btn-img mr-2" src="images/employer-sign-up/icon-google.svg"
-                    alt="github button image" />
-                  <span class="mb-0 prj-normal-text">Google</span>
-                </button>
-                <button class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
-                  <img class="img-fluid btn-img mr-2" src="images/employer-sign-up/icon-github.svg"
-                    alt="github button image" />
-                  <span class="mb-0 prj-normal-text">Github</span>
-                </button>
+                <a href="/auth/employer/google">
+                  <button class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
+                    <img class="img-fluid btn-img mr-2" src="/images/employer-sign-up/icon-google.svg"
+                      alt="github button image" />
+                    <span class="mb-0 prj-normal-text">Google</span>
+                  </button>
+                </a>
+                <a href="/auth/employer/github">
+                  <button class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
+                    <img class="img-fluid btn-img mr-2" src="/images/employer-sign-up/icon-github.svg"
+                      alt="github button image" />
+                    <span class="mb-0 prj-normal-text">Github</span>
+                  </button>
+                </a>
               </div>
               <p class="prj-normal-text text-center mt-3">
                 Already have an account?
@@ -94,11 +122,10 @@
       </div>
     </div>
   </main>
-
   <script src="/javascripts/jquery.js"></script>
   <script src="/javascripts/bootstrap.js"></script>
   <script src="/javascripts/popper.js"></script>
-  <script src="/javascripts/employer-sign-up.js"></script>
+  <!-- <script src="/javascripts/employer-sign-up.js"></script> -->
 </body>
 
 </html>
