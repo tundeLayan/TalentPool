@@ -8,11 +8,11 @@
 body {
   font-family: var(--font-fam);
   background-color: rgba(73, 190, 255, 0.05);
-  background-image: url('../images/employer-sign-up/bottom-left.svg'),
-  url('../images/employer-sign-up/blob-diagonal.svg');
-background-size: 30%, 17%;
-background-position: left 0% bottom 0%, right -2% bottom 30%;
-background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-image: url('../images/employer-sign-up/bottom-left-mobile.svg'),
+    url('../images/employer-sign-up/blob-diagonal.svg');
+  background-size: auto, 25%;
+  background-position: left 0% bottom -1%, right -3% bottom 30%;
+  background-repeat: no-repeat, no-repeat;
 }
 
 .prj-text-primary {
@@ -86,6 +86,7 @@ background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   color: #fff;
   background-color: var(--accent-colr);
   border: 1px solid var(--prim-colr);
+  box-shadow: none;
 }
 .prj-btn-secondary {
   color: var(--accent-colr);
@@ -107,6 +108,11 @@ background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
 }
 .prj-input-valid {
   border: 1px solid #4cbb88;
+}
+
+.prj-checkbox{
+  width: 15px;
+  height: 15px;
 }
 
 .br-5 {
@@ -153,22 +159,32 @@ background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   }
 }
 
-@media screen and (min-width: 650px){
+@media screen and (min-width: 576px) {
   body {
     background-image: url('../images/employer-sign-up/bottom-left.svg'),
       url('../images/employer-sign-up/blob-diagonal.svg');
     background-size: 25%, 7%;
-    background-position: left 0% bottom 0%, right 4% bottom 30%;
+    background-position: left 0% bottom -1%, right 4% bottom 30%;
     background-repeat: no-repeat, no-repeat;
   }
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
+
   body {
-    background-image: url('../images/employer-sign-up/bottom-left.svg'),
-      url('../images/employer-sign-up/blob-diagonal.svg'), url('../images/employer-sign-up/blob-square.svg');;
-    background-size: 20%, 7%, 5%;
-    background-position: left 0% bottom 0%, right 3% bottom 30%, left 12% bottom 3%;
-    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-image: url('../images/employer-sign-up/blob-square.svg'),
+      url('../images/employer-sign-up/blob-diagonal.svg'),
+      url('../images/employer-sign-up/bottom-left.svg');
+    background-size: 4%, 8%, 20%;
+    background-position: left 15% bottom 7%, right 3% bottom 30%,
+      left 0% bottom -0%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    background-size: 4%, 4%, 20%;
+    background-position: left 15% bottom 12%, right 3% bottom 30%,
+      left 0% bottom 0%;
   }
 }
