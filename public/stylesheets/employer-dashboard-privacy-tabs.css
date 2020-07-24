@@ -1,51 +1,51 @@
 /*PRIVACY TABS*/
 .employer-dashboard__privacy__tbs .privacy-tabs {
-  padding: 6em 1.5em;
+    padding: 6em 1.5em;
 }
 .employer-dashboard__privacy__tbs .privacy-tabs a {
-  padding: 7px 0 7px 10px;
-  transition: .5s ease-in-out;
-  cursor: pointer;
-  display: block;
+    padding: 7px 0 7px 10px;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    display: block;
 }
 .employer-dashboard__privacy__tbs .privacy-tabs a.active {
-  border-left: 1px solid #4D49FF;
-  color: #4d49ff;
+    border-left: 1px solid #4D49FF;
+    color: #4d49ff;
 }
 .employer-dashboard__privacy__tbs .privacy-tabs a:hover {
-  border-left: 1px solid #4D49FF;
-  color: #4d49ff;
+    border-left: 1px solid #4D49FF;
+    color: #4d49ff;
 }
 
 @media screen and (max-width: 850px) {
-  .employer-dashboard__privacy__tbs .privacy-tabs {
-      padding: 1em 1.5em;
-  }
-  .employer-dashboard__privacy__tbs .privacy-tabs a {
-      padding: 7px 10px 7px 10px;
-      transition: .5s ease-in-out;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 14px;
-  }
-  .employer-dashboard__privacy__tbs .privacy-tabs a.active {
-      border: none;
-      border-bottom: 1px solid #4D49FF;
-      color: #4d49ff;
-  }
-  .employer-dashboard__privacy__tbs .privacy-tabs a:hover {
-      border: none;
-      border-bottom: 1px solid #4D49FF;
-      color: #4d49ff;
-  }
-  .employer-dashboard__privacy__tbs__fold {
-      -ms-flex: 0 0 100%;
-      flex: 0 0 100%;
-      max-width: 100%;
-  }
-  .dashboard-settings-main-pt .privacy-settings {
-      -ms-flex: 0 0 100%;
-      flex: 0 0 100%;
-      max-width: 100%;
-  }
+    .employer-dashboard__privacy__tbs .privacy-tabs {
+        padding: 1em 1.5em;
+    }
+    .employer-dashboard__privacy__tbs .privacy-tabs a {
+        padding: 7px 10px 7px 10px;
+        transition: .5s ease-in-out;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+    }
+    .employer-dashboard__privacy__tbs .privacy-tabs a.active {
+        border: none;
+        border-bottom: 1px solid #4D49FF;
+        color: #4d49ff;
+    }
+    .employer-dashboard__privacy__tbs .privacy-tabs a:hover {
+        border: none;
+        border-bottom: 1px solid #4D49FF;
+        color: #4d49ff;
+    }
+    .employer-dashboard__privacy__tbs__fold {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .dashboard-settings-main-pt .privacy-settings {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
