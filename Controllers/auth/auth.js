@@ -14,11 +14,13 @@ const registerEmployeePage = (req, res) => {
 }
 
 const registerEmployee = async (req, res) => {
+  const { firstName, lastName, email, password, hngId } = req.body;
+
   const employeeUserData = {
-    hngId: req.body.hngId,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
+    hngId,
+    firstName,
+    lastName,
+    email,
   };
 
   try {
@@ -31,8 +33,6 @@ const registerEmployee = async (req, res) => {
       return res.redirect('/employee/register');
     }
 
-    const user = req.body;
-    const { email } = user;
     const userExists = await model.User.findOne({ where: { email } });
     if (userExists !== null) {
       req.flash('error', 'Someone has already registered this email');
@@ -41,19 +41,19 @@ const registerEmployee = async (req, res) => {
     }
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(user.password, salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     // jwtoken
     const data = {
-      email: user.email,
+      email,
     };
     const token = jsonWT.signJWT(data);
     const userId = uuid();
 
     const userSave = {
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      email,
+      firstName,
+      lastName,
       password: hashedPassword,
       roleId: 'ROL-EMPLOYEE',
       userId,
@@ -61,7 +61,7 @@ const registerEmployee = async (req, res) => {
 
     const employeeSave = {
       userId,
-      hngId: user.hngId,
+      hngId,
     };
 
     // create new user and send verification mail
@@ -72,7 +72,7 @@ const registerEmployee = async (req, res) => {
       // }
       const verificationUrl = `${URL}/email/verify?verificationCode=${token}`;
       await sendEmail({
-        email: userSave.email,
+        email,
         subject: 'TalentPool | Email verification',
         message: await message(verificationUrl),
       });
