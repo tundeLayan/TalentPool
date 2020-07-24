@@ -3,10 +3,10 @@ const { getAllEmployee, getRecommendedInterns, getPendingHire, getTeamMember} = 
 
 const dashboard = async (req, res) => {
   try {
-    const allEmployee = getAllEmployee(models);
-    const recommendedInterns = getRecommendedInterns(models);
-    const pendingHire = getPendingHire(req, models);
-    const teamMember = getTeamMember(req, models);
+    const allEmployee = await getAllEmployee(models);
+    const recommendedInterns = await getRecommendedInterns(models);
+    const pendingHire = await getPendingHire(req, models);
+    const teamMember = await getTeamMember(req, models);
     const data = { allEmployee, teamMember, recommendedInterns, pendingHire }
     res.render('employer/employerDashboard', { data, title: 'Employer Dashboard' });
   } catch (err) {

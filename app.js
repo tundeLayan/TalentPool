@@ -76,12 +76,9 @@ app.use('/', auth);
 app.use(authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
-<<<<<<< HEAD
 app.use('/employer', employerRoutes);
 
-=======
 app.use('/admin',adminRoutes)
->>>>>>> f4134a24bc0415705eee2732ed8d8112f3a50063
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler

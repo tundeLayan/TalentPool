@@ -13,7 +13,7 @@ module.exports = {
     });
   },
   getAllEmployee: (models) => {
-    models.Employee.findAll({
+    return models.Employee.findAll({
       where: {
         verificationStatus: 'Approved'
       },
@@ -28,17 +28,17 @@ module.exports = {
     });
   },
   getPendingHire: (req, models) => {
-    models.Team.findAll({
+    return models.Team.findAll({
       where: {
-        userId: req.session.userId,
+        // userId: req.session.userId,
         status: 'Pending'
       },
     });
   },
   getTeamMember: (req, models) => {
-    models.Team.findAll({
+    return models.Team.findAll({
       where: {
-        userId: req.session.userId,
+        // userId: req.session.userId,
         status: 'Accepted'
       },
     });
