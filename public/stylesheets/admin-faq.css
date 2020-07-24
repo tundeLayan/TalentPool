@@ -11,28 +11,16 @@ body {
     position: relative;
 }
 
-#sidebar {
-    background: #10507A;
-    height: 100%;
-    width: 20%;
-    position: fixed;
-}
 
-#topbar {
-    background: #10507A;
-    position: fixed;
-    height: 10%;
-    left: 22%;
-    width: 78%;
-    z-index: 999;
-}
+
 
 #main-page {
     background:  #FFFFFF;
     position: relative;
     top: 12%;
-    left: 22%;
+    left: 0%;
     width: 78%;
+    
 }
 
 /* MAIN PAGE NAV KDDHFHFHDJDDNDJDJDJDJJDJDJDJDJDJDJDJJD */

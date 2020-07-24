@@ -39,6 +39,12 @@ $(document).ready(function(){
 
 $(".deleteCategory").click(function(){
   const id = this.id.split(' ')[1];
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Csrf-token',token)
+    }
+  });
   $.ajax({
     type: "DELETE",
     url: "/admin/faq/category",
@@ -53,6 +59,12 @@ $(".deleteCategory").click(function(){
 
 $(".deleteFaq").click(function(){
   const id = this.id.split(' ')[1];
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Csrf-token',token)
+    }
+  });
   $.ajax({
     type: "DELETE",
     url: "/admin/faq",
@@ -67,6 +79,12 @@ $(".deleteFaq").click(function(){
 
 $('#addTopicButton').click(function(){
   const name = $("#topicNameField").val();
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Csrf-token',token)
+    }
+  });
   $.ajax({
     type:'POST',
     url: '/admin/faq/category/',
@@ -88,6 +106,12 @@ $("#addFaq").click(function(){
     question,
     answer
   }
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Csrf-token',token)
+    }
+  });
   $.ajax({
     type:'POST',
     url: '/admin/faq',
@@ -101,6 +125,12 @@ $("#addFaq").click(function(){
 
 $(".toggleButton").click(function(){
   const id = this.id.split(' ')[1];
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Csrf-token',token)
+    }
+  });
   $.ajax({
     type:"PATCH",
     url: "/admin/faq/toggle",
@@ -124,6 +154,12 @@ $("#updateTopicButton").click(function(){
   const name = $("#topicNameFieldUpdate").val();
   const categoryId = $("#topicUpdateId").val();
   const body = {name,categoryId};
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Csrf-token',token)
+    }
+  });
   $.ajax({
     type:"PUT",
     url: "/admin/faq/category",
@@ -132,5 +168,47 @@ $("#updateTopicButton").click(function(){
       window.location.reload();
     }
 
+  })
+})
+
+
+$(".editFaq").click(function(){
+  const id = this.id.split(' ')[1];
+  const initQuestion = $("#faqQuestion"+id).text();
+  const initCategory = $("#faqCategory"+id).text();
+  const initAnswer = $("#faqAnswer"+id).text();
+  $("#updateQuestion").val(initQuestion);
+  $("#updateAnswer").text(initAnswer);
+  $("#categorySelectUpdate").val(initCategory);
+  $("#updateFaqId").val(id);
+  $("#updateFaqModal").modal('show');  
+
+})
+
+
+$("#updateFaq").click(function(){
+  const question = $("#updateQuestion").val();
+  const answer = $("#updateAnswer").val();
+  const category = $("#categorySelectUpdate").val();
+  const id = $("#updateFaqId").val()
+  const body = {
+    question,
+    answer,
+    category,
+    id
+  }
+  let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('Csrf-token',token)
+    }
+  });
+  $.ajax({
+    type:"PUT",
+    url:"/admin/faq/update",
+    data: body,
+    success: function (result){
+      window.location.reload();
+    }
   })
 })

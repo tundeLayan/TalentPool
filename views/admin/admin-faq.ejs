@@ -4,13 +4,10 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-			crossorigin="anonymous"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<%= csrfToken %>">
+    <%- include('../templates/dashboardHead') %>
+		
 		
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet">
@@ -20,9 +17,9 @@
 		
 	</head>
 	<body>
-    <section id="sidebar"></section>
-
-    <header id="topbar"></header>
+    <%- include('../templates/adminDashboardSidebar') %>
+    <%- include('../templates/dashboardHeader') %>
+    
 
     <main id="main-page">
       <div class="faq-heading">
@@ -55,17 +52,16 @@
 
                 <% if(faqMap[categoryList[i].id]!=undefined) for(let j = 0;j<faqMap[categoryList[i].id].length;++j) { %>
                   <div class="card">
+                    <span hidden id="faqCategory<%= faqMap[categoryList[i].id][j].id %>"><%= categoryList[i].id %></span>
                       <div class="card-header" id="heading<%= faqMap[categoryList[i].id][j].id %>">
                           <h2 class="mb-0 d-flex">
-                              <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= faqMap[categoryList[i].id][j].id %>"><i class="fa fa-plus"></i><%= faqMap[categoryList[i].id][j].question %> </button>								
-                              <span class="ml-auto tab-nav-icon"><img id="faqToggle <%= faqMap[categoryList[i].id][j].id%>" class="toggleButton" src="/images/admin-faq/no-access-icon.png" alt="no-access-icon"><img src="/images/admin-faq/pen-icon.png" alt="pen-icon"> <img class="deleteFaq" id="deleteFaq <%= faqMap[categoryList[i].id][j].id %>" src="/images/admin-faq/delete-bin-icon.png" alt="delete-bin-icon"></span> 	
+                              <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= faqMap[categoryList[i].id][j].id %>"><i class="fa fa-plus"></i> <span id= "faqQuestion<%= faqMap[categoryList[i].id][j].id %>"><%= faqMap[categoryList[i].id][j].question %></span> </button>								
+                              <span class="ml-auto tab-nav-icon"><img id="faqToggle <%= faqMap[categoryList[i].id][j].id%>" class="toggleButton" src="/images/admin-faq/no-access-icon.png" alt="no-access-icon"><img class = "editFaq" id="editFaq <%= faqMap[categoryList[i].id][j].id %>"  src="/images/admin-faq/pen-icon.png" alt="pen-icon"> <img class="deleteFaq" id="deleteFaq <%= faqMap[categoryList[i].id][j].id %>" src="/images/admin-faq/delete-bin-icon.png" alt="delete-bin-icon"></span> 	
                           </h2>
                       </div>
                       <div id="collapse<%= faqMap[categoryList[i].id][j].id %>" class="collapse" aria-labelledby="heading<%= faqMap[categoryList[i].id][j].id %>" data-parent="#accordionExample">
                           <div class="card-body">
-                              <p>
-                                <%= faqMap[categoryList[i].id][j].answer %>
-                              </p>
+                              <span id="faqAnswer<%= faqMap[categoryList[i].id][j].id %>"><%= faqMap[categoryList[i].id][j].answer %></span>
                           </div>
                       </div>
                   </div>
@@ -154,6 +150,41 @@
         </div>
       </div>
 
+      <!-- Update FAQ MODAL -->
+      <div class="modal fade" id="updateFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 class="modal-title text-center" id="exampleModalLongTitle">Update Question</h5>
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input type="text" name="" id="updateFaqId" hidden>
+                    <label for="text">Question</label>
+                    <input type="text" class="form-control" id="updateQuestion" placeholder="Write the question here">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="text">Topic</label>
+                    <select class="form-control" type="text" id="categorySelectUpdate">
+                      <% for(let i = 0;i<categoryList.length;++i) { %>
+                        <option value="<%= categoryList[i].id%>"><%= categoryList[i].name %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="text">Answer</label>
+                  <textarea class="form-control" id="updateAnswer" rows="3" placeholder="Write the answer here"></textarea>
+                </div>
+                <div class="d-flex">
+                <button type="button" id="updateFaq" class="btn btn-primary mx-auto">Update Question</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+          
 
     </main>
 
