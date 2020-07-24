@@ -1,143 +1,96 @@
-.row{
-  padding: 28px 0px 0px 30px;
+#employerDashboard {
+  padding-top: 140px;
+}
+@media screen and (min-width: 992px) {
+  .container {
+    width: 80%;
+  }
 }
 
-.row p{
-  font-weight: bold;
-}
-
-.wrap{
-  max-width: 1440px;
-}
-.row .card{
+#employerDashboard .card {
+  position: relative;
   border: 1px solid rgba(4, 23, 42, 0.1);
-  height: 200px;
-  width: 336px;
-}
-.row .card .line1{
-  border-right: 1px solid black;
-  width: 50px;
-  height: 79px;
-  position: relative;
-  left: 110px;
-  top: 50px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 240px;
+  max-height: 240px;
 }
 
-.row .card .line2{
-  border-bottom: 1px solid black;
-  width: 100px;
-  position: relative;
-  left: 108px;
-  top: 9px;
+#employerDashboard .empty-card {
+  padding-top: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
-.row .card .text{
-  position: relative;
-  top: 61px;
-  left: 11px;
-  color: #04172A;
+#employerDashboard .empty-card-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #04172a;
 }
 
-.row .card .employee img{
-  width: 40px;
-  border-radius: 50px;
-  left: 13px;
-  top: 14px;
-  position: relative;
+#employerDashboard .dashboard-header {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  color: #04172a;
 }
 
-/* .row .card .employee .employee-border{
-  border-bottom: 1px solid rgba(4, 23, 42, 0.1);
-  position: relative;
-  width: 336px;
-  right: -170px;
-} */
-.row .card .employee .employee-details{
-
-  margin-left: 62px;
-  margin-top: -26px;
-  top: 15px;
-  /* left: 67px;
-  bottom: 40px; */
-  font-size: xx-small;
-  border-bottom:1px solid rgba(4, 23, 42, 0.1);
-  border-width: 1px;
+#employerDashboard .card-user-name {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #04172a;
+}
+#employerDashboard .card-user-title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(4, 23, 42, 0.8);
 }
 
-.row .card .employee .employee-details #right-arrow{
-  position: relative;
-  left: 233px;
-  bottom: 22px;
+#employerDashboard .card-list {
+  padding-bottom: 54px;
 }
 
-.card-footer text{
-  margin-left: 65px;
-  position: relative;
-  top: -3px;
-}
-.card-footer{
-  background-color: #ffffff;
-  margin-top: 27px;
-  position: fixed;
+#employerDashboard .list-group {
+  max-height: 240px;
+  /* margin-bottom: 10px; */
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.bottom .row{
-  padding: 40px 0px 0px 30px;
-}
-.bottom p{
-  font-weight: bold;
-  position: relative;
-  top: 30px;
-  left: 80px;
+/* Hide scrollbar for Chrome, Safari and Opera */
+#employerDashboard .list-group::-webkit-scrollbar {
+  display: none;
 }
 
-.bottom #piechart{
-  position: relative;
-  left: 9px;
-  top: 15px;
-  /* border: 1px solid rgba(4, 23, 42, 0.1); */
+#employerDashboard .see-all {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 54px;
+  background: #ffffff;
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  box-sizing: border-box;
+  border-radius: 0px 0px 10px 10px;
 }
 
-.bottom .card{
-  width: 300px;
-  height: 170px;
+#employerDashboard .see-all-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #04172a;
 }
-.bottom .card .employee .employee-details{
-
-  margin-left: 52px;
-  margin-top: -29px;
-  top: 15px;
-  /* left: 67px;
-  bottom: 40px; */
-  font-size: xx-small;
-  border-bottom:1px solid rgba(4, 23, 42, 0.1);
-  border-width: 1px;
-}
-.bottom .card .employee .employee-details #right-arrow{
-  position: relative;
-  left: 219px;
-  bottom: 22px;
-}
-.bottom .card .text{
-  position: relative;
-  top: 61px;
-  left: 20px;
-  color: #04172A;
-}
-.bottom{
-  position: relative;
-  left: 17px;
-}
-.bottom .card .employee p{
-  top: 6px;
-  left: 0px;
-}
-
-.bottom .card .employee img{
-  width: 40px;
-  border-radius: 50px;
-  left: 9px;
-  top: 14px;
-  position: relative;
-}
-
