@@ -23,21 +23,35 @@ const disapprovedUsers = async () => {
   return totalDisapprovedUsers;
 };
 
-const getActiveSubscription = async (activeStatus) => {
-  const activeSubscription = await model.Subscription.findAll({
-    where:{
-      active: activeStatus
-    },
-  });
-  return activeSubscription;
+const getAllUsers = async () => {
+  const allUsers = await model.User.findAll({});
+  return allUsers;
+};
+
+const filterData = (data, value, key) => {
+  let filteredData;
+  if(key === 'roleId') { filteredData = data.filter( (myData) => { 
+      return myData.roleId === value; 
+    });
+  }
+  if(key === 'block'){ filteredData = data.filter( (myData) => { 
+      return myData.block === value; 
+    });
+  }
+  if(key === 'teamName'){ filteredData = data.filter( (myData) => { 
+      return myData.teamName === value; 
+    });
+  }
+  if(key === 'active'){ filteredData = data.filter( (myData) => { 
+      return myData.active === value; 
+    });
+  }
+  return filteredData;
 };
 
 module.exports = {
   dashboard: async (req, res) => {
     try {
-      const employers = await model.Employer.findAll({});
-      const employees = await model.Employee.findAll({});
-
       const allSubscriptions = await model.Subscription.findAll({
         order: [
           ['id', 'DESC'],
@@ -49,11 +63,22 @@ module.exports = {
           ['id', 'DESC'],
         ],
       });
-
-      const activeSubscriptions = await getActiveSubscription(1);
+      
+      const unactiveSubscriptions = filterData(allSubscriptions, false, 'active');
+      const activeSubscriptions = filterData(allSubscriptions, true, 'active');
       const totalApprovedUsers = await approvedUsers();
       const totalDisapprovedUsers = await disapprovedUsers();
+      const allUsers = await getAllUsers();
+      
+      const employees = filterData(allUsers, 'ROL-EMPLOYEE', 'roleId');
+      const unactiveUsers = filterData(allUsers, true, 'block');
+      const employers = filterData(allUsers, 'ROL-EMPLOYER', 'roleId');
+      const hasNoTeam = filterData(employers, '', 'teamName');
+      
+
       const latestSubscriptions = allSubscriptions.slice(0, 5);
+      
+      const totalTeams = employers.length - hasNoTeam;
       
       const data = {
         totalEmployer: employers,
@@ -62,14 +87,15 @@ module.exports = {
         latestEmployers,
         latestSubscriptions,
         activeSubscriptions,
+        unactiveSubscriptions,
         totalApprovedUsers,
         totalDisapprovedUsers,
+        totalTeams,
+        unactiveUsers,
+        allUsers,
       }
-      res.status(200).json({
-        status: 'success',
-        data,
-      });
-      // renderPage(res, 'PageName', data, 'Admin | Dashboard', 'pathName');
+
+      renderPage(res, 'admin/adminDashboard', data, 'Admin | Dashboard', 'pathName');
     } catch (error) {
       console.log(error);
     }

@@ -1,9 +1,8 @@
-// Admin Dashboard
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('../templates/head.ejs') %>
-    <link rel="stylesheet" href="../../public/stylesheets/adminDashboard.css" />
+    <%- include('../templates/dashboardHead.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/adminDashboard.css" />
     <title>Talent Haven|Admin Dashboard</title>
   </head>
   <body>
@@ -14,30 +13,30 @@
         <div class="admin-dashboard-figures">
           <div class="admin-dashboard-figure">
             <p class="title">Total employees</p>
-            <p class="figure">43</p>
+            <p class="figure"><%= totalEmployee.length %></p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Total employers</p>
-            <p class="figure">2</p>
+            <p class="figure"><%= totalEmployer.length %></p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Total teams</p>
-            <p class="figure">68</p>
+            <p class="figure"><%= totalTeams %></p>
           </div>
           <div class="admin-dashboard-figure">
-            <p class="title">Active packages</p>
-            <p class="figure">16</p>
+            <p class="title">Total users</p>
+            <p class="figure"><%= allUsers.length %></p>
           </div>
           <div class="admin-dashboard-figure">
-            <p class="title">Active transactions</p>
-            <p class="figure">0</p>
-            <p class="previous"><span class="previous-figure">0</span> Total</p>
+            <p class="title">Active users</p>
+            <p class="figure"><%- allUsers.length - unactiveUsers.length %></p>
+            <p class="previous"><span class="previous-figure"><%= unactiveUsers.length %></span> Blocked users</p>
           </div>
           <div class="admin-dashboard-figure">
-            <p class="title">Active subscriptions</p>
-            <p class="figure">89</p>
+            <p class="title">Active subscribers</p>
+            <p class="figure"><%= activeSubscriptions.length %></p>
             <p class="previous">
-              <span class="previous-figure">23</span> Inactive
+              <span class="previous-figure"><%= unactiveSubscriptions.length %></span> Inactive subscribers
             </p>
           </div>
           <div class="admin-dashboard-figure">
@@ -105,13 +104,13 @@
             </div>
             <div class="recent-activity">
               <div class="activity-info">
-                <img src="../../public/images/rsz_employee-dashboard.png" alt="">
+                <img src="./images/rsz_employee-dashboard.png" alt="">
                 <div class="activity-info-text">
                   <p class="title">John Doe</p>
                   <p class="status">Joined <span>10</span> mins ago</p>
                 </div>
               </div>
-              <img class="arrow-right" src="../../public/images/arrow-right.svg" alt="arrow-right">
+              <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">
             </div>
           </div>
       </div>
