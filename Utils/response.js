@@ -37,7 +37,6 @@ const errorUserSignup = (
 module.exports.errorUserSignup = errorUserSignup;
 module.exports.errorResMsg = errorResMsg;
 module.exports.successResMsg = successResMsg;
-module.exports.sessionSuccessResMsg = sessionSuccessResMsg;
 // module.exports = {
 //   authErrorRedirect: (
 //     req,
