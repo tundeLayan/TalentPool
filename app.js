@@ -33,6 +33,17 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
+// Cookie Parser
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 // passport js initialization
 app.use(passport.initialize());
@@ -51,10 +62,8 @@ app.set('view engine', 'ejs');
 app.use(flash());
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
 app.use(csrfProtection);
 app.use((req, res, next) => {
