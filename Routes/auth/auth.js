@@ -5,14 +5,17 @@ const {
   getUserProfile,
   handAuthCallback,
  } = require('../../Utils/passport-helper');
+const {
+  registerEmployee,
+  registerEmployeePage,
+  resendVerificationLink,
 
- const {
   registerEmployer,
   verifyEmail,
   employerSignup,
 } = require('../../Controllers/auth/auth');
-const { validateSignup} = require('../../Utils/validators/auth-validator');
- 
+const { validateSignup, validateEmail } = require('../../Utils/validators/auth-validator');
+
 
 router.get('/auth/employer/google', getUserProfile('google-employer'));
 
@@ -33,8 +36,12 @@ router.get(
   '/auth/employee/github/callback/', authCallbackHandler('github-employer'),handAuthCallback
 );
 
+router.get('/employee/register', registerEmployeePage);
+router.post('/employee/register', validateSignup, registerEmployee);
+router.post('/email/verify/resend', validateEmail, resendVerificationLink);
 router.get('/employer/register' , employerSignup);
 router.get('/email/verify', verifyEmail);
 router.post('/employer/register', validateSignup, registerEmployer);
 
 module.exports = router;
+

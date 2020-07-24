@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        .personal {
+            font-family: Manrope;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 23px;
+
+        }
+
+        input {
+            background: #FFFFFF;
+            border: 1px solid rgba(4, 23, 42, 0.1);
+            box-sizing: border-box;
+            border-radius: 5px;
+            height: 40px;
+            padding: 15px;
+        }
+
+        .PH {
+            color: #989393;
+            font-size: 13px;
+
+        }
+
+
+        .logo {
+            background: #FFFFFF;
+            border: 1px solid rgba(4, 23, 42, 0.1);
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .save {
+            background-color: #4D49FF;
+            box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+            border-radius: 5px;
+            width: 130px;
+            height: 40px;
+        }
+
+        .PI {
+            padding-top: 55px;
+            padding-left: 40px;
+
+        }
+
+        .com-info {
+            padding-left: 40px;
+
+        }
+
+        .side-bar2 {
+            background: rgba(73, 190, 255, 0.05);
+        }
+    </style>
+    <%- include('../templates/head.ejs')%>
+
+
+</head>
+
+<body>
+    <%- include('../templates/employerDashboardSidebar.ejs')%>
+    <%- include('../templates/dashboardHeader.ejs')%>
+
+
+    <main id="main">
+       
+ <!-- <div class=" row side-bar2 p-4">
+            <div class="col-3">
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+                <p>jjjjjjjjjjjjj</p>
+            </div>
+        </div> -->
+
+        <div class="row d-flex justify-content-start pl-4">
+            <h5 class="personal PI"> Personal Information</h5>
+        </div>
+
+
+
+        <div class="row p-4">
+
+            <div class="col-12 col-md-4">
+                <div class="my-4">
+                    <p class="personal"> First name</p>
+                    <input class="John w-100 PH " placeholder="John" type="text" />
+                </div>
+
+
+                <div class="my-4">
+                    <p class="personal">Phone number</p>
+                    <input class="John w-100 PH" placeholder="+2348000005566" type="number" />
+                </div>
+            </div>
+
+
+
+            <div class="col-12 col-md-4">
+                <div class="my-4">
+                    <p class="personal"> Last name</p>
+                    <input class="John w-100 PH " placeholder="Doe" type="text" />
+                </div>
+
+
+                <div class="my-4">
+                    <p class="personal"> Your Email address</p>
+                    <input class="John w-100 PH" placeholder="username@domain.com" type="email" />
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row d-flex justify-content-start com-info">
+            <h5 class="personal "> Company Information</h5>
+        </div>
+
+
+
+        <div class="row p-4">
+
+            <div class="col-12 col-md-4">
+                <div class="my-4">
+                    <p class="personal">Company name</p>
+                    <input class="John w-100 PH" placeholder="Google" type="text" />
+                </div>
+
+
+                <div class="my-4">
+                    <p class="personal">Company Bio</p>
+                    <input class="John w-100  PH" placeholder="A little bit about your company" type="text" />
+                </div>
+
+                <div class="my-4">
+                    <p class="personal">Company Website</p>
+                    <input class="John w-100  PH" placeholder="https//:websitedomain.com" type="number" />
+                </div>
+
+
+                <div class="my-4">
+                    <p class="personal">Twitter Link</p>
+                    <input class="John w-100 PH" placeholder="https//:websitedomain.com" type="number" />
+                </div>
+
+
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="my-4">
+                    <p class="personal">Company address </p>
+                    <input class="John w-100  PH" placeholder="Town Name, Country Name" type="text" />
+                </div>
+
+                <div class="my-4">
+
+                    <form>
+                        <div class="form-group">
+                            <label for="sel1" class="personal">Number of employees</label>
+                            <select class="form-control PH" id="sel1">
+                                <option class="PH">select from the drop down menu</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+
+
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="my-4">
+                    <p class="personal"> Facebook link</p>
+                    <input class="John w-100 PH" placeholder="https//:websitedomain.com" type="email" />
+                </div>
+
+
+                <p class="personal"> Linked Link</p>
+                <input class="John w-100 PH" placeholder="https//:websitedomain.com" type="email" />
+            </div>
+
+            <div class="col-12 col-md-4 ">
+                <p>Company Logo</p>
+                <div class="">
+                    <img class="img" src="/images/icon-google.svg" alt="#">
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="row justify-content-start my-2 " style="padding-left: 40px; padding-top: 20px;">
+            <button class="save text-white">
+                Save Changes
+            </button>
+        </div>
+</main>
+</body>
+
+</html>
