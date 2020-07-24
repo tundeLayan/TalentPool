@@ -20,6 +20,7 @@ const URL = process.env.NODE_ENV === 'development' ? process.env.TALENT_POOL_DEV
 
 const registerEmployeePage = (req, res) => {
   const data = {
+    pageName: 'Employee Signup',
     oldInput: req.flash('oldInput'), 
     error: req.flash('error'), 
     errors: req.flash('errors'),
