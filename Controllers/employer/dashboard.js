@@ -1,7 +1,24 @@
-/* eslint-disable prefer-const */
 const db = require('../../Models');
 const { allTeamMembers, team } = require('./team');
 const { renderPage } = require('../../Utils/render-page');
+const { getAllEmployee, getRecommendedInterns, getPendingHire, getTeamMember} = require('../dao/db-queries');
+
+const dashboard = async (req, res) => {
+  try {
+    const allEmployee = await getAllEmployee(db);
+    const recommendedInterns = await getRecommendedInterns(db);
+    const pendingHire = await getPendingHire(req, db);
+    const teamMember = await getTeamMember(req, db);
+    const data = { allEmployee, teamMember, recommendedInterns, pendingHire }
+    renderPage(res ,'employer/employerDashboard',data,'TalentPool | Employer Dashboard','/employer/dashboard' )
+  } catch (err) {
+    const error = err;
+    const { message } = err;
+    res.render('error', { message, error });
+  }
+};
+  
+/* eslint-disable prefer-const */
 
 /**
  * Get the team name for a given employer
@@ -61,4 +78,5 @@ module.exports = {
     await teamRender(req, res, countTeam);
   },
   dashboardHandler,
+  dashboard,
 };
