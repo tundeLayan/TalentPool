@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 exports.signJWT = (data, time = '1d') => {
   const secret = process.env.TALENT_POOL_JWT_SECRET;
@@ -15,3 +16,9 @@ exports.verifyJWT = (token) => {
   });
   return decode;
 };
+
+exports.hashPassword = async (password) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+  return hashedPassword
+}

@@ -1,7 +1,7 @@
 const { uuid } = require('uuidv4');
-const bcrypt = require('bcryptjs');
-const { validationResult, body } = require('express-validator');
-const model = require('../../Models/index');
+const { validationResult } = require('express-validator');
+
+const userModel = require('./auth-model');
 const sendEmail = require('../../Utils/send-email');
 const jsonWT = require('../../Utils/auth-token');
 const { message } = require('../../Utils/email-signup-template');
@@ -10,7 +10,13 @@ const { renderPage } = require('../../Utils/render-page');
 const URL = process.env.NODE_ENV === 'development' ? process.env.TALENT_POOL_DEV_URL : process.env.TALENT_POOL_FRONT_END_URL;
 
 const registerEmployeePage = (req, res) => {
-  renderPage(res, 'auth/employeeSignUp', { oldInput: req.flash('oldInput'), error: req.flash('error'), errors: req.flash('errors'),success: req.flash('success') }, 'Employer Registration', '/employee/register');
+  const data = {
+    oldInput: req.flash('oldInput'), 
+    error: req.flash('error'), 
+    errors: req.flash('errors'),
+    success: req.flash('success') 
+  }
+  renderPage(res, 'auth/employeeSignUp', data, 'Employer Registration', '/employee/register');
 }
 
 const registerEmployee = async (req, res) => {
@@ -33,15 +39,15 @@ const registerEmployee = async (req, res) => {
       return res.redirect('/employee/register');
     }
 
-    const userExists = await model.User.findOne({ where: { email } });
-    if (userExists !== null) {
+    // const userExists = await model.User.findOne({ where: { email } });
+    const userExists = await userModel.findUser(email);
+    if (userExists) {
       req.flash('error', 'Someone has already registered this email');
       req.flash('oldInput', employeeUserData);
       return res.redirect('/employee/register');
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedPassword = await jsonWT.hashPassword(password); 
 
     // jwtoken
     const data = {
@@ -59,14 +65,15 @@ const registerEmployee = async (req, res) => {
       userId,
     };
 
-    const employeeSave = {
-      userId,
-      hngId,
-    };
+    // const employeeSave = {
+    //   userId,
+    //   hngId,
+    // };
 
     // create new user and send verification mail
     try {
-      await model.User.create(userSave);
+      // await model.User.create(userSave);
+      await userModel.createUser(userSave);
       // if (user.hngId) {
       //   await model.Employee.create(employeeSave);
       // }
@@ -80,7 +87,7 @@ const registerEmployee = async (req, res) => {
       return res.redirect('/employee/register');
     } catch (error) {
       console.log(error)
-      req.flash('error', 'An Error occoured, try again.' + error);
+      req.flash('error', 'An Error occoured, try again.');
       req.flash('oldInput', employeeUserData);
       return res.redirect('/employee/register');
     }
@@ -92,6 +99,8 @@ const registerEmployee = async (req, res) => {
 };
 
 const resendVerificationLink = async (req, res) => {
+
+  const { email } = req.body;
   // Validate input
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -99,33 +108,23 @@ const resendVerificationLink = async (req, res) => {
       onlyFirstError: true,
     });
     req.flash('error', errResponse[0].msg);
-    return res.redirect('/verify-email');
+    return res.redirect('/verify/email');
   }
 
   // check if user exist
-  const checkUser = await model.User.findOne({
-    where: {
-      email: req.body.email,
-    },
-  });
+  const checkUser = userModel.findUser(email);
   if (!checkUser) {
     req.flash('error', 'Invalid email');
-    return res.redirect('/verify-email');
+    return res.redirect('/verify/email');
   }
 
   if (checkUser.status === '1') {
     req.flash('error', 'This email has been verified');
-    return res.redirect('/verify-email');
+    return res.redirect('/verify/email');
   }
 
-  const basicInfo = {
-    email: checkUser.email,
-  };
-
   // generate new verification_token
-  const token = jsonWT.signJWT(basicInfo);
-  checkUser.verification_token = token;
-  checkUser.save();
+  const token = jsonWT.signJWT(checkUser.email);
 
   // mail verification code to the user
   const verificationUrl = `${URL}/email/verify?verificationCode=${token}`;
@@ -141,14 +140,9 @@ const resendVerificationLink = async (req, res) => {
       'success',
       'Please check your email. Verification link has been sent.',
     );
-    return res.redirect('/verify-email');
+    return res.redirect('/verify/email');
   } catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500;
-    }
-    return res.render('Pages/verify-email', {
-      PageName: 'Verify Email',
-    });
+    return renderPage(res, 'auth/verifyEmail', [], 'Verify Email');
   }
 };
 
