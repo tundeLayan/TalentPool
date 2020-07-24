@@ -49,13 +49,6 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(csrfProtection);
-app.use((req, res, next) => {
-  const token = req.csrfToken();
-  res.cookie('csrf-token', token);
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
 
 db.sequelize.sync().then(async () => {
   await seedSuperAdmin();
@@ -86,7 +79,7 @@ app.use(authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 app.use('/employer', employerRoutes);
-app.use('/admin',adminRoutes)
+app.use('/admin', adminRoutes);
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
