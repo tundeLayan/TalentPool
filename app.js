@@ -19,6 +19,7 @@ require('./config/passport');
 const { seedSuperAdmin } = require('./Utils/seed');
 const authRoutes = require('./Routes/auth/auth');
 const employeeRoutes = require('./Routes/employee/index');
+const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const auth = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
@@ -84,6 +85,7 @@ app.use('/', auth);
 app.use(authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
+app.use('/employer', employerRoutes);
 app.use('/admin',adminRoutes)
 // ************ END ROUTE REGISTRATION ********** //
 

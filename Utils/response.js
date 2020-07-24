@@ -10,6 +10,8 @@ const successResMsg = (res, code, data) =>
     data,
   });
 
+
+
 const errorUserSignup = (
   req,
   res,
@@ -42,7 +44,7 @@ module.exports.employeeSignupRedirect = employeeSignupRedirect;
 module.exports.errorUserSignup = errorUserSignup;
 module.exports.errorResMsg = errorResMsg;
 module.exports.successResMsg = successResMsg;
-//module.exports.sessionSuccessResMsg = sessionSuccessResMsg;
+
 // module.exports = {
 //   authErrorRedirect: (
 //     req,
