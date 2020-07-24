@@ -68,7 +68,7 @@
                   <input type="password" name="password"
                   class="form-control prj-form-control <%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
                   id="password" placeholder="Password" autocomplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" minlength="8" required />
-              </div>
+                </div>
             </div>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="row">
@@ -125,7 +125,7 @@
   <script src="/javascripts/jquery.js"></script>
   <script src="/javascripts/bootstrap.js"></script>
   <script src="/javascripts/popper.js"></script>
-  <!-- <script src="/javascripts/employer-sign-up.js"></script> -->
+  <script src="/javascripts/employer-sign-up.js"></script>
 </body>
 
 </html>
