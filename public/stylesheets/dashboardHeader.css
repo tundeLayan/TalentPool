@@ -9,9 +9,9 @@
     margin-left: auto;
   }
 
-  main {
+  /* main {
     padding-top: 140px !important;
-  }
+  } */
 
   .navbar-brand {
     padding-left: 105px;
@@ -28,7 +28,7 @@
 
 main {
   transition: padding 0.5s ease-in-out;
-  padding-top: 120px;
+  /* padding-top: 120px; */
 }
 
 nav {
