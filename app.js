@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
+const flash = require('connect-flash');
 const csrf = require('csurf');
 const dotenv = require('dotenv');
 const logger = require('morgan');
@@ -15,6 +16,7 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
 const employeeRoutes = require('./Routes/employee/index');
+const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 
 const csrfProtection = csrf();
@@ -38,6 +40,7 @@ app.use(cookieParser());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -56,6 +59,7 @@ app.use((req, res, next) => {
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
+app.use('/employer', employerRoutes);
 
 // ************ END ROUTE REGISTRATION ********** //
 
