@@ -28,6 +28,7 @@ const loginPage = (req, res) => {
   const data = {
     errorMessage: message,
     isLoggedIn,
+    pageName: 'Login',
     success,
     oldInput: {
       email: '',
