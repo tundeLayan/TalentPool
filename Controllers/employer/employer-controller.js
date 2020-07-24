@@ -13,9 +13,7 @@ cloud.config({
   api_key: process.env.TALENT_POOL_CLOUD_API,
   api_secret: process.env.TALENT_POOL_CLOUD_SECRET,
 });
-/**
- * function validate the right image
- */
+
 const displayMessage = (res, statusCode, message) => {
   try {
     let statusMessage = 'sucess';
@@ -34,8 +32,8 @@ const displayMessage = (res, statusCode, message) => {
 class Employer {
   static async create(req, res) {
     /**
-     * verify the image
      * creating new employer company profile
+     * verify the company logo before upload
      */
     if (!req.files) return displayMessage(res, 400, 'No image is selected');
     const {
@@ -231,7 +229,7 @@ class Employer {
         documentObject,
       );
       if (!employerUploadDocument)
-        return displayMessage(res, 400, 'Document not upload');
+        return displayMessage(res, 400, 'Error uploading document');
 
       return displayMessage(res, 200, 'Document successfully uploaded');
     } catch (error) {

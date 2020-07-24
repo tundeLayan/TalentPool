@@ -1,1 +1,104 @@
-// Employer Sign Up
+<!-- // Employer Sign Up -->
+
+<%- include('../templates/head') %>
+<%- include('../templates/navBar') %>
+<link rel="stylesheet" href="/stylesheets/employer-sign-up.css" />
+
+<body>
+  <main>
+    <div class="container-fluid main-container  my-auto">
+      <div class="row py-4 mx-md-4 px-lg-5">
+        <div class="col-md-5 col-lg-4 mx-auto my-auto d-none d-md-block">
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <h1><span class="prj-text-accent">Talent</span> <span class="prj-text-primary">Haven</span> </h1>
+            <p class="text-center">
+              <a href="#" class="prj-link">Sign in</a> or
+              <a href="#" class="prj-link">Create an account</a>
+            </p>
+          </div>
+        </div>
+        <section
+          class="form-container shadow mx-auto col-10 px-4 col-sm-8 col-md-7 col-lg-6 px-lg-5 col-xl-5 bg-white br-5">
+          <h1 class="prj-header-h4 font-weight-bold text-center py-3">Sign up</h1>
+          <form name="employerSignUpForm">
+            <div class="row">
+              <div class="form-group col-12 col-md">
+                <label for="firstName" class="prj-normal-text">First name</label>
+                <input type="text" name="firstName" class="form-control prj-form-control" id="firstName"
+                  placeholder="First name" autocapitalize="on" autocomplete="given-name" required minlength="2" />
+              </div>
+              <div class="form-group col-12 col-md">
+                <label for="lastName" class="prj-normal-text">Last name</label>
+                <input type="text" name="lastName" class="form-control prj-form-control" id="lastName"
+                  placeholder="Last name" autocapitalize="on" autocomplete="family-name" required minlength="2" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col">
+                <label for="email" class="prj-normal-text">Email address</label>
+                <input type="email" name="email" class="form-control prj-form-control" id="email"
+                  placeholder="Email address" autocomplete="email" required />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col">
+                <label for="password" class="prj-normal-text">Password</label>
+                <input type="password" name="password" class="form-control prj-form-control" id="password"
+                  placeholder="Password" autocomplete="new-password" required />
+              </div>
+            </div>
+            <div class="row pt-2">
+              <div class="col">
+                <div class="form-check pb-3">
+                  <input class="form-check-input" type="checkbox" name="isTocChecked" id="isTocChecked" value="true"
+                    required />
+                  <label class="form-check-label prj-normal-text" for="isTocChecked">By clicking, you are agree to our
+                    <a href="#" class="prj-link prj-normal-text">Terms and Conditions</a></label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-lg prj-btn-primary br-5">
+                    Create account
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="sign-up-alt-text text-center mb-0 mt-3">
+                  or sign up with
+                </p>
+                <div class="col d-flex justify-content-center mt-3">
+                  <button class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
+                    <img class="img-fluid btn-img mr-2" src="images/employer-sign-up/icon-google.svg"
+                      alt="github button image" />
+                    <span class="mb-0 prj-normal-text">Google</span>
+                  </button>
+                  <button class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
+                    <img class="img-fluid btn-img mr-2" src="images/employer-sign-up/icon-github.svg"
+                      alt="github button image" />
+                    <span class="mb-0 prj-normal-text">Github</span>
+                  </button>
+                </div>
+                <p class="prj-normal-text text-center mt-3">
+                  Already have an account?
+                  <a href="#" class="text-center prj-link ">Sign in</a>
+                </p>
+                </>
+              </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/bootstrap.js"></script>
+  <script src="/javascripts/popper.js"></script>
+  <script src="/javascripts/employer-sign-up.js"></script>
+</body>
+
+</html>

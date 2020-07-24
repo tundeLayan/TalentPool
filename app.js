@@ -7,6 +7,7 @@ const cookieSession = require('cookie-session');
 const fileupload = require('express-fileupload');
 const dotenv = require('dotenv');
 const logger = require('morgan');
+const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -15,8 +16,10 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
 const { seedSuperAdmin } = require('./Utils/seed');
-const demo = require('./Routes/demo');
+const employeeRoutes = require('./Routes/employee/index');
 const employer = require('./Routes/employer/employer-route');
+const externalPages = require('./Routes');
+const auth = require('./Routes/auth');
 
 // const csrfProtection = csrf();
 const app = express();
@@ -28,22 +31,11 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
-// app.use(csrfProtection);
-// app.use((req, res, next) => {
-//   const token = req.csrfToken();
-//   res.cookie('csrf-token', token);
-//   res.locals.csrfToken = req.csrfToken();
-//   next();
-// });
 
 db.sequelize.sync().then(async () => {
-  try {
-    await seedSuperAdmin();
-  } catch (e) {
-    console.log(e);
-  }
+  await seedSuperAdmin();
 });
-
+app.use(flash());
 // Cookie Parser
 app.use(cookieParser());
 
@@ -60,8 +52,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(csrfProtection);
+// app.use((req, res, next) => {
+//   const token = req.csrfToken();
+//   res.cookie('csrf-token', token);
+//   res.locals.csrfToken = req.csrfToken();
+//   next();
+// });
+
 // ************ REGISTER ROUTES HERE ********** //
-app.use('/', demo);
+app.use('/', auth);
+app.use('/', externalPages);
+app.use('/employee', employeeRoutes);
 app.use('/employer/', employer);
 
 // ************ END ROUTE REGISTRATION ********** //
