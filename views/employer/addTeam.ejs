@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../templates/dashboardHead")%>
+    <link rel="stylesheet" href="/stylesheets/addTeam.css">
+</head>
+
+<body>
+    <%- include("../templates/employerDashboardSidebar")%>
+    <%- include("../templates/dashboardHeader")%>
+
+    <main id="main">
+        <div id="addTeam" class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <p class="invite-text">Invite a team member</p>
+                </div>
+                <div class="col-12 col-md-4 ml-auto">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search invites">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email Address">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-md-3">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Full Name">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-md-3">
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Role">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-md-2">
+                    <form action="">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary form-control text-white"
+                                placeholder="Search invites">Invite member</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- If there are no invites -->
+                    <!-- <div class="no-invites-border d-flex flex-column justify-content-center align-items-center">
+                        <img src="/images/employer-dashboard-team/no-invite.svg" alt="" class="img-fluid mb-4">
+                        <p class="no-invites-text">Uh oh! Seems like you did not invite anyone yet</p>
+                    </div> -->
+
+                    <!-- If there are invites -->
+                    <ul class="list-group list-group-flush ">
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-success btn-accepted">Accepted</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-primary btn-invite-sent">Invite Sent</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-danger btn-rejected">Rejected</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-success btn-accepted">Accepted</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-primary btn-invite-sent">Invite Sent</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-danger btn-rejected">Rejected</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-success btn-accepted">Accepted</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-primary btn-invite-sent">Invite Sent</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="row d-flex align-items-center">
+                                <div class="d-flex col-6">
+                                    <div class="d-flex flex-column justify-content-center mr-3">
+                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
+                                            height: 50px; border-radius: 25px">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <span class="table-user-name">Meredith Grey</span>
+                                        <span class="table-user-title">HR</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end col-6">
+                                    <button class="btn list-btn btn-danger btn-rejected">Rejected</button>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
