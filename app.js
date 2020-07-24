@@ -7,11 +7,7 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
 const logger = require('morgan');
-<<<<<<< HEAD
-const flash = require('connect-flash');
 const methodOverride = require('method-override');
-=======
->>>>>>> 3681f76f1fef437acf4ec6b205a967a142470eb3
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -60,11 +56,7 @@ app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
-<<<<<<< HEAD
 app.use(methodOverride('_method'));
-
-=======
->>>>>>> 3681f76f1fef437acf4ec6b205a967a142470eb3
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/', auth);
 app.use(authRoutes);
