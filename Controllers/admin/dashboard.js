@@ -28,6 +28,20 @@ const getAllUsers = async () => {
   return allUsers;
 };
 
+const getAllEmployers = async () => {
+  const allEmployers = await model.Employer.findAll({});
+  return allEmployers;
+};
+
+const getPendingEmployees = async () => {
+  const pendingEmployees = await model.Employee.findAll({
+    where: {
+      verificationStatus: 'Pending',
+    },
+  });
+  return pendingEmployees.length;
+};
+
 const filterData = (data, value, key) => {
   let filteredData;
   if(key === 'roleId') { filteredData = data.filter( (myData) => { 
@@ -46,6 +60,10 @@ const filterData = (data, value, key) => {
       return myData.active === value; 
     });
   }
+  if(key === 'verificationStatus'){ filteredData = data.filter( (myData) => { 
+    return myData.verificationStatus === value; 
+  });
+}
   return filteredData;
 };
 
@@ -69,6 +87,8 @@ module.exports = {
       const totalApprovedUsers = await approvedUsers();
       const totalDisapprovedUsers = await disapprovedUsers();
       const allUsers = await getAllUsers();
+      const pendingEmployees = await getPendingEmployees();
+      const allEmployers =  await getAllEmployers();
       
       const employees = filterData(allUsers, 'ROL-EMPLOYEE', 'roleId');
       const unactiveUsers = filterData(allUsers, true, 'block');
@@ -77,9 +97,13 @@ module.exports = {
       
 
       const latestSubscriptions = allSubscriptions.slice(0, 5);
-      
       const totalTeams = employers.length - hasNoTeam;
+      const pendingEmployers = filterData(allEmployers, 'Pending','verificationStatus');
+      const uploadedEmployers = filterData(allEmployers, 'Uploaded','verificationStatus');
+      const pendingReviews =  pendingEmployees + pendingEmployers.length + uploadedEmployers.length;
       
+      
+
       const data = {
         totalEmployer: employers,
         totalEmployee: employees,
@@ -93,6 +117,8 @@ module.exports = {
         totalTeams,
         unactiveUsers,
         allUsers,
+        pendingReviews,
+        uploadedEmployers,
       }
 
       renderPage(res, 'admin/adminDashboard', data, 'Admin | Dashboard', 'pathName');

@@ -36,21 +36,21 @@
             <p class="title">Active subscribers</p>
             <p class="figure"><%= activeSubscriptions.length %></p>
             <p class="previous">
-              <span class="previous-figure"><%= unactiveSubscriptions.length %></span> Inactive subscribers
+              <span class="previous-figure"><%= unactiveSubscriptions.length %></span> Inactive
             </p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Pending reviews</p>
-            <p class="figure">23</p>
+            <p class="figure"><%= pendingReviews %></p>
             <p class="previous">
-              <span class="previous-figure">341</span> Requests
+              <span class="previous-figure"><%= uploadedEmployers.length %></span> Uploaded
             </p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Approved reviews</p>
-            <p class="figure">0</p>
+            <p class="figure"><%= totalApprovedUsers %></p>
             <p class="previous">
-              <span class="previous-figure">0</span> Disapproved
+              <span class="previous-figure"><%= totalDisapprovedUsers %></span> Disapproved
             </p>
           </div>
         </div>
