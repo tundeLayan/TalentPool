@@ -1,9 +1,10 @@
 const express = require('express');
-const { dashboard } = require('../../Controllers/employer/dashboard');
+const { dashboard, employerAddTeam } = require('../../Controllers/employer/dashboard');
 
-const router = express.Router();
+const appRoute = express.Router();
 
 /* GET Dashboard. */
-router.get('/', dashboard);
+appRoute.get('/', dashboard);
+appRoute.get('/add-team', employerAddTeam);
 
-module.exports = router;
+module.exports = appRoute;
