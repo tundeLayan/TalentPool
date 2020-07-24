@@ -1,7 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
-const model = require('../Models/index');
 const { getUserData, createUser, checkUser } = require('../Utils/passport-helper');
 
 // serialize user object and send as a cookie

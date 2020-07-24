@@ -1,38 +1,48 @@
+const passport = require('passport');
 const { uuid } = require('uuidv4');
 const bcrypt = require('bcryptjs');
 const model = require('../Models');
 
-exports.getUserData = async (req, profile, user, done) => {
+const getUserData = async (req, profile, user, done) => {
+  const { 
+    roleId,
+    userId,
+    status, 
+    block, 
+    firstName, 
+    lastName, 
+    email,
+  } = user;
   try {
     let userTypeId = null;
     let verificationStatus = null;
-    if (user.roleId === 'ROL-EMPLOYEE') {
-      const employee = await model.Employee.findOne({ where: { userId: user.userId } });
+    if (roleId === 'ROL-EMPLOYEE') {
+      const employee = await model.Employee.findOne({ where: { userId } });
       if (employee) {
         userTypeId = employee.userId;
         verificationStatus = employee.verificationStatus;
       }
-    } else if (user.roleId === 'ROL-EMPLOYER') {
-      const employer = await model.Employer.findOne({ where: { userId: user.userId } });
+    } else if (roleId === 'ROL-EMPLOYER') {
+      const employer = await model.Employer.findOne({ where: { userId } });
       if (employer) {
         userTypeId = employer.userId;
         verificationStatus = employer.verificationStatus;
       }
     }
 
-    if (user.status === '0') {
+    if (status === '0') {
       return done(null, false, req.flash('error', 'User is not verified'));
     }
 
-    if (user.block) {
+    if (block) {
       return done(null, false, req.flash('error', 'User is blocked, please contact an Admin'));
     }
     const data = {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      userId: user.userId.toString(),
-      userRole: user.roleId,
+      firstName,
+      lastName,
+      email,
+      userId,
+      userRole: roleId,
       userTypeId,
       verificationStatus,
     };
@@ -43,7 +53,7 @@ exports.getUserData = async (req, profile, user, done) => {
   }
 };
 
-exports.createUser = async (req, profile, userRole, done) => {
+const createUser = async (req, profile, userRole, done) => {
   try {
     const password = process.env.TALENT_POOL_JWT_SECRET;
     const salt = await bcrypt.genSalt(10);
@@ -76,7 +86,7 @@ exports.createUser = async (req, profile, userRole, done) => {
   }
 };
 
-exports.renderPage = async (req, res) => {
+const renderPage = async (req, res) => {
   const user = { req };
   const data = {
     firstName: user.firstName,
@@ -99,11 +109,40 @@ exports.renderPage = async (req, res) => {
   );
 };
 
-exports.checkUser = async (clause) => {
+const checkUser = async (clause) => {
   const user = await model.User.findOne({
     where: {
       email: clause,
     },
   });
   return user;
+}
+
+const getUserProfile = (userType) => {
+ return passport.authenticate(userType, { scope: ['profile', 'email'] });
+}
+
+const authCallbackHandler = (userType) => {
+ return passport.authenticate(userType, {
+    failureRedirect: '/login',
+    failureFlash: true,
+  })
+}
+
+const handAuthCallback =   async (req, res) => {
+  try {
+    renderPage(req, res);
+  } catch (error) {
+    res.redirect('/login');
+  }
+}
+
+module.exports = {
+  getUserData,
+  createUser,
+  renderPage,
+  checkUser,
+  getUserProfile,
+  authCallbackHandler,
+  handAuthCallback,
 }
