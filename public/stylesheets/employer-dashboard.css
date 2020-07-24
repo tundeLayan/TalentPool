@@ -1,5 +1,5 @@
 .row{
-  padding: 50px 0px 0px 30px;
+  padding: 28px 0px 0px 30px;
 }
 
 .row p{
@@ -34,7 +34,7 @@
 .row .card .text{
   position: relative;
   top: 61px;
-  left: 20px;
+  left: 11px;
   color: #04172A;
 }
 
@@ -104,8 +104,8 @@
 }
 .bottom .card .employee .employee-details{
 
-  margin-left: 62px;
-  margin-top: -26px;
+  margin-left: 52px;
+  margin-top: -29px;
   top: 15px;
   /* left: 67px;
   bottom: 40px; */
@@ -136,7 +136,7 @@
 .bottom .card .employee img{
   width: 40px;
   border-radius: 50px;
-  left: 13px;
+  left: 9px;
   top: 14px;
   position: relative;
 }
