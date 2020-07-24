@@ -99,3 +99,38 @@ $("#addFaq").click(function(){
 })
 
 
+$(".toggleButton").click(function(){
+  const id = this.id.split(' ')[1];
+  $.ajax({
+    type:"PATCH",
+    url: "/admin/faq/toggle",
+    data: { id },
+    success: function (result){
+
+    }
+  })
+})
+
+$(".editIcon").click(function(){
+  const categoryId = this.id.split(' ')[1];
+  const initName = $("#category"+categoryId).text();
+  $("#topicNameFieldUpdate").val(initName);
+  $("#topicUpdateId").val(categoryId)
+  $("#myModalUpdate").modal('show');
+})
+
+
+$("#updateTopicButton").click(function(){
+  const name = $("#topicNameFieldUpdate").val();
+  const categoryId = $("#topicUpdateId").val();
+  const body = {name,categoryId};
+  $.ajax({
+    type:"PUT",
+    url: "/admin/faq/category",
+    data: body,
+    success: function (result){
+      window.location.reload();
+    }
+
+  })
+})
