@@ -1,6 +1,5 @@
 const passport = require('passport');
 const { uuid } = require('uuidv4');
-const bcrypt = require('bcryptjs');
 const model = require('../Models');
 const { passwordHash } = require('./password-hash')
 
