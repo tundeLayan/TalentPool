@@ -29,6 +29,7 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
+<<<<<<< HEAD
 // app.use(csrfProtection);
 // app.use((req, res, next) => {
 //   const token = req.csrfToken();
@@ -36,13 +37,19 @@ app.use(
 //   res.locals.csrfToken = req.csrfToken();
 //   next();
 // });
+||||||| 8666e58
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+=======
+>>>>>>> 37c138964d4b17d74be542883b811719a58d73df
 
 db.sequelize.sync().then(async () => {
-  try {
-    await seedSuperAdmin();
-  } catch (e) {
-    console.log(e);
-  }
+  await seedSuperAdmin();
 });
 
 // Cookie Parser
@@ -62,6 +69,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 // ************ REGISTER ROUTES HERE ********** //
 app.use('/admin',admin)
