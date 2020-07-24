@@ -141,6 +141,7 @@ h2.lead{
   .container{
     margin-left: auto;
     width: 80%;
+    margin-top: 94px;
   }
 
   .progress{
@@ -151,6 +152,9 @@ h2.lead{
 @media only screen and (max-width: 992px) {
   section{
     margin-left: auto !important;
+  }
+  .container{
+    margin-top: 153.69px;
   }
 }
 
