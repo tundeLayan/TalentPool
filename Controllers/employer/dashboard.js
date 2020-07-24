@@ -1,4 +1,5 @@
 const models = require('../../Models/index');
+const { renderPage } = require('../../Utils/render-page');
 const { getAllEmployee, getRecommendedInterns, getPendingHire, getTeamMember} = require('../dao/db-queries');
 
 const dashboard = async (req, res) => {
@@ -8,7 +9,7 @@ const dashboard = async (req, res) => {
     const pendingHire = await getPendingHire(req, models);
     const teamMember = await getTeamMember(req, models);
     const data = { allEmployee, teamMember, recommendedInterns, pendingHire }
-    res.render('employer/employerDashboard', { data, title: 'Employer Dashboard' });
+    renderPage(res ,'employer/employerDashboard',data,'TalentPool | Employer Dashboard','/employer/dashboard' )
   } catch (err) {
     const error = err;
     const { message } = err;
