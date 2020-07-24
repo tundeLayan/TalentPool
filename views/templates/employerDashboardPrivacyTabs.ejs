@@ -1,0 +1,53 @@
+<!--Employer Dashboard Privacy Tabs css-->
+<link rel="stylesheet" href="/stylesheets/employer-dashboard-privacy-tabs.css">
+<link rel='stylesheet' href='/stylesheets/animate.min.css' />
+
+<div class="col-md-3 col-12 employer-dashboard__privacy__tbs__fold">
+
+    <div class="employer-dashboard__privacy__tbs">
+        <div class="privacy-tabs">
+            <% if(tabRoute === 'profile'){ %>
+                <a class="animate__animated animate__zoomIn animate__delay-1s active">Profile</a>
+              <% } else{ %>
+                <a class="animate__animated animate__zoomIn animate__delay-1s">Profile</a>
+              <% } %>
+
+            <% if(tabRoute === 'emailSettings'){ %>
+                <a class="animate__animated animate__zoomIn animate__delay-1s active">Email Settings</a>
+              <% } else{ %>
+                <a class="animate__animated animate__zoomIn animate__delay-1s">Email Settings</a>
+              <% } %>
+
+            <% if(tabRoute === 'login'){ %>
+                <a class="animate__animated animate__zoomIn animate__delay-2s active">Login & security</a>
+              <% } else{ %>
+                <a class="animate__animated animate__zoomIn animate__delay-2s">Login & security</a>
+              <% } %>
+              
+            <% if(tabRoute === 'privacy'){ %>
+                <a class="animate__animated animate__zoomIn animate__delay-2s active">Privacy</a>
+              <% } else{ %>
+                <a class="animate__animated animate__zoomIn animate__delay-2s">Privacy</a>
+              <% } %>
+
+            <% if(tabRoute === 'subscription'){ %>
+                <a class="animate__animated animate__zoomIn animate__delay-2s active">Subscription</a>
+              <% } else{ %>
+                <a class="animate__animated animate__zoomIn animate__delay-2s">Subscription</a>
+              <% } %>
+
+            <% if(tabRoute === 'contactUs'){ %>
+                <a class="animate__animated animate__zoomIn animate__delay-3s active">Contact Us</a>
+              <% } else{ %>
+                <a class="animate__animated animate__zoomIn animate__delay-3s">Contact Us</a>
+              <% } %>
+
+            <a class="animate__animated animate__zoomIn animate__delay-3s">Report Abuse</a>
+            <% if(tabRoute === 'reportAbuse'){ %>
+                <a class="animate__animated animate__zoomIn animate__delay-3s active">Report Abuse</a>
+              <% } else{ %>
+                <a class="animate__animated animate__zoomIn animate__delay-3s">Report Abuse</a>
+              <% } %>
+        </div>
+    </div>
+</div>
