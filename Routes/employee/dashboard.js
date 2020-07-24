@@ -4,9 +4,9 @@ const {addSkills, viewSkills, deleteSkill, numberOfViews, availableEmployers} = 
 const router = express.Router();
 
 router.get('/', numberOfViews)
-router.get('/', viewSkills)
+router.get('/skills', viewSkills)
 router.get('/', availableEmployers);
-router.post('/', addSkills)
-router.delete('/', deleteSkill)
+router.post('/skills/add', addSkills)
+router.delete('/skill/delete', deleteSkill)
 
 module.exports = router;
