@@ -1,17 +1,16 @@
 * {
-  font-family: "Manrope", sans-serif;
-  transition: all 0.5s ease-in-out;
+  font-family: 'Manrope', sans-serif;
 }
 
 @media screen and (min-width: 992px) {
   main,
   header {
-    width: calc(100% - 144px);
+    width: calc(100% - 110px);
     margin-left: auto;
   }
 
   .navbar-brand {
-    padding-left: 96px;
+    padding-left: 105px;
   }
 
   .user-nav {
@@ -23,6 +22,11 @@
   }
 }
 
+header,
+main {
+  transition: padding 0.5s ease-in-out;
+}
+
 ul li {
   padding: 15px 10px;
 }
@@ -30,6 +34,10 @@ ul li {
 .bg-light {
   background-color: #ffffff !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+}
+
+.navbar {
+  padding: 0 1rem !important;
 }
 
 .navbar-brand {
@@ -63,12 +71,16 @@ ul li {
   transition: all 0.5s ease-in-out;
 }
 
-.card,
+.nav-card {
+  padding: 22px;
+}
+
+.nav-card,
 .dropdown-menu {
   border: none !important;
 }
 
-.card-title {
+.nav-card-title {
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -84,11 +96,14 @@ ul li {
   text-align: center;
 }
 
-.card-link {
+.nav-card-link,
+.nav-card-link:hover {
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 24px;
+  color: #04172a;
+  text-decoration: none;
 }
 
 .dropdown-menu {

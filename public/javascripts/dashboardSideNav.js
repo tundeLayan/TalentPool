@@ -1,8 +1,8 @@
 openNav = () => {
-  document.getElementById("sidebar").style.width = "144px";
+  document.getElementById("sidebar").style.width = "110px";
   document.getElementById("sidebar").style.left = "0";
-  document.getElementById("main").style.paddingLeft = "144px";
-  document.getElementById("header").style.paddingLeft = "144px";
+  document.getElementById("main").style.paddingLeft = "110px";
+  document.getElementById("header").style.paddingLeft = "110px";
   document.querySelector(".toggle-btn").style.display = "none";
 };
 
@@ -19,6 +19,7 @@ function myFunction(x) {
     document.getElementById("sidebar").removeAttribute("style");
     document.getElementById("main").removeAttribute("style");
     document.getElementById("header").removeAttribute("style");
+    document.querySelector(".toggle-btn").style.display = "inline-block";
   }
 }
 
