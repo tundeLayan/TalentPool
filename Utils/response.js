@@ -1,3 +1,14 @@
+const errorResMsg = (res, code, message) =>
+  res.status(code).json({
+    status: 'error',
+    error: message,
+  });
+
+const successResMsg = (res, code, data) =>
+  res.status(code).json({
+    status: 'success',
+    data,
+  });
 
 const errorUserSignup = (
   req,
@@ -23,7 +34,9 @@ const errorUserSignup = (
 
 
 module.exports.errorUserSignup = errorUserSignup;
-
+module.exports.errorResMsg = errorResMsg;
+module.exports.successResMsg = successResMsg;
+module.exports.sessionSuccessResMsg = sessionSuccessResMsg;
 // module.exports = {
 //   authErrorRedirect: (
 //     req,
