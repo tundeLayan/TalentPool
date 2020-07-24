@@ -9,7 +9,7 @@ const logger = require('morgan');
 const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
 
-dotenv.config('.env');
+dotenv.config();
 process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
