@@ -16,7 +16,6 @@
 
     <%- include('./templates/navBar.ejs') %>
 
-
     <section class="landing-page-top">
 
         <!--<div class="blob-on-sign-in">-->
@@ -147,15 +146,10 @@
             Hear from our previous clients
         </h2>
 
-        <div class="slider row">
-
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-left.svg" alt="">
-            </div>
-
-            <div class="col-sm-10 row">
-
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Exceptional candidates"</h4>
@@ -187,7 +181,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Easy to navigate website"</h4>
@@ -219,7 +213,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Seamless process"</h4>
@@ -251,12 +245,41 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card">
 
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-right.svg" alt="">
-            </div>
+                        <h4>"Exceptional candidates"</h4>
 
+                        <div class="content">
+                            Recruiting through TalentPool has been a breath of fresh air.
+                            The quality of candidates have been exceptional compared to
+                            other job sites.
+                        </div>
+
+                        <hr>
+
+                        <div class="row footer">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
+
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
 
         <br>
@@ -267,15 +290,50 @@
             Meet our talented candidates
         </h2>
 
-        <div class="slider row">
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
+                    <div class="feedback-card talent-fb-card">
 
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-left.svg" alt="">
-            </div>
+                        <div class="row header">
+                            <div class="col-xl-3 col-4 blob-outer">
+                                <div class="blob-inner"></div>
+                            </div>
+                            <div class="col-xl-9 col-8 talents-details">
 
-            <div class="col-sm-10 row talent-profile-container">
+                            <span class="track">
+                                John Doe
+                            </span>
+                                <span class="name">
+                                HR at Google
+                            </span>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="content talent-profile">
+                            I am a Product/UX Designer
+                            with 6 years of experience crafting digital
+                            products helping businesses expand their
+                            capacity for impact.
+                            <span class="recent-work">
+                                Previously worked at Google
+                            </span>
+                        </div>
+
+                        <div class="view-profile-footer">
+                            <span>
+                                View Profile <i></i>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -315,7 +373,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -355,7 +413,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -394,13 +452,10 @@
 
                     </div>
                 </div>
-
             </div>
-
-            <div class="col-sm-1 arrow-pc">
-                <img src="/images/carousel-right.svg" alt="">
-            </div>
-
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
 
     </section>
@@ -641,7 +696,6 @@
     </section>
 
     <%- include('./templates/footer.ejs') %>
-    
 </body>
 
 </html>
