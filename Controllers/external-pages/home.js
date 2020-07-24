@@ -4,7 +4,8 @@ const home = (req, res) => {
   const data = {
     message: 'This is a General Home Page',
     firstName: 'John',
-    lastName: 'Doe'
+    lastName: 'Doe',
+    pageName:'Home',
   }
 
   renderPage(res, 'index', data, 'Demo Page')

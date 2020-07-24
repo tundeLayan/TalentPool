@@ -1,0 +1,56 @@
+.report-abuse {
+  padding: 2rem;
+  color: #04172a;
+}
+
+.report-abuse p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  margin-bottom: 3rem;
+}
+
+.report-abuse-form {
+  width: 70%;
+}
+
+.report-abuse-form-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.report-abuse-form-flex .form-group {
+  flex: 1;
+}
+.report-abuse-form-flex .form-group:first-child {
+  margin-right: 1rem;
+}
+
+.report-abuse-form button {
+  background: #4d49ff;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+  border-radius: 5px;
+}
+
+@media (max-width: 990px) {
+  .report-abuse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .report-abuse-form {
+    width: 80%;
+  }
+}
+@media (max-width: 475px) {
+  .report-abuse-form {
+    width: 100%;
+  }
+  .report-abuse-form-flex {
+    flex-direction: column;
+  }
+  .report-abuse-form-flex .form-group:first-child {
+    margin-right: 0;
+  }
+}
