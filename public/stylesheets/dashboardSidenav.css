@@ -39,7 +39,14 @@
   text-decoration: none;
 }
 
-.sideNav-link p {
+.admin-sideNav-link,
+.admin-sideNav-link:hover {
+  margin-bottom: 1px;
+  text-decoration: none;
+}
+
+.sideNav-link p,
+.admin-sideNav-link p {
   font-weight: 600;
   font-size: 12px;
   color: #04172a;
