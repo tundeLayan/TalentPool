@@ -43,8 +43,8 @@
             <div class="row">
               <div class="form-group col">
                 <label for="password" class="prj-normal-text">Password</label>
-                <input type="password" name="password" class="form-control prj-form-control" id="password"
-                  placeholder="Password" autocomplete="new-password" required />
+                <input type="password" name="password" minlength="8" class="form-control prj-form-control" id="password"
+                  placeholder="Password" autocomplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required />
               </div>
             </div>
             <div class="row">
