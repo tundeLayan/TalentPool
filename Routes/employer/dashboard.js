@@ -6,7 +6,7 @@ const { employerAddTeam } = require('../../Controllers/employer/dashboard');
 const { dashboardHandler } = require('../../Controllers/employer/dashboard');
 
 /* GET Dashboard. */
-appRoute.get('/', dashboard);
+appRoute.get('/dashboard', dashboard);
 appRoute.get('/add-team', employerAddTeam);
 
 appRoute.get('dashboard', dashboardHandler);

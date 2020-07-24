@@ -18,7 +18,6 @@ const dashboard = async (req, res) => {
   }
 };
   
-  module.exports.dashboard = dashboard;
 /* eslint-disable prefer-const */
 
 /**
@@ -79,4 +78,5 @@ module.exports = {
     await teamRender(req, res, countTeam);
   },
   dashboardHandler,
+  dashboard,
 };
