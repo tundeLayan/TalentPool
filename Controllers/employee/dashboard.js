@@ -8,7 +8,6 @@ const numberOfViews = async (req, res) => {
         userId: 'a52867c3-000c-4102-bbc2-10b1a9041e62'
       }
     })
-    console.log(employee)
     res.render('employee/employeeDashboard', {employee, title: 'Employee Dashboard'})
   } catch(err){
     const error = err;
@@ -24,7 +23,6 @@ const availableEmployers = async (req, res) => {
         roleId: 'ROL-EMPLOYER',
       },
     });
-    console.log(employer)
     res.render('employee/employeeDashboard', {
       employer,
       title: 'Employer Dashboard',

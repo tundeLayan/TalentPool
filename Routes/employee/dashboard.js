@@ -1,12 +1,12 @@
 const express = require('express');
-const { addSkills, viewSkills, deleteSkill, availableEmployers, numberOfViews } = require('../../Controllers/employee/dashboard');
+const {addSkills, viewSkills, deleteSkill, numberOfViews, availableEmployers} = require('../../Controllers/employee/dashboard');
 
 const router = express.Router();
 
 router.get('/', numberOfViews)
-router.get('/available/employers', availableEmployers)
-router.get('/skills', viewSkills);
-router.post('/skills', addSkills)
+router.get('/', viewSkills)
+router.get('/', availableEmployers);
+router.post('/', addSkills)
 router.delete('/', deleteSkill)
 
 module.exports = router;
