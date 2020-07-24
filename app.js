@@ -4,9 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const csrf = require('csurf');
+const flash = require('connect-flash');
+const passport = require('passport');
 const dotenv = require('dotenv');
 const logger = require('morgan');
-const flash = require('connect-flash');
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -14,11 +15,13 @@ process.env.TALENT_POOL_JWT_SECRET = key(64);
 process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 
 const db = require('./Models');
+require('./config/passport');
 const { seedSuperAdmin } = require('./Utils/seed');
+const authRoutes = require('./Routes/auth/auth');
 const employeeRoutes = require('./Routes/employee/index');
 const externalPages = require('./Routes');
 const auth = require('./Routes/auth');
-
+const adminRoutes = require('./Routes/admin/index');
 const csrfProtection = csrf();
 const app = express();
 
@@ -30,16 +33,28 @@ app.use(
   }),
 );
 
+// passport js initialization
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
 db.sequelize.sync().then(async () => {
   await seedSuperAdmin();
 });
-app.use(flash());
 // Cookie Parser
 app.use(cookieParser());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -54,12 +69,13 @@ app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
-
 // ************ REGISTER ROUTES HERE ********** //
+app.use(authRoutes);
 app.use('/', auth);
+app.use(authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
-
+app.use('/admin',adminRoutes)
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
