@@ -1,19 +1,18 @@
 const { uuid } = require('uuidv4');
-const redis = require('redis');
 const sendEmail = require('../../Utils/send-email');
+const model = require('../../Models/index');
 const jsonWT = require('../../Utils/auth-token');
 const { message } = require('../../Utils/email-signup-template');
 const { validateUserRequest } = require('../../Utils/request-body-validator');
 const { userCheck ,userCreate,userUpdate } = require('../../Utils/user-check');
 const { passwordHash } = require('../../Utils/password-hash');
+const { getUserByEmail } = require('../dao/db-queries')
 const {
   errorUserSignup,
 } = require('../../Utils/response');
 const { renderPage } = require('../../Utils/render-page');
 
-const REDIS_PORT = process.env.REDIS_PORT || 6379;
 
-const client = redis.createClient(REDIS_PORT);
 const URL =
   process.env.NODE_ENV === 'development' ?
     process.env.TALENT_POOL_DEV_URL :
@@ -52,8 +51,8 @@ const registerEmployer = async (req, res) => {
   };
   try {
     validateUserRequest(req, res, firstName ,lastName, email, password);
-    const userExists = await userCheck(email);
-    if (userExists !== null) {
+    const userExists = await getUserByEmail(model,email);
+    if (userExists) {
       return errorUserSignup(req, res, firstName ,lastName, email, password, 'Someone has already registered this email.',);
     }
     const hashedPassword = passwordHash(password);
@@ -81,6 +80,7 @@ const registerEmployer = async (req, res) => {
       return errorUserSignup(req, res,firstName ,lastName, email, password, 'An Error occured,try again',);
     }
   } catch (error) {
+    console.log(error);
     req.flash('error', 'An Error occured,try again.');
     req.flash('oldInput', employerUserData);
     return res.redirect('/employer/register');
@@ -105,8 +105,6 @@ const verifyEmail = async (req, res) => {
         return res.redirect('/login');
       }
       const updateUser = await userUpdate(user.email);
-      const status = "1";
-      client.set(user.email, 3600, status);
       const data = await updateUser;
       if (data[0] === 1) {
         
