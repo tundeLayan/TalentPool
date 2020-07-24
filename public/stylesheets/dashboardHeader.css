@@ -4,9 +4,13 @@
 
 @media screen and (min-width: 992px) {
   main,
-  header {
-    width: calc(100% - 110px);
+  nav {
+    width: calc(100% - 110px) !important;
     margin-left: auto;
+  }
+
+  main {
+    padding-top: 140px !important;
   }
 
   .navbar-brand {
@@ -22,9 +26,21 @@
   }
 }
 
-header,
 main {
   transition: padding 0.5s ease-in-out;
+  padding-top: 120px;
+}
+
+nav {
+  transition: 0.5s ease-in-out;
+}
+
+.nav-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  width: 100%;
 }
 
 ul li {
@@ -57,12 +73,14 @@ ul li {
 
 .dashHeaderDesign {
   z-index: 20;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .dashHeaderDesign2 {
   z-index: 20;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
 }

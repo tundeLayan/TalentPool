@@ -6,7 +6,8 @@
 #sidebar {
   z-index: 5;
   position: fixed;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 110px;
   height: 100%;
   background: rgba(73, 190, 255, 0.05);
