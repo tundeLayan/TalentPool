@@ -1,0 +1,147 @@
+@font-face {
+    font-family: "Avenir LT";
+    src: url('../../font/AvenirLTProMedium.otf');
+    /* src: url('../font/AvenirLTProBook.otf'); */
+    /* src: url('../font/AvenirLTProMedium.otf'); */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Avenir LT', sans-serif;
+}
+
+.dataTables_length select {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+    color: #6f42c1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23337AB7' viewBox='0 0 24 24'%3E%3Cpath d='M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z'/%3E%3C/svg%3E");
+}
+.dataTables_length select:hover {
+    cursor: pointer;
+}
+.dataTables_length select:focus {
+    border-bottom: 1px solid #F24210;
+    transition: ease-in-out 0.5s;
+    color: #6f42c1;
+    box-shadow: none;
+}
+
+.dataTables_filter input {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+    color: #6f42c1;
+}
+.dataTables_filter input:focus {
+    border-bottom: 1px solid #F24210;
+    transition: ease-in-out 0.5s;
+    color: #6f42c1;
+    box-shadow: none;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #3a3a3a;
+}
+
+thead tr {
+    border-color: red; 
+    border-bottom: 2px solid #F24210;
+    transition: ease-in-out 0.5s;
+}
+
+.page-item .page-link {
+    z-index: 3;
+    color: #aaa;
+    border: none;
+    background-color: #fff;
+}
+.page-item.active .page-link {
+    z-index: 3;
+    color: #F24210;
+    background-color: #fff;
+    border-color: #F24210;
+    border: none;
+    border-bottom: 1px solid #F24210;
+    transition: ease-in-out 0.5s;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #F24210;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+.page-link:focus {
+    box-shadow: none;
+}
+
+a:hover {
+    color: #F24210;
+    text-decoration: underline;
+}
+
+
+/********* CSS ANIMATION **********/
+.animation__container {
+    transition: 1s;
+}
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 180px;
+    height: 180px;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #F24210;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    opacity: 0.4;
+    animation-delay: -0.34s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    opacity: 0.6;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 102px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 52px;
+    }
+  }
+/********* CSS ANIMATION END **********/
+
+.filter__btn {
+  margin-right: 9px;
+  border-bottom: 1px solid #F24210;
+  color: #6f42c1;
+}
+.filter__btn:hover {
+  margin-right: 9px;
+  border-bottom: 1px solid #F24210;
+  color: #6f42c1;
+}
+.filter__btn:focus,
+.filter__btn:active {
+  box-shadow: none;
+  outline: none;
+}

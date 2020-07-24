@@ -1,34 +1,12 @@
-const model = require('../../Models');
-
-let user = '';
-
-const recommendedInterns = model.Employee.findAll({
-  where: {
-    userType: 'HNG',
-    verificationStatus: 'Approved'
-  }
-});
-const allEmployee = model.Employee.findAll({
-  where: {
-    verificationStatus: 'Approved'
-  }
-});
-const pendingHire = model.Team.findAll({
-  where: {
-    userId: user,
-    status: 'Pending'
-  },
-});
-const teamMember = model.Team.findAll({
-  where: {
-    userId: user,
-    status: 'Accepted'
-  },
-});
+const models = require('../../Models/index');
+const { getAllEmployee, getRecommendedInterns, getPendingHire, getTeamMember} = require('../dao/db-queries');
 
 const dashboard = async (req, res) => {
   try {
-    user = req.session.id;
+    const allEmployee = getAllEmployee(models);
+    const recommendedInterns = getRecommendedInterns(models);
+    const pendingHire = getPendingHire(req, models);
+    const teamMember = getTeamMember(req, models);
     const data = { allEmployee, teamMember, recommendedInterns, pendingHire }
     res.render('employer/employerDashboard', { data, title: 'Employer Dashboard' });
   } catch (err) {

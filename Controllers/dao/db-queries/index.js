@@ -12,4 +12,35 @@ module.exports = {
       where: { userId: user.userId },
     });
   },
+  getAllEmployee: (models) => {
+    models.Employee.findAll({
+      where: {
+        verificationStatus: 'Approved'
+      },
+    });
+  },
+  getRecommendedInterns: (models) => {
+    return models.Employee.findAll({
+      where: {
+        userType: 'HNG',
+        verificationStatus: 'Approved'
+      },
+    });
+  },
+  getPendingHire: (req, models) => {
+    models.Team.findAll({
+      where: {
+        userId: req.session.userId,
+        status: 'Pending'
+      },
+    });
+  },
+  getTeamMember: (req, models) => {
+    models.Team.findAll({
+      where: {
+        userId: req.session.userId,
+        status: 'Accepted'
+      },
+    });
+  }
 };
