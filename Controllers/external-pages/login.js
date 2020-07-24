@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 const { renderPage } = require('../../Utils/render-page');
 
 const loginPage = (req, res) => {
@@ -27,7 +28,9 @@ const loginPage = (req, res) => {
 
   const data = {
     errorMessage: message,
+    pageName: 'User Login',
     isLoggedIn,
+    pageName: 'Login',
     success,
     oldInput: {
       email: '',
