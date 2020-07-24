@@ -1,21 +1,36 @@
-const errorResMsg = (res, code, message) =>
-  res.status(code).json({
-    status: 'error',
-    error: message,
-  });
 
-const successResMsg = (res, code, data) =>
-  res.status(code).json({
-    status: 'success',
-    data,
-  });
+module.exports = {
+  authErrorRedirect: (
+    req,
+    res,
+    email,
+    password,
+    errorMessage,
+    page,
+    title,
+    pagePath,
+  ) => {
+    const { isLoggedIn } = req.session;
+    return res.status(401).render(`${page}`, {
+      path: `${pagePath}`,
+      pageName: `${title}`,
+      errorMessage,
+      isLoggedIn,
+      success: req.flash('success'),
+      oldInput: {
+        email,
+        password,
+      },
+      validationErrors: [],
+    });
+  },
+};
 
-
-
-const errorUserSignup = (
+module.exports.errorUserSignup = (
   req,
   res,
-  firstName , lastName,
+  firstName,
+  lastName,
   email,
   password,
   errorMessage,
@@ -34,10 +49,17 @@ const errorUserSignup = (
     validationErrors: [],
   });
 
+  const employeeSignupRedirect = (req, res, error, userData) => {
+    req.flash('error', error);
+    req.flash('oldInput', userData);
+    return res.redirect('/employee/register');
+  }
 
-module.exports.errorUserSignup = errorUserSignup;
-module.exports.errorResMsg = errorResMsg;
-module.exports.successResMsg = successResMsg;
+module.exports.employeeSignupRedirect = employeeSignupRedirect;
+// module.exports.errorUserSignup = errorUserSignup;
+// module.exports.errorResMsg = errorResMsg;
+// module.exports.successResMsg = successResMsg;
+
 // module.exports = {
 //   authErrorRedirect: (
 //     req,
