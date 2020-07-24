@@ -33,7 +33,7 @@ router.get(
 router.get('/auth/employee/github', passport.authenticate('github-employee'));
 
 router.get(
-  '/auth/employee/github/callback/', authCallbackHandler('github-employer'),handAuthCallback
+  '/auth/employee/github/callback/', authCallbackHandler('github-employee'),handAuthCallback
 );
 
 router.get('/employee/register', registerEmployeePage);
