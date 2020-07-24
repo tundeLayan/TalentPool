@@ -23,6 +23,7 @@ const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const auth = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
+
 const csrfProtection = csrf();
 const app = express();
 

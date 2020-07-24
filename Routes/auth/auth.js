@@ -5,8 +5,6 @@ const {
   getUserProfile,
   handAuthCallback,
  } = require('../../Utils/passport-helper');
-
-const router = express.Router();
 const {
   registerEmployee,
   registerEmployeePage,
