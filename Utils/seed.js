@@ -85,7 +85,7 @@ const seedSuperAdmin = async () => {
             email: answers.email,
             password: answers.password,
             userId,
-            roleId: 'ROL-EMPLOYEE',
+            roleId: 'ROL-SUPERADMIN',
             status: '1',
           };
 
