@@ -1,7 +1,11 @@
 const express = require('express');
-const faqRoute = require('./faq')
-
 const router = express.Router();
-router.use('/faq', faqRoute)
+const admin = require('./admin');
+const faqRoute = require('./faq');
+const dashboard = require('./dashboard');
+
+router.use(dashboard);
+router.use(admin);
+router.use('/faq',faqRoute);
 
 module.exports = router

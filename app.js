@@ -27,6 +27,7 @@ const adminRoutes = require('./Routes/admin/index');
 
 const csrfProtection = csrf();
 const app = express();
+app.locals.moment = require('moment');
 
 app.use(
   cookieSession({
@@ -67,6 +68,7 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
+
 app.use(csrfProtection);
 app.use((req, res, next) => {
   const token = req.csrfToken();
@@ -80,6 +82,8 @@ app.use(methodOverride('_method'));
 app.use('/', authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
+app.use('/admin', adminRoutes);
+
 app.use('/employer', employerRoutes);
 app.use('/admin', adminRoutes);
 // ************ END ROUTE REGISTRATION ********** //
