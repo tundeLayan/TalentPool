@@ -60,11 +60,7 @@ module.exports = {
       ],
     });
 
-<<<<<<< HEAD
     return users;
-=======
-    return users
->>>>>>> 9a758bf5e931b1253c954cb0b996d6b1d43700f9
   },
 
   employeeChatUsers: async () => {
@@ -79,48 +75,48 @@ module.exports = {
       ],
     });
 
-    return users
+    return users;
   },
   createUser: (models, data) => {
     return models.User.create(data);
   },
 
-  getAllApprovedEmployers: async () =>{
+  getAllApprovedEmployers: async () => {
     const approvedEmployers = await model.Employer.findAll({
       where: { verificationStatus: 'Approved' },
     });
     return approvedEmployers;
   },
 
-  getAllApprovedEmployees: async () =>{
+  getAllApprovedEmployees: async () => {
     const approvedEmployees = await model.Employee.findAll({
       where: { verificationStatus: 'Approved' },
     });
     return approvedEmployees;
   },
 
-  getAllDisapprovedEmployers: async () =>{
+  getAllDisapprovedEmployers: async () => {
     const disapprovedEmployers = await model.Employer.findAll({
       where: { verificationStatus: 'Disapproved' },
     });
     return disapprovedEmployers;
   },
 
-  getAllDisapprovedEmployees: async () =>{
+  getAllDisapprovedEmployees: async () => {
     const disapprovedEmployees = await model.Employee.findAll({
       where: { verificationStatus: 'Disapproved' },
     });
     return disapprovedEmployees;
   },
 
-  getAllUsers: async ()=>{
-      const allUsers = await model.User.findAll({});
-      return allUsers;
+  getAllUsers: async () => {
+    const allUsers = await model.User.findAll({});
+    return allUsers;
   },
 
-  getAllEmployers: async ()=>{
-      const allEmployers = await model.Employer.findAll({});
-      return allEmployers;
+  getAllEmployers: async () => {
+    const allEmployers = await model.Employer.findAll({});
+    return allEmployers;
   },
 
   getPendingEmployees: async () => {
@@ -143,20 +139,15 @@ module.exports = {
         },
       ],
       limit: 10,
-      order: [
-        ['id', 'DESC'],
-      ],
+      order: [['id', 'DESC']],
     });
     return latestEmployers;
   },
 
-  getAllSubscriptions: async() =>{
+  getAllSubscriptions: async () => {
     const allSubscriptions = await model.Subscription.findAll({
-      order: [
-        ['id', 'DESC'],
-      ],
+      order: [['id', 'DESC']],
     });
     return allSubscriptions;
   },
-
 };
