@@ -81,6 +81,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Employer.associate = (model) => {
+    Employer.belongsTo(model.CompanyCategory, {
+      foreignKey: 'companyCategoryId',
+    });
+
     Employer.belongsTo(model.User, { foreignKey: 'userId' });
 
     // Employer.belongsTo(model.CompanyCategory, {

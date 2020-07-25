@@ -20,11 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
         allowNull: false,
       },
-      category: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
-        defaultValue: 'TP',
-      },
       blocked: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -43,7 +38,9 @@ module.exports = (sequelize, DataTypes) => {
   );
   Faq.associate = (model) => {
     Faq.belongsTo(model.User, { foreignKey: 'userId' });
+    Faq.belongsTo(model.FaqCategory, {foreignKey: 'FaqCategoryId'})
   };
+
 
   return Faq;
 };

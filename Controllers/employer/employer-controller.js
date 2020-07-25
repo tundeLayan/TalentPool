@@ -1,6 +1,5 @@
 const cloud = require('cloudinary').v2;
 const { uuid } = require('uuidv4');
-// const Joi = require('@hapi/joi');
 const db = require('../../Models');
 
 const employerModel = db.Employer;
@@ -14,19 +13,29 @@ cloud.config({
   api_secret: process.env.TALENT_POOL_CLOUD_SECRET,
 });
 
+/**
+ * @param {*} res response object
+ * @param {*} statusCode type of header status code
+ * @param {*} message return message after request
+ */
 const displayMessage = (res, statusCode, message) => {
+  let statusMessage = 'sucess';
   try {
-    let statusMessage = 'sucess';
-    if (statusCode !== '200' || statusCode !== '201') statusMessage = 'error';
-    res.status(statusCode).send({
+    if (statusCode === 200 || statusCode === 201) {
+      statusMessage = 'success';
+    } else {
+      statusMessage = 'error';
+    }
+    return res.status(statusCode).send({
       status: statusMessage,
       message,
     });
   } catch (err) {
-    console.log(err);
-    return false;
+    return res.status(statusCode).send({
+      status: statusMessage,
+      message,
+    });
   }
-  return true;
 };
 
 class Employer {
@@ -35,7 +44,14 @@ class Employer {
      * creating new employer company profile
      * verify the company logo before upload
      */
-    if (!req.files) return displayMessage(res, 400, 'No image is selected');
+    if (!req.files) {
+      if (!res.finished) {
+        res.status(404).json({
+          status: 404,
+          message: 'dont send twice',
+        });
+      }
+    }
     const {
       employerName,
       companyCategoryId,
@@ -71,18 +87,17 @@ class Employer {
       userId,
     };
     try {
-      const employerCreate = await employerModel.create(employer);
-      if (!employerCreate) {
-        Employer.updateEmployerDetails(req, res);
-      }
+      await employerModel.create(employer);
       /**
        * update company logo after profile creation
+       * update the profile if already created
        */
       Employer.updateEmployerLogo(req, res);
       return displayMessage(res, 201, 'Profile successfully created');
     } catch (err) {
-      return displayMessage(res, 500, err);
+      Employer.updateEmployerDetails(req, res);
     }
+    return true;
   }
 
   static async updateEmployerLogo(req, res) {
@@ -92,16 +107,15 @@ class Employer {
      * update company logo
      */
     const { userId } = req.body;
-    const { photo } = req.files;
+    const file = req.files.photo;
     try {
-      if (!(photo.mimetype === 'image/png' || photo.mimetype === 'image/jpeg'))
+      if (!(file.mimetype === 'image/png' || file.mimetype === 'image/jpeg')) {
         return displayMessage(res, 400, 'File is not an image');
-      if (photo.size > 10000)
+      }
+      if (file.size > 100000) {
         return displayMessage(res, 400, `upload lower file size`);
-
-      const employerLogoUpload = await cloud.uploader.upload(
-        photo.tempFilePath,
-      );
+      }
+      const employerLogoUpload = await cloud.uploader.upload(file.tempFilePath);
       const { url } = employerLogoUpload;
       const photoupdate = await employerModel.update(
         { employerPhoto: url },
@@ -114,8 +128,9 @@ class Employer {
       }
       return displayMessage(res, 400, 'Unable to update profile logo');
     } catch (err) {
-      return displayMessage(res, 500, '!oops, an error occured');
+      // return displayMessage(res, 500, '!oops, an error occured');
     }
+    return true;
   }
 
   static async updateEmployerDetails(req, res) {
@@ -162,7 +177,8 @@ class Employer {
       });
       if (result[1] === 1) {
         /**
-         * call photo upload function
+         * call photo upload method
+         * verify the file
          */
         if (!req.files)
           return displayMessage(
@@ -198,7 +214,8 @@ class Employer {
 
       employerInfo.data = employerDetails;
       res.render();
-    } catch (err) {
+    } catch (err) 
+    {
       return res.status('!oops an error occured ');
     }
     return false;
@@ -207,14 +224,27 @@ class Employer {
   static async employerDocumentUpload(req, res) {
     const { userId } = req.session;
     const { documentName, documentNumber } = req.body;
-    const file = req.files.imageDocument;
     /**
+     * check if a user selected a file
      * validate file
      * upload document for review
      */
+    if (!req.files) return displayMessage(res, 400, 'No files selected');
+    const { imageDocument } = req.files;
+    if (
+      !(
+        imageDocument.mimetype === 'image/png' ||
+        imageDocument.mimetype === 'image/jpeg'
+      )
+    )
+      return displayMessage(res, 400, 'File is not an image');
+    if (imageDocument.size > 50000)
+      return displayMessage(res, 400, `upload lower file size`);
 
-    const uploadDocument = await cloud.uploader.upload(file.tempFilePath);
-    const documentImage = uploadDocument.secure_url;
+    const uploadDocument = await cloud.uploader.upload(
+      imageDocument.tempFilePath,
+    );
+    const documentImage = uploadDocument.url;
 
     const documentObject = {
       userId,
