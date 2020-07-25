@@ -1,8 +1,10 @@
 const express = require('express');
-const { updateProfile } = require('../../Controllers/employee/employee-edit-profile');
+const { updateProfile, getUpdateProfilepage } = require('../../Controllers/employee/employee-edit-profile');
 
 const router = express.Router();
 
+// get update profile page
+router.get('/employee/profile/update', getUpdateProfilepage);
 // Update Profile
 router.patch('/employee/update/profile', updateProfile);;
 
