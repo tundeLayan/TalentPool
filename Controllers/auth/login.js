@@ -94,7 +94,7 @@ const redirectUser = async (req, res, email, password, user) => {
     if (user.roleId === 'ROL-EMPLOYEE') {
       req.session.employeeId = user.userId;
       return res.redirect(
-        `/employer/dashboard/`,
+        `/employee/dashboard/`,
       );
     }
     if (user.roleId === 'ROL-ADMIN' || user.roleId === 'ROL-SUPERADMIN') {
@@ -175,10 +175,19 @@ module.exports = {
     }
   },
   logout: (req, res) => {
-    const { employeeId, employerId, adminId } = req.session;
-    if (employerId || employeeId || adminId) {
-      req.session.isLoggedIn = false;
-      res.redirect('/');
+    const { userId, employeeId, employerId, adminId } = req.session;
+    if (employerId || userId || employeeId || adminId) {
+       
+      client.flushdb( function (err, succeeded) {
+        console.log(succeeded);
+        
+        req.session = null;
+        res.redirect('/');
+        // if(succeeded){
+        //   console.log(succeeded)
+        // }
+    });
+    
     }
   },
 };
