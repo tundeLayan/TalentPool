@@ -30,7 +30,7 @@ module.exports = {
     },
 
 
-    chatMessages: async (req, res) => {
+    chatMessages: async (req, ) => {
         const {
             senderID,
             receiverID

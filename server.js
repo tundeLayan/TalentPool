@@ -3,14 +3,15 @@
  */
 
 const chalk = require('chalk');
+const http = require('http');
 const app = require('./app');
-const http = require("http");
-const socketio = require("socket.io");
 const chatUtils = require('./Utils/chat-users');
 const model = require('./Models');
 
 // eslint-disable-next-line import/order
 const debug = require('debug')('talentpool:server');
+// eslint-disable-next-line import/order
+const socketio = require('socket.io');
 
 // normalizePort function returns a valid port, whether it is provided as a number or a string
 const normalizePort = (val) => {
@@ -45,7 +46,8 @@ io.on("connection", (socket) => {
       role: data.role
     })
 
-    socket.emit("user_connected", chatUtils.generateMessageObject(user.id, user.name, user.role));
+    socket.emit("user_connected",
+      chatUtils.generateMessageObject(user.id, user.name, user.role));
   })
 
 
@@ -58,14 +60,17 @@ io.on("connection", (socket) => {
       user_id: message.sender,
     });
 
-    io.emit("message", generateMessage(message.id, message.name, message.role, message.message));
+    io.emit("message",
+      chatUtils.generateMessage(message.id, message.name,
+        message.role, message.message));
     callback("Delivered");
   })
 
 
-  socket.on("disconnect", () => {
-    io.emit("offline", generateMessageObject(user.id, user.name, user.role));
-  })
+  // TODO: Kindly fix where is user object coming from?
+  // socket.on("disconnect", () => {
+  //   io.emit("offline", chatUtils.generateMessageObject(user.id, user.name, user.role));
+  // })
 
 })
 

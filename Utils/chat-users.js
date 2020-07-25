@@ -1,25 +1,15 @@
 const chatUsers = []
 
 
-const addUser = ({
-    id,
-    name,
-    role
-}) => {
-
+const addUser = (userObject) => {
+    let { name, role } = userObject;
     name = name.trim().toLowerCase();
     role = role.trim().toLowerCase();
 
-    const user = {
-        id,
-        name,
-        role
-    }
+    const user = { id: userObject.id, name, role }
     chatUsers.push(user)
 
-    return {
-        user
-    }
+    return { user }
 }
 
 const removeUser = (id) => {
@@ -30,6 +20,7 @@ const removeUser = (id) => {
     if (index !== -1) {
         return chatUsers.splice(index, 1)
     }
+    return null;
 }
 
 const getUser = (id) => {
@@ -63,5 +54,6 @@ module.exports = {
     addUser,
     removeUser,
     getUser,
-    generateMessage
+    generateMessage,
+    generateMessageObject
 }
