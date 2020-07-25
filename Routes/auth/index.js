@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require('passport');
+const { checkLoggedIn } = require('../../Middleware/auth');
 const { login, logout } = require('../../Controllers/auth/login');
 const { loginPage } = require('../../Controllers/external-pages/login');
 
@@ -21,33 +22,33 @@ const { validateSignup, validateEmail } = require('../../Utils/validators/auth-v
 
 const router = express.Router();
 
-router.get('/auth/employer/google', getUserProfile('google-employer'));
-router.get('/auth/employee/google', getUserProfile('google-employer'));
+router.get('/auth/employer/google', checkLoggedIn, getUserProfile('google-employer'));
+router.get('/auth/employee/google', checkLoggedIn, getUserProfile('google-employer'));
 
-router.get('/auth/employer/google/callback', authCallbackHandler('google-employer'), handAuthCallback);
-router.get('/auth/employee/google/callback', authCallbackHandler('google-employee'), handAuthCallback);
+router.get('/auth/employer/google/callback', checkLoggedIn, authCallbackHandler('google-employer'), handAuthCallback);
+router.get('/auth/employee/google/callback', checkLoggedIn, authCallbackHandler('google-employee'), handAuthCallback);
 
-router.get('/auth/employer/github', passport.authenticate('github-employer'));
-router.get('/auth/employee/github', passport.authenticate('github-employee'));
+router.get('/auth/employer/github', checkLoggedIn, passport.authenticate('github-employer'));
+router.get('/auth/employee/github', checkLoggedIn, passport.authenticate('github-employee'));
 
 router.get(
-  '/auth/github/callback', authCallbackHandler('github-employer'), handAuthCallback);
+  '/auth/github/callback', checkLoggedIn, authCallbackHandler('github-employer'), handAuthCallback);
 router.get(
-  '/auth/employee/github/callback/', authCallbackHandler('github-employer'),handAuthCallback
+  '/auth/employee/github/callback/', checkLoggedIn, authCallbackHandler('github-employer'),handAuthCallback
 );
 
-router.get('/employee/register', registerEmployeePage);
-router.post('/employee/register', validateSignup, registerEmployee);
+router.get('/employee/register', checkLoggedIn, registerEmployeePage);
+router.post('/employee/register', checkLoggedIn, validateSignup, registerEmployee);
 
-router.get('/employer/register' , employerSignup);
-router.post('/employer/register', validateSignup, registerEmployer);
+router.get('/employer/register', checkLoggedIn, employerSignup);
+router.post('/employer/register', checkLoggedIn, validateSignup, registerEmployer);
 
 router.get('/email/verify', verifyEmail);
 router.post('/email/verify/resend', validateEmail, resendVerificationLink);
 router.get('/email/verify/resend', getResendValidationMail);
 
-router.get('/login', loginPage);
-router.post('/login', login);
+router.get('/login', checkLoggedIn, loginPage);
+router.post('/login', checkLoggedIn, login);
 
 router.get('/logout', logout);
 
