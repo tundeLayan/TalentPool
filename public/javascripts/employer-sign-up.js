@@ -1,6 +1,7 @@
 const Model ={
   getFormData(formElem){
     const data = Object.fromEntries(new FormData(formElem).entries());
+    console.log(data)
     return data;
   }
 }
@@ -23,16 +24,22 @@ const View ={
   }
 }
 
+// TODO: FIX THIS, password matching wrong
 const Controller ={
   initComponent(){
     Controller.initEventListeners()
   },
   initEventListeners(){
-    document.forms.employerSignUpForm
-      .addEventListener('submit', Controller.initFormSubmission, false);
+    // document.forms.employerSignUpForm
+    //   .addEventListener('submit', Controller.initFormSubmission, false);
       document.querySelectorAll('input').forEach((inputEl) => {
         inputEl.addEventListener('blur', Controller.validateInput, false)
       })
+      document
+      .getElementById("password")
+      .setCustomValidity(
+        "Password must be at least 8 characters long. It must also contain at least one upper case character, one lower case character, a number and a special character"
+      );
   },
   initFormSubmission(event){
     event.preventDefault();

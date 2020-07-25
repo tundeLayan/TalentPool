@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const dotenv = require('dotenv');
 const logger = require('morgan');
+const methodOverride = require('method-override');
 const { key } = require('./Utils/gen-key');
 
 dotenv.config();
@@ -17,12 +18,13 @@ process.env.TALENT_POOL_SESSION_COOKIEKEY = key(64);
 const db = require('./Models');
 require('./config/passport');
 const { seedSuperAdmin } = require('./Utils/seed');
-const authRoutes = require('./Routes/auth/auth');
+
 const employeeRoutes = require('./Routes/employee/index');
 const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
-const auth = require('./Routes/auth');
+const authRoutes = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
+
 const csrfProtection = csrf();
 const app = express();
 
@@ -72,10 +74,10 @@ app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 });
+app.use(methodOverride('_method'));
+
 // ************ REGISTER ROUTES HERE ********** //
-app.use(authRoutes);
-app.use('/', auth);
-app.use(authRoutes);
+app.use('/', authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 app.use('/employer', employerRoutes);

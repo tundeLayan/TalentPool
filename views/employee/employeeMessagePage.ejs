@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../templates/dashboardHead')%>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/stylesheets/employee-dashboard.css">
+    <link rel="stylesheet" href="/stylesheets/employeeMessage.css">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <%- include('../templates/employeeDashboardSidebar.ejs') %>
+    <%- include('../templates/dashboardHeader.ejs') %>
+    <main id="main">
+        <section class="container">
+            <div class="row">
+                <div class="col-lg-4 mt-4 column1">
+                    <div class="chat-users-box">
+                        <div>
+                            <h3 class="chat-users-box-heading">All Messages</h3>
+                        </div>
+                        <div class="chat-users-box-search mt-3">
+                            <input class=" chat-users-search w-100 px-2 py-2" type="search" aria-label="Large"
+                                aria-describedby="inputGroup-sizing-sm" type="text" placeholder="Search Users">
+                        </div>
+                    </div>
+                    <div class="mt-4 chat-scroll-view">
+                        <div class="chat-user mt-2 d-flex justify-content-between">
+                            <div class="chat-img px-3 py-3">
+                                <div class="d-flex">
+                                    <img src="/images/employee-message/user.svg" alt="">
+                                    <div class="chat-detail ml-3 mt-2">
+                                        <p class="chat-name">John Doe</p>
+                                        <p class="chat-role">Employer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-status">
+                                <p class="online-status text-right pt-3 pr-2">Online</p>
+                                <div class="unread text-right pr-3 mr-2">
+                                    <p class="text-center pl-2">4</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="chat-user mt-2 d-flex justify-content-between">
+                            <div class="chat-img px-3 py-3">
+                                <div class="d-flex">
+                                    <img src="/images/employee-message/user.svg" alt="">
+                                    <div class="chat-detail ml-3 mt-2">
+                                        <p class="chat-name">John Doe</p>
+                                        <p class="chat-role">Employer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-status">
+                                <p class="online-status pt-3 pr-3">Online</p>
+                                <div class="unread none text-right pr-3 mr-2">
+                                    <p class="text-center pl-2">4</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="chat-user mt-2 d-flex justify-content-between">
+                            <div class="chat-img px-3 py-3">
+                                <div class="d-flex">
+                                    <img src="/images/employee-message/user.svg" alt="">
+                                    <div class="chat-detail ml-3 mt-2">
+                                        <p class="chat-name">John Doe</p>
+                                        <p class="chat-role">Employer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-status">
+                                <p class="online-status pt-3 pr-3">Last Seen 2:20pm</p>
+                                <div class="unread text-right pr-3 mr-2">
+                                    <p class="text-center pl-2">4</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="chat-user mt-2 d-flex justify-content-between">
+                            <div class="chat-img px-3 py-3">
+                                <div class="d-flex">
+                                    <img src="/images/employee-message/user.svg" alt="">
+                                    <div class="chat-detail ml-3 mt-2">
+                                        <p class="chat-name">John Doe</p>
+                                        <p class="chat-role">Employer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-status">
+                                <p class="online-status pt-3 pr-3">Last Seen 2:20pm</p>
+                                <div class="unread none text-right pr-3 mr-2">
+                                    <p class="text-center pl-2">4</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="chat-user mt-2 d-flex justify-content-between">
+                            <div class="chat-img px-3 py-3">
+                                <div class="d-flex">
+                                    <img src="/images/employee-message/user.svg" alt="">
+                                    <div class="chat-detail ml-3 mt-2">
+                                        <p class="chat-name">John Doe</p>
+                                        <p class="chat-role">Employer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-status">
+                                <p class="online-status pt-3 pr-3">Last Seen 2:20pm</p>
+                                <div class="unread text-right pr-3 mr-2">
+                                    <p class="text-center pl-2">4</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 column2">
+                    <div class="usertab d-flex justify-content-between px-3 py-2">
+                        <div class="user-detail d-flex">
+                            <div>
+                                <img class="user-image" src="/images/employee-message/user.svg" alt="">
+                            </div>
+                            <div class="user-details pl-3">
+                                <div class="user-name">John Doe</div>
+                                <div class="user-status">Online</div>
+                            </div>
+
+                        </div>
+                        <div class="user-tools d-flex  justify-content-between">
+                            <img src="/images/employee-message/se.svg" alt="">
+                            <img src="/images/employee-message/att.svg" alt="">
+                            <img src="/images/employee-message/dot.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="messages-tab chat-messages mt-3">
+                        <div class="responder ml-2 px-2 w-75 py-3 mb-4">
+                            I am a very big boy , it was nice seeing younnnnnn
+                            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                        </div>
+                        <div class="sender mr-2 px-2 w-75 py-3 ml-auto mb-4">
+                            I am a very big boy , it was nice seeing younnnnnn
+                            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                        </div>
+                        <div class="sender mr-2 px-2 w-75 py-3 ml-auto mb-4">
+                            I am a very big boy , it was nice
+                            seeingyounn nnnn nnnnnnnnn nnnnnnnnnnn nnnnnnnnnnnn
+                            nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+                        </div>
+                        <div class="responder ml-2 px-2 w-75 py-3 mb-4">
+                            I am a very big boy , it was nice seeing younnnnnn
+                            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                        </div>
+                    </div>
+
+                    <div class="w-100 d-flex justify-content-between ">
+                        <div class="message-box d-flex">
+                            <div class="message-box-img">
+                                <img class="px-3 py-4 button-img" src="/images/employee-message/att.svg" alt="">
+                            </div>
+                            <div class="message-box-text">
+                                <textarea class="message-input w-100 pt-3" placeholder="Type a message..."
+                                    id="type-msg"></textarea>
+                            </div>
+                        </div>
+                        <div class="button-box">
+                            <button class="w-100 message-button">
+                                <img class="py-3" src="/images/employee-message/arrow.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+</body>
+
+</html>
