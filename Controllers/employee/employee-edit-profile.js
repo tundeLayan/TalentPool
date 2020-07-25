@@ -2,13 +2,22 @@
 /* eslint-disable consistent-return */
 const cloudinary = require('cloudinary').v2;
 
+const { renderPage } = require('../../Utils/render-page');
+
+const { getUserByEmail, getEmployee } = require('../dao/db-queries');
+
 const models = require('../../Models');
 
-const attributes = [
+const userAttributes = [
       'id',
       'firstName',
       'lastName',
       'email',
+      'roleId',
+    ];
+
+const employeeAttributes = [
+      'id',
       'userType',
       'verificationStatus',
       'phoneNumber',
@@ -25,7 +34,7 @@ const attributes = [
       'userId',
       'referredBy',
       'hasTeam',
-    ];
+]
 
 
 let image;
@@ -64,8 +73,10 @@ const employeeData = (req, res) => {
       passport: { user },
     } = req.session;
     userId = user.userId;
+    req.session.user = user;
   } else {
     userId = req.session.userId;
+
   }
 
   const {
@@ -101,34 +112,72 @@ const employeeData = (req, res) => {
     email: userEmail,
     userData: employeeuserData,
     options,
+    data,
   };
 };
 
 module.exports = {
+  
+  // render employee upate profile page
+  getUpdateProfilepage: async (req, res) => {
+    try {
+      const { userId, profileImage, email, options, data } = employeeData(req, res);
+
+      // query the database to find the user
+      const employeeQuery = await getEmployee(models, data);
+      const userQuery = await getUserByEmail(models, email);
+
+      const profile = {
+        ...employeeQuery.dataValues,
+        ...userQuery.dataValues,
+      };
+
+      renderPage(
+        res,
+        'employee/employeeDashboardSettingsProfileEdit',
+        profile,
+        'Employee Update Profile',
+        ''
+      );
+
+    } catch (err) {
+      req.flash('error', 'Something went wrong. Try again');
+    }
+  },
+
+  // update employee profile page
   updateProfile: async (req, res) => {
     try {
       const { userId } = employeeData(req, res);
 
       // Update Profile
-      const names = {
+      const userBodyToBeUpdated = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        userId,
+      };
+
+      const employeeBodyToBeUpdated = {
+        availability: req.body.availability,
         userName: req.body.userName,
+        location: req.body.location,
+        track: req.body.track,
+        employeeCv: req.body.employeeCv,
+        phoneNumber: req.body.phoneNumber,
+        userId,
       };
 
       let bodyToUpdate;
-      bodyToUpdate = {
-        ...req.body,
-        ...names,
-        userId,
-      };
+      bodyToUpdate = employeeBodyToBeUpdated;
+
 
       if (req.files) {
         const imageUrl = await uploadImageFunction(req, res);
         bodyToUpdate = {
           image: imageUrl,
-          ...req.body,
-          ...names,
+          ...employeeBodyToBeUpdated,
         };
         // Set Updated Image to Session
         req.session.profileImage = imageUrl;
@@ -141,9 +190,16 @@ module.exports = {
         plain: true,
       });
 
+      await models.User.update(userBodyToBeUpdated, {
+        where: {
+          userId,
+        },
+        plain: true,
+      });
+
       // return updated data
       return res.redirect(
-        `/employee/profile?successMessage=Profile updated successfully`,
+        `/employee/dashboard?successMessage=Profile updated successfully`,
       );
     } catch (err) {
       req.flash('error', 'Something went wrong. Try again');
