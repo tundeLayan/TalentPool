@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include("../templates/head")%>
+    <%- include("../templates/dashboardHead")%>
     <title>TalentPool</title>
     <!-- | pageName-->
     <!-- <link rel="stylesheet" href="../stylesheets/employer-create-team.css"> -->
@@ -9,7 +9,7 @@
 
   <body>
     <!-- Dashboard nav -->
-    <%- include("../templates/employerDashboardSidebar")%>
+    <%- include("../templates/employerDashboardSidebar", { sideNavRoute: 'team'})%>
     <%- include("../templates/dashboardHeader")%>
     
 
