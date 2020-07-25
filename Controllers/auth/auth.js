@@ -16,6 +16,11 @@ const {
   errorUserSignup,
 } = require('../../Utils/response');
 
+const redis = require('../dao/impl/redis/redis-client');
+const redisKeys = require('../dao/impl/redis/redis-key-gen');
+
+const client = redis.getClient();
+
 const URL = process.env.NODE_ENV === 'development'
   ? process.env.TALENT_POOL_DEV_URL
   : process.env.TALENT_POOL_FRONT_END_URL;
@@ -239,7 +244,9 @@ const verifyEmail = async (req, res) => {
       const updateUser = await userUpdate(user.email);
       const data = await updateUser;
       if (data[0] === 1) {
-
+        user.status = 1;
+        const keyId = redisKeys.getHashKey(user.email.toString());
+        client.set(keyId,  JSON.stringify(user));
         req.flash('success', 'Email verification successful');
         return res.redirect('/login');
       }
