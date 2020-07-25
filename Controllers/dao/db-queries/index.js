@@ -1,4 +1,7 @@
+const sequelize = require('sequelize');
 const model = require('../../../Models/index');
+
+const op = sequelize.Op;
 
 module.exports = {
   getUserByEmail: (models, email) => {
@@ -56,9 +59,9 @@ module.exports = {
     })
 
     return users
-},
+  },
 
-employeeChatUsers: async () => {
+  employeeChatUsers: async () => {
     const users = model.Employee.findAll({
         raw: true,
         attributes: ['userId', 'image'],
@@ -69,8 +72,83 @@ employeeChatUsers: async () => {
     })
 
     return users
-},
+  },
   createUser: (models, data) => {
     return models.User.create(data);
-  }
+  },
+
+  getAllApprovedEmployers: async () =>{
+    const approvedEmployers = await model.Employer.findAll({
+      where: { verificationStatus: 'Approved' },
+    });
+    return approvedEmployers;
+  },
+
+  getAllApprovedEmployees: async () =>{
+    const approvedEmployees = await model.Employee.findAll({
+      where: { verificationStatus: 'Approved' },
+    });
+    return approvedEmployees;
+  },
+
+  getAllDisapprovedEmployers: async () =>{
+    const disapprovedEmployers = await model.Employer.findAll({
+      where: { verificationStatus: 'Disapproved' },
+    });
+    return disapprovedEmployers;
+  },
+
+  getAllDisapprovedEmployees: async () =>{
+    const disapprovedEmployees = await model.Employee.findAll({
+      where: { verificationStatus: 'Disapproved' },
+    });
+    return disapprovedEmployees;
+  },
+
+  getAllUsers: async ()=>{
+      const allUsers = await model.User.findAll({});
+      return allUsers;
+  },
+
+  getAllEmployers: async ()=>{
+      const allEmployers = await model.Employer.findAll({});
+      return allEmployers;
+  },
+
+  getPendingEmployees: async () => {
+    const pendingEmployees = await model.Employee.findAll({
+      where: {
+        verificationStatus: 'Pending',
+      },
+    });
+    return pendingEmployees.length;
+  },
+
+  getLatestEmployers: async () => {
+    const latestEmployers = await model.Employer.findAll({
+      include: [
+        {
+          model: model.User,
+          where: {
+            userId: { [op.col]: 'Employer.userId' },
+          },
+        },
+      ],
+      limit: 10,
+      order: [
+        ['id', 'DESC'],
+      ],
+    });
+    return latestEmployers;
+  },
+
+  getAllSubscriptions: async() =>{
+    const allSubscriptions = await model.Subscription.findAll({
+      order: [
+        ['id', 'DESC'],
+      ],
+    });
+    return allSubscriptions;
+  },
+
 };

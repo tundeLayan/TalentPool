@@ -1,49 +1,23 @@
-const sequelize = require('sequelize');
 const moment = require('moment');
-const model = require('../../Models/index');
+const { getAllApprovedEmployees, getAllApprovedEmployers, 
+        getAllDisapprovedEmployees, getAllDisapprovedEmployers, 
+        getAllUsers, getAllEmployers, getPendingEmployees, getLatestEmployers, getAllSubscriptions,
+      } = require('../dao/db-queries');
+
 const { renderPage } = require('../../Utils/render-page');
 
-const op = sequelize.Op;
-
 const approvedUsers = async () => {
-  const approvedEmployers = await model.Employer.findAll({
-    where: { verificationStatus: 'Approved' },
-  });
-  const approvedEmployees = await model.Employee.findAll({
-    where: { verificationStatus: 'Approved' },
-  });
+  const approvedEmployers = await getAllApprovedEmployers();
+  const approvedEmployees = await getAllApprovedEmployees();
   const totalApprovedUsers = approvedEmployers.length + approvedEmployees.length;
   return totalApprovedUsers;
 };
 
 const disapprovedUsers = async () => {
-  const disapprovedEmployers = await model.Employer.findAll({
-    where: { verificationStatus: 'Disapproved' },
-  });
-  const disapprovedEmployees = await model.Employee.findAll({
-    where: { verificationStatus: 'Disapproved' },
-  });
+  const disapprovedEmployers = await getAllDisapprovedEmployers();
+  const disapprovedEmployees = await getAllDisapprovedEmployees();
   const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
   return totalDisapprovedUsers;
-};
-
-const getAllUsers = async () => {
-  const allUsers = await model.User.findAll({});
-  return allUsers;
-};
-
-const getAllEmployers = async () => {
-  const allEmployers = await model.Employer.findAll({});
-  return allEmployers;
-};
-
-const getPendingEmployees = async () => {
-  const pendingEmployees = await model.Employee.findAll({
-    where: {
-      verificationStatus: 'Pending',
-    },
-  });
-  return pendingEmployees.length;
 };
 
 const filterData = (data, value, key) => {
@@ -74,25 +48,8 @@ const filterData = (data, value, key) => {
 module.exports = {
   dashboard: async (req, res) => {
     try {
-      const allSubscriptions = await model.Subscription.findAll({
-        order: [
-          ['id', 'DESC'],
-        ],
-      });
-      const latestEmployers = await model.Employer.findAll({
-        include: [
-          {
-            model: model.User,
-            where: {
-              userId: { [op.col]: 'Employer.userId' },
-            },
-          },
-        ],
-        limit: 10,
-        order: [
-          ['id', 'DESC'],
-        ],
-      });
+      const allSubscriptions = await getAllSubscriptions();
+      const latestEmployers = await getLatestEmployers();
 
       const unactiveSubscriptions = filterData(allSubscriptions, false, 'active');
       const activeSubscriptions = filterData(allSubscriptions, true, 'active');
