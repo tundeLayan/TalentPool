@@ -53,6 +53,21 @@
   padding: 20px 20px !important;
 }
 
+#employeeDashboard .empty-card {
+  padding-top: 30%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#employerDasemployeeDashboardhboard .empty-card-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #04172a;
+}
+
 #employeeDashboard .see-all {
   position: absolute;
   right: 0;
