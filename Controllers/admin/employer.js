@@ -12,13 +12,12 @@ const getEmployerActivity = async (userId) => {
 };
 
 const adminLogActivity = async (adminId, userId, message) => {
-  const testId = 'c6a3a120-354c-4e31-8012-b6bccb48997c';
   const employer = await model.User.findOne({
     where: { userId },
   })
   await model.Activitylog.create({
     message: `${message} ${employer.lastName} ${employer.firstName}` ,
-    userId: testId,
+    userId: adminId,
     ipAddress: '',
   });
 };
@@ -72,7 +71,7 @@ module.exports = {
         status: 'success',
         data,
       });
-      // enderPage(res, 'PageName', data, 'Admin | All Employers', 'pathName');
+      renderPage(res, 'PageName', data, 'Admin | All Employers', 'pathName');
     } catch (err) {
       console.log(err);
     }
@@ -95,9 +94,9 @@ module.exports = {
       const employerActivity = await getEmployerActivity(userId);
       const employerDocuments = await getEmployerDocuments(userId);
       
-      // if (!employerProfile) {
-      //   req.flash('error', 'Employer profile not found');
-      // }
+      if (!employerProfile) {
+        req.flash('error', 'Employer profile not found');
+      }
       
 
       const data = {
@@ -106,11 +105,7 @@ module.exports = {
         employer,
         employerActivity,
       }
-      res.status(200).json({
-        status: 'success',
-        data,
-      });
-      //renderPage(res, 'PageName', data, 'Admin | Employer profile', 'pathName');
+      renderPage(res, 'PageName', data, 'Admin | Employer profile', 'pathName');
     } catch (error) {
       console.log(error);
     }
