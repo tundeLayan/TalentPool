@@ -90,7 +90,7 @@ const redirectUser = async (req, res, email, password, user) => {
     // Role based redirections
     if (user.roleId === 'ROL-EMPLOYER') {
       req.session.employerId = user.userId;
-      return res.redirect('/employer/ashboard');
+      return res.redirect('/employer/dashboard');
     }
     if (user.roleId === 'ROL-EMPLOYEE') {
       req.session.employeeId = user.userId;
