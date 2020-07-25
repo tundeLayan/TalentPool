@@ -176,20 +176,6 @@ module.exports = {
   },
   logout: (req, res) => {
 
-    // const { userId, employeeId, employerId, adminId } = req.session;
-    // if (employerId || userId || employeeId || adminId) {
-       
-    //   client.flushdb( function (err, succeeded) {
-    //     console.log(succeeded);
-        
-    //     req.session = null;
-    //     res.redirect('/');
-    //     // if(succeeded){
-    //     //   console.log(succeeded)
-    //     // }
-    // });
-
-
     if (req.session.isLoggedIn) {
       req.session.isLoggedIn = false;
     }
