@@ -12,7 +12,7 @@ const {
   registerEmployee,
   registerEmployeePage,
   resendVerificationLink,
-
+  getResendValidationMail,
   registerEmployer,
   verifyEmail,
   employerSignup,
@@ -44,6 +44,7 @@ router.post('/employer/register', validateSignup, registerEmployer);
 
 router.get('/email/verify', verifyEmail);
 router.post('/email/verify/resend', validateEmail, resendVerificationLink);
+router.get('/email/verify/resend', getResendValidationMail);
 
 router.get('/login', loginPage);
 router.post('/login', login);
