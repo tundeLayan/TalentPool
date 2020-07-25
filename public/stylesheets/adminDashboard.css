@@ -5,7 +5,7 @@
 }
 .admin-dashboard-figures {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
   gap: 1rem;
   color: #04172a;
 }
@@ -14,6 +14,9 @@
   box-sizing: border-box;
   border-radius: 10px;
   padding: 1rem 2rem;
+  -webkit-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  -moz-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
 }
 .admin-dashboard-figure .figure {
   font-weight: 600;
@@ -24,15 +27,20 @@
 .admin-dashboard-others {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 68% 30%;
-  gap: 1rem;
+  grid-template-columns: 68% 31%;
+  gap: 1%;
 }
 .admin-dashboard-graph,
 .dashboard-recent-activity {
   border: 1px solid rgba(4, 23, 42, 0.1);
   box-sizing: border-box;
   border-radius: 10px;
+  -webkit-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  -moz-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
 }
+
+/* could be removed */
 .admin-dashboard-graph {
   display: flex;
   flex-direction: column;
@@ -40,6 +48,7 @@
   align-items: center;
   position: relative;
 }
+/*  */
 .graph-selection {
   position: absolute;
   display: flex;
@@ -57,11 +66,42 @@
 .graph-selection select > option {
   cursor: pointer;
 }
+
+.graph {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
 .graph p {
   font-weight: 600;
   font-size: 36px;
   line-height: 48px;
   color: rgba(4, 23, 42, 0.1);
+}
+
+/* custom scrollbar for recent activities */
+/* width */
+.dashboard-recent-activity::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0px 10px 10px 0px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0px 10px 10px 0px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dashboard-recent-activity {
+  max-height: 427px;
+  overflow-y: auto;
 }
 .recent-activity:last-of-type {
   border: none;
@@ -99,19 +139,22 @@
 @media (max-width: 1100px) {
   .admin-dashboard-others {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .admin-dashboard-figures {
+    grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
   }
 }
 
 @media (max-width: 495px) {
   .admin-dashboard {
-    padding: 2rem 4rem;
+    padding: 2rem 3rem;
     margin-top: 8rem;
   }
 }
 
 @media (max-width: 395px) {
   .admin-dashboard {
-    padding: 2rem 2rem;
-    margin-top: 8rem;
+    padding: 2rem 1rem;
   }
 }
