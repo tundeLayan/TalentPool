@@ -11,119 +11,160 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
   <link rel="stylesheet" href="/stylesheets/adminList.css">
 
+ 
   <title>Dashboard</title>
+  <style>
+    .dropdown-toggle::after {
+      display: none;
+    }
+
+    .sidenav {
+      z-index: 3 !important;
+    }
+  </style>
 </head>
 
 <body>
-  <%- include('../templates/employeeDashboardSidebar.ejs') %>
+  <%- include('../templates/adminDashboardSidebar.ejs') %>
   <%- include('../templates/dashboardHeader.ejs') %>
   <main id="main">
     <section class="container" style="width: 90%;">
         <div class="row mt-4 d-flex justify-content-between mb-4 px-5 custom-header">
             <h3>Admin List</h3>
-            <button class="btn add-admin-btn">
-              Add Admin
-            </button>
+            <button type="button" class="btn btn add-admin-btn" data-toggle="modal" data-target="#exampleModalLong">
+                Add Admin
+              </button>
           </div>
       <table id="example" class="table table-striped table-bordered mt-4 custom-table">
           <thead class="mt-3">
               <tr>
                   <th>Status</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
+                  <th>Name</th>
                   <th>Email</th>
-                  <th>Phone Number</th>
                   <th>Role</th>
                   <th>Date Created</th>
                   <th>Action</th>
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td class="d-flex">
+              <% admins.forEach(function(admin) { %>
+                <tr>
+                  <% if(admin.block == true) { %>
+                    <td class="d-flex">
+                      <span class="">
+                      </span>
+                      <span>
+                          <i class="fa fa-lock mr-1"></i>
+
+                          <span class="badge badge-pill badge-danger">Denied</span>
+                          <!-- <span class="badge badge-pill badge-success">Granted</span> -->
+
+                      </span>
+                  </td>
+                  <% } %>
+                  <% if(!admin.block) { %>
+                    <td class="d-flex">
+                      <span class="">
+                      </span>
                       <span>
                           <i class="fa fa-lock mr-1"></i>
 
                           <span class="badge badge-pill badge-success">Granted</span>
                       </span>
                   </td>
-                  <td>Office Manager</td>
-                  <td>London</td>
-                  <td>37</td>
-                  <td>2008/12/11</td>
-                  <td>$136,200</td>
-                  <td>$136,200</td>
-                  <td>
-                      <span class="d-flex justify-content-between">
+                  <% } %>
+                    <td><a href="/admin/profile/<%= admin.userId %>"><%= admin.firstName %> <%= admin.lastName %></a></td>
+                    <td><%= admin.email %></td>
+                    <td>Administrator</td>
+                    <td><%= moment(admin.createdAt).format('MMMM Do YYYY') %></td>
+                    <td>
+                      <% if(!admin.block) { %>
+                        <span class="d-flex justify-content-between">
                           <span>
-                            <i class="fa fa-lock custom-lock-icon"></i>
+                            <a href="#" onclick= 'toBlock("<%= admin.userId %>", "<%= admin.firstName %> <%= admin.lastName %>", "<%= csrfToken %>" )' data-tooltip data-placement="top" title="Block"><i class="fa fa-lock custom-lock-icon"></i></a>
                           </span>
-
-                          <span><i class="fa fa-trash custom-trash-icon"></i></span>
                       </span>
-                      
-                  </td>
-              </tr>
-              <tr>
-                  <td class="d-flex">
-                      <span class="">
-                      </span>
-                      <span>
-                          <i class="fa fa-lock mr-1"></i>
-
-                          <span class="badge badge-pill badge-danger">Denied</span>
-                      </span>
-                  </td>
-                  <td>Office Manager</td>
-                  <td>London</td>
-                  <td>37</td>
-                  <td>2008/12/11</td>
-                  <td>$136,200</td>
-                  <td>$136,200</td>
-                  <td>
-                      <span class="d-flex justify-content-between">
+                      <% } %>
+                      <% if(admin.block == true) { %>
+                        <span class="d-flex justify-content-between">
                           <span>
-                            <i class="fa fa-lock custom-lock-icon"></i>
+                            <a href="#"  onclick= 'toUnblock("<%= admin.userId %>", "<%= admin.firstName %> <%= admin.lastName %>", "<%= csrfToken %>" )' data-tooltip data-placement="top" title="Unblock"><i class="fa fa-unlock custom-lock-icon"></i></a>
                           </span>
-
-                          <span><i class="fa fa-trash custom-trash-icon"></i></span>
                       </span>
+                      <% } %>
                   </td>
-              </tr>
-              <tr>
-                  <td class="d-flex">
-                      <span class="">
-                      </span>
-                      <span>
-                          <i class="fa fa-lock mr-1"></i>
-
-                          <span class="badge badge-pill badge-danger">Denied</span>
-                      </span>
-                  </td>
-                  <td>Office Manager</td>
-                  <td>London</td>
-                  <td>37</td>
-                  <td>2008/12/11</td>
-                  <td>$136,200</td>
-                  <td>$136,200</td>
-                  <td>
-                      <span class="d-flex justify-content-between">
-                          <span>
-                            <i class="fa fa-lock custom-lock-icon"></i>
-                          </span>
-
-                          <span><i class="fa fa-trash custom-trash-icon"></i></span>
-                      </span>
-                  </td>
-              </tr>
+                </tr>
+              <% })%>
           </tbody>
       </table>
+
+      <!-- ------------------------------Add Admin Modal ----------------------------->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content ">
+                <form id="role-form">
+              <div class="modal-header d-flex justify-content-center">
+                  <h5 class="modal-title ">Add Admin</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+            <div class="modal-body px-5 py-3" style="padding: 0 !important">
+              <div class="container px-5">
+                <div class="row">
+                    <div class="col-md-6">
+                            <div class="form-group my-4">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" name="" id="firstName" placeholder="First Name" required>
+                                  </div>
+                    </div>
+                  <div class="col-md-6">
+                        <div class="form-group my-4">
+                                <label for="lastName">Lastname</label>
+                                <input type="Text" class="form-control" name="" id="lastName" placeholder="Lastname" required>
+                              </div>                    
+                  </div>
+                  <div class="col-md-12">
+                        <div class="form-group mb-4">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" name="" id="email" placeholder="Email Address" required>
+                              </div>
+      
+                              <div class="form-group my-4">
+                                      <label for="password">Password</label>
+                                      <input type="password" class="form-control" name="" id="password" placeholder="Password" required>
+                              </div>
+      
+                              <div class="form-group my-4">
+                                      <label for="phone">Phone</label>
+                                      <input type="number" class="form-control" name="" id="password" placeholder="Enter Phone Number" required>
+                                    </div>                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button id="button" type="submit" class="btn payment custom-button py-2 px-4">
+                  Save</button>
+            </div>
+                </form>
+          </div>
+        </div>
+      </div>
+      <!-- ------------------------------Add Admin Modal End--------------------------->
     </section>
   </main>
-</body>
-<script src="/javascripts/bootstrap.js"></script>
-<script src="/javascripts/jquery.js"></script>
 <script src="/javascripts/popper.js"></script>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/bootstrap.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script>
+  $(function(){
+   $('[data-tooltip]').tooltip();
+   });
+</script>
 <!-- I am using boostrap data table scripts -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
@@ -134,11 +175,14 @@
 
     $('div.dataTables_wrapper div.dataTables_filter input').attr('placeholder', 
     "Search for admins");
-    
-    // $('#example_wrapper').children.list
+
     document.querySelectorAll('#example_wrapper div')[5].style.overflowX = 'auto';
     document.querySelectorAll('#example_wrapper div')[5].style.margin = '';
     document.querySelectorAll('#example_wrapper div')[5].style.width = '100%';
     } );
 </script>
+
+<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+<script src="/javascripts/adminList.js"></script>
+</body>
 </html>

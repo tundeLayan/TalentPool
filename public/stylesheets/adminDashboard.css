@@ -112,5 +112,6 @@
 @media (max-width: 395px) {
   .admin-dashboard {
     padding: 2rem 2rem;
+    margin-top: 8rem;
   }
 }

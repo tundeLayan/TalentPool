@@ -14,7 +14,7 @@
   } */
 
   .navbar-brand {
-    padding-left: 105px;
+    padding-left: 120px;
   }
 
   .user-nav {
@@ -128,6 +128,15 @@ ul li {
   padding: 15px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
   border-radius: 0 !important;
+}
+
+.complete-profile-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #04172a;
+  padding: 0 !important;
 }
 
 @media screen and (max-width: 991px) {
