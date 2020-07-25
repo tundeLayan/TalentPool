@@ -3,9 +3,9 @@ const { getEmployee, getPortfolio, getSkills, addSkill } = require('../dao/db-qu
 const db = require('../../Models')
 
 const dashboardHandler = async (req, res) =>{
-  const employee = await getEmployee(db, 'a52867c3-000c-4102-bbc2-10b1a9041e62');
-  const portfolios = await getPortfolio(db, 'a52867c3-000c-4102-bbc2-10b1a9041e62');
-  const skills = await getSkills(db, 'a52867c3-000c-4102-bbc2-10b1a9041e62');
+  const employee = await getEmployee(db, req.session.userId);
+  const portfolios = await getPortfolio(db, req.session.userId);
+  const skills = await getSkills(db, req.session.userId);
   const data = { employee, portfolios, skills }
   renderPage(res, 'employee/employeeDashboard', data, 'Employee dashboard')
 }
