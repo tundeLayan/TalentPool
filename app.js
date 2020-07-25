@@ -27,6 +27,7 @@ const adminRoutes = require('./Routes/admin/index');
 
 const csrfProtection = csrf();
 const app = express();
+app.locals.moment = require('moment');
 
 app.use(
   cookieSession({
