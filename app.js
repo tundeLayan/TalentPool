@@ -24,6 +24,7 @@ const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const authRoutes = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
+const messageRoutes = require('./Routes/message/index');
 
 const csrfProtection = csrf();
 const app = express();
@@ -82,6 +83,7 @@ app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 app.use('/employer', employerRoutes);
 app.use('/admin', adminRoutes);
+app.use('/message', messageRoutes);
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler
