@@ -20,7 +20,7 @@ const { validateSignup, validateEmail } = require('../../Utils/validators/auth-v
 
 router.get('/auth/employer/google', getUserProfile('google-employer'));
 
-router.get('/auth/employee/google', getUserProfile('google-employer'));
+router.get('/auth/employee/google', getUserProfile('google-employee'));
  
 router.get('/auth/employer/google/callback', authCallbackHandler('google-employer'), handAuthCallback);
 
