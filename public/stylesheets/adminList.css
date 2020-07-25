@@ -7,10 +7,8 @@ body{
 }
 
 .add-admin-btn{
-  /* width: 13%; */
   background: #4D49FF;
   color: white;
-  /* height: 40px; */
   z-index: 50;
   font-size: 16px;
 }
@@ -30,6 +28,22 @@ body{
 .custom-trash-icon:hover,
 .custom-lock-icon:hover{
   cursor: pointer;
+}
+
+.custom-button{
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  margin: auto;
+  margin-bottom: 2em;
+  background: #4D49FF;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+  border-radius: 5px;
+}
+
+.custom-button:hover{
+  color:#fff;
+  background: rgb(43, 39, 255);
 }
 
 div.dataTables_wrapper div.dataTables_info{
@@ -107,5 +121,12 @@ div.dataTables_wrapper {
 @media only screen and (max-width: 600px){
   .custom-header{
     padding: 0 7px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-dialog {
+    width: 70% ; /* New width for default modal */
+    margin: auto; 
   }
 }
