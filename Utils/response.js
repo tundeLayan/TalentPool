@@ -56,33 +56,3 @@ module.exports.errorUserSignup = (
   }
 
 module.exports.employeeSignupRedirect = employeeSignupRedirect;
-// module.exports.errorUserSignup = errorUserSignup;
-// module.exports.errorResMsg = errorResMsg;
-// module.exports.successResMsg = successResMsg;
-
-// module.exports = {
-//   authErrorRedirect: (
-//     req,
-//     res,
-//     email,
-//     password,
-//     errorMessage,
-//     page,
-//     title,
-//     pagePath,
-//   ) => {
-//     const { isLoggedIn } = req.session;
-//     return res.status(401).render(`${page}`, {
-//       path: `${pagePath}`,
-//       pageName: `${title}`,
-//       errorMessage,
-//       isLoggedIn,
-//       success: req.flash('success'),
-//       oldInput: {
-//         email,
-//         password,
-//       },
-//       validationErrors: [],
-//     });
-//   },
-// };
