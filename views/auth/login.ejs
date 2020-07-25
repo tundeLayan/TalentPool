@@ -12,33 +12,41 @@
     <link rel="stylesheet" href="/stylesheets/login.css" />
   </head>
 
-  <body>
-    <%- include('../templates/navBar.ejs') %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Login | TalentHaven</title>
+    <%- include('../templates/externalPageHead.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+  </head>
 
-    <a class="navbar-brand" href="#">
-      <span class="prj-text-primary">Talent </span>
-      <span class="prj-text-accent">Haven </span>
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link prj-header-link font-weight-bold" href="#"
-            ><span class="sr-only">(current)</span></a
-          >
-        </li>
-      </ul>
-    </div>
+  <body class="bg-img">
+   <header>
+    <nav class="navbar navbar-expand-lg">
+     <div class="container-fluid my-auto">
+         <a class="navbar-brand" href="#"><span style="color: #4D49FF;">Talent</span> Haven</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav nav-padding ml-auto">
+                 <li class="nav-item nav-margin-signIn">
+                     <a class="nav-link nav-link-white" href="#">Sign In -></a>
+                 </li>
+                 <li class="nav-item nav-margin-signUp">
+                     <a class="nav-link nav-link-white" href="#">Sign Up -></a>
+                 </li>
+             </ul>
+         </div>
+     </div>
+ </nav>
+  </header>
 
     <main>
       <div class="container-fluid my-auto">
@@ -75,7 +83,6 @@
               <%= success %>
             </div>
             <% } %>
-
             <form action="/login" method="POST" name="loginForm">
               <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
               <div class="row">
@@ -90,6 +97,7 @@
                     id="email"
                     placeholder="Email address"
                     autocomplete="email"
+                    required
                   />
                 </div>
               </div>
@@ -103,6 +111,7 @@
                     id="password"
                     placeholder="Password"
                     autocomplete="new-password"
+                    required
                   />
                 </div>
               </div>
@@ -122,53 +131,56 @@
                 >
                   Log In
                 </button>
-
-                <div class="row pt-2 pb-3">
-                  <hr />
-                  <div class="col">
-                    <p class="sign-up-alt-text text-center mb-0">
-                      Or
-                    </p>
-                  </div>
-                  <hr />
-                </div>
-
-                <div class="row pb-3">
-                  <div class="col-12 d-flex justify-content-center">
-                    <button
-                      class="btn shadow-sm mb-3 d-flex justify-content-around align-items-center"
-                    >
-                      <img
-                        class="img-fluid btn-img mr-2"
-                        src="/images/icon-google.svg"
-                        alt="github button image"
-                      />
-                      <span class="mb-0">Continue with Google</span>
-                    </button>
-                  </div>
-                  <div class="col-12 d-flex justify-content-center">
-                    <button
-                      class="btn shadow-sm d-flex justify-content-around align-items-center"
-                    >
-                      <img
-                        class="img-fluid btn-img mr-2"
-                        src="/images/icon-github.svg"
-                        alt="github button image"
-                      />
-                      <span class="mb-0">Continue with Github</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <p class="prj-normal-text pt-0">
-                      Don't have an account?
-                      <a href="" class="text-center prj-text-accent">Sign Up</a>
-                    </p>
-                  </div>
-                </div>
               </div>
             </form>
+            <div class="row pt-2 pb-3">
+              <hr />
+              <div class="col">
+                <p class="sign-up-alt-text text-center mb-0">
+                  Or
+                </p>
+              </div>
+              <hr />
+            </div>
+
+            <div class="row pb-3">
+              <div class="col-12 d-flex justify-content-center">
+                <a href="/auth/employee/google">
+                  <button
+                    class="btn shadow-sm mb-3 d-flex justify-content-around align-items-center"
+                  >
+                    <img
+                      class="img-fluid btn-img mr-2"
+                      src="/images/icon-google.svg"
+                      alt="github button image"
+                    />
+                    <span class="mb-0">Continue with Google</span>
+                  </button>
+                </a>
+              </div>
+              <div class="col-12 d-flex justify-content-center">
+                <a href="/auth/employee/github">
+                  <button
+                    class="btn shadow-sm d-flex justify-content-around align-items-center"
+                  >
+                    <img
+                      class="img-fluid btn-img mr-2"
+                      src="/images/icon-github.svg"
+                      alt="github button image"
+                    />
+                    <span class="mb-0">Continue with Github</span>
+                  </button>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="prj-normal-text pt-0">
+                  Don't have an account?
+                  <a href="" class="text-center prj-text-accent">Sign Up</a>
+                </p>
+              </div>
+            </div>
           </section>
         </div>
       </div>
