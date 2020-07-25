@@ -41,13 +41,14 @@ io.on("connection", (socket) => {
     const {
       user
     } = chatUtils.addUser({
-      id: data.id,
+      id: socket.id,
+      userId: data.userId,
       name: data.name,
       role: data.role
     })
 
     socket.emit("user_connected",
-      chatUtils.generateMessageObject(user.id, user.name, user.role));
+      chatUtils.generateMessageObject(user.userId, user.name, user.role));
   })
 
 
@@ -57,20 +58,21 @@ io.on("connection", (socket) => {
       message: message.message,
       read_status: message.read_status,
       receiver_id: message.receiver,
-      user_id: message.sender,
+      userId: message.sender,
     });
 
     io.emit("message",
-      chatUtils.generateMessage(message.id, message.name,
-        message.role, message.message));
-    callback("Delivered");
+      chatUtils.generateMessage(message.message, message.read_status,
+        message.receiver_id, message.userId));
+      callback("Delivered");
   })
 
 
-  // TODO: Kindly fix where is user object coming from?
-  // socket.on("disconnect", () => {
-  //   io.emit("offline", chatUtils.generateMessageObject(user.id, user.name, user.role));
-  // })
+  
+  socket.on("disconnect", () => {
+  const [user] = removeUser(socket.id)
+  io.emit("offline", chatUtils.generateMessageObject(user.userId, user.name, user.role));
+  })
 
 })
 
