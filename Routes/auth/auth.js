@@ -20,6 +20,8 @@ const {
   validateEmail
 } = require('../../Utils/validators/auth-validator');
 
+const router = express.Router();
+
 
 router.get('/auth/employer/google', getUserProfile('google-employer'));
 
