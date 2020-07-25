@@ -104,7 +104,7 @@ const renderPage = async (req, res) => {
     return res.redirect('/employer/dashboard');
   }
   return res.redirect(
-    `/employee/dashboard/${user.userId}?success_message=Login Successful`,
+    `/employee/dashboard`,
   );
 };
 

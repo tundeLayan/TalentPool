@@ -24,6 +24,10 @@ const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const auth = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
+<<<<<<< HEAD
+=======
+const messageRoutes = require('./Routes/message/index');
+>>>>>>> a8411891cfb4835a8d875eb1ef7f60b7259bba7c
 
 const csrfProtection = csrf();
 const app = express();
@@ -83,6 +87,7 @@ app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
 app.use('/employer', employerRoutes);
 app.use('/admin', adminRoutes);
+app.use('/message', messageRoutes);
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler

@@ -1,6 +1,5 @@
 const express = require('express');
 const { updateProfile, getUpdateProfilepage } = require('../../Controllers/employee/employee-edit-profile');
-const { route } = require('../auth');
 
 const router = express.Router();
 
