@@ -2,14 +2,24 @@ const chatUsers = []
 
 
 const addUser = (userObject) => {
-    let { name, role } = userObject;
+    let {
+        name,
+        role
+    } = userObject;
     name = name.trim().toLowerCase();
     role = role.trim().toLowerCase();
 
-    const user = { id: userObject.id, name, role }
+    const user = {
+        id: userObject.id,
+        userId: userObject.userId,
+        name,
+        role,
+    }
     chatUsers.push(user)
 
-    return { user }
+    return {
+        user
+    }
 }
 
 const removeUser = (id) => {
@@ -29,26 +39,24 @@ const getUser = (id) => {
     })
 }
 
-const generateMessageObject = (id, name, role) => {
+const generateMessageObject = (userId, name, role) => {
     return {
-        id,
+        userId,
         name,
         role,
         createdAt: new Date().getTime()
     }
 }
 
-const generateMessage = (id, name, role,message) => {
+const generateMessage = (message, readStatus, receiverId, userId) => {
     return {
-        id,
-        name,
-        role,
         message,
+        readStatus,
+        receiverId,
+        userId,
         createdAt: new Date().getTime()
     }
 }
-
-
 
 module.exports = {
     addUser,
