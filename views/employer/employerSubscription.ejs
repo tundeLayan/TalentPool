@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Talent Haven | Privacy Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+
+    <!-- Boiler Plate CSS -->
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="/stylesheets/dashboardSidenav.css">
+    <link rel="stylesheet" href="/stylesheets/dashboardHeader.css">
+    <link rel="stylesheet" href="/stylesheets/employer-dashboard-privacy-settings.css">
+    <link rel="stylesheet" href="/stylesheets/employerSubscription.css">
+    <style>
+     
+    </style>
+</head>
+<body>
+
+    <%- include('../templates/employerDashboardSidebar.ejs') %>
+    <%- include('../templates/dashboardHeader.ejs') %>
+
+    <section class="dashboard-settings-container-pt">
+
+        <section class="dashboard-settings-main-pt">
+
+            <div class="container row employer-sub-custom-container">
+
+                <%- include('../templates/employerDashboardPrivacyTabs.ejs', { tabRoute: 'subscription'})%>
+
+                <div class="col-md-9 col-12 subscription-settings">
+                  <div class="container px-4 py-5">
+
+                    <h4 class="mb-4">Subscription</h4>
+                    <p><b>Status:</b> Premium Member</p>
+                    <p>Your subscription will expire in 14 days.<br/>
+                        Renewed on: 08-05-2020</p>
+                        <button type="button" class="btn btn-danger custom-unsubscribe-button">Unsubscribe</button>
+
+                    <p class="my-3">Subscription Plan</p>
+                 <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary custom-button" data-toggle="modal" data-target="#exampleModalLong">
+              Upgrade now
+            </button>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <h5 class="modal-title ">Upgrade to premium</h5>
+              </div>
+          <div class="modal-body" style="padding: 0 !important">
+            <div class="container-fluid px-0">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group my-4">
+                        <label for="fullName">Payer's full name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="John Doe">
+                      </div>
+                    <div class="form-group my-4">
+                        <label for="phoneNumber">Payer's Phone Number</label>
+                        <input type="number" class="form-control" id="phoneNumber" placeholder="+1803457934973">
+                      </div>
+                      <label class="">Currency</label>
+                      <select class="form-control mb-4">
+                          <option id="currency">Select your currency</option>
+                          <option>Naira</option>
+                          <option>Dollars</option>
+                        </select>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group my-4">
+                        <label for="email">Payer's Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="email@domain.com">
+                      </div>
+                      
+                      <label for="currency" >Currency</label>
+                      <select class="form-control mb-4">
+                            <option id="currency">Select your currency</option>
+                            <option>Naira</option>
+                            <option>Dollars</option>
+                          </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary payment" data-dismiss="modal">Initiate Payment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+                    
+                  </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/popper.js"></script>
+
+    <!-- Dashboard JS -->
+    <!-- <script src="/javascripts/dashboardNav.js"></script> -->
+    <!-- <script src="/javascripts/dashboardSideNav.js"></script> -->
+</body>
+</html>

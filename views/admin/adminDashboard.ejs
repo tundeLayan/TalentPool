@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <%- include('../templates/dashboardHead.ejs') %>
-    <link rel="stylesheet" href="stylesheets/adminDashboard.css" />
-    <title>Talent Haven|Admin Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/adminDashboard.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <title>Talent Haven | Admin Dashboard</title>
   </head>
   <body>
       <%- include('../templates/adminDashboardSidebar.ejs') %> 
@@ -13,107 +14,340 @@
         <div class="admin-dashboard-figures">
           <div class="admin-dashboard-figure">
             <p class="title">Total employees</p>
-            <p class="figure">43</p>
+            <p class="figure"><%= totalEmployee.length %></p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Total employers</p>
-            <p class="figure">2</p>
+            <p class="figure"><%= totalEmployer.length %></p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Total teams</p>
-            <p class="figure">68</p>
+            <p class="figure"><%= totalTeams %></p>
           </div>
           <div class="admin-dashboard-figure">
-            <p class="title">Active packages</p>
-            <p class="figure">16</p>
+            <p class="title">Total users</p>
+            <p class="figure"><%= allUsers.length %></p>
           </div>
           <div class="admin-dashboard-figure">
-            <p class="title">Active transactions</p>
-            <p class="figure">0</p>
-            <p class="previous"><span class="previous-figure">0</span> Total</p>
+            <p class="title">Active users</p>
+            <p class="figure"><%- allUsers.length - unactiveUsers.length %></p>
+            <p class="previous"><span class="previous-figure"><%= unactiveUsers.length %></span> Blocked users</p>
           </div>
           <div class="admin-dashboard-figure">
-            <p class="title">Active subscriptions</p>
-            <p class="figure">89</p>
+            <p class="title">Active subscribers</p>
+            <p class="figure"><%= activeSubscriptions.length %></p>
             <p class="previous">
-              <span class="previous-figure">23</span> Inactive
+              <span class="previous-figure"><%= unactiveSubscriptions.length %></span> Inactive
             </p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Pending reviews</p>
-            <p class="figure">23</p>
+            <p class="figure"><%= pendingReviews %></p>
             <p class="previous">
-              <span class="previous-figure">341</span> Requests
+              <span class="previous-figure"><%= uploadedEmployers.length %></span> Uploaded
             </p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Approved reviews</p>
-            <p class="figure">0</p>
+            <p class="figure"><%= totalApprovedUsers %></p>
             <p class="previous">
-              <span class="previous-figure">0</span> Disapproved
+              <span class="previous-figure"><%= totalDisapprovedUsers %></span> Disapproved
             </p>
           </div>
         </div>
         <div class="admin-dashboard-others">
           <div class="admin-dashboard-graph">
             <div class="graph-selection">
-              <p>This year</p>
-              <div
-                class="d-flex align-items-center btn dropdown-toggle dropleft"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-              </div>
+              <p><%= moment(Date.now()).format("YYYY") %></p>
+              <select oninput="fetchData()" id="months" name="Months">
+                <option selected></option>
+                <option value="Jan">Jan</option>
+                <option value="Feb">Feb</option>
+                <option value="Mar">Mar</option>
+                <option value="Apr">Apr</option>
+                <option value="May">May</option>
+                <option value="Jun">Jun</option>
+                <option value="Jul">Jul</option>
+                <option value="Aug">Aug</option>
+                <option value="Sep">Sep</option>
+                <option value="Oct">Oct</option>
+                <option value="Nov">Nov</option>
+                <option value="Dec">Dec</option>
+              </select>
             </div>
             <div class="graph">
-              <p class="text-uppercase">graph placeholder</p>
+              <canvas id="adminChart" style="width: fit-content; margin-top: 2rem;"></canvas>
+              <div class="d-flex justify-content-between align-items-center py-4 px-4 statistics__info">
+                <p class="m-0">Employees</p>
+                <strong class="m-0" id="numberOfEmployee"></strong>
+                <p class="m-0">Employers</p>
+                <strong class="m-0" id="numberOfEmployer"></strong>
+              </div>
             </div>
           </div>
           <div class="dashboard-recent-activity">
-            <div class="recent-activity">
-              <div class="activity-info">
-                <img src="/images/rsz_employee-dashboard.png" alt="">
-                <div class="activity-info-text">
-                  <p class="title">John Doe</p>
-                  <p class="status">Joined <span>10</span> mins ago</p>
+            <% latestEmployers.forEach(function(employer) { %>
+              <div class="recent-activity">
+                <div class="activity-info">
+                  <img src="/images/rsz_employee-dashboard.png" alt="">
+                  <div class="activity-info-text">
+                    <p class="title"><%= employer.User.firstName%> <%= employer.User.lastName%></p>
+                    <p class="status">Joined <span><%= moment(employer.createdAt).startOf('day').fromNow() %></span></p>
+                  </div>
                 </div>
+                <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">
               </div>
-              <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">
-            </div>
-            <div class="recent-activity">
-              <div class="activity-info">
-                <img src="/images/rsz_employee-dashboard.png" alt="">
-                <div class="activity-info-text">
-                  <p class="title">John Doe</p>
-                  <p class="status">Joined <span>10</span> mins ago</p>
-                </div>
-              </div>
-              <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">
-            </div>
-            <div class="recent-activity">
-              <div class="activity-info">
-                <img src="/images/rsz_employee-dashboard.png" alt="">
-                <div class="activity-info-text">
-                  <p class="title">John Doe</p>
-                  <p class="status">Joined <span>10</span> mins ago</p>
-                </div>
-              </div>
-              <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">
-            </div>
-            <div class="recent-activity">
-              <div class="activity-info">
-                <img src="/images/rsz_employee-dashboard.png" alt="">
-                <div class="activity-info-text">
-                  <p class="title">John Doe</p>
-                  <p class="status">Joined <span>10</span> mins ago</p>
-                </div>
-              </div>
-              <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">
-            </div>
+            <% }) %>
           </div>
       </div>
     </main>
+    <script>
+      // Creating a dynamic chart for employee and employer data
+
+      // Employers that joined each month
+      let eJan = 0;
+      let eFeb = 0;
+      let eMar = 0;
+      let eApr = 0;
+      let eMay = 0;
+      let eJun = 0;
+      let eJul = 0;
+      let eAug = 0;
+      let eSep = 0;
+      let eOct = 0;
+      let eNov = 0;
+      let eDec = 0;
+
+        <% totalEmployer.forEach((employer) => { %>
+          if ("<=%moment(employer.createdAt).format('YYYY') == moment(Date.now()).format('YYYY')%>") { // check if in current year
+            switch("<%=moment(employer.createdAt).format('MMMM')%>") {
+              case "January":
+                eJan += 1;
+                break;
+              case "Feburary":
+                eFeb += 1;
+                break;
+              case "March":
+                eMar += 1;
+                break;
+              case "April":
+                eApr += 1;
+                break;
+              case "May":
+                eMay += 1;
+                break;
+              case "June":
+                eJun += 1;  
+                break;
+              case "July":
+                eJul += 1;
+                break;
+              case "August":
+                eAug += 1;
+                break;
+              case "September":
+                eSep += 1;
+                break;
+              case "October":
+                eOct += 1;
+                break;
+              case "November":
+                eNov += 1;
+                break;
+              case "December":
+                eDec += 1;
+                break;
+              default:
+                break;
+            }
+          }
+        <% }) %>
+      
+      // Employees that joined each month
+      let jan = 0;
+      let feb = 0;
+      let mar = 0;
+      let apr = 0;
+      let may = 0;
+      let jun = 0;
+      let jul = 0;
+      let aug = 0;
+      let sep = 0;
+      let oct = 0;
+      let nov = 0;
+      let dec = 0;
+
+        <% totalEmployee.forEach((employee) => { %>
+          if ("<=%moment(employee.createdAt).format('YYYY') == moment(Date.now()).format('YYYY')%>") { // check if in current year
+            switch("<%=moment(employee.createdAt).format('MMMM')%>") {
+              case "January":
+                jan += 1;
+                break;
+              case "Feburary":
+                feb += 1;
+                break;
+              case "March":
+                mar += 1;
+                break;
+              case "April":
+                apr += 1;
+                break;
+              case "May":
+                may += 1;
+                break;
+              case "June":
+                jun += 1;  
+                break;
+              case "July":
+                jul += 1;
+                break;
+              case "August":
+                aug += 1;
+                break;
+              case "September":
+                sep += 1;
+                break;
+              case "October":
+                oct += 1;
+                break;
+              case "November":
+                nov += 1;
+                break;
+              case "December":
+                dec += 1;
+                break;
+              default:
+                break;
+            }
+          }
+        <% }) %>
+
+      
+      let adminChart = document.getElementById('adminChart').getContext('2d');
+
+      Chart.defaults.global.defaultFontColor = 'black';
+
+      let viewChart = new Chart(adminChart, {
+        type: 'line',
+        data: {
+          labels: [ 
+            'Jan', 
+            'Feb',
+            'Mar', 
+            'Apr', 
+            'Jun', 
+            'Jul', 
+            'Aug', 
+            'Sep', 
+            'Oct', 
+            'Nov', 
+            'Dec'
+          ],
+          datasets: [
+            {
+            data: [
+              jan,
+              feb,
+              mar,
+              apr,
+              may,
+              jun,
+              jul,
+              aug,
+              sep,
+              oct,
+              nov,
+              dec
+            ],
+            label: 'No. of employees',
+            borderColor: "#3e95cd",
+            fill: false
+            },
+            {
+            data: [
+              eJan,
+              eFeb,
+              eMar,
+              eApr,
+              eMay,
+              eJun,
+              eJul,
+              eAug,
+              eSep,
+              eOct,
+              eNov,
+              eDec,
+            ],
+            label: 'No. of employers',
+            borderColor: "#8e5ea2",
+            fill: false
+            },
+          ],
+        },
+        options: {
+            title: {
+            display: true,
+            text: 'Monthly breakdown of employers and employees that joined in <%= moment(Date.now()).format("YYYY") %>',
+            fontSize: 18,
+          },
+        },
+      });
+
+              // fetch monthly data by id
+              function fetchData(){
+                switch(document.getElementById('months').value) {
+                  case "Jan":
+                    document.getElementById('numberOfEmployee').innerHTML = jan;
+                    document.getElementById('numberOfEmployer').innerHTML = eJan;
+                    break;
+                  case "Feb":
+                    document.getElementById('numberOfEmployee').innerHTML = feb;
+                    document.getElementById('numberOfEmployer').innerHTML = eFeb;
+                    break;
+                  case "Mar":
+                    document.getElementById('numberOfEmployee').innerHTML = mar;
+                    document.getElementById('numberOfEmployer').innerHTML = eMar;
+                    break;
+                  case "Apr":
+                    document.getElementById('numberOfEmployee').innerHTML = apr;
+                    document.getElementById('numberOfEmployer').innerHTML = eApr;
+                    break;
+                  case "May":
+                    document.getElementById('numberOfEmployee').innerHTML = may;
+                    document.getElementById('numberOfEmployer').innerHTML = eMay;
+                    break;
+                  case "Jun":
+                    document.getElementById('numberOfEmployee').innerHTML = jun;
+                    document.getElementById('numberOfEmployer').innerHTML = eJun; 
+                    break;
+                  case "Jul":
+                    document.getElementById('numberOfEmployee').innerHTML = jul;
+                    document.getElementById('numberOfEmployer').innerHTML = eJul;
+                    break;
+                  case "Aug":
+                    document.getElementById('numberOfEmployee').innerHTML = aug;
+                    document.getElementById('numberOfEmployer').innerHTML = eAug;
+                    break;
+                  case "Sep":
+                    document.getElementById('numberOfEmployee').innerHTML = sep;
+                    document.getElementById('numberOfEmployer').innerHTML = eSep;
+                    break;
+                  case "Oct":
+                    document.getElementById('numberOfEmployee').innerHTML = oct;
+                    document.getElementById('numberOfEmployer').innerHTML = eOct;
+                    break;
+                  case "Nov":
+                    document.getElementById('numberOfEmployee').innerHTML = nov;
+                    document.getElementById('numberOfEmployer').innerHTML = eNov;
+                    break;
+                  case "Dec":
+                    document.getElementById('numberOfEmployee').innerHTML = dec;
+                    document.getElementById('numberOfEmployer').innerHTML = eDec;
+                    break;
+                  default:
+                    break;
+                }
+              }
+    </script>
   </body>
 </html>

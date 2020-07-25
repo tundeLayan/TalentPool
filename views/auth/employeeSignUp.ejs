@@ -1,25 +1,45 @@
+<!DOCTYPE html>
 <html>
-<%- include('../templates/head') %>
-<link rel="stylesheet" href="/stylesheets/employee-sign-up.css" />
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Boiler Plate CSS -->
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+  <link rel="stylesheet" href="/stylesheets/employee-sign-up.css" />
+  <link rel="stylesheet" href="/stylesheets/header.css" />
+</head>
 
 <body>
-  <%#- include('../templates/navBar') %>
+  <%- include('../templates/navBar') %>
   <!-- Include nav here -->
   <main class="mx-auto">
     <div class="container-fluid main-container mx-auto my-auto">
       <div class="row py-4 mx-md-4 px-lg-3">
         <div class="col-md-5 mx-auto my-auto d-none d-md-block">
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <h1><span class="prj-text-accent">Talent</span> <span class="prj-text-primary">Haven</span> </h1>
+            <h1><a class="navbar-brand" href="/"><span class="prj-text-accent">Talent</span> <span class="prj-text-primary">Haven</span></a> </h1>
             <p class="text-center">
-              <a href="#" class="prj-link">Sign in</a> or
-              <a href="#" class="prj-link">Create an account</a>
+              <a href="/login" class="prj-link">Sign in</a> or
+              <a href="/employee/register" class="prj-link">Create an account</a>
             </p>
           </div>
         </div>
-        <section class="form-container shadow mx-auto px-4 col-11 col-sm-8 col-md-7 col-lg-5 col-xl-4 bg-white br-5">
-          <h1 class="prj-header-h4 font-weight-bold text-center py-3">Sign up</h1>
-          <form name="employeeSignUpForm">
+        <section
+          class="form-container shadow mx-auto col-10 px-4 col-sm-8 col-md-7 col-lg-6 px-lg-5 col-xl-5 bg-white br-5">
+          <h1 class="prj-header-h4 font-weight-bold text-center py-3">
+            Sign up
+          </h1>
+          <form name="employeeSignUpForm" method="POST" action="">
+            <% if (error && error.length > 0) { %>
+              <div role="alert" class="alert alert-danger user-message user-message--error"><%= error %></div>
+            <% }if (success && success.length > 0) { %>
+                <div role="alert" class="alert alert-success user-message"><%= success %></div>
+            <% } %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="row">
               <div class="form-group col-12 col-md">
                 <label for="category" class="prj-normal-text">Category</label>
@@ -31,26 +51,26 @@
               <div class="form-group col-12 col-md">
                 <label for="hngId" class="prj-normal-text">HNG ID</label>
                 <input type="text" name="hngId" class="form-control prj-form-control" id="hngId"
-                  placeholder="What is your ID?" required />
+                  placeholder="What is your ID?" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].hngId %> <%} %>"/>
               </div>
             </div>
             <div class="row">
               <div class="form-group col-12 col-md">
                 <label for="firstName" class="prj-normal-text">First name</label>
                 <input type="text" name="firstName" class="form-control prj-form-control" id="firstName"
-                  placeholder="First name" autocapitalize="on" autocomplete="given-name" required minlength="2" />
+                  placeholder="First name" autocapitalize="on" autocomplete="given-name" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].firstName %> <%} %>" required minlength="2" />
               </div>
               <div class="form-group col-12 col-md">
                 <label for="lastName" class="prj-normal-text">Last name</label>
                 <input type="text" name="lastName" class="form-control prj-form-control" id="lastName"
-                  placeholder="Last name" autocapitalize="on" autocomplete="family-name" required minlength="2" />
+                  placeholder="Last name" autocapitalize="on" autocomplete="family-name" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].lastName %> <%} %>" required minlength="2" />
               </div>
             </div>
             <div class="row">
               <div class="form-group col">
                 <label for="email" class="prj-normal-text">Email address</label>
                 <input type="email" name="email" class="form-control prj-form-control" id="email"
-                  placeholder="Email address" autocomplete="email" required />
+                  placeholder="Email address" autocomplete="email" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].email %> <%} %>" required />
               </div>
             </div>
             <div class="row">
@@ -82,24 +102,27 @@
           </form>
           <div class="row">
             <div class="col">
-              <p class="sign-up-alt-text text-center mb-0 mt-4">
+              <p class="sign-up-alt-text text-center mb-0 mt-3">
                 or sign up with
               </p>
-              <div class="col d-flex justify-content-center mt-4">
-                <button class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
-                  <img class="img-fluid btn-img mr-2" src="images/employee-sign-up/icon-google.svg"
+              <div class="col d-flex justify-content-center mt-3">
+                
+                  <a href="/auth/employee/google" class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
+                    <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-google.svg"
                     alt="github button image" />
-                  <span class="mb-0 prj-normal-text">Google</span>
-                </button>
-                <button class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
-                  <img class="img-fluid btn-img mr-2" src="images/employee-sign-up/icon-github.svg"
+                    <span class="mb-0 prj-normal-text">Google</span>
+                  </a>
+        
+                  <a href="/auth/employee/github" class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
+                    <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-github.svg"
                     alt="github button image" />
-                  <span class="mb-0 prj-normal-text">Github</span>
-                </button>
+                    <span class="mb-0 prj-normal-text">Github</span>
+                  </a>
+      
               </div>
               <p class="prj-normal-text text-center mt-3">
                 Already have an account?
-                <a href="#" class="text-center prj-link ">Sign in</a>
+                <a href="#" class="text-center prj-link">Sign in</a>
               </p>
             </div>
           </div>

@@ -4,8 +4,27 @@
 
 <header id="header">
     <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light nav-top">
+        <div class="d-flex align-items-center">
+            <div class="d-lg-none">
+                <button class="btn toggle-btn mr-2" onclick="openNav()" type="button" aria-expanded="false"
+                    aria-label="Toggle sidenav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <a class="navbar-brand" href="#">
 
-        <a class="navbar-brand" href="#"><span style="color: #4D49FF;">Talent</span> Haven</a>
+                <span style="color: #4D49FF;">Talent</span> Haven
+
+                <!-- If User hasn't completed their profile -->
+                <div class="row">
+                    <div class="col-12">
+                        <span class="btn complete-profile-text text-wrap">
+                            Your profile is incomplete. Click <span style="color: #4d49ff;">here</span> to complete it.
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
 
         <div class="user-pane d-flex flex-wrap ml-auto" id="navbarSupportedContent">
 
@@ -58,19 +77,15 @@
                                     <a href="#" class="nav-card-link text-center text-lg-left">View profile -></a>
                                     <a href="#" class="nav-card-link text-center text-lg-left ml-0 ml-lg-3">Edit profile
                                         -></a>
+                                    <a href="/logout"
+                                        class="btn-small nav-card-link text-center text-lg-left ml-0 ml-lg-3">Logout
+                                        -></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
-        </div>
-
-        <div class="d-lg-none">
-            <button class="btn toggle-btn mr-2" onclick="openNav()" type="button" aria-expanded="false"
-                aria-label="Toggle sidenav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </div>
 
     </nav>

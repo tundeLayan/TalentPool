@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../templates/externalPageHead.ejs') %>
+    <title>TalentPool | <%= pageName %></title>
+
+  </head>
+  <body>
+    <%- include('../templates/navBar.ejs') %>
+    <div class="container">
+      <div class="card verify-card resend-form-wrap" id="resend-form">
+        <div class="card-body d-flex flex-column align-items-center">
+          <div class="my-3">
+            <img src="/img/logo.svg" alt="logo" />
+          </div>
+            <div class="alert" style="padding: 0.5rem 1rem;" id="alert" role="alert">
+              <p class="my-0"><%- result %> </p>
+            </div>
+         
+      </div>
+    </div>
+
+  </body>
+</html>
