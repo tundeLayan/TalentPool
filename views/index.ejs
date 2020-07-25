@@ -43,6 +43,14 @@
             -webkit-align-items: center;
             align-items: center;
         }
+        .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+            left: -4px;
+            right: auto;
+        }
+        .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+            right: -4px;
+            left: auto;
+        }
     </style>
 </head>
 
@@ -310,6 +318,38 @@
 
                     </div>
                 </div>
+
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
+                        <div class="feedback-card">
+    
+                            <h4>"Exceptional candidates"</h4>
+    
+                            <div class="content">
+                                Recruiting through TalentPool has been a breath of fresh air.
+                                The quality of candidates have been exceptional compared to
+                                other job sites.
+                            </div>
+    
+                            <hr>
+    
+                            <div class="row footer">
+                                <div class="col-xl-3 col-4 blob-outer">
+                                    <div class="blob-inner"></div>
+                                </div>
+                                <div class="col-xl-9 col-8 talents-details">
+    
+                                <span class="track">
+                                    John Doe
+                                </span>
+                                    <span class="name">
+                                    HR at Google
+                                </span>
+    
+                                </div>
+                            </div>
+    
+                        </div>
+                </div>
             </div>
             <!-- Add Arrows -->
             <div class="swiper-button-next"></div>
@@ -485,6 +525,46 @@
                         </div>
 
                     </div>
+                </div>
+
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
+                        <div class="feedback-card talent-fb-card">
+    
+                            <div class="row header">
+                                <div class="col-xl-3 col-4 blob-outer">
+                                    <div class="blob-inner"></div>
+                                </div>
+                                <div class="col-xl-9 col-8 talents-details">
+    
+                                    <span class="track">
+                                        John Doe
+                                    </span>
+                                    <span class="name">
+                                        HR at Google
+                                    </span>
+    
+                                </div>
+                            </div>
+    
+                            <hr>
+    
+                            <div class="content talent-profile">
+                                I am a Product/UX Designer
+                                with 6 years of experience crafting digital
+                                products helping businesses expand their
+                                capacity for impact.
+                                <span class="recent-work">
+                                    Previously worked at Google
+                                </span>
+                            </div>
+    
+                            <div class="view-profile-footer">
+                                <span>
+                                    View Profile <i></i>
+                                </span>
+                            </div>
+    
+                        </div>
                 </div>
             </div>
             <!-- Add Arrows -->
@@ -768,6 +848,9 @@
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 6000,
                 },
             });
         }
