@@ -9,12 +9,15 @@ module.exports = {
   },
   getEmployer: (models, user) => {
     return models.Employer.findOne({
-      where: { userId: user.userId },
+      where: { userId: user },
     });
+  },
+  getPortfolio: (models, userId) => {
+    return models.Portfolio.findAll({ where: {userId}})
   },
   getEmployee: (models, user) => {
     return models.Employee.findOne({
-      where: { userId: user.userId },
+      where: { userId: user },
     });
   },
   getAllEmployee: (models) => {
@@ -23,6 +26,9 @@ module.exports = {
         verificationStatus: 'Approved',
       },
     });
+  },
+  getSkills: (models, userId) => {
+    return models.Skill.findAll({ where: userId})
   },
   getRecommendedInterns: (models) => {
     return models.Employee.findAll({
