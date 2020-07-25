@@ -16,39 +16,9 @@
     <link rel="stylesheet" href="/stylesheets/dashboardSidenav.css">
     <link rel="stylesheet" href="/stylesheets/dashboardHeader.css">
     <link rel="stylesheet" href="/stylesheets/employer-dashboard-privacy-settings.css">
+    <link rel="stylesheet" href="/stylesheets/employerSubscription.css">
     <style>
-      .body{
-        font-size: 20px;
-      }
-      .modal {
-        position: fixed;
-        top: 30px;
-        bottom: 0;
-        z-index: 10040;
-        overflow: auto;
-        overflow-y: auto;
-      }
-      .custom-button{
-        width: 20%;
-        text-align: center;
-        margin: auto;
-        margin-bottom: 2em;
-        background: #4D49FF;
-        box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
-        border-radius: 5px;
-      }
-      .custom-button:hover,
-      .payment:hover{
-        color:#fff;
-        background: rgb(43, 39, 255);
-      }
-
-      .payment{
-        background: #4D49FF;
-        box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
-        border-radius: 5px;
-      }
-    
+     
     </style>
 </head>
 <body>
@@ -60,16 +30,34 @@
 
         <section class="dashboard-settings-main-pt">
 
-            <div class="container row">
+            <div class="container row employer-sub-custom-container">
 
                 <%- include('../templates/employerDashboardPrivacyTabs.ejs', { tabRoute: 'subscription'})%>
 
-                <div class="col-md-9 col-12 privacy-settings">
-                  <div class="container">
+                <div class="col-md-9 col-12 subscription-settings">
+                  <div class="container px-4 py-5">
+
+                    <h4 class="mb-4">Subscription</h4>
+                    <p><b>Status:</b> Premium Member</p>
+                    <p>Your subscription will expire in 14 days.<br/>
+                        Renewed on: 08-05-2020</p>
+                        <button type="button" class="btn btn-danger custom-unsubscribe-button">Unsubscribe</button>
+
+                    <p class="my-3">Subscription Plan</p>
                  <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary custom-button" data-toggle="modal" data-target="#exampleModalLong">
               Upgrade now
             </button>
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- Modal -->
