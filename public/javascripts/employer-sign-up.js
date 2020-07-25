@@ -1,6 +1,7 @@
 const Model ={
   getFormData(formElem){
     const data = Object.fromEntries(new FormData(formElem).entries());
+    console.log(data)
     return data;
   }
 }
@@ -23,6 +24,7 @@ const View ={
   }
 }
 
+// TODO: FIX THIS, password matching wrong
 const Controller ={
   initComponent(){
     Controller.initEventListeners()

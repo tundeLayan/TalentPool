@@ -1,0 +1,28 @@
+
+.profile-img-bar { 
+background-image: url(../../images/bg-profile.svg);
+ background-size: 100%;
+height: 10.1em;
+background-repeat: no-repeat; 
+}
+.profile-img-div{
+position: relative;
+width: 100%;
+}
+.profile-img{
+position: absolute;
+width: 15%;
+left: 40%;
+top:0.1em;
+} 
+
+.long-blue {
+    background: rgba(65, 61, 243, 0.53);
+    border-radius: 10px;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.progress {
+    height: 0.5em !important;
+}

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <%- include('../templates/dashboardHead.ejs') %>
-    <link rel="stylesheet" href="/stylesheets/adminDashboard.css" />
+    <link rel="stylesheet" href="stylesheets/adminDashboard.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <title>Talent Haven | Admin Dashboard</title>
   </head>
@@ -59,21 +59,21 @@
           <div class="admin-dashboard-graph">
             <div class="graph-selection">
               <p>This year</p>
-                <select oninput="fetchData()" id="months" name="Months">
-                  <option selected></option>
-                  <option value="Jan">Jan</option>
-                  <option value="Feb">Feb</option>
-                  <option value="Mar">Mar</option>
-                  <option value="Apr">Apr</option>
-                  <option value="May">May</option>
-                  <option value="Jun">Jun</option>
-                  <option value="Jul">Jul</option>
-                  <option value="Aug">Aug</option>
-                  <option value="Sep">Sep</option>
-                  <option value="Oct">Oct</option>
-                  <option value="Nov">Nov</option>
-                  <option value="Dec">Dec</option>
-                </select>
+              <select oninput="fetchData()" id="months" name="Months">
+                <option selected></option>
+                <option value="Jan">Jan</option>
+                <option value="Feb">Feb</option>
+                <option value="Mar">Mar</option>
+                <option value="Apr">Apr</option>
+                <option value="May">May</option>
+                <option value="Jun">Jun</option>
+                <option value="Jul">Jul</option>
+                <option value="Aug">Aug</option>
+                <option value="Sep">Sep</option>
+                <option value="Oct">Oct</option>
+                <option value="Nov">Nov</option>
+                <option value="Dec">Dec</option>
+              </select>
             </div>
             <div class="container">
               <canvas id="adminChart" style="width: fit-content; margin-top: 2rem;"></canvas>
