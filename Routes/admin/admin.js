@@ -1,6 +1,12 @@
 const express = require('express');
+
 const route = express.Router();
-const { getAllAdmin, blockAdmin, unblockAdmin, getAdminFullDetails } = require('../../Controllers/admin/admin');
+const {
+  getAllAdmin,
+  blockAdmin,
+  unblockAdmin,
+  getAdminFullDetails,
+} = require('../../Controllers/admin/admin');
 
 route.get('/all', getAllAdmin);
 route.get('/profile/:userId', getAdminFullDetails);
