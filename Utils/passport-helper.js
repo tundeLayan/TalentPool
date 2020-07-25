@@ -86,7 +86,7 @@ const createUser = async (req, profile, userRole, done) => {
 };
 
 const renderPage = async (req, res) => {
-  const user = { req };
+  const {user} =  req ;
   const data = {
     firstName: user.firstName,
     lastName: user.lastName,
@@ -104,7 +104,7 @@ const renderPage = async (req, res) => {
     return res.redirect('/employer/dashboard');
   }
   return res.redirect(
-    `/employee/dashboard/${user.userId}?success_message=Login Successful`,
+    `/employee/dashboard`,
   );
 };
 

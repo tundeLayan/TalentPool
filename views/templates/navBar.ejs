@@ -1,10 +1,57 @@
+<!--
+   To: @Tobiie
+   From: @orim.dominic
+   Message: Please find a way to integrate the
+            styles below properly in their main files.
+            Thanks.
+-->
+<style>
+    .signUp__main-link, .signUp__sub-link{
+        z-index: 40001;
+    }
+    .signUp__main-link {
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .signUp__main-link:hover {
+        color: #04172a;
+    }
+
+    .signUp__sub-link {
+        color: #04172a;
+    }
+
+    .signUp__sub-link:hover {
+        color: #4D49FF;
+        background-color: transparent;
+    }
+
+    .prj-dropdown-menu-left {
+        left: -2rem;
+        z-index: 40001;
+    }
+
+    @media screen and (max-width: 990px) {
+        .signUp__main-link {
+            color:  #4D49FF;;
+            font-size: 16px;
+        }
+
+        .signUp__main-link:hover {
+            color: #04172a;
+        }
+    }
+</style>
+
+
 <header>
     <img class="navDesign d-none d-lg-flex" src="/images/landing-page-nav/navDesign2.svg" alt="">
     <img class="navDesign d-none d-lg-flex" src="/images/landing-page-nav/navDesign1.svg" alt="">
 
     <nav class="navbar navbar-expand-lg nav-bg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><span style="color: #4D49FF;">Talent</span> Haven</a>
+            <a class="navbar-brand" href="/"><span style="color: #4D49FF;">Talent</span> Haven</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -13,7 +60,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-padding ml-auto">
                     <li class="nav-item mr-lg-4">
-                        <a class="nav-link nav-link-black" href="#">Home</a>
+                        <a class="nav-link nav-link-black" href="/">Home</a>
                     </li>
                     <li class="nav-item mr-lg-4 ">
                         <a class="nav-link nav-link-black" href="#">About Us </a>
@@ -27,12 +74,24 @@
                     <li class="nav-item mr-lg-4">
                         <a class="nav-link nav-link-black contact-us" href="#">Contact Us </a>
                     </li>
+                   
                     <li class="nav-item nav-margin-signIn">
                         <a class="nav-link nav-link-white" href="/login">Sign In -></a>
                     </li>
-                    <li class="nav-item nav-margin-signUp">
-                        <a class="nav-link nav-link-white" href="/employer/register">Sign Up -></a>
+                    <li class="nav-item dropdown nav-margin-signUp">
+                        <a class="nav-link dropdown-toggle signUp__main-link" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sign up &#10230;
+                        </a>
+                        <div class="dropdown-menu prj-dropdown-menu-left" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item signUp__sub-link" href="/employer/register">Employer</a>
+                            <div class="dropdown-divider" style="background-color: #04172a;"></div>
+                            <a class="dropdown-item signUp__sub-link" href="/employee/register">Employee</a>
+                            </div>
                     </li>
+                    <!-- <li class="nav-item nav-margin-signUp">
+                        <a class="nav-link nav-link-white" href="/employer/register">Sign Up -></a>
+                    </li> -->
                 </ul>
             </div>
         </div>

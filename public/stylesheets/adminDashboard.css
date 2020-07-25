@@ -1,6 +1,7 @@
 .admin-dashboard {
   padding: 4rem 6rem;
   overflow-x: hidden;
+  margin-top: 6rem;
 }
 .admin-dashboard-figures {
   display: grid;
@@ -49,20 +50,22 @@
 }
 .graph-selection p {
   margin-bottom: 0;
+  margin-right: 0.5rem;
 }
 
+.graph-selection select,
+.graph-selection select > option {
+  cursor: pointer;
+}
 .graph p {
   font-weight: 600;
   font-size: 36px;
   line-height: 48px;
-  /* identical to box height */
   color: rgba(4, 23, 42, 0.1);
 }
-
-.dashboard-recent-activity:last-child {
-  border-bottom: none;
+.recent-activity:last-of-type {
+  border: none;
 }
-
 .recent-activity,
 .recent-activity .activity-info {
   display: flex;
@@ -102,6 +105,7 @@
 @media (max-width: 495px) {
   .admin-dashboard {
     padding: 2rem 4rem;
+    margin-top: 8rem;
   }
 }
 

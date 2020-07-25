@@ -2,21 +2,7 @@
 const { renderPage } = require('../../Utils/render-page');
 
 const loginPage = (req, res) => {
-  const { isLoggedIn, adminId, employeeId, employerId } = req.session;
-
-  if (isLoggedIn && adminId) {
-    res.redirect('/admin/dashboard');
-  }
-
-  const { passport } = req.session;
-
-  if (req.session && !passport) {
-    if (isLoggedIn && employeeId) {
-      res.redirect(`/employee/dashboard/${employeeId}`);
-    } else if (isLoggedIn && employerId) {
-      res.redirect('/employer/dashboard');
-    }
-  }
+  const { isLoggedIn } = req.session;
 
   const success = req.flash('success');
   let message = req.flash('error');
@@ -28,7 +14,6 @@ const loginPage = (req, res) => {
 
   const data = {
     errorMessage: message,
-    pageName: 'User Login',
     isLoggedIn,
     pageName: 'Login',
     success,
