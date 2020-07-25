@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Manrope';
+}
+
+@media screen and (min-width: 992px) {
+  #employeeDashboard .container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 574px) {
+  #employeeDashboard {
+    padding-top: 140px;
+  }
+}
+
+#employeeDashboard {
+  padding-top: 140px;
+}
+
+#employeeDashboard .card {
+  background: #ffffff;
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#employeeDashboard .card1 {
+  height: 130px !important;
+  max-height: 130px !important;
+}
+
+#employeeDashboard .card-text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #04172a;
+}
+
+#employeeDashboard .card-text2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 48px;
+  text-align: center;
+  color: #04172a;
+}
+
+#employeeDashboard .card2 {
+  height: 152px;
+  max-height: 152px;
+  padding: 20px 20px !important;
+}
+
+#employeeDashboard .card3 {
+  height: 327px !important;
+  max-height: 327px !important;
+  padding: 20px 20px !important;
+}
+
+#employeeDashboard .portfolio-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #04172a;
+}
+
+#employeeDashboard .portfolio-desc {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #04172a;
+}
+
+#employeeDashboard .portfolio-link {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: #04172a;
+}
+
+#employeeDashboard .empty-card {
+  padding-top: 30%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#employerDasemployeeDashboardhboard .empty-card-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #04172a;
+}
+
+#employeeDashboard .dashboard-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #04172a;
+}
+
+#employeeDashboard .dashboard-link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 21px;
+  color: #04172a;
+}
+
+#employeeDashboard .progress {
+  height: 0.3em;
+  background: #e6e8ea;
+  margin-bottom: 0.4em;
+}
+
+#employeeDashboard .progress-bar {
+  background: #4d49ff;
+}
+
+#employeeDashboard .card-skill {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #04172a;
+}
+
+#employeeDashboard .list-group {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  /* Hide scrollbar for IE, Edge and Firefox  */
+  -ms-overflow-style: none; /* IE and Edge  */
+  scrollbar-width: none; /*  Firefox  */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera  */
+#employeeDashboard .list-group::-webkit-scrollbar {
+  display: none;
+}
+
+#employeeDashboard .list-group-item {
+  border: none !important;
+  padding: 4px 0 !important;
+}
+
+/* 
+#employeeDashboard .see-all {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 54px;
+  background: #ffffff;
+  border-top: 1px solid rgba(4, 23, 42, 0.1);
+  box-sizing: border-box;
+  border-radius: 0px 0px 10px 10px;
+}
+
+#employeeDashboard .see-all-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  color: #04172a;
+}
+
+#employeeDashboard .card-list {
+  padding-bottom: 54px;
+}
+
+#employeeDashboard .list-group {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  Hide scrollbar for IE, Edge and Firefox 
+  -ms-overflow-style: none;  IE and Edge 
+  scrollbar-width: none;  Firefox 
+}
+
+Hide scrollbar for Chrome, Safari and Opera 
+#employeeDashboard .list-group::-webkit-scrollbar {
+  display: none;
+} 
+
+#employeeDashboard .card-employer-name {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #04172a;
+}
+
+#employeeDashboard .card-employer-base,
+#employeeDashboard .card-employer-state {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(4, 23, 42, 0.8);
+}
+
+#employeeDashboard .list-group-item {
+  background-color: transparent !important;
+}
+*/

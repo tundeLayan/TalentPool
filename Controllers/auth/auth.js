@@ -16,15 +16,22 @@ const {
   errorUserSignup,
 } = require('../../Utils/response');
 
-const URL = process.env.NODE_ENV === 'development' ? process.env.TALENT_POOL_DEV_URL : process.env.TALENT_POOL_FRONT_END_URL;
+const redis = require('../dao/impl/redis/redis-client');
+const redisKeys = require('../dao/impl/redis/redis-key-gen');
+
+const client = redis.getClient();
+
+const URL = process.env.NODE_ENV === 'development'
+  ? process.env.TALENT_POOL_DEV_URL
+  : process.env.TALENT_POOL_FRONT_END_URL;
 
 const registerEmployeePage = (req, res) => {
   const data = {
     pageName: 'Employee Signup',
-    oldInput: req.flash('oldInput'), 
-    error: req.flash('error'), 
+    oldInput: req.flash('oldInput'),
+    error: req.flash('error'),
     errors: req.flash('errors'),
-    success: req.flash('success') 
+    success: req.flash('success')
   }
   renderPage(res, 'auth/employeeSignUp', data, 'Employer Registration', '/employee/register');
 }
@@ -53,7 +60,7 @@ const registerEmployee = async (req, res) => {
       return employeeSignupRedirect(req, res, errmessage, employeeUserData);
     }
 
-    const hashedPassword = await jsonWT.hashPassword(password); 
+    const hashedPassword = await jsonWT.hashPassword(password);
     // jwtoken
     const data = {
       email,
@@ -108,19 +115,19 @@ const resendVerificationLink = async (req, res) => {
       onlyFirstError: true,
     });
     req.flash('error', errResponse[0].msg);
-    return res.redirect('/verify/email');
+    return res.redirect('/email/verify');
   }
 
   // check if user exist
   const checkUser = getUserByEmail(model,email);
   if (!checkUser) {
     req.flash('error', 'Invalid email');
-    return res.redirect('/verify/email');
+    return res.redirect('/email/verify');
   }
 
   if (checkUser.status === '1') {
     req.flash('error', 'This email has been verified');
-    return res.redirect('/verify/email');
+    return res.redirect('/email/verify');
   }
 
   // generate new verification_token
@@ -140,7 +147,7 @@ const resendVerificationLink = async (req, res) => {
       'success',
       'Please check your email. Verification link has been sent.',
     );
-    return res.redirect('/verify/email');
+    return res.redirect('/email/verify');
   } catch (err) {
     return renderPage(res, 'auth/verifyEmail', [], 'Verify Email');
   }
@@ -165,7 +172,7 @@ const employerSignup= (req, res) => {
     validationErrors: [],
   }
   renderPage(res ,'auth/employerSignUp',data,'Employer Registration','/employer/register' )
- 
+
 };
 
 const registerEmployer = async (req, res) => {
@@ -180,9 +187,11 @@ const registerEmployer = async (req, res) => {
     validateUserRequest(req, res, firstName ,lastName, email, password);
     const userExists = await getUserByEmail(model,email);
     if (userExists) {
-      return errorUserSignup(req, res, firstName ,lastName, email, password, 'Someone has already registered this email.',);
+      return errorUserSignup(req, res, firstName,
+        lastName, email,
+        password, 'Someone has already registered this email.',);
     }
-    const hashedPassword = passwordHash(password);
+    const hashedPassword = await passwordHash(password);
     const data = { email };
     const token = jsonWT.signJWT(data);
     const userSave = {
@@ -190,7 +199,7 @@ const registerEmployer = async (req, res) => {
       firstName,
       lastName,
       password: hashedPassword,
-    roleId: 'ROL-EMPLOYER',
+      roleId: 'ROL-EMPLOYER',
       userId: uuid(),
     };
     try {
@@ -204,11 +213,12 @@ const registerEmployer = async (req, res) => {
       req.flash('success', 'Verification email sent!');
       return res.redirect('/employer/register');
     } catch (error) {
-      return errorUserSignup(req, res,firstName ,lastName, email, password, 'An Error occured,try again',);
+      return errorUserSignup(req, res,
+        firstName ,lastName, email,
+        password, 'An Error occurred,try again',);
     }
   } catch (error) {
-    console.log(error);
-    req.flash('error', 'An Error occured,try again.');
+    req.flash('error', 'An Error occurred,try again.');
     req.flash('oldInput', employerUserData);
     return res.redirect('/employer/register');
   }
@@ -224,28 +234,35 @@ const verifyEmail = async (req, res) => {
     if (Date.now() <= decoded.exp + Date.now() + 60 * 60) {
       if (!user) {
         req.flash('error', 'Email has not been registered');
-        return res.redirect('/employer/register');
+        return res.redirect('/');
       }
       if (user.status === '1') {
-        
+
         req.flash('success', 'This email has been verified');
         return res.redirect('/login');
       }
       const updateUser = await userUpdate(user.email);
       const data = await updateUser;
       if (data[0] === 1) {
-        
+        user.status = 1;
+        const keyId = redisKeys.getHashKey(user.email.toString());
+        client.set(keyId,  JSON.stringify(user));
         req.flash('success', 'Email verification successful');
         return res.redirect('/login');
       }
     } else {
       req.flash('error', 'Sorry, the verification token is either invalid or has expired. ');
-      return res.redirect('/verify/email/resend');
+      return res.redirect('/email/verify/resend');
     }
   } catch (error) {
     req.flash('error', 'Sorry, the verification token is either invalid or has expired. ');
-    return res.redirect('/verify/email/resend');
+    return res.redirect('/email/verify/resend');
   }
+};
+
+// TODO: Make sure this page is filled and the mail input makes a post request to line 104
+const getResendValidationMail = (req, res) => {
+  return renderPage(res, 'auth/verifyEmail', [], 'Verify Email');
 };
 
 module.exports = {
@@ -253,8 +270,9 @@ module.exports = {
   registerEmployee,
   registerEmployeePage,
   resendVerificationLink,
+  getResendValidationMail,
   registerEmployer,
   verifyEmail,
   employerSignup
 };
-    
+

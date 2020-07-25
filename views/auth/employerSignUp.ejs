@@ -1,7 +1,19 @@
 <!-- // Employer Sign Up -->
+<!doctype html>
 <html>
-<%- include('../templates/externalPageHead.ejs') %>
-<link rel="stylesheet" href="/stylesheets/employer-sign-up.css" />
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Boiler Plate CSS -->
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+  <link rel="stylesheet" href="/stylesheets/employer-sign-up.css" />
+  <link rel="stylesheet" href="/stylesheets/header.css" />
+</head>
+
 <style>
   form .invalid {
     border: 1px solid palevioletred !important;
@@ -16,10 +28,11 @@
       <div class="row py-4 mx-md-4 px-lg-3">
         <div class="col-md-5 mx-auto my-auto d-none d-md-block">
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <h1><span class="prj-text-accent">Talent</span> <span class="prj-text-primary">Haven</span> </h1>
+            <h1><a class="navbar-brand" href="/"><span class="prj-text-accent">Talent</span> <span
+                  class="prj-text-primary">Haven</span></a></h1>
             <p class="text-center">
-              <a href="#" class="prj-link">Sign in</a> or
-              <a href="#" class="prj-link">Create an account</a>
+              <a href="/login" class="prj-link">Sign in</a> or
+              <a href="/employee/register" class="prj-link">Create an account</a>
             </p>
           </div>
         </div>
@@ -65,10 +78,12 @@
             <div class="row">
               <div class="form-group col">
                 <label for="password" class="prj-normal-text">Password</label>
-                  <input type="password" name="password"
+                <input type="password" name="password"
                   class="form-control prj-form-control <%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
-                  id="password" placeholder="Password" autocomplete="new-password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" minlength="8" required />
-                </div>
+                  id="password" placeholder="Password" autocomplete="new-password"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" minlength="8"
+                  required />
+              </div>
             </div>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="row">
@@ -97,20 +112,17 @@
                 or sign up with
               </p>
               <div class="col d-flex justify-content-center mt-4">
-                <a href="/auth/employer/google">
-                  <button class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
+                  <a href="/auth/employer/google" class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
                     <img class="img-fluid btn-img mr-2" src="/images/employer-sign-up/icon-google.svg"
                       alt="github button image" />
                     <span class="mb-0 prj-normal-text">Google</span>
-                  </button>
-                </a>
-                <a href="/auth/employer/github">
-                  <button class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
+                  </a>
+        
+                  <a href="/auth/employer/github" class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
                     <img class="img-fluid btn-img mr-2" src="/images/employer-sign-up/icon-github.svg"
                       alt="github button image" />
                     <span class="mb-0 prj-normal-text">Github</span>
-                  </button>
-                </a>
+                  </a>
               </div>
               <p class="prj-normal-text text-center mt-3">
                 Already have an account?

@@ -7,9 +7,10 @@ const {
 } = require('../../Utils/validators/login-validator');
 const { authErrorRedirect } = require('../../Utils/response');
 const { getUserByEmail, getEmployer } = require('../dao/db-queries');
-const { getClient } = require('../dao/impl/redis/redis-client');
+const redis = require('../dao/impl/redis/redis-client');
+const redisKeys = require('../dao/impl/redis/redis-key-gen');
 
-const client = getClient();
+const client = redis.getClient();
 
 const checkUserStatus = (req, res, email, password, user) => {
   if (!user) {
@@ -93,9 +94,7 @@ const redirectUser = async (req, res, email, password, user) => {
     }
     if (user.roleId === 'ROL-EMPLOYEE') {
       req.session.employeeId = user.userId;
-      return res.redirect(
-        `/employer/dashboard/`,
-      );
+      return res.redirect('/employee/dashboard');
     }
     if (user.roleId === 'ROL-ADMIN' || user.roleId === 'ROL-SUPERADMIN') {
       req.session.isAdmin = true;
@@ -127,34 +126,24 @@ module.exports = {
       validateUserRequest(req, res, email, password);
 
       let user;
-
-      const cachedUser = client.get(email.toString());
-      const userData = await getUserByEmail(model, email);
+      const keyId = redisKeys.getHashKey(email.toString());
+      const cachedUser = client.get(keyId);
 
       if (cachedUser) {
-        client.get(email.toString(), (err, data) => {
+        client.get(keyId, async (err, data) => {
           if (err) throw err;
 
           if (data) {
             user = JSON.parse(data);
             redirectUser(req, res, email, password, user);
           } else if (user == null) {
+            const userData = await getUserByEmail(model, email);
             if (userData) {
               user = userData.dataValues;
               // Cache User object
               client.set(email.toString(), JSON.stringify(user));
               return redirectUser(req, res, email, password, user);
             }
-            return authErrorRedirect(
-              req,
-              res,
-              null,
-              null,
-              'Something Went Wrong! Please try again...',
-              'auth/login',
-              'Login',
-              '/login',
-            );
           }
         });
       }
@@ -175,10 +164,9 @@ module.exports = {
     }
   },
   logout: (req, res) => {
-    const { employeeId, employerId, adminId } = req.session;
-    if (employerId || employeeId || adminId) {
+    if (req.session.isLoggedIn) {
       req.session.isLoggedIn = false;
-      res.redirect('/');
     }
+    res.redirect('/');
   },
 };
