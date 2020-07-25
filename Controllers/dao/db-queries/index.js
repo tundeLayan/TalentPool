@@ -17,7 +17,7 @@ module.exports = {
   getAllEmployee: (models) => {
     return models.Employee.findAll({
       where: {
-        verificationStatus: 'Approved'
+        verificationStatus: 'Approved',
       },
     });
   },
@@ -25,7 +25,7 @@ module.exports = {
     return models.Employee.findAll({
       where: {
         userType: 'HNG',
-        verificationStatus: 'Approved'
+        verificationStatus: 'Approved',
       },
     });
   },
@@ -33,7 +33,7 @@ module.exports = {
     return models.Team.findAll({
       where: {
         // userId: req.session.userId,
-        status: 'Pending'
+        status: 'Pending',
       },
     });
   },
@@ -41,36 +41,40 @@ module.exports = {
     return models.Team.findAll({
       where: {
         // userId: req.session.userId,
-        status: 'Accepted'
+        status: 'Accepted',
       },
     });
   },
   employerChatUsers: async () => {
     const users = await model.Employer.findAll({
-        raw: true,
-        attributes: ['userId', 'employerPhoto'],
-        include: [{
-            model: model.User,
-            attributes: ['roleId'],
-        },],
-    })
+      raw: true,
+      attributes: ['userId', 'employerPhoto'],
+      include: [
+        {
+          model: model.User,
+          attributes: ['roleId'],
+        },
+      ],
+    });
 
-    return users
-},
+    return users;
+  },
 
-employeeChatUsers: async () => {
+  employeeChatUsers: async () => {
     const users = model.Employee.findAll({
-        raw: true,
-        attributes: ['userId', 'image'],
-        include: [{
-            model: model.User,
-            attributes: ['roleId'],
-        },],
-    })
+      raw: true,
+      attributes: ['userId', 'image'],
+      include: [
+        {
+          model: model.User,
+          attributes: ['roleId'],
+        },
+      ],
+    });
 
-    return users
-},
+    return users;
+  },
   createUser: (models, data) => {
     return models.User.create(data);
-  }
+  },
 };

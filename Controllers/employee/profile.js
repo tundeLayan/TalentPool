@@ -8,34 +8,27 @@ const { getUserByEmail, getEmployee } = require('../dao/db-queries');
 
 const models = require('../../Models');
 
-const userAttributes = [
-      'id',
-      'firstName',
-      'lastName',
-      'email',
-      'roleId',
-    ];
+const userAttributes = ['id', 'firstName', 'lastName', 'email', 'roleId'];
 
 const employeeAttributes = [
-      'id',
-      'userType',
-      'verificationStatus',
-      'phoneNumber',
-      'image',
-      'gender',
-      'hngId',
-      'dateOfBirth',
-      'availability',
-      'userName',
-      'location',
-      'employeeCv',
-      'views',
-      'track',
-      'userId',
-      'referredBy',
-      'hasTeam',
-]
-
+  'id',
+  'userType',
+  'verificationStatus',
+  'phoneNumber',
+  'image',
+  'gender',
+  'hngId',
+  'dateOfBirth',
+  'availability',
+  'userName',
+  'location',
+  'employeeCv',
+  'views',
+  'track',
+  'userId',
+  'referredBy',
+  'hasTeam',
+];
 
 let image;
 
@@ -61,10 +54,7 @@ const uploadImageFunction = async (req, res) => {
 };
 
 const employeeData = (req, res) => {
-  const {
-    passport,
-    employeeuserData,
-  } = req.session;
+  const { passport, employeeuserData } = req.session;
 
   let userId;
 
@@ -76,15 +66,9 @@ const employeeData = (req, res) => {
     req.session.user = user;
   } else {
     userId = req.session.userId;
-
   }
 
-  const {
-    isLoggedIn,
-    profileImage,
-    firstName,
-    data,
-  } = req.session;
+  const { isLoggedIn, profileImage, firstName, data } = req.session;
 
   let userEmail;
   if (data) {
@@ -117,29 +101,68 @@ const employeeData = (req, res) => {
 };
 
 module.exports = {
-  
-  // render employee upate profile page
-  getUpdateProfilepage: async (req, res) => {
+  // render employee profile page
+  getProfilePage: async (req, res) => {
     try {
-      const { userId, profileImage, email, options, data } = employeeData(req, res);
+      const { email, data } = employeeData(req, res);
 
       // query the database to find the user
       const employeeQuery = await getEmployee(models, data);
       const userQuery = await getUserByEmail(models, email);
 
-      const profile = {
-        ...employeeQuery.dataValues,
-        ...userQuery.dataValues,
-      };
+      let profile;
+
+      if (employeeQuery && userQuery) {
+        profile = {
+          user: userQuery.dataValues,
+          employee: employeeQuery.dataValues,
+        };
+      } else {
+        profile = {
+          user: userQuery.dataValues,
+        };
+      }
+
+      return renderPage(
+        res,
+        'employee/employeeProfile',
+        profile,
+        'Employee Profile',
+        '',
+      );
+    } catch (err) {
+      req.flash('error', 'Something went wrong. Try again');
+    }
+  },
+  // render employee upate profile page
+  getUpdateProfilepage: async (req, res) => {
+    try {
+      const { email, data } = employeeData(req, res);
+
+      // query the database to find the user
+      const employeeQuery = await getEmployee(models, data);
+      const userQuery = await getUserByEmail(models, email);
+
+      let profile;
+
+      if (employeeQuery && userQuery) {
+        profile = {
+          user: userQuery.dataValues,
+          employee: employeeQuery.dataValues,
+        };
+      } else {
+        profile = {
+          user: userQuery.dataValues,
+        };
+      }
 
       renderPage(
         res,
         'employee/employeeDashboardSettingsProfileEdit',
         profile,
         'Employee Update Profile',
-        ''
+        '',
       );
-
     } catch (err) {
       req.flash('error', 'Something went wrong. Try again');
     }
@@ -172,7 +195,6 @@ module.exports = {
       let bodyToUpdate;
       bodyToUpdate = employeeBodyToBeUpdated;
 
-
       if (req.files) {
         const imageUrl = await uploadImageFunction(req, res);
         bodyToUpdate = {
@@ -204,5 +226,5 @@ module.exports = {
     } catch (err) {
       req.flash('error', 'Something went wrong. Try again');
     }
-  }
-}
+  },
+};
