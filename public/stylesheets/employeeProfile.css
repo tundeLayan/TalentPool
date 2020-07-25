@@ -1,50 +1,122 @@
-<<<<<<< HEAD
+
 .profile-img-bar {
     background-image: url(../../images/bg-profile.svg);
     background-size: 100%;
-    height: 10.1em;
+    height: 10em;
     background-repeat: no-repeat;
+    background-position: center bottom;
+    position: relative; 
 }
-
-.profile-img-div{
-    position: relative;
-    width: 100%;
-
+.profile-img {
+    /* display: none; */
+    position: absolute;
+    width: 12%;
+    left: 44%;
+    top: 5.5em;
+    background-color: #ffffff;
+    border-radius: 50%;
+    background-size: 100% 100% !important;
 }
-
-.profile-img{
-   position: absolute;
-   width: 20%;
-   left: 40%;
-   top:0.3em;
-}
-=======
-
-.profile-img-bar { 
-background-image: url(../../images/bg-profile.svg);
- background-size: 100%;
-height: 10.1em;
-background-repeat: no-repeat; 
-}
-.profile-img-div{
-position: relative;
-width: 100%;
-}
-.profile-img{
-position: absolute;
-width: 15%;
-left: 40%;
-top:0.1em;
-} 
-
-.long-blue {
-    background: rgba(65, 61, 243, 0.53);
-    border-radius: 10px;
-    width: 700px;
-    margin: 0 auto;
+.edit {
+    position: absolute;
+    right: 1.9em;
+    top: 4.5em;
 }
 
 .progress {
     height: 0.5em !important;
 }
->>>>>>> 47ba24e2498da88e01f7bcaef600d26cf09c87af
+.progress-bar{
+    background-color:#4D49FF !important;
+}
+.spacer {
+    width: 100%;
+    height: 50px;
+}
+.f-36px {
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.25em;
+    line-height: 3.0625em;
+}
+
+.f-16 {
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.f-14 {
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.8em;
+    line-height: 1.4375em;
+}
+/* Tablets */
+
+@media only screen and (max-width: 992px) and (min-width: 601px) {
+    .spacer {
+        width: 100%;
+        height: 16px;
+    }
+    .profile-img-bar {
+        background-image: url(../../images/bg-profile.svg);
+        background-size: 100%;
+        height: 10em;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+    .profile-img {
+        position: absolute;
+        width: 12%;
+        left: 44%;
+        top: 6.5em;
+        background-color: #ffffff;
+        border-radius: 50%;
+        background-size: 100% 100% !important;
+    }
+    .edit {
+        position: absolute;
+        right: 1em;
+        top: 8em;
+        font-size:0.8em ;
+    }
+
+
+}
+/*Small screens*/
+@media only screen and (max-width: 600px) {
+
+    .profile-img-bar {
+        background-image: url(../../images/bg-profile.svg);
+        background-size: 100%;
+        height: 10em;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        position: relative;
+    }
+    .profile-img {
+        position: absolute;
+        width: 12%;
+        left: 44%;
+        top: 8.2em;
+        background-color: #ffffff;
+        border-radius: 50%;
+        background-position: center bottom;
+        background-size: 100% 100% !important;
+    }
+    .edit {
+        position: absolute;
+        right: 1em;
+        top: 9.8em;
+        font-size:0.8em ;
+    }
+    .spacer {
+        width: 100%;
+        height: 80px;
+    }
+}
