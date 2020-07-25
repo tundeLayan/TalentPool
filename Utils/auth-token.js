@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const secret = process.env.TALENT_POOL_JWT_SECRET;
+const secret = 'somethinglight';
 
 exports.signJWT = (data, time = '1d') => {
   return jwt.sign(data, secret, { expiresIn: time });
