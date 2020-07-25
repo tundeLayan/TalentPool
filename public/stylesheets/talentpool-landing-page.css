@@ -259,10 +259,7 @@ body {
     box-sizing: border-box;
     border-radius: 10px;
     padding: 12px 0;
-    box-shadow: 0 0 5px #DCDCDC,
-    0 0 25px #DCDCDC,
-    0 0 35px #DCDCDC,
-    0 0 70px #DCDCDC;
+    box-shadow: 0 2px 4px 2px #DCDCDC;
 }
 
 .landing-page-top-previous-clients .feedback-card-outer .talent-fb-card {
@@ -603,3 +600,30 @@ body {
 }
 
 /**** TOP SECTION MOBILE AND TAB RESPONSIVENESS ENDS ****/
+
+
+/* SWIPER JS CSS */
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin: 0 -30px 0 10px;
+  }
+
+  .swiper-slide {
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }

@@ -1,0 +1,214 @@
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<%= csrfToken %>">
+    <%- include('../templates/dashboardHead') %>
+		
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+		
+		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+	  <script src="https://use.fontawesome.com/ba477de5c5.js"></script>
+		<link rel="stylesheet" href="/stylesheets/admin-faq.css" />
+		<title>Talent pool accordion</title>
+		
+	</head>
+	<body>
+    <%- include('../templates/adminDashboardSidebar') %>
+    <%- include('../templates/dashboardHeader') %>
+    
+
+    <main id="main-page">
+      <div class="faq-heading">
+        <h1>
+          FAQs
+        </h1>
+      </div>
+      <div class="main-page-nav">
+        <div class="tab">
+          <% for(let i = 0; i< categoryList.length;++i) { %>
+            <button id = "CategoyButton <%= categoryList[i].id %>" class="tablinks" onclick="openCity(event, 'tab<%= i %>')"><span id="category<%= categoryList[i].id %>"><%= categoryList[i].name %></span> <span class="float-right tab-nav-icon"><img id = "editButton <%= categoryList[i].id %>" class="editIcon" src="/images/admin-faq/pen-icon.png" alt="pen-icon"> <img class="deleteCategory" id="deleteCategory <%= categoryList[i].id %>" src="/images/admin-faq/delete-bin-icon.png" alt="delete-bin-icon"></span> </button>
+          <% } %>
+          <!-- add topic button & modal -->
+          <button type="button" class="tablinks btn"  data-toggle="modal" data-target="#myModal">
+            +Add New Topic
+          </button>
+        </div>
+        
+
+        <% for(let i = 0; i<categoryList.length;++i){ %>
+          <div style="display: none;" id="tab<%= i %>" class="tabcontent">
+            <div class="clearfix tabcontent-3">
+              <h1 class="float-left"><%= categoryList[i].name %></h1>
+              <button type="button" class="btn float-right add-question-button" data-toggle="modal" data-target="#exampleModalCenter">
+                <h3 class="float-right">+Add Question</h3>
+            </div>
+            <!-- accordion -->
+            <div>
+              <div class="accordion" id="accordionExample">
+
+                <% if(faqMap[categoryList[i].id]!=undefined) for(let j = 0;j<faqMap[categoryList[i].id].length;++j) { %>
+                  <div class="card">
+                    <span hidden id="faqCategory<%= faqMap[categoryList[i].id][j].id %>"><%= categoryList[i].id %></span>
+                      <div class="card-header" id="heading<%= faqMap[categoryList[i].id][j].id %>">
+                          <h2 class="mb-0 d-flex">
+                              <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= faqMap[categoryList[i].id][j].id %>"><i class="fa fa-plus"></i> <span id= "faqQuestion<%= faqMap[categoryList[i].id][j].id %>"><%= faqMap[categoryList[i].id][j].question %></span> </button>								
+                              <span class="ml-auto tab-nav-icon"><img id="faqToggle <%= faqMap[categoryList[i].id][j].id%>" class="toggleButton" src="/images/admin-faq/no-access-icon.png" alt="no-access-icon"><img class = "editFaq" id="editFaq <%= faqMap[categoryList[i].id][j].id %>"  src="/images/admin-faq/pen-icon.png" alt="pen-icon"> <img class="deleteFaq" id="deleteFaq <%= faqMap[categoryList[i].id][j].id %>" src="/images/admin-faq/delete-bin-icon.png" alt="delete-bin-icon"></span> 	
+                          </h2>
+                      </div>
+                      <div id="collapse<%= faqMap[categoryList[i].id][j].id %>" class="collapse" aria-labelledby="heading<%= faqMap[categoryList[i].id][j].id %>" data-parent="#accordionExample">
+                          <div class="card-body">
+                              <span id="faqAnswer<%= faqMap[categoryList[i].id][j].id %>"><%= faqMap[categoryList[i].id][j].answer %></span>
+                          </div>
+                      </div>
+                  </div>
+                <% } %>
+
+              </div>
+            </div>
+          </div>
+        <% } %>
+        </div>
+      </div>  
+
+          <!-- Add FAQ MODAL -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 class="modal-title text-center" id="exampleModalLongTitle">Add Question</h5>
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="text">Question</label>
+                    <input type="text" class="form-control" id="addQuestion" placeholder="Write the question here">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="text">Topic</label>
+                    <select class="form-control" type="text" id="categorySelectInput">
+                      <% for(let i = 0;i<categoryList.length;++i) { %>
+                        <option value="<%= categoryList[i].id%>"><%= categoryList[i].name %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="text">Answer</label>
+                  <textarea class="form-control" id="addAnswer" rows="3" placeholder="Write the answer here"></textarea>
+                </div>
+                <div class="d-flex">
+                <button type="button" id="addFaq" class="btn btn-primary mx-auto">Add Question</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- ADD CATEGORY MODAL -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 class="modal-title text-center" id="exampleModalLongTitle">Add Topic</h5>
+              
+              <div class="form-group">
+                <input class="form-control" id="topicNameField" placeholder="Topic Name">
+              </div>
+              <div class="d-flex">
+              <button type="button" id="addTopicButton" class="btn add-topic-button mx-auto">Add Topic</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+        <!-- UPDATE CATEGORY MODAL -->
+      <div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 class="modal-title text-center" id="exampleModalLongTitle">Update Topic</h5>
+              
+              <div class="form-group">
+                <input class="form-control" id="topicNameFieldUpdate" placeholder="Topic Name">
+                <input type="text" name="" id="topicUpdateId" hidden>
+              </div>
+              <div class="d-flex">
+              <button type="button" id="updateTopicButton" class="btn add-topic-button mx-auto">Update Topic</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update FAQ MODAL -->
+      <div class="modal fade" id="updateFaqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h5 class="modal-title text-center" id="exampleModalLongTitle">Update Question</h5>
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input type="text" name="" id="updateFaqId" hidden>
+                    <label for="text">Question</label>
+                    <input type="text" class="form-control" id="updateQuestion" placeholder="Write the question here">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="text">Topic</label>
+                    <select class="form-control" type="text" id="categorySelectUpdate">
+                      <% for(let i = 0;i<categoryList.length;++i) { %>
+                        <option value="<%= categoryList[i].id%>"><%= categoryList[i].name %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="text">Answer</label>
+                  <textarea class="form-control" id="updateAnswer" rows="3" placeholder="Write the answer here"></textarea>
+                </div>
+                <div class="d-flex">
+                <button type="button" id="updateFaq" class="btn btn-primary mx-auto">Update Question</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+          
+
+    </main>
+
+
+
+
+
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+			integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+			crossorigin="anonymous"
+		></script>
+		<script src="/javascripts/admin-faq.js"></script>
+	</body>
+</html>
