@@ -1,0 +1,46 @@
+.body{
+  font-size: 20px;
+}
+
+.modal {
+  position: fixed;
+  top: 30px;
+  bottom: 0;
+  z-index: 10040;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+.custom-button{
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 2em;
+  background: #4D49FF;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+  border-radius: 5px;
+}
+
+.custom-button:hover,
+.payment:hover{
+  color:#fff;
+  background: rgb(43, 39, 255);
+}
+
+.payment{
+  background: #4D49FF;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+  border-radius: 5px;
+}
+
+.employer-sub-custom-container{
+  margin-top: 94px;
+}
+
+.custom-unsubscribe-button{
+  display: inline-block;
+}
+
+.subscription-settings{
+  background: #fff !important;
+}
