@@ -2,6 +2,7 @@ const sequelize = require('sequelize');
 const uuid = require('uuidV4');
 const bcrypt = require('bcryptjs');
 const model = require('../../Models/index');
+const jsonWT = require('../../Utils/auth-token');
 const { renderPage } = require('../../Utils/render-page');
 
 const op = sequelize.Op;
@@ -17,9 +18,9 @@ const getAdmin = async function toFindOneFromUser(userId) {
 module.exports = {
 	getAllAdmin: async (req, res) => {
 		try {
-			const admins = await model.User.findAll({ where: { roleId: 'ROL-ADMIN' } });
-    
-      renderPage(res, 'Talent Haven | Admin List', admins, 'adminList')
+      const admins = await model.User.findAll({ where: { roleId: 'ROL-ADMIN' } });
+      const data = { admins }
+      renderPage(res, 'admin/adminList', data, 'Talent Haven | Admin List', 'adminList')
 		} catch (err) {
 			res.status(500).redirect('back');
 		}

@@ -33,6 +33,7 @@ app.use(
     keys: [process.env.TALENT_POOL_SESSION_COOKIEKEY],
   }),
 );
+app.locals.moment = require('moment');
 // Cookie Parser
 app.use(cookieParser());
 app.use(express.json());
@@ -64,6 +65,7 @@ app.use(flash());
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
+
 
 app.use(csrfProtection);
 app.use((req, res, next) => {
