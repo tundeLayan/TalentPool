@@ -8,7 +8,7 @@ const {
   addTeam,
 } = require('../../Controllers/employer/team');
 
-appRoute.post('/add-team', sendInvite);
+appRoute.post('/add/team', sendInvite);
 appRoute.post('/team/create', addTeam);
 appRoute.get('/remove-employee', removeEmployee);
 

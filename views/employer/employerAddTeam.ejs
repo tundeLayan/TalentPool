@@ -1,256 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <%- include("../templates/dashboardHead")%>
-    <link rel="stylesheet" href="/stylesheets/employerAddTeam.css">
-</head>
+    <link rel="stylesheet" href="/stylesheets/employerAddTeam.css" />
+  </head>
 
-<body>
-    <%- include("../templates/employerDashboardSidebar")%>
-    <%- include("../templates/dashboardHeader")%>
+  <body>
+    <%- include("../templates/employerDashboardSidebar")%> <%-
+    include("../templates/dashboardHeader")%>
 
     <main id="main">
-        <div id="addTeam" class="container">
-            <!-- Hello MUREWA, i've separated the the variations of the page buy descriptive comments -->
-            <!-- MUREWA, please uncomment the different scenerios to see the page differences. Thanks. -->
-
-            <!-- MUREWA! If the user has no team (Scenario 1) -->
-            <!-- <div class="row">
-                <div class="col-12 col-md-6 text-center text-md-left">
-                    <p class="invite-text">Create a team</p>
-                </div>
-            </div>
-
-            <form action="">
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Team Name">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary form-control text-white"
-                                placeholder="Search invites">Create Team</button>
-                        </div>
-                    </div>
-                </div>
-            </form> -->
-            <!-- End of Scenario 1 -->
-
-            <!-- MUREWA! if the user has a team (For scenario 2 & 3) (Scroll down to see scenario 2 & 3) -->
-            <div class="row">
-                <div class="col-12 col-md-6 text-center text-md-left">
-                    <p class="invite-text">Invite a team member</p>
-                </div>
-                <div class="col-12 col-md-4 ml-auto">
-                    <form action="">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search invites">
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <form action="">
-                <div class="row">
-                    <div class="col-12 col-md-9">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email Address">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary form-control text-white"
-                                placeholder="Search invites">Invite member</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <!-- End of "For scenario 2 & 3" -->
-
-            <div class="row">
-                <div class="col-12">
-
-                    <!-- MUREWA! If there are no invites (Scenario 2) -->
-                    <!-- <div class="no-invites-border d-flex flex-column justify-content-center align-items-center">
-                        <img src="/images/employer-dashboard-team/no-invite.svg" alt="" class="img-fluid mb-4">
-                        <p class="no-invites-text">Uh oh! Seems like you did not invite anyone yet</p>
-                    </div> -->
-                    <!-- End of scenario 2 -->
-
-                    <!-- MUREWA! If there are invites (Scenario 3) -->
-                    <ul class="list-group list-group-flush ">
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-success btn-accepted">Accepted</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-primary btn-invite-sent">Pending</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-danger btn-rejected">Rejected</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-success btn-accepted">Accepted</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-primary btn-invite-sent">Pending</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-danger btn-rejected">Rejected</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-success btn-accepted">Accepted</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-primary btn-invite-sent">Pending</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="row d-flex align-items-center">
-                                <div class="d-flex col-6">
-                                    <div class="d-flex flex-column justify-content-center mr-3">
-                                        <img src="/images/Tobi.jpg" alt="" class="d-none d-sm-flex img-fluid" style="width: 50px;
-                                            height: 50px; border-radius: 25px">
-                                    </div>
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <span class="table-user-name">Meredith Grey</span>
-                                        <span class="table-user-title">HR</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end col-6">
-                                    <a href="#"><img src="/images/employer-dashboard/delete.svg" alt="" class="mr-3"></a>
-                                    <button class="btn list-btn btn-danger btn-rejected">Rejected</button>
-                                </div>
-                            </div>
-                        </div>
-                    </ul>
-                    <!-- End of scenario 3 -->
-
-                </div>
-            </div>
+      <div id="addTeam" class="container">
+        <!-- If the user has no team (Scenario 1) -->
+        <% if (!teamName) {%>
+        <div class="row">
+          <div class="col-12 col-md-6 text-center text-md-left">
+            <p class="invite-text">Create a team</p>
+          </div>
         </div>
-    </main>
-</body>
 
+        <form action="/employer/team/create" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Team Name"
+                  name="teamName"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="form-group">
+                <button
+                  type="submit"
+                  class="btn btn-primary form-control text-white"
+                  placeholder="Search invites"
+                >
+                  Create Team
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <% } else{%>
+        <!-- End of Scenario 1 -->
+
+        <!-- If the user has a team (For scenario 2 & 3) (Scroll down to see scenario 2 & 3) -->
+        <div class="row">
+          <div class="col-12 col-md-6 text-center text-md-left">
+            <p class="invite-text"><%=teamName %></p>
+          </div>
+          <div class="col-12 col-md-4 ml-auto">
+            <form action="">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search invites"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <form action="/employer/add/team" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="row">
+            <div class="col-12 col-md-9">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Email Address"
+                  name="email"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="form-group">
+                <button
+                  type="submit"
+                  class="btn btn-primary form-control text-white"
+                  placeholder="Search invites"
+                >
+                  Invite member
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- End of "For scenario 2 & 3" -->
+
+        <% if (errorMessage && errorMessage.length > 0) { %>
+        <div
+          role="alert"
+          class="alert alert-danger user-message user-message--error"
+        >
+          <%= errorMessage %>
+        </div>
+        <% } if (success && success.length > 0) { %>
+        <div
+          role="alert"
+          class="alert alert-success user-message user-message--success"
+        >
+          <%= success %>
+        </div>
+        <% } %>
+
+        <div class="row">
+          <div class="col-12">
+            <% if (data.length == 0){%>
+            <!-- MUREWA! If there are no invites (Scenario 2) -->
+            <div
+              class="no-invites-border d-flex flex-column justify-content-center align-items-center"
+            >
+              <img
+                src="/images/employer-dashboard-team/no-invite.svg"
+                alt=""
+                class="img-fluid mb-4"
+              />
+              <p class="no-invites-text">
+                Uh oh! Seems like you did not invite anyone yet
+              </p>
+            </div>
+            -->
+            <!-- End of scenario 2 -->
+            <% }%>
+            <!-- MUREWA! If there are invites (Scenario 3) -->
+            <ul class="list-group list-group-flush">
+              <% for (let i = 0; i < data.length; ++i ) { %>
+              <div class="list-group-item">
+                <div class="row d-flex align-items-center">
+                  <div class="d-flex col-6">
+                    <div class="d-flex flex-column justify-content-center mr-3">
+                      <img
+                        src="<%= data[i].image %>"
+                        alt=""
+                        class="d-none d-sm-flex img-fluid"
+                        style="width: 50px; height: 50px; border-radius: 25px;"
+                      />
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <span class="table-user-name"><%= data[i].name %></span>
+                      <span class="table-user-title"><%= data[i].email %></span>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end col-6">
+                    <form action="/employer/remove-employee" method="GET">
+                      <input
+                        type="hidden"
+                        name="_csrf"
+                        value="<%= csrfToken %>"
+                      />
+                      <input
+                        type="hidden"
+                        name="employeeId"
+                        id="employeeId"
+                        value="<%= data[i].employeeId %>"
+                      />
+                      <input
+                        type="image"
+                        class="mr-3"
+                        alt=""
+                        src="/images/employer-dashboard/delete.svg"
+                      />
+                    </form>
+                    <% if (data[i].status === 'Accepted') {%>
+                    <button class="btn list-btn btn-primary btn-invite-sent">
+                      <%= data[i].status%>
+                    </button>
+                    <%} else {%>
+                    <button class="btn list-btn btn-success btn-accepted">
+                      <%= data[i].status %>
+                    </button>
+                    <%}%>
+                  </div>
+                </div>
+              </div>
+              <%}%>
+            </ul>
+            <!-- End of scenario 3 -->
+          </div>
+        </div>
+        <%}%>
+      </div>
+    </main>
+    <%- include('../templates/clearflashmessages.ejs') %>
+  </body>
 </html>
