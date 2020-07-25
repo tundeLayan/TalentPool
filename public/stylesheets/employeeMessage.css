@@ -134,6 +134,22 @@ body {
     overflow-wrap: break-word;
 }
 
+.plus-icon {
+    width:  40px;
+    height: 39px;
+    background: #4D49FF;
+    border-color: #4D49FF;
+    border-radius: 5px;
+}
+
+.send-icon {
+    width:  118px;
+    height: 56px;
+    background: #4D49FF;
+    border-color: #4D49FF;
+    border-radius: 5px;
+}
+
 .message-button {
     background: #4D49FF;
     border-radius: 5px;
