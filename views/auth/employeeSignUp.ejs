@@ -77,7 +77,7 @@
               <div class="form-group col">
                 <label for="password" class="prj-normal-text">Password</label>
                 <input type="password" name="password" class="form-control prj-form-control" id="password"
-                  placeholder="Password" autocomplete="new-password" required />
+                  placeholder="Password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}" required />
               </div>
             </div>
             <div class="row">
@@ -106,19 +106,19 @@
                 or sign up with
               </p>
               <div class="col d-flex justify-content-center mt-3">
-                
+
                   <a href="/auth/employee/google" class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
                     <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-google.svg"
                     alt="github button image" />
                     <span class="mb-0 prj-normal-text">Google</span>
                   </a>
-        
+
                   <a href="/auth/employee/github" class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
                     <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-github.svg"
                     alt="github button image" />
                     <span class="mb-0 prj-normal-text">Github</span>
                   </a>
-      
+
               </div>
               <p class="prj-normal-text text-center mt-3">
                 Already have an account?
