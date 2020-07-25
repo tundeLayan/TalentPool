@@ -12,10 +12,10 @@
     <%- include('../templates/employeeDashboardSidebar.ejs') %>
     <%- include('../templates/dashboardHeader.ejs') %>
 
-    <main id="main">
-        <% if (errorMessage.length > 0) { %>
+    <main id="main" style="margin-top: 7rem!important;">
+        <% if (errorMessage) { %>
             <div role="alert" class="alert alert-danger text-center user-message user-message--error"><%= errorMessage %></div>
-        <% }if (success && success.length > 0) { %>
+        <% }if (success) { %>
             <div role="alert" class="alert alert-success text-center user-message user-message--error"><%= success %></div>
         <% } %>
 
