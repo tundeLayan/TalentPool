@@ -12,7 +12,12 @@
     <%- include('../templates/employeeDashboardSidebar.ejs') %>
     <%- include('../templates/dashboardHeader.ejs') %>
 
-    <main id="main">
+    <main id="main" style="margin-top: 7rem!important;">
+        <% if (errorMessage) { %>
+            <div role="alert" class="alert alert-danger text-center user-message user-message--error"><%= errorMessage %></div>
+        <% }if (success) { %>
+            <div role="alert" class="alert alert-success text-center user-message user-message--error"><%= success %></div>
+        <% } %>
 
         <section class="my-3 py-3 px-md-5">
             <div class="col-12 px-5">
@@ -21,58 +26,69 @@
                 </div>
                 <div class="d-flex flex-lg-row flex-column-reverse row">
                     <div class="col-lg-8 col-12">
-                        <form id="employerDashboardContactUs" action="" method="POST" enctype="multipart/form-data">
+                        <form id="employerDashboardContactUs" action="/employee/update/profile?_method=PATCH" id="edit-profile" method="POST" enctype="multipart/form-data"></form>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                            <p id="error-message"></p>
+                            <p id="success-message"></p>    
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-12">
                                     <label for="formGroupExampleInput">First name</label>
-                                    <input type="text" value="" class="form-control" id="firstName" placeholder="John">
+                                    <input type="text" value="" class="form-control" id="firstName" name="firstName" placeholder="John">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label for="formGroupExampleInput">Last name</label>
-                                    <input type="text" value="" class="form-control" id="lastName" placeholder="Doe">
+                                    <input type="text" value="" class="form-control" id="lastName" name="lastName" placeholder="Doe">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-12">
                                     <label for="formGroupExampleInput">Phone Number</label>
-                                    <input type="email" value="" class="form-control" id="email"
+                                    <input type="email" value="" class="form-control" name="phoneNumber" id="email"
                                         placeholder="+2348033333300">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label for="formGroupExampleInput">Your Email Address</label>
-                                    <input type="text" value="" class="form-control" id="contactSubject"
+                                    <input type="text" value="" class="form-control" name="email" id="contactSubject"
                                         placeholder="username@domain.com">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-12">
-                                    <label for="formGroupExampleInput">Your Bio</label>
-                                    <input type="email" value="" class="form-control" id="email"
-                                        placeholder="A little bit about yourself">
+                                    <label for="formGroupExampleInput">Track</label>
+                                        <select class="form-control" name="track" required>
+                                            <option value="">Select Track</option>
+                                            <option value="Frontend">Frontend</option>
+                                            <option value="Backend">Backend</option>
+                                            <option value="Design">Design</option>
+                                            <option value="Mobile">Mobile</option>
+                                        </select>
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label for="formGroupExampleInput">Resume</label>
-                                    <input type="text" value="" class="form-control" id="contactSubject"
-                                        placeholder="Upload your resume (PDF)">
+                                    <input type="text" value="" class="form-control" name="employeeCv" id="contactSubject"
+                                        placeholder="Link to your resume (PDF)">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-12">
-                                    <label for="formGroupExampleInput">Portfolio Website</label>
-                                    <input type="email" value="" class="form-control" id="email"
-                                        placeholder="https://websitedomain.com">
+                                    <label for="formGroupExampleInput">Location</label>
+                                    <input type="text" value="" class="form-control" name="location" id="email"
+                                        placeholder="Eg: Texas, USA">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label for="formGroupExampleInput">Facebook Link</label>
-                                    <input type="text" value="" class="form-control" id="contactSubject"
-                                        placeholder="https://websitedomain.com">
+                                    <label for="formGroupExampleInput">username</label>
+                                    <input type="text" value="" class="form-control" name="userName" id="contactSubject"
+                                        placeholder="hyour username">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6 col-12">
-                                    <label for="formGroupExampleInput">Twitter Link</label>
-                                    <input type="email" value="" class="form-control" id="email"
-                                        placeholder="https://websitedomain.com">
+                                    <label>Availability</label>
+                                        <select class="form-control" name="availability" >
+                                            <option value="Not-Available">Not Available</option>
+                                            <option value="On-site">On-Site</option>
+                                            <option value="Remote">Remote</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label for="formGroupExampleInput">LinkedIn Link</label>
@@ -90,7 +106,7 @@
                                 <label for="file-input">
                                     <img src="/images/upload-photo.svg" />
                                 </label>
-                                <input id="file-input" value="" type="file" />
+                                <input id="file-input" value="" name="image" type="file" />
                             </div>
                         </div>
                     </div>
@@ -102,3 +118,5 @@
 </body>
 
 </html>
+
+<%- include('../Templates/flashmessagesclear') %>

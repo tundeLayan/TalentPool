@@ -24,10 +24,37 @@
             padding: 44px 14px;
             display: inline-block;
         }
+        .swiper-slide {
+            /* text-align: center; */
+            /* font-size: 18px; */
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+            left: -4px;
+            right: auto;
+        }
+        .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+            right: -4px;
+            left: auto;
+        }
     </style>
 </head>
 
-<body>
+<body onresize="swiperContainerSize()" onload="swiperContainerSize()">
 
     <%- include('./templates/navBar.ejs') %>
 
@@ -164,7 +191,7 @@
         <!-- Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Exceptional candidates"</h4>
@@ -196,7 +223,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Easy to navigate website"</h4>
@@ -228,7 +255,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Seamless process"</h4>
@@ -260,7 +287,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide col-lg-4 col-sm-5 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card">
 
                         <h4>"Exceptional candidates"</h4>
@@ -291,6 +318,38 @@
 
                     </div>
                 </div>
+
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
+                        <div class="feedback-card">
+    
+                            <h4>"Exceptional candidates"</h4>
+    
+                            <div class="content">
+                                Recruiting through TalentPool has been a breath of fresh air.
+                                The quality of candidates have been exceptional compared to
+                                other job sites.
+                            </div>
+    
+                            <hr>
+    
+                            <div class="row footer">
+                                <div class="col-xl-3 col-4 blob-outer">
+                                    <div class="blob-inner"></div>
+                                </div>
+                                <div class="col-xl-9 col-8 talents-details">
+    
+                                <span class="track">
+                                    John Doe
+                                </span>
+                                    <span class="name">
+                                    HR at Google
+                                </span>
+    
+                                </div>
+                            </div>
+    
+                        </div>
+                </div>
             </div>
             <!-- Add Arrows -->
             <div class="swiper-button-next"></div>
@@ -308,7 +367,7 @@
         <!-- Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -348,7 +407,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -388,7 +447,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -428,7 +487,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide col-lg-4 col-sm-6 col-8 feedback-card-outer add__animate animate__animated">
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
                     <div class="feedback-card talent-fb-card">
 
                         <div class="row header">
@@ -466,6 +525,46 @@
                         </div>
 
                     </div>
+                </div>
+
+                <div class="swiper-slide feedback-card-outer add__animate animate__animated">
+                        <div class="feedback-card talent-fb-card">
+    
+                            <div class="row header">
+                                <div class="col-xl-3 col-4 blob-outer">
+                                    <div class="blob-inner"></div>
+                                </div>
+                                <div class="col-xl-9 col-8 talents-details">
+    
+                                    <span class="track">
+                                        John Doe
+                                    </span>
+                                    <span class="name">
+                                        HR at Google
+                                    </span>
+    
+                                </div>
+                            </div>
+    
+                            <hr>
+    
+                            <div class="content talent-profile">
+                                I am a Product/UX Designer
+                                with 6 years of experience crafting digital
+                                products helping businesses expand their
+                                capacity for impact.
+                                <span class="recent-work">
+                                    Previously worked at Google
+                                </span>
+                            </div>
+    
+                            <div class="view-profile-footer">
+                                <span>
+                                    View Profile <i></i>
+                                </span>
+                            </div>
+    
+                        </div>
                 </div>
             </div>
             <!-- Add Arrows -->
@@ -717,21 +816,44 @@
 
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 3,
-            spaceBetween: 30,
-            slidesPerGroup: 3,
-            loop: true,
-            loopFillGroupWithBlank: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
+        const swiperContainerSize = () => {
+
+            let size = 3;
+
+            if (window.innerWidth > 840) {
+                size = 3;
+                setSwiper(3);
+            }
+            if ((window.innerWidth > 651) && (window.innerWidth < 840)) {
+                size = 2;
+                setSwiper(2);
+            }
+            if (window.innerWidth < 650) {
+                size = 1;
+                setSwiper(1);
+            }
+            
+            if (window.outerWidth > 840) {
+                setSwiper(3);
+            }
+        };
+        const setSwiper = (size) => {
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: size,
+                spaceBetween: 20,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                autoplay: {
+                    delay: 6000,
+                },
+            });
+        }
     </script>
 
     <%- include('./templates/footer.ejs') %>
