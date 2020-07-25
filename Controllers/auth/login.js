@@ -128,7 +128,6 @@ module.exports = {
       let user;
       const keyId = redisKeys.getHashKey(email.toString());
       const cachedUser = client.get(keyId);
-     
 
       if (cachedUser) {
         client.get(keyId, async (err, data) => {
@@ -145,16 +144,6 @@ module.exports = {
               client.set(email.toString(), JSON.stringify(user));
               return redirectUser(req, res, email, password, user);
             }
-            return authErrorRedirect(
-              req,
-              res,
-              null,
-              null,
-              'Something Went Wrong! Please try again...',
-              'auth/login',
-              'Login',
-              '/login',
-            );
           }
         });
       }
@@ -175,10 +164,9 @@ module.exports = {
     }
   },
   logout: (req, res) => {
-
     if (req.session.isLoggedIn) {
       req.session.isLoggedIn = false;
     }
     res.redirect('/');
-  }
+  },
 };
