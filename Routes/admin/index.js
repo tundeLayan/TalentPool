@@ -6,9 +6,9 @@ const faqRoute = require('./faq');
 const dashboard = require('./dashboard');
 const verification = require('./verification');
 
+router.use(verification);
 router.use(dashboard);
 router.use(admin);
-router.use('/faq',faqRoute);
-router.use(verification);
+router.use('/faq', faqRoute);
 
-module.exports = router
+module.exports = router;
