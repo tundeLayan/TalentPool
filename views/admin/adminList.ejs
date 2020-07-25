@@ -21,9 +21,9 @@
     <section class="container" style="width: 90%;">
         <div class="row mt-4 d-flex justify-content-between mb-4 px-5 custom-header">
             <h3>Admin List</h3>
-            <button class="btn add-admin-btn">
-              Add Admin
-            </button>
+            <button type="button" class="btn btn add-admin-btn" data-toggle="modal" data-target="#exampleModalLong">
+                Add Admin
+              </button>
           </div>
       <table id="example" class="table table-striped table-bordered mt-4 custom-table">
           <thead class="mt-3">
@@ -45,6 +45,7 @@
                           <i class="fa fa-lock mr-1"></i>
 
                           <span class="badge badge-pill badge-success">Granted</span>
+                          <!-- <span class="badge badge-pill badge-danger">Denied</span> -->
                       </span>
                   </td>
                   <td>Office Manager</td>
@@ -55,11 +56,12 @@
                   <td>$136,200</td>
                   <td>
                       <span class="d-flex justify-content-between">
-                          <span>
+                          <span onclick="toggleLock(id);">
                             <i class="fa fa-lock custom-lock-icon"></i>
                           </span>
 
-                          <span><i class="fa fa-trash custom-trash-icon"></i></span>
+                          <span onclick="deleteAdmin(id);"><i class="fa fa-trash custom-trash-icon"></i></span> 
+
                       </span>
                       
                   </td>
@@ -72,6 +74,8 @@
                           <i class="fa fa-lock mr-1"></i>
 
                           <span class="badge badge-pill badge-danger">Denied</span>
+                          <!-- <span class="badge badge-pill badge-success">Granted</span> -->
+
                       </span>
                   </td>
                   <td>Office Manager</td>
@@ -82,11 +86,11 @@
                   <td>$136,200</td>
                   <td>
                       <span class="d-flex justify-content-between">
-                          <span>
+                          <span onclick="toggleLock(id);">
                             <i class="fa fa-lock custom-lock-icon"></i>
                           </span>
 
-                          <span><i class="fa fa-trash custom-trash-icon"></i></span>
+                          <span onclick="deleteAdmin(id);"><i class="fa fa-trash custom-trash-icon"></i></span>
                       </span>
                   </td>
               </tr>
@@ -108,19 +112,76 @@
                   <td>$136,200</td>
                   <td>
                       <span class="d-flex justify-content-between">
-                          <span>
-                            <i class="fa fa-lock custom-lock-icon"></i>
+                          <span onclick="toggleLock(id);">
+                            <i class="fa fa-lock custom-lock-icon "></i>
                           </span>
 
-                          <span><i class="fa fa-trash custom-trash-icon"></i></span>
+                          <span onclick="deleteAdmin(id);"><i class="fa fa-trash custom-trash-icon"></i></span>
                       </span>
                   </td>
               </tr>
           </tbody>
       </table>
+
+      <!-- ------------------------------Add Admin Modal ----------------------------->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content ">
+                <form id="role-form">
+              <div class="modal-header d-flex justify-content-center">
+                  <h5 class="modal-title ">Add Admin</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+            <div class="modal-body px-3 py-3" style="padding: 0 !important">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group my-4">
+                          <label for="firstName">First Name</label>
+                          <input type="text" class="form-control" name="" id="firstName" placeholder="First Name" required>
+                        </div>
+                      <div class="form-group my-4">
+                          <label for="email">Email Address</label>
+                          <input type="email" class="form-control" name="" id="email" placeholder="Email Address" required>
+                        </div>
+
+                        <div class="form-group my-4">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="" id="password" placeholder="Password" required>
+                        </div>
+
+                        <div class="form-group my-4">
+                                <label for="phone">Phone</label>
+                                <input type="number" class="form-control" name="" id="password" placeholder="Enter Phone Number" required>
+                              </div>
+                      
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group my-4">
+                          <label for="lastName">Lastname</label>
+                          <input type="Text" class="form-control" name="" id="lastName" placeholder="Lastname" required>
+                        </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button id="button" type="submit" class="btn payment custom-button py-2 px-4">
+                  Save</button>
+            </div>
+                </form>
+          </div>
+        </div>
+      </div>
+      <!-- ------------------------------Add Admin Modal End--------------------------->
     </section>
   </main>
 </body>
+<script src="/javascripts/adminList.js"></script>
 <script src="/javascripts/bootstrap.js"></script>
 <script src="/javascripts/jquery.js"></script>
 <script src="/javascripts/popper.js"></script>
@@ -134,8 +195,7 @@
 
     $('div.dataTables_wrapper div.dataTables_filter input').attr('placeholder', 
     "Search for admins");
-    
-    // $('#example_wrapper').children.list
+
     document.querySelectorAll('#example_wrapper div')[5].style.overflowX = 'auto';
     document.querySelectorAll('#example_wrapper div')[5].style.margin = '';
     document.querySelectorAll('#example_wrapper div')[5].style.width = '100%';
