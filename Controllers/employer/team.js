@@ -138,6 +138,7 @@ module.exports = {
       error.httpStatusCode = 500;
       return next(error);
     }
+    return false;
   },
 
   verifyInvite: async (req, res, next) => {

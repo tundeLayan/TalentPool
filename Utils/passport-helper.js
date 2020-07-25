@@ -86,7 +86,7 @@ const createUser = async (req, profile, userRole, done) => {
 };
 
 const renderPage = async (req, res) => {
-  const user = { req };
+  const {user} =  req ;
   const data = {
     firstName: user.firstName,
     lastName: user.lastName,
