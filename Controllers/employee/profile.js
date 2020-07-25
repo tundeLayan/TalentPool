@@ -137,7 +137,7 @@ module.exports = {
   // render employee upate profile page
   getUpdateProfilepage: async (req, res) => {
     try {
-      const { email, data } = employeeData(req, res);
+      const { email, data, options } = employeeData(req, res);
 
       // query the database to find the user
       const employeeQuery = await getEmployee(models, data);
@@ -149,14 +149,18 @@ module.exports = {
         profile = {
           user: userQuery.dataValues,
           employee: employeeQuery.dataValues,
+          success: options.success,
+          errorMessage: options.errorMessage,
         };
       } else {
         profile = {
           user: userQuery.dataValues,
+          success: options.success,
+          errorMessage: options.errorMessage,
         };
       }
 
-      renderPage(
+      return renderPage(
         res,
         'employee/employeeDashboardSettingsProfileEdit',
         profile,
