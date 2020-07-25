@@ -1,0 +1,53 @@
+@media screen and (min-width: 992px) {
+  #employerContactUs .container {
+    width: 55% !important;
+    margin-left: 0 !important;
+  }
+}
+
+#employerContactUs {
+  padding-top: 97px;
+  height: 100vh;
+}
+
+#employerContactUs .contactUs-padding {
+  padding-top: 40px !important;
+}
+
+#employerContactUs .contactUs-header {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #04172a;
+}
+
+#employerContactUs .form-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  color: #04172a;
+}
+
+#employerContactUs .btn-purple {
+  background: #4d49ff !important;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25) !important;
+  border-radius: 5px !important;
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 14px;
+}
+
+@media screen and (max-width: 382px) {
+  #employerContactUs {
+    padding-top: 184px;
+  }
+}
+
+@media screen and (min-width: 850px) and (max-width: 991px) {
+  #employerContactUs {
+    display: flex !important;
+  }
+}
