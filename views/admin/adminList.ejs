@@ -11,11 +11,21 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
   <link rel="stylesheet" href="/stylesheets/adminList.css">
 
+ 
   <title>Dashboard</title>
+  <style>
+    .dropdown-toggle::after {
+      display: none;
+    }
+
+    .sidenav {
+      z-index: 3 !important;
+    }
+  </style>
 </head>
 
 <body>
-  <%- include('../templates/employeeDashboardSidebar.ejs') %>
+  <%- include('../templates/adminDashboardSidebar.ejs') %>
   <%- include('../templates/dashboardHeader.ejs') %>
   <main id="main">
     <section class="container" style="width: 90%;">
@@ -29,45 +39,18 @@
           <thead class="mt-3">
               <tr>
                   <th>Status</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
+                  <th>Name</th>
                   <th>Email</th>
-                  <th>Phone Number</th>
                   <th>Role</th>
                   <th>Date Created</th>
                   <th>Action</th>
               </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td class="d-flex">
-                      <span>
-                          <i class="fa fa-lock mr-1"></i>
-
-                          <span class="badge badge-pill badge-success">Granted</span>
-                          <!-- <span class="badge badge-pill badge-danger">Denied</span> -->
-                      </span>
-                  </td>
-                  <td>Office Manager</td>
-                  <td>London</td>
-                  <td>37</td>
-                  <td>2008/12/11</td>
-                  <td>$136,200</td>
-                  <td>$136,200</td>
-                  <td>
-                      <span class="d-flex justify-content-between">
-                          <span onclick="toggleLock(id);">
-                            <i class="fa fa-lock custom-lock-icon"></i>
-                          </span>
-
-                          <span onclick="deleteAdmin(id);"><i class="fa fa-trash custom-trash-icon"></i></span> 
-
-                      </span>
-                      
-                  </td>
-              </tr>
-              <tr>
-                  <td class="d-flex">
+              <% admins.forEach(function(admin) { %>
+                <tr>
+                  <% if(admin.block == true) { %>
+                    <td class="d-flex">
                       <span class="">
                       </span>
                       <span>
@@ -78,48 +61,40 @@
 
                       </span>
                   </td>
-                  <td>Office Manager</td>
-                  <td>London</td>
-                  <td>37</td>
-                  <td>2008/12/11</td>
-                  <td>$136,200</td>
-                  <td>$136,200</td>
-                  <td>
-                      <span class="d-flex justify-content-between">
-                          <span onclick="toggleLock(id);">
-                            <i class="fa fa-lock custom-lock-icon"></i>
-                          </span>
-
-                          <span onclick="deleteAdmin(id);"><i class="fa fa-trash custom-trash-icon"></i></span>
-                      </span>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="d-flex">
+                  <% } %>
+                  <% if(!admin.block) { %>
+                    <td class="d-flex">
                       <span class="">
                       </span>
                       <span>
                           <i class="fa fa-lock mr-1"></i>
 
-                          <span class="badge badge-pill badge-danger">Denied</span>
+                          <span class="badge badge-pill badge-success">Granted</span>
                       </span>
                   </td>
-                  <td>Office Manager</td>
-                  <td>London</td>
-                  <td>37</td>
-                  <td>2008/12/11</td>
-                  <td>$136,200</td>
-                  <td>$136,200</td>
-                  <td>
-                      <span class="d-flex justify-content-between">
-                          <span onclick="toggleLock(id);">
-                            <i class="fa fa-lock custom-lock-icon "></i>
+                  <% } %>
+                    <td><a href="/admin/profile/<%= admin.userId %>"><%= admin.firstName %> <%= admin.lastName %></a></td>
+                    <td><%= admin.email %></td>
+                    <td>Administrator</td>
+                    <td><%= moment(admin.createdAt).format('MMMM Do YYYY') %></td>
+                    <td>
+                      <% if(!admin.block) { %>
+                        <span class="d-flex justify-content-between">
+                          <span>
+                            <a href="#" onclick= 'toBlock("<%= admin.userId %>", "<%= admin.firstName %> <%= admin.lastName %>", "<%= csrfToken %>" )' data-tooltip data-placement="top" title="Block"><i class="fa fa-lock custom-lock-icon"></i></a>
                           </span>
-
-                          <span onclick="deleteAdmin(id);"><i class="fa fa-trash custom-trash-icon"></i></span>
                       </span>
+                      <% } %>
+                      <% if(admin.block == true) { %>
+                        <span class="d-flex justify-content-between">
+                          <span>
+                            <a href="#"  onclick= 'toUnblock("<%= admin.userId %>", "<%= admin.firstName %> <%= admin.lastName %>", "<%= csrfToken %>" )' data-tooltip data-placement="top" title="Unblock"><i class="fa fa-unlock custom-lock-icon"></i></a>
+                          </span>
+                      </span>
+                      <% } %>
                   </td>
-              </tr>
+                </tr>
+              <% })%>
           </tbody>
       </table>
 
@@ -180,11 +155,16 @@
       <!-- ------------------------------Add Admin Modal End--------------------------->
     </section>
   </main>
-</body>
-<script src="/javascripts/adminList.js"></script>
-<script src="/javascripts/bootstrap.js"></script>
-<script src="/javascripts/jquery.js"></script>
 <script src="/javascripts/popper.js"></script>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/bootstrap.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script>
+  $(function(){
+   $('[data-tooltip]').tooltip();
+   });
+</script>
 <!-- I am using boostrap data table scripts -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
@@ -201,4 +181,8 @@
     document.querySelectorAll('#example_wrapper div')[5].style.width = '100%';
     } );
 </script>
+
+<script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+<script src="/javascripts/adminList.js"></script>
+</body>
 </html>
