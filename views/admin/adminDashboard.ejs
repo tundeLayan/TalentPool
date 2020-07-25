@@ -3,7 +3,7 @@
   <head>
     <%- include('../templates/dashboardHead.ejs') %>
     <link rel="stylesheet" href="stylesheets/adminDashboard.css" />
-    <title>Talent Haven|Admin Dashboard</title>
+    <title>Talent Haven | Admin Dashboard</title>
   </head>
   <body>
       <%- include('../templates/adminDashboardSidebar.ejs') %> 
@@ -58,14 +58,21 @@
           <div class="admin-dashboard-graph">
             <div class="graph-selection">
               <p>This year</p>
-              <div
-                class="d-flex align-items-center btn dropdown-toggle dropleft"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-              </div>
+              <select id="months" name="Months">
+                <option selected></option>
+                <option value="jan">Jan</option>
+                <option value="Feb">Feb</option>
+                <option value="Mar">Mar</option>
+                <option value="Apr">Apr</option>
+                <option value="May">May</option>
+                <option value="Jun">Jun</option>
+                <option value="Jul">Jul</option>
+                <option value="Aug">Aug</option>
+                <option value="Sep">Sep</option>
+                <option value="Oct">Oct</option>
+                <option value="Nov">Nov</option>
+                <option value="Dec">Dec</option>
+              </select>
             </div>
             <div class="graph">
               <p class="text-uppercase">graph placeholder</p>
