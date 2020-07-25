@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/employeeProfile.css" />
+
+
+    <%- include('../templates/dashboardHead.ejs')%>
+
+</head>
+
+<body>
+
+    <%- include('../templates/employeeDashboardSidebar.ejs')%>
+    <%- include('../templates/dashboardHeader.ejs')%>
+
+    <main id="main">
+
+
+
+        <div class=" container my-md-5 py-md-5 my-1 profile-img-bar">
+            <div class="profile-img-div">
+                <img class="profile-img" src="/images/profile-img.svg" alt="">
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-4 col-12 ">
+                    <div class=" my-md-5 my-3">
+
+                        <p>CV/Resume </p>
+                        <div class="border p-2 rounded">
+                            <img src="/images/attached.svg" alt="#">
+                            <p class="d-inline-block text">Resume.pdf </p>
+                            <img src="/images/upward-arrow.png" alt="">
+                        </div>
+                    </div>
+
+
+                    <div class="my-md-5 my-3">
+                        <p>Phone number </p>
+                        <div class="border p-2 rounded">
+                            <img src="/images/phone-in-EP.png" alt="#">
+                            <p class="d-inline-block text">+23475890078</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12">
+                    <div class="my-md-5 my-3">
+                        <p>Email address</p>
+                        <div class="border p-2 rounded  ">
+                            <img src="/images/mail-add.png" alt="#">
+
+                            <p class="d-inline-block text">Username@Domain.com</p>
+                        </div>
+                    </div>
+                    <div class="my-md-5 my-3">
+                        <p>Business address </p>
+                        <div class="border p-2 rounded  ">
+                            <img src="/images/home.png" alt="#">
+                            <p class="d-inline-block text">Town Name, Country Name</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12">
+                    <p class="" style="padding-bottom: -30px;">skillset</p>
+                    <div class="border p-2 rounded  my-md-5 my-3">
+                        <p class="text-left my-2">Figma</p>
+
+                        <div class="progress my-4">
+                            <div class="progress-bar " role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        <p class="text-left">Adobe XD</p>
+
+                        <div class="progress my-4">
+                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="text-left"> Photoshop</p>
+
+                        <div class="progress my-4">
+                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="text-left">Brand Strategy</p>
+
+                        <div class="progress my-4">
+                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </main>
+
+
+</body>
+
+</html>
