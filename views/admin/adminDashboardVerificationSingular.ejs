@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Talent Haven | Admin Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+
+    <!-- Boiler Plate CSS -->
+    <link rel="stylesheet" href="/stylesheets/datatable css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/stylesheets/datatable css/custom.css">
+
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="/stylesheets/dashboardSidenav.css">
+    <link rel="stylesheet" href="/stylesheets/dashboardHeader.css">
+    <link rel="stylesheet" href="/stylesheets/admin-dashboard-verify-singular.css">
+
+</head>
+<body>
+
+    <%- include('../templates/adminDashboardSidebar.ejs') %>
+    <%- include('../templates/dashboardHeader.ejs') %>
+
+    <section class="admin-dashboard-verification-singular-container-pt">
+
+
+        <div class="container">
+            <div class="verification-singular-inner">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-5 col-12 card-shadow">
+                        <div class="employer-profile-outer">
+                            <div class="top-sect">
+                                <img class="profile" src="/images/profile-image.jpeg" alt="">
+                                <span>
+                                    <span class="name">John Doe</span>
+                                    <img class="pen" src="/images/admin-verification/pen.svg" alt="">
+                                </span>
+                            </div>
+
+                            <div class="description">
+                                Google’s mission is to organize the world‘s information and make
+                                it universally accessible and useful. Since our founding in 1998,
+                                Google has grown by leaps and bounds.
+                                From offering search in a single language we
+                                now offer dozens of products and services.
+                            </div>
+
+                            <div class="action">
+                                <button onclick="alert('no action yet')" class="btn">Verify</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 offset-lg-1 col-sm-5 offset-sm-1 col-12">
+                        <div class="card-shadow company-info">
+                            <div>
+                                <span class="label">Company Name</span>
+                                <span class="title">
+                                    <img width="20px" src="/images/admin-verification/house.svg" alt="">
+                                    <span>Google</span>
+                                </span> 
+                            </div>
+
+                            <div>
+                                <span class="label">Email Address</span>
+                                <span class="title">
+                                    <img width="20px" src="/images/admin-verification/msg.svg" alt="">
+                                    <span>Username@Domain.com</span>
+                                </span> 
+                            </div>
+
+                            <div>
+                                <span class="label">Business Address</span>
+                                <span class="title">
+                                    <img width="20px" src="/images/admin-verification/home.svg" alt="">
+                                    <span>Town Name, Country Name</span>
+                                </span> 
+                            </div>
+                        </div>
+
+                        <div class="card-shadow company-socials">
+                                <table class="table no-border">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src="/images/admin-verification/link.svg" alt="">
+                                            </td>
+                                            <td>Google.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="/images/admin-verification/link.svg" alt="">
+                                            </td>
+                                            <td>Twitter.com</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="/images/admin-verification/link.svg" alt="">
+                                            </td>
+                                            <td>Facebook.com</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 offset-lg-1 col-sm-5 col-12 ">
+                        <div class="policy card-shadow">
+                            <table class="table no-border">
+                            <tbody>
+                                <tr>
+                                    <td>Agreement policy</td>
+                                    <td>
+                                        <img src="/images/admin-verification/download.svg" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+
+                        <div class="policy card-shadow">
+                            <table class="table no-border">
+                            <tbody>
+                                <tr>
+                                    <td>Offer letter</td>
+                                    <td>
+                                        <img src="/images/admin-verification/download.svg" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+
+                        <div class="policy card-shadow">
+                            <table class="table no-border">
+                            <tbody>
+                                <tr>
+                                    <td>Letter of acceptance</td>
+                                    <td>
+                                        <img src="/images/admin-verification/download.svg" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+
+                        <div class="policy card-shadow">
+                            <table class="table no-border">
+                            <tbody>
+                                <tr>
+                                    <td>Company policy</td>
+                                    <td>
+                                        <img src="/images/admin-verification/download.svg" alt="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Dashboard JS -->
+    <script src="/javascripts/dashboardNav.js"></script>
+    <script src="/javascripts/dashboardSideNav.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</body>
+</html>
