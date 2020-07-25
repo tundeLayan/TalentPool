@@ -20,7 +20,7 @@ const { validateSignup, validateEmail } = require('../../Utils/validators/auth-v
 
 router.get('/auth/employer/google', getUserProfile('google-employer'));
 
-router.get('/auth/employee/google', getUserProfile('google-employer'));
+router.get('/auth/employee/google', getUserProfile('google-employee'));
  
 router.get('/auth/employer/google/callback', authCallbackHandler('google-employer'), handAuthCallback);
 
@@ -34,7 +34,7 @@ router.get(
 router.get('/auth/employee/github', passport.authenticate('github-employee'));
 
 router.get(
-  '/auth/employee/github/callback/', authCallbackHandler('github-employer'),handAuthCallback
+  '/auth/employee/github/callback/', authCallbackHandler('github-employee'),handAuthCallback
 );
 
 router.get('/employee/register', registerEmployeePage);
