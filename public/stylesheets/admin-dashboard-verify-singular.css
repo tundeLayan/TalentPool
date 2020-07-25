@@ -1,0 +1,130 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+.admin-dashboard-verification-singular-container-pt {
+    height: 100%;
+    width: calc(100% - 110px);
+    margin-left: auto;
+    background-color: white;
+    color: #000;
+    padding-top: 82px;
+}
+.admin-dashboard-verification-singular-container-pt .verification-singular-inner {
+    padding: 3.5em 2em;
+}
+.admin-dashboard-verification-singular-container-pt .verification-singular-inner .card-shadow {
+    box-shadow: 0 1px 4px 1px #ccc; 
+}
+.verification-singular-inner .employer-profile-outer {
+    padding: 15px;
+}
+.verification-singular-inner .employer-profile-outer .top-sect img.profile {
+    border-radius: 50%;
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+.verification-singular-inner .employer-profile-outer .top-sect img.pen {
+    margin-top: -5px;
+    max-height: 18px;
+    min-height: 18px;
+    cursor: pointer;
+}
+.verification-singular-inner .employer-profile-outer .top-sect span {
+    padding: 10px;
+    text-align: center;
+}
+.verification-singular-inner .employer-profile-outer .top-sect .name {
+    display: inline-block;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: #04172A;
+}
+.verification-singular-inner .employer-profile-outer .description {
+    margin-top: 15px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    color: #000000;
+}
+.verification-singular-inner .employer-profile-outer .action {
+    margin-top: 20px;
+    text-align: center;
+}
+.verification-singular-inner .employer-profile-outer .action button {
+    width: 116px;
+    height: 45px;
+    background: #4D49FF;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+.verification-singular-inner .company-info {
+    padding: 16px;
+    width: 100%;
+    margin: 0 2px 4px 2px;
+}
+.verification-singular-inner .company-socials {
+    padding: 16px;
+    width: 100%;
+    margin: 14px 2px 4px 2px;
+}
+.verification-singular-inner .policy {
+    padding: 2px 8px;
+    width: 100%;
+    margin-bottom: 12px
+}
+.verification-singular-inner table {
+    margin-bottom: 0;
+}
+.verification-singular-inner .policy tbody td {
+    border: none !important;
+}
+.verification-singular-inner .policy tbody td:nth-child(2) {
+    width: 20px;
+}
+.verification-singular-inner .company-socials tbody td {
+    border: none !important;
+    color: #4D49FF
+}
+.verification-singular-inner .company-socials tbody td:nth-child(1) {
+    width: 20px;
+}
+.verification-singular-inner .company-info div {
+    padding: 3px 0;
+}
+.verification-singular-inner .company-info .label {
+    font-weight: normal;
+    font-size: 14px;
+    color: #989393;
+    display: block;
+    padding: 2px 0;
+}
+.verification-singular-inner .company-info .title {
+    font-weight: normal;
+    font-size: 14px;
+    display: block;
+    color: #04172A;
+    padding: 1px 0;
+    width: 100%;
+}
+.verification-singular-inner .company-info .title span {
+    padding: 8px 12px 0 12px;
+    width: calc(100% - 26px);
+    display: inline-block;
+    font-size: 12px
+}
+
+
+@media screen and (max-width: 992px) {
+    .admin-dashboard-verification-singular-container-pt {
+        width: 100%;
+        margin-left: 0;
+        background-color: white;
+    }
+} 
