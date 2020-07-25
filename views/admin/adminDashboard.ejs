@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <%- include('../templates/dashboardHead.ejs') %>
-    <link rel="stylesheet" href="stylesheets/adminDashboard.css" />
+    <link rel="stylesheet" href="/stylesheets/adminDashboard.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <title>Talent Haven | Admin Dashboard</title>
   </head>
@@ -58,7 +58,7 @@
         <div class="admin-dashboard-others">
           <div class="admin-dashboard-graph">
             <div class="graph-selection">
-              <p>This year</p>
+              <p><%= moment(Date.now()).format("YYYY") %></p>
               <select oninput="fetchData()" id="months" name="Months">
                 <option selected></option>
                 <option value="Jan">Jan</option>
@@ -79,9 +79,9 @@
               <canvas id="adminChart" style="width: fit-content; margin-top: 2rem;"></canvas>
               <div class="d-flex justify-content-between align-items-center py-4 px-4 statistics__info">
                 <p class="m-0">Employees</p>
-                <h4 class="m-0" id="numberOfEmployee"></h4>
+                <strong class="m-0" id="numberOfEmployee"></strong>
                 <p class="m-0">Employers</p>
-                <h4 class="m-0" id="numberOfEmployer"></h4>
+                <strong class="m-0" id="numberOfEmployer"></strong>
               </div>
             </div>
           </div>
