@@ -93,9 +93,7 @@ const redirectUser = async (req, res, email, password, user) => {
     }
     if (user.roleId === 'ROL-EMPLOYEE') {
       req.session.employeeId = user.userId;
-      return res.redirect(
-        `/employer/dashboard/`,
-      );
+      return res.redirect(`/employee/dashboard/`);
     }
     if (user.roleId === 'ROL-ADMIN' || user.roleId === 'ROL-SUPERADMIN') {
       req.session.isAdmin = true;
@@ -129,32 +127,37 @@ module.exports = {
       let user;
 
       const cachedUser = client.get(email.toString());
-      const userData = await getUserByEmail(model, email);
 
       if (cachedUser) {
-        client.get(email.toString(), (err, data) => {
-          if (err) throw err;
+        client.get(email.toString(), async (err, data) => {
+          try {
+            if (err) throw err;
 
-          if (data) {
-            user = JSON.parse(data);
-            redirectUser(req, res, email, password, user);
-          } else if (user == null) {
-            if (userData) {
-              user = userData.dataValues;
-              // Cache User object
-              client.set(email.toString(), JSON.stringify(user));
-              return redirectUser(req, res, email, password, user);
+            if (data) {
+              user = JSON.parse(data);
+              redirectUser(req, res, email, password, user);
+            } else if (user == null) {
+              const userData = await getUserByEmail(model, email);
+              if (userData) {
+                user = userData.dataValues;
+                // Cache User object
+                client.set(email.toString(), JSON.stringify(user));
+                return redirectUser(req, res, email, password, user);
+              }
             }
-            return authErrorRedirect(
-              req,
-              res,
-              null,
-              null,
-              'Something Went Wrong! Please try again...',
-              'auth/login',
-              'Login',
-              '/login',
-            );
+          } catch (error) {
+            if (error) {
+              return authErrorRedirect(
+                req,
+                res,
+                null,
+                null,
+                'Something Went Wrong! Please try again...',
+                'auth/login',
+                'Login',
+                '/login',
+              );
+            }
           }
         });
       }
@@ -175,8 +178,7 @@ module.exports = {
     }
   },
   logout: (req, res) => {
-    const { employeeId, employerId, adminId } = req.session;
-    if (employerId || employeeId || adminId) {
+    if (req.session.isLoggedIn) {
       req.session.isLoggedIn = false;
       res.redirect('/');
     }
