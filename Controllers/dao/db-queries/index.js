@@ -12,13 +12,16 @@ module.exports = {
       where: { userId: user },
     });
   },
-  getPortfolio: (models, userId) => {
-    return models.Portfolio.findAll({ where: {userId}})
+  getPortfolio: (models, user) => {
+    return models.Portfolio.findAll({ where: {userId: user}})
   },
   getEmployee: (models, user) => {
     return models.Employee.findOne({
       where: { userId: user },
     });
+  },
+  addSkill: (models, skill) => {
+      return models.Skill.create(skill)
   },
   getAllEmployee: (models) => {
     return models.Employee.findAll({
@@ -27,8 +30,8 @@ module.exports = {
       },
     });
   },
-  getSkills: (models, userId) => {
-    return models.Skill.findAll({ where: userId})
+  getSkills: (models, user) => {
+    return models.Skill.findAll({ where: {userId: user}})
   },
   getRecommendedInterns: (models) => {
     return models.Employee.findAll({

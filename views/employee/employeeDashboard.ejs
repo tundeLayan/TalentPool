@@ -22,7 +22,7 @@
             <div class="card card1 d-flex justify-content-center align-items-center">
               <div class="card-container d-flex flex-column justify-content-center align-items-center">
                 <p class="card-text">Your Profile was viewed</p>
-                <span class="card-text2 mb-2">48 time(s)</span>
+                <span class="card-text2 mb-2"><%= employee.views %> time(s)</span>
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@
             <div class="card card1 d-flex justify-content-center align-items-center">
               <div class="card-container d-flex flex-column justify-content-center align-items-center">
                 <p class="card-text">You are currently</p>
-                <span class="card-text2 mb-2">Available To Work</span>
+                <span class="card-text2 mb-2"><%= employee.availability %> To Work</span>
               </div>
             </div>
           </div>
@@ -38,7 +38,11 @@
             <div class="card card1 d-flex justify-content-center align-items-center">
               <div class="card-container d-flex flex-column justify-content-center align-items-center">
                 <p class="card-text">You have</p>
-                <span class="card-text2 mb-2">No team yet</span>
+                <% if(!employee.hasTeam) { %>
+                  <span class="card-text2 mb-2">No team yet</span>
+                  <% } else { %>
+                    <span class="card-text2 mb-2">A team</span>
+                    <% } %>
               </div>
             </div>
           </div>
@@ -53,38 +57,17 @@
               </div>
             </div>
             <div class="row mt-2">
+              <% for(portfolio of portfolios) { %>
               <div class="col-12 col-md-6 mb-4">
                 <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
+                  <span class="portfolio-title pb-2"><%= portfolio.title %></span>
+                  <span class="portfolio-desc pb-3"><%= portfolio.description %></span>
                   <a href="#" class="portfolio-link">Portfolio Link</a>
                 </div>
               </div>
-              <div class="col-12 col-md-6 mb-4">
-                <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
-                  <a href="#" class="portfolio-link">Portfolio Link</a>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 mb-4">
-                <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
-                  <a href="#" class="portfolio-link">Portfolio Link</a>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 mb-4">
-                <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
-                  <a href="#" class="portfolio-link">Portfolio Link</a>
-                </div>
-              </div>
+              <% } %>
+              
+              
             </div>
           </div>
 
@@ -112,10 +95,10 @@
                     <h5 class="modal-title" id="">Add Skill</h5>
                   </div>
                   <div class="modal-body">
-                    <form action="">
+                    <form action="/" method="POST">
                       <div class="form-group">
                         <label class="skill-label">Skill name</label>
-                        <input type="text" name="skill" class="form-control" placeholder="Write the skill name here">
+                        <input type="text" name="skillDescription" class="form-control" placeholder="Write the skill name here" id="skillDescription">
                       </div>
                       <div class="form-group">
                         <label class="skill-label">Select skill range</label>
@@ -135,9 +118,10 @@
 
             <div class="card card3 mt-2">
               <ul class="list-group list-group-flush">
+                <% for (skill of skills) { %>
                 <li class="list-group-item">
                   <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Angular</span>
+                    <span class="card-skill"><%= skill.skillDescription %></span>
                     <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
                   </div>
                   <div class="progress">
@@ -145,116 +129,7 @@
                       aria-valuemax="100"></div>
                   </div>
                 </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Git</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Adobe XD</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Brand Strategy</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="75"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Analytical Thinking</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Figma</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Angular</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Git</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Adobe XD</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Brand Strategy</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="75"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Analytical Thinking</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Figma</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
+                <% } %>
               </ul>
             </div>
           </div>
