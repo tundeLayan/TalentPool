@@ -14,6 +14,37 @@ module.exports = {
       where: { userId: user.userId },
     });
   },
+  getAllEmployee: (models) => {
+    return models.Employee.findAll({
+      where: {
+        verificationStatus: 'Approved'
+      },
+    });
+  },
+  getRecommendedInterns: (models) => {
+    return models.Employee.findAll({
+      where: {
+        userType: 'HNG',
+        verificationStatus: 'Approved'
+      },
+    });
+  },
+  getPendingHire: (req, models) => {
+    return models.Team.findAll({
+      where: {
+        // userId: req.session.userId,
+        status: 'Pending'
+      },
+    });
+  },
+  getTeamMember: (req, models) => {
+    return models.Team.findAll({
+      where: {
+        // userId: req.session.userId,
+        status: 'Accepted'
+      },
+    });
+  },
   employerChatUsers: async () => {
     const users = await model.Employer.findAll({
         raw: true,

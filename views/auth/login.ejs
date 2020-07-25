@@ -24,33 +24,29 @@
     <link rel="stylesheet" href="/stylesheets/login.css" />
   </head>
 
-  <body>
-    <%- include('../templates/navBar.ejs') %>
+  <body class="bg-img">
+   <header>
+    <nav class="navbar navbar-expand-lg">
+     <div class="container-fluid my-auto">
+         <a class="navbar-brand" href="/"><span style="color: #4D49FF;">Talent</span> Haven</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+         </button>
 
-    <a class="navbar-brand" href="#">
-      <span class="prj-text-primary">Talent </span>
-      <span class="prj-text-accent">Haven </span>
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-          <a class="nav-link prj-header-link font-weight-bold" href="#"
-            ><span class="sr-only">(current)</span></a
-          >
-        </li>
-      </ul>
-    </div>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav nav-padding ml-auto">
+                 <li class="nav-item nav-margin-signIn">
+                     <a class="nav-link nav-link-white" href="/login">Sign In -></a>
+                 </li>
+                 <li class="nav-item nav-margin-signUp">
+                     <a class="nav-link nav-link-white" href="/employee/register">Sign Up -></a>
+                 </li>
+             </ul>
+         </div>
+     </div>
+ </nav>
+  </header>
 
     <main>
       <div class="container-fluid my-auto">
