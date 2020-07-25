@@ -154,6 +154,21 @@
   padding: 4px 0 !important;
 }
 
+.modalBtn {
+  background: #4d49ff;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+#employeeDashboard .skill-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  color: #04172a;
+}
+
 /* 
 #employeeDashboard .see-all {
   position: absolute;
