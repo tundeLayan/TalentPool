@@ -234,7 +234,7 @@ const verifyEmail = async (req, res) => {
     if (Date.now() <= decoded.exp + Date.now() + 60 * 60) {
       if (!user) {
         req.flash('error', 'Email has not been registered');
-        return res.redirect('/employer/register');
+        return res.redirect('/');
       }
       if (user.status === '1') {
 

@@ -128,16 +128,17 @@ module.exports = {
       let user;
       const keyId = redisKeys.getHashKey(email.toString());
       const cachedUser = client.get(keyId);
-      const userData = await getUserByEmail(model, email);
+     
 
       if (cachedUser) {
-        client.get(keyId, (err, data) => {
+        client.get(keyId, async (err, data) => {
           if (err) throw err;
 
           if (data) {
             user = JSON.parse(data);
             redirectUser(req, res, email, password, user);
           } else if (user == null) {
+            const userData = await getUserByEmail(model, email);
             if (userData) {
               user = userData.dataValues;
               // Cache User object
@@ -174,6 +175,7 @@ module.exports = {
     }
   },
   logout: (req, res) => {
+
     if (req.session.isLoggedIn) {
       req.session.isLoggedIn = false;
     }
