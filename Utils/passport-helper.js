@@ -98,7 +98,7 @@ const renderPage = async (req, res) => {
 
   req.session.data = data;
   req.session.isLoggedIn = true;
-  req.flash('success', 'Authentication successful!');
+  // req.flash('success', 'Authentication successful!');
   if (user.userRole === 'ROL-EMPLOYER') {
     req.session.employerId = user.userId;
     return res.redirect('/employer/dashboard');
