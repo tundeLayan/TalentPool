@@ -92,6 +92,7 @@ const redirectUser = async (req, res, email, password, user) => {
       email: user.email,
       userId: user.userId.toString(),
       userRole: user.roleId,
+      userName: user.firstName,
     };
 
     if (isEmployer) {
