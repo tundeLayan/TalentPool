@@ -8,7 +8,7 @@ const { chatMessages } = require('../Controllers/message/message');
 const router = express.Router();
 
 router.get('/', checkLoggedIn, home);
-router.get('/about', about);
+router.get('/about', checkLoggedIn, about);
 router.get('/message/:senderID/:receiverID', chatMessages);
 router.get('/team/verify-invite', verifyInvite);
 

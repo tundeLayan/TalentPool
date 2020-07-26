@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { getProfilePage } = require('../../Controllers/employee/profile');
 
-router.get('/profile', getProfilePage);
+router.get('/', getProfilePage);
 
 module.exports = router;
