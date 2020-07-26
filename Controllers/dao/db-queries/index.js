@@ -12,10 +12,16 @@ module.exports = {
       where: { userId: user.userId },
     });
   },
+  getPortfolio: (models, user) => {
+    return models.Portfolio.findAll({ where: {userId: user.userId}})
+  },
   getEmployee: (models, user) => {
     return models.Employee.findOne({
       where: { userId: user.userId },
     });
+  },
+  addSkill: (models, skill) => {
+      return models.Skill.create(skill)
   },
   getAllEmployee: (models) => {
     return models.Employee.findAll({
@@ -23,6 +29,9 @@ module.exports = {
         verificationStatus: 'Approved',
       },
     });
+  },
+  getSkills: (models, user) => {
+    return models.Skill.findAll({ where: {userId: user.userId}})
   },
   getRecommendedInterns: (models) => {
     return models.Employee.findAll({
