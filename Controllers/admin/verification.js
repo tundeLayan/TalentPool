@@ -14,7 +14,7 @@ module.exports = {
       }
       renderPage(res, 'admin/adminDashboardVerification', data, 'Admin | Verification', 'pathName');
     } catch (error) {
-        console.log(error);
+      req.flash('error', error.message);
     }
   },
 
@@ -31,7 +31,7 @@ module.exports = {
       }
       renderPage(res, 'admin/adminDashboardVerificationSingular', data, 'Admin | Employer verification', 'pathName');
     } catch (error) {
-      console.log(error);
+      req.flash('error', error.message);
     }
   },
 }

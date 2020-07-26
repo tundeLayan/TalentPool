@@ -90,7 +90,7 @@ module.exports = {
 
       renderPage(res, 'admin/adminDashboard', data, 'Admin | Dashboard', 'pathName');
     } catch (error) {
-      console.log(error);
+      req.flash('error', error.message);
     }
   },
 };
