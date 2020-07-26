@@ -1,5 +1,4 @@
 function toBlock(userId, adminName, csrf) {
-	console.log(csrf);
 	swal({
 		title: `Are you sure you want to block ${adminName}?`,
 		type: 'warning',

@@ -12,10 +12,16 @@ module.exports = {
       where: { userId: user.userId },
     });
   },
+  getPortfolio: (models, user) => {
+    return models.Portfolio.findAll({ where: {userId: user.userId}})
+  },
   getEmployee: (models, user) => {
     return models.Employee.findOne({
       where: { userId: user.userId },
     });
+  },
+  addSkill: (models, skill) => {
+      return models.Skill.create(skill)
   },
   getAllEmployee: (models) => {
     return models.Employee.findAll({
@@ -23,6 +29,9 @@ module.exports = {
         verificationStatus: 'Approved',
       },
     });
+  },
+  getSkills: (models, user) => {
+    return models.Skill.findAll({ where: {userId: user.userId}})
   },
   getRecommendedInterns: (models) => {
     return models.Employee.findAll({
@@ -150,6 +159,16 @@ module.exports = {
     });
     return allSubscriptions;
   },
+  deleteARecord: (models, param) => {
+    return models.destroy({
+      where: param,
+    });
+  },
+  updateARecord: (models, data, param) => {
+    return models.update(data, {
+      where: param,
+    });
+  },
 
   getAdmin: async (userId) => {
     const admin = await model.User.findOne({
@@ -159,18 +178,18 @@ module.exports = {
     return admin;
   },
   activityLog: async (userId) => {
-    const activities = await model.Activitylog.findAll({ 
-      where: { userId } 
+    const activities = await model.Activitylog.findAll({
+      where: { userId },
     });
     return activities;
   },
 
   allAdmin: async () => {
-    const admins = await model.User.findAll({ 
-      where: { 
-        roleId: 'ROL-ADMIN' 
-      } 
+    const admins = await model.User.findAll({
+      where: {
+        roleId: 'ROL-ADMIN',
+      },
     });
     return admins;
-  }
+  },
 };

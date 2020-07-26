@@ -17,13 +17,10 @@ const checkLoggedIn = (req, res, next) => {
 }
 
 // eslint-disable-next-line consistent-return
-const authorisedPages = (req, res, next) => {
+const authorisedPages = (role, roleSuperAdmin = null) =>  (req, res, next) => {
   const { isLoggedIn, data } = req.session;
-  if (isLoggedIn) {
-    if (data.userRole === 'ROL-EMPLOYER' && req.originalUrl === '/employer/dashboard') return next();
-    if (data.userRole === 'ROL-EMPLOYEE' && req.originalUrl === '/employee/dashboard') return next();
-    if ((data.userRole === 'ROL-ADMIN' || data.userRole === 'ROL-SUPERADMIN') && req.originalUrl === '/admin/dashboard') return  next();
-  }
+  if (isLoggedIn && data && data.userRole === role) return next();
+  if (isLoggedIn && data && roleSuperAdmin && data.userRole === roleSuperAdmin) return next();
   res.redirect('/');
 }
 
