@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../templates/dashboardHead')%>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/stylesheets/employer-dashboard-settings-email.css"
+    />
+    <title>Employer Dashboard | Settings Email</title>
+  </head>
+  <body>
+    <%- include('../templates/employerDashboardSidebar.ejs') %> <%-
+    include('../templates/dashboardHeader.ejs') %>
+    <main id="main">
+      <section class="main-container">
+        <div class="row mt-5 px-2">
+          <%- include('../templates/employerDashboardPrivacyTabs.ejs', {
+          tabRoute: 'emailSettings'})%>
+
+          <div class="col-md-9 main-wrapper pl-sm-4">
+            <h1 class="mb-4 preferences">Email preferences</h1>
+            <form class="animate__animated animate__fadeInUp animate__delay-1s">
+              <div class="form-group row">
+                <label for="transactionalEmail" class="col-sm-5 col-form-label"
+                  >Transactional Email</label
+                >
+                <div class="col-sm-7 d-flex align-items-center">
+                  <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customControlInline1"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customControlInline1"
+                      >Send me transactional emails</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="promotionalEmail" class="col-sm-5 col-form-label"
+                  >Promotional Email</label
+                >
+                <div class="col-sm-7 d-flex align-items-center">
+                  <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input
+                      type="checkbox"
+                      checked
+                      class="custom-control-input"
+                      id="customControlInline"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customControlInline"
+                      >Send me promotional emails</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-5 pt-0">
+                    Notification Emails of Team Members
+                  </legend>
+                  <div class="col-sm-7">
+                    <div class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        id="customRadio1"
+                        name="customRadio"
+                        class="custom-control-input"
+                      />
+                      <label class="custom-control-label" for="customRadio1"
+                        >Send to business email addresses only</label
+                      >
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        id="customRadio2"
+                        name="customRadio"
+                        class="custom-control-input"
+                      />
+                      <label class="custom-control-label" for="customRadio2"
+                        >Send to all team members</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <div class="form-group row">
+                <div class="col-sm-5">Subscription Emails</div>
+                <div class="col-sm-7 align-items-center">
+                  <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customControlInline2"
+                    />
+                    <label
+                      class="custom-control-label"
+                      for="customControlInline2"
+                      >Send me subscription related emails</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row mt-5">
+                <div class="col-sm-8">
+                  <button
+                    type="submit"
+                    class="btn btn-save animate__animated animate__slideInRight animate__delay-2s"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

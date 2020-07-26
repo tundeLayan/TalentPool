@@ -4,25 +4,27 @@ const sendEmail = require('../../Utils/send-email');
 const jsonWT = require('../../Utils/auth-token');
 const { renderPage } = require('../../Utils/render-page');
 const { passwordHash } = require('../../Utils/password-hash');
-const { getAdmin, activityLog, allAdmin, getUserByEmail, createUser } = require('../dao/db-queries');
+const { getAdmin, activityLog, allAdmin, getUserByEmail, createUser } = require(
+  '../dao/db-queries');
 
 const URL = process.env.NODE_ENV === 'development'
   ? process.env.TALENT_POOL_DEV_URL
   : process.env.TALENT_POOL_FRONT_END_URL;
 
 module.exports = {
-	getAllAdmin: async (req, res) => {
-		try {
-      const admins = await allAdmin()
-      const data = { 
+  getAllAdmin: async (req, res) => {
+    try {
+      const admins = await allAdmin();
+      const data = {
         admins,
         error: req.flash('error'),
-        success: req.flash('success')
-      }
-      renderPage(res, 'admin/adminList', data, 'Talent Haven | Admin List', 'adminList')
-		} catch (err) {
-			res.status(500).redirect('back');
-		}
+        success: req.flash('success'),
+      };
+      renderPage(res, 'admin/adminList', data, 'Talent Haven | Admin List', 'adminList');
+    } catch (err) {
+      res.status(500)
+      .redirect('back');
+    }
   },
 
   getAdminFullDetails: async (req, res) => {
@@ -32,20 +34,24 @@ module.exports = {
     const data = {
       admin,
       adminAcitvites,
-    }
+    };
     renderPage(res, 'Talent Haven | Admin Profile', data, 'adminList');
   },
-	blockAdmin: async (req, res) => {
+  blockAdmin: async (req, res) => {
     try {
       const { userId } = req.params;
       const user = await getAdmin(userId);
-      if (!user) res.status(404).redirect('back');
+      if (!user) {
+        res.status(404)
+        .redirect('back');
+      }
 
       user.block = 1;
       await user.save();
       res.redirect('/admin/all?msg=Admin blocked Successfully');
     } catch (err) {
-      res.status(500).redirect('back');
+      res.status(500)
+      .redirect('back');
     }
   },
 
@@ -53,31 +59,35 @@ module.exports = {
     try {
       const { userId } = req.params;
       const user = await getAdmin(userId);
-      if (!user) res.status(404).redirect('back');
+      if (!user) {
+        res.status(404)
+        .redirect('back');
+      }
 
       user.block = 0;
       await user.save();
       res.redirect('back');
     } catch (err) {
-      res.status(500).redirect('back');
+      res.status(500)
+      .redirect('back');
     }
   },
   addAdmin: async (req, res) => {
     try {
       const { firstName, lastName, email, password } = req.body;
- 
+
       const userExists = await getUserByEmail(model, email);
-      if (userExists !== null) 
+      if (userExists !== null) {
         req.flash('error', 'Email Already Exist');
         res.redirect('back');
-      
-      const token = jsonWT.signJWT({ email });
-      const hashedPassword = await passwordHash(password); 
+      }
+      const hashedPassword = await passwordHash(password);
       const userId = uuid();
       const user = {
         firstName,
         lastName,
         email,
+        status: '1',
         userId,
         roleId: 'ROL-ADMIN',
         password: hashedPassword,
@@ -94,17 +104,19 @@ module.exports = {
                   <p>Password: ${password}<p>
                   Click <a href=${link}>here</a> to login`,
       };
-      try{
+      try {
         await sendEmail(options);
         req.flash('success', 'Admin Created Successfully');
         res.redirect('back');
       } catch {
-        return res.status(500).redirect('back');
+        return res.status(500)
+        .redirect('back');
       }
     } catch (err) {
-      return res.status(500).redirect('back');
+      console.log(err);
+      return res.status(500)
+      .redirect('back');
     }
   },
-
 
 }

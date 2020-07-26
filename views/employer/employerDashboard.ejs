@@ -19,12 +19,47 @@
           <div class="card">
 
             <!-- If card is empty -->
-            <div class="empty-card d-flex flex-column align-items-center justify-content-center">
-              <a class="mb-4" href="#">
-                <img src="/images/employer-dashboard/add.svg" alt="">
-              </a>
-              <p class="empty-card-text">No one contacted yet. Click to view talented cadidates</p>
-            </div>
+            <%if (pendingHire.length == 0) { %>
+              <div class="empty-card d-flex flex-column align-items-center justify-content-center">
+                <a class="mb-4" href="#">
+                  <img src="/images/employer-dashboard/add.svg" alt="">
+                </a>
+                <p class="empty-card-text">No one contacted yet. Click to view talented cadidates</p>
+              </div>
+            <% } else { %>
+              <div class="card">
+
+                <ul class="list-group list-group-flush card-list">
+                  <% pendingHire.forEach(function(list) { %>
+                  <div class="list-group-item">
+                    <div class="row d-flex align-items-center">
+                      <div class="d-flex col-10">
+                        <div class="d-flex flex-column justify-content-center mr-3">
+                          <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
+                                    height: 40px; border-radius: 25px">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-start">
+                          <span class="card-user-name"><%= list.name %></span>
+                          <span class="card-user-title"><%= list.track %></span>
+                        </div>
+                      </div>
+                      <a href="#" class="d-flex justify-content-end col-2 btn">
+                        <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <% }) %>
+                </ul>
+    
+                <div class="see-all d-flex justify-content-center align-items-center">
+                  <span class="see-all-text">See all pending hires </span>
+                  <a href="#" class="col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+    
+              </div>
+            <% } %>
             <!-- End -->
 
           </div>
@@ -35,6 +70,7 @@
           <div class="card">
 
             <ul class="list-group list-group-flush card-list">
+              <% recommendedInterns.forEach(function(list) { %>
               <div class="list-group-item">
                 <div class="row d-flex align-items-center">
                   <div class="d-flex col-10">
@@ -43,8 +79,8 @@
                                 height: 40px; border-radius: 25px">
                     </div>
                     <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">UI/UX Designer</span>
+                      <span class="card-user-name"><%= list.User.firstName %> <%= list.User.lastName %></span>
+                      <span class="card-user-title"><%= list.track %></span>
                     </div>
                   </div>
                   <a href="#" class="d-flex justify-content-end col-2 btn">
@@ -52,92 +88,7 @@
                   </a>
                 </div>
               </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Frontend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Backend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">UI/UX Designer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Frontend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Backend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-
+              <% }) %>
             </ul>
 
             <div class="see-all d-flex justify-content-center align-items-center">
@@ -150,19 +101,52 @@
           </div>
         </div>
 
-
-
         <div class="col-12 col-md-4 mb-5 mb-md-0">
           <h5 class="dashboard-header">Team Members</h5>
           <div class="card">
 
             <!-- If card is empty -->
-            <div class="empty-card d-flex flex-column align-items-center justify-content-center">
-              <a class="mb-4" href="#">
-                <img src="/images/employer-dashboard/add.svg" alt="">
-              </a>
-              <p class="empty-card-text">No team members. Click to add a team member</p>
-            </div>
+            <%if (teamMember.length == 0) { %>
+              <div class="empty-card d-flex flex-column align-items-center justify-content-center">
+                <a class="mb-4" href="#">
+                  <img src="/images/employer-dashboard/add.svg" alt="">
+                </a>
+                <p class="empty-card-text">No team members. Click to add a team member</p>
+              </div>
+            <% } else { %>
+              <div class="card">
+
+                <ul class="list-group list-group-flush card-list">
+                  <% teamMember.forEach(function(list) { %>
+                  <div class="list-group-item">
+                    <div class="row d-flex align-items-center">
+                      <div class="d-flex col-10">
+                        <div class="d-flex flex-column justify-content-center mr-3">
+                          <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
+                                    height: 40px; border-radius: 25px">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center align-items-start">
+                          <span class="card-user-name"><%= list.name %></span>
+                          <span class="card-user-title"><%= list.track %></span>
+                        </div>
+                      </div>
+                      <a href="#" class="d-flex justify-content-end col-2 btn">
+                        <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                      </a>
+                    </div>
+                  </div>
+                  <% }) %>
+                </ul>
+    
+                <div class="see-all d-flex justify-content-center align-items-center">
+                  <span class="see-all-text">See all team members </span>
+                  <a href="#" class="col-2 btn">
+                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
+                  </a>
+                </div>
+    
+              </div>
+            <% } %>
             <!-- End -->
 
           </div>
@@ -185,6 +169,7 @@
           <div class="card">
 
             <ul class="list-group list-group-flush card-list">
+              <% allEmployee.forEach(function(list) { %>
               <div class="list-group-item">
                 <div class="row d-flex align-items-center">
                   <div class="d-flex col-10">
@@ -193,8 +178,8 @@
                                 height: 40px; border-radius: 25px">
                     </div>
                     <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">UI/UX Designer</span>
+                      <span class="card-user-name"><%= list.User.firstName %> <%= list.User.lastName %></span>
+                      <span class="card-user-title"><%= list.track %></span>
                     </div>
                   </div>
                   <a href="#" class="d-flex justify-content-end col-2 btn">
@@ -202,92 +187,7 @@
                   </a>
                 </div>
               </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Frontend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Backend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">UI/UX Designer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Frontend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="row d-flex align-items-center">
-                  <div class="d-flex col-10">
-                    <div class="d-flex flex-column justify-content-center mr-3">
-                      <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                height: 40px; border-radius: 25px">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center align-items-start">
-                      <span class="card-user-name">Eureka</span>
-                      <span class="card-user-title">Backend Developer</span>
-                    </div>
-                  </div>
-                  <a href="#" class="d-flex justify-content-end col-2 btn">
-                    <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                  </a>
-                </div>
-              </div>
-
+              <% }) %>
             </ul>
 
             <div class="see-all d-flex justify-content-center align-items-center">
@@ -311,11 +211,12 @@
       var myLineChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ["Frontend Developers", "Designers", "Quality Assurance", "Mobile Developers",
-            "Product Managers"
+          labels: ["Frontend Developers", "Designers", "Mobile Developers",
+            "Backend Developers"
           ],
           datasets: [{
-            data: [6, 5, 5, 3, 10],
+            // values [backEnd, frontEnd, design, mobile]
+            data: [6, 5, 5, 3],
             backgroundColor: ["#FADB3C", "#36D5F8", "#872DCE", "#4DCE2D", "#FF2F2F"]
           }]
         },

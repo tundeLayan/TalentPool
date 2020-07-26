@@ -122,7 +122,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.belongsTo(model.Role, {
-      foreignKey: 'role_id',
+      foreignKey: 'roleId',
     });
 
     User.hasMany(model.Activitylog, {
