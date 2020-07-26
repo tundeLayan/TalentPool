@@ -138,15 +138,8 @@ module.exports = {
   },
 
   getLatestEmployers: async () => {
-    const latestEmployers = await model.Employer.findAll({
-      include: [
-        {
-          model: model.User,
-          where: {
-            userId: { [op.col]: 'Employer.userId' },
-          },
-        },
-      ],
+    const latestEmployers = await model.User.findAll({
+      where: { roleId: 'ROL-EMPLOYER'},
       limit: 10,
       order: [['id', 'DESC']],
     });
