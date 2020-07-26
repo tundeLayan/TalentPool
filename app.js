@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
-// const csrf = require('csurf');
+const csrf = require('csurf');
 const flash = require('connect-flash');
 const passport = require('passport');
 const fileupload = require('express-fileupload');
@@ -25,7 +25,9 @@ const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const authRoutes = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
-// const csrfProtection = csrf();
+
+const csrfProtection = csrf();
+
 const app = express();
 app.locals.moment = require('moment');
 
@@ -42,14 +44,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// app.use(csrfProtection);
-// app.use((req, res, next) => {
-//   const token = req.csrfToken();
-//   res.cookie('csrf-token', token);
-//   res.locals.csrfToken = req.csrfToken();
-//   next();
-// });
-
 // passport js initialization
 app.use(passport.initialize());
 app.use(passport.session());
@@ -58,8 +52,6 @@ app.use(flash());
 db.sequelize.sync().then(async () => {
   await seedSuperAdmin();
 });
-// Cookie Parser
-app.use(cookieParser());
 
 // express file upload
 app.use(fileupload({ useTempFiles: true }));
@@ -73,13 +65,13 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
-// app.use(csrfProtection);
-// app.use((req, res, next) => {
-//   const token = req.csrfToken();
-//   res.cookie('csrf-token', token);
-//   res.locals.csrfToken = req.csrfToken();
-//   next();
-// });
+app.use(csrfProtection);
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('csrf-token', token);
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 app.use(methodOverride('_method'));
 
 // ************ REGISTER ROUTES HERE ********** //
