@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../templates/dashboardHead.ejs') %>
+    <link rel="stylesheet" href="/stylesheets/adminListSinglePage.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <title>Talent Haven | Admin Dashboard</title>
+  </head>
+  <body>
+    <%- include('../templates/adminDashboardSidebar.ejs') %> <%-
+    include('../templates/dashboardHeader.ejs') %>
+    <main id="main">
+      <div class="single-page">
+        <div class="user">
+          <div class="user-photo-box">
+            <div class="user-photo">
+              <img
+                src="./public/images/rsz_employee-dashboard.png"
+                alt="photo"
+              />
+              <div class="user-info">
+                <p>
+                  <span class="name">John Doe</span> |
+                  <span class="company">Google</span>
+                </p>
+              </div>
+              <div class="user-status">
+                <div class="indicator"></div>
+                <p class="role">Employer</p>
+              </div>
+            </div>
+          </div>
+          <div class="user-details">
+            <p class="detail">
+              Name: <span class="text-capitalize">Joan Doe</span>
+            </p>
+            <p class="detail">
+              Company: <span class="text-capitalize">Talent Haven</span>
+            </p>
+            <p class="detail">Role: <span>Employer(Admin)</span></p>
+            <p class="detail">
+              Contact: <span class="contact-email">jd@talenthaven.com </span>
+              <span class="contact-number"> +234807000000</span>
+            </p>
+            <p class="detail">
+              Subscription Status:
+              <span class="text-uppercase text-white sub-stat">granted</span>
+            </p>
+            <p class="detail">
+              Login Status: <span class="login-indicator"></span>
+            </p>
+          </div>
+        </div>
+        <div class="admin-activity-table">
+          <div class="table-responsive text-nowrap">
+            <table
+              id="admin-table"
+              class="table table-bordered table-sm mb-0"
+              cellspacing="0"
+              width="100%"
+            >
+              <thead style="border-radius: 5px 5px 0px 0px;">
+                <tr
+                  style="
+                    background-color: #4d49ff;
+                    border-radius: 5px 5px 0px 0px;
+                    font-weight: 100;
+                  "
+                  class="text-white"
+                >
+                  <th class="th-sm p-2">S.No</th>
+                  <th class="th-sm p-2">User ID</th>
+                  <th class="th-sm p-2">Last Activity</th>
+                  <th class="th-sm p-2">Time & Date</th>
+                  <th class="th-sm p-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="p-2">
+                  <td class="p-2">1</td>
+                  <td class="p-2">152437</td>
+                  <td class="p-2">Verifying employees</td>
+                  <td class="p-2">
+                    <span class="time">15:30 </span
+                    ><span class="date"> 2011/04/25</span>
+                  </td>
+                  <td class="p-2">See Details</td>
+                </tr>
+                <tr class="p-2">
+                  <td class="p-2">2</td>
+                  <td class="p-2">152437</td>
+                  <td class="p-2">Verifying employees</td>
+                  <td class="p-2">
+                    <span class="time">15:30 </span
+                    ><span class="date"> 2011/04/25</span>
+                  </td>
+                  <td class="p-2">See Details</td>
+                </tr>
+                <tr class="p-2">
+                  <td class="p-2">3</td>
+                  <td class="p-2">152437</td>
+                  <td class="p-2">Verifying employees</td>
+                  <td class="p-2">
+                    <span class="time">15:30 </span
+                    ><span class="date"> 2011/04/25</span>
+                  </td>
+                  <td class="p-2">See Details</td>
+                </tr>
+                <tr class="p-2">
+                  <td class="p-2">4</td>
+                  <td class="p-2">152437</td>
+                  <td class="p-2">Verifying employees</td>
+                  <td class="p-2">
+                    <span class="time">15:30 </span
+                    ><span class="date"> 2011/04/25</span>
+                  </td>
+                  <td class="p-2">See Details</td>
+                </tr>
+                <tr class="p-2">
+                  <td class="p-2">5</td>
+                  <td class="p-2">152437</td>
+                  <td class="p-2">Verifying employees</td>
+                  <td class="p-2">
+                    <span class="time">15:30 </span
+                    ><span class="date"> 2011/04/25</span>
+                  </td>
+                  <td class="p-2">See Details</td>
+                </tr>
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="pagination">
+          <div class="buttons">
+            <div class="prev">Prev</div>
+            <div class="next">Next</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
