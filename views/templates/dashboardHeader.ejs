@@ -16,6 +16,7 @@
                 <span style="color: #4D49FF;">Talent</span> Haven
 
                 <!-- If User hasn't completed their profile -->
+                <%if (currentUser.userRole !== 'ROL-SUPERADMIN') { %>
                 <div class="row">
                     <div class="col-12">
                         <span class="btn complete-profile-text text-wrap">
@@ -26,6 +27,7 @@
                         </span>
                     </div>
                 </div>
+                <% } %>
             </a>
         </div>
 
@@ -73,9 +75,23 @@
                                     <img src="/images/Tobi.jpg" alt="Profile Image"
                                         style="width: 100px; height: 100px; border-radius: 50px;">
                                 </div>
-                                <h5 class="nav-card-title mb-1" href="#"> Jason Stratham</h5>
-                                <h6 class="user-title mb-4"><img src="/images/dashboard-header/online.svg" alt=""
+                                <h5 class="nav-card-title mb-1" href="#"><%= currentUser.userName %></h5>
+                                <%if(currentUser.userRole === 'ROL-EMPLOYER') { %>
+                                    <h6 class="user-title mb-4"><img src="/images/dashboard-header/online.svg" alt=""
                                         class="pr-1"> Employer</h6>
+                                <% } %>
+                                <%if(currentUser.userRole === 'ROL-EMPLOYEE') { %>
+                                    <h6 class="user-title mb-4"><img src="/images/dashboard-header/online.svg" alt=""
+                                        class="pr-1"> Employee</h6>
+                                <% } %>
+                                <%if(currentUser.userRole === 'ROL-ADMIN') { %>
+                                    <h6 class="user-title mb-4"><img src="/images/dashboard-header/online.svg" alt=""
+                                        class="pr-1"> Admin</h6>
+                                <% } %>
+                                <%if(currentUser.userRole === 'ROL-SUPERADMIN') { %>
+                                    <h6 class="user-title mb-4"><img src="/images/dashboard-header/online.svg" alt=""
+                                        class="pr-1"> Superadmin</h6>
+                                <% } %>
                                 <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
                                     <a href="#" class="nav-card-link text-center text-lg-left">View profile -></a>
                                     <a href="#" class="nav-card-link text-center text-lg-left ml-0 ml-lg-3">Edit profile

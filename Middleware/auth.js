@@ -22,4 +22,5 @@ const authorisedPages = (role, roleSuperAdmin = null) =>  (req, res, next) => {
   res.redirect('/login');
 }
 
+
 module.exports = { checkLoggedIn, authorisedPages }

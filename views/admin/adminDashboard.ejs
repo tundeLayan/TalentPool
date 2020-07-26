@@ -31,7 +31,7 @@
           <div class="admin-dashboard-figure">
             <p class="title">Active users</p>
             <p class="figure"><%- allUsers.length - unactiveUsers.length %></p>
-            <p class="previous"><span class="previous-figure"><%= unactiveUsers.length %></span> Blocked users</p>
+            <p class="previous"><span class="previous-figure"><%= unactiveUsers.length %></span> Blocked</p>
           </div>
           <div class="admin-dashboard-figure">
             <p class="title">Active subscribers</p>
@@ -91,8 +91,8 @@
                 <div class="activity-info">
                   <img src="/images/rsz_employee-dashboard.png" alt="">
                   <div class="activity-info-text">
-                    <p class="title"><%= employer.User.firstName%> <%= employer.User.lastName%></p>
-                    <p class="status">Joined <span><%= moment(employer.createdAt).startOf('day').fromNow() %></span></p>
+                    <p class="title"><%= employer.firstName%> <%= employer.lastName%></p>
+                    <p class="status">Joined <span><%= moment(employer.createdAt).format('MMMM Do YYYY, h:mm:ss a') %></span></p>
                   </div>
                 </div>
                 <img class="arrow-right" src="/images/arrow-right.svg" alt="arrow-right">

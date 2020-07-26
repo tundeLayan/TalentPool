@@ -64,6 +64,7 @@
                     <p>Employees</p>
                 </a>
             </div>
+            <% if (currentUser.userRole === 'ROL-SUPERADMIN') { %>
             <div class="col-12">
                 <a href="/admin/all" class="d-flex flex-column align-items-center justify-content-center admin-sideNav-link">
                     <svg class="spacing" width="30" height="16" viewBox="0 0 30 16" fill="none"
@@ -75,6 +76,7 @@
                     <p>Admin</p>
                 </a>
             </div>
+            <% } %>
             <div class="col-12">
                 <a href="#" class="d-flex flex-column align-items-center justify-content-center admin-sideNav-link">
                     <svg class="spacing" width="30" height="30" viewBox="0 0 30 30" fill="none"

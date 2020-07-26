@@ -4,7 +4,7 @@ const router = express.Router();
 const admin = require('./admin');
 const faqRoute = require('./faq');
 const dashboard = require('./dashboard');
-const { authorisedPages } = require('../../Middleware/auth');
+const { authorisedPages, } = require('../../Middleware/auth');
 const verification = require('./verification');
 
 const roleSuperAdmin = 'ROL-SUPERADMIN';
