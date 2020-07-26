@@ -16,10 +16,14 @@ const {
 } = require('../dao/db-queries');
 
 const team = async (req) => {
-  const { userId } = req.session.data;
-  const { teamName } = await model.Employer.findOne({ where: { userId } });
+  try {
+    const { userId } = req.session.data;
+    const { teamName } = await model.Employer.findOne({ where: { userId } });
 
-  return teamName;
+    return teamName;
+  } catch (err) {
+    return '';
+  }
 };
 
 const allTeamMembers = async (req) => {
@@ -218,6 +222,12 @@ module.exports = {
   addTeam: async (req, res) => {
     const { userId } = req.session.data;
     const { teamName } = req.body;
+    const employerData = await getEmployer(model, { userId });
+
+    if (!employerData) {
+      req.flash('error', 'Your profile has not been setup');
+      return res.redirect('/employer/team');
+    }
     const addTeam = await model.Employer.update(
       { teamName },
       { where: { userId } },
