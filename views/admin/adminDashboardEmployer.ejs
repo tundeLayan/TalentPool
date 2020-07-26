@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../templates/dashboardHead')%>
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
+  <link rel="stylesheet" href="/stylesheets/adminDashBoardEmployer.css">
+
+  <title>Dashboard</title>
+</head>
+
+<body>
+  <%- include('../templates/adminDashboardSidebar.ejs') %>
+  <%- include('../templates/dashboardHeader.ejs') %>
+  <main id="main">
+    <section class="container" style="width: 90%;">
+      <div class="row mt-4 d-flex justify-content-between mb-4 px-5 custom-header">
+        <h3>Employers</h3>
+      </div>
+        <div class="row d-flex justify-content-between mt-3">
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <div class="card card1 d-flex justify-content-center align-items-center p-4">
+                    <div class="card-container d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="card-text">30</h3>
+                        
+                            <p class="card-text2 mb-2">Employers</p>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <div class="card card1 d-flex justify-content-center align-items-center p-4">
+                    <div class="card-container d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="card-text">12</h3>
+                        
+                            <p class="card-text2 mb-2">Individuals</p>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <div class="card card1 d-flex justify-content-center align-items-center p-4">
+                    <div class="card-container d-flex flex-column justify-content-center align-items-center">
+                        <h3 class="card-text">18</h3>
+                        
+                            <p class="card-text2 mb-2">Companies</p>
+                       
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+     
+      <table id="example" class="table table-striped table-bordered mt-4 custom-table">
+          <thead class="mt-3">
+              <tr>
+                  <th>Status</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Type</th>
+                  <th>Date Joined</th>
+                  <th>Verified Status</th>
+                  <th>Other Information</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td class="d-flex">
+                    Open                      
+                  </td>
+                  <td>Office Manager</td>
+                  <td>London</td>
+                  <td>37</td>
+                  <td>2008/12/11</td>
+                  <td>$136,200</td>
+                  <td>$136,200</td>
+                  <td>
+                    Info
+
+                  </td>
+              </tr>
+              <tr>
+                  <td class="d-flex">
+                    Open                      
+                  </td>
+                  <td>Office Manager</td>
+                  <td>London</td>
+                  <td>37</td>
+                  <td>2008/12/11</td>
+                  <td>$136,200</td>
+                  <td>$136,200</td>
+                  <td>
+                    Info
+                  </td>
+              </tr>
+              <tr>
+                  <td class="d-flex">
+                    Open                    
+                  </td>
+                  <td>Office Manager</td>
+                  <td>London</td>
+                  <td>37</td>
+                  <td>2008/12/11</td>
+                  <td>$136,200</td>
+                  <td>$136,200</td>
+                  <td>
+                    Info
+                    
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+<script src="/javascripts/bootstrap.js"></script>
+<script src="/javascripts/jquery.js"></script>
+<script src="/javascripts/popper.js"></script>
+<!-- I am using boostrap data table scripts -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(async function() {
+
+    $('#example').DataTable();
+
+    $('div.dataTables_wrapper div.dataTables_filter input').attr('placeholder', 
+    // $('<textarea />').html("&#xF002;").html()  + 
+    "Search for employers");
+    
+    // $('#example_wrapper').children.list
+    document.querySelectorAll('#example_wrapper div')[5].style.width = '100%';
+    document.querySelectorAll('#example_wrapper div')[5].style.overflowX = 'auto';
+    document.querySelectorAll('#example_wrapper div')[5].style.margin = '';
+    // console.log(document.querySelectorAll('#example_wrapper div')[5]);
+
+    // To remove the search text beside the search bar
+    // The datatable plugin by default puts a search text
+    //  beside the search bar
+    document.querySelectorAll('#example_filter')[0].firstChild.firstChild.nodeValue = " ";
+
+
+    // For the filter
+    document.getElementById('example_length').firstChild.firstChild.nodeValue = "Filters: ";
+    document.getElementById('example_length').firstChild.lastChild.nodeValue = "";
+
+    } );
+</script>
+</html>
