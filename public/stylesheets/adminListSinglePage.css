@@ -1,0 +1,148 @@
+.single-page {
+  margin-top: 6rem;
+  padding: 4rem 8rem;
+  overflow-x: hidden;
+}
+
+.user {
+  display: grid;
+  grid-template-columns: 25% 74%;
+  gap: 1%;
+}
+.user-photo-box,
+.user-details {
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  box-sizing: border-box;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  -moz-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+}
+
+.user-photo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+.user-photo img {
+  margin-bottom: 1rem;
+}
+.user-info p {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.user-status {
+  display: flex;
+  align-items: center;
+}
+.user-status .indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #2cbb29;
+  margin-right: 0.2rem;
+}
+
+.user-status p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.user-details {
+  padding: 2rem;
+  color: #000000;
+  font-weight: 500;
+}
+.sub-stat {
+  background: #0fb447;
+  padding: 0.2rem;
+  border-radius: 3.5px;
+  font-size: 8px;
+}
+.login-indicator {
+  border-radius: 50%;
+  background-color: #2cbb29;
+  margin-right: 0.2rem;
+}
+
+.admin-activity-table {
+  margin-top: 2rem;
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  box-sizing: border-box;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  -moz-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+}
+
+.table-responsive {
+  -webkit-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  -moz-box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+  box-shadow: 2px 4px 7px -4px rgba(0, 0, 0, 0.48);
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+  width: 15%;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  color: #4d49ff;
+  font-weight: 500;
+}
+
+@media (max-width: 1100px) {
+  .single-page {
+    padding: 4rem 4rem;
+  }
+}
+
+@media (max-width: 845px) {
+  .single-page {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (max-width: 775px) {
+  .single-page {
+    padding: 2rem 1rem;
+  }
+  .user {
+    grid-template-columns: auto;
+    gap: 1rem;
+  }
+  .user-photo {
+    height: 200px;
+  }
+  .buttons {
+    width: 30%;
+  }
+}
+
+@media (max-width: 475px) {
+  .single-page {
+    padding: 4rem 1rem;
+  }
+  .pagination {
+    justify-content: center;
+  }
+  .buttons {
+    width: 50%;
+  }
+}
