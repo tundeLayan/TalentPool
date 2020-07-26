@@ -30,50 +30,52 @@ const normalizePort = (val) => {
 // normalize and set the port
 const port = normalizePort(process.env.PORT || '3000');
 
-
 const server = http.createServer(app);
 const io = socketio(server);
 
-
-io.on("connection", (socket) => {
-
-  socket.on("user_connected", (data) => {
-    const {
-      user
-    } = chatUtils.addUser({
-      id: data.id,
+io.on('connection', (socket) => {
+  socket.on('user_connected', (data) => {
+    const { user } = chatUtils.addUser({
+      id: socket.id,
+      userId: data.userId,
       name: data.name,
-      role: data.role
-    })
+      role: data.role,
+    });
 
-    socket.emit("user_connected",
-      chatUtils.generateMessageObject(user.id, user.name, user.role));
-  })
+    socket.emit(
+      'user_connected',
+      chatUtils.generateMessageObject(user.userId, user.name, user.role),
+    );
+  });
 
-
-  socket.on("message", (message, callback) => {
-
+  socket.on('message', (message, callback) => {
     model.Chat.create({
       message: message.message,
       read_status: message.read_status,
       receiver_id: message.receiver,
-      user_id: message.sender,
+      userId: message.sender,
     });
 
-    io.emit("message",
-      chatUtils.generateMessage(message.id, message.name,
-        message.role, message.message));
-    callback("Delivered");
-  })
+    io.emit(
+      'message',
+      chatUtils.generateMessage(
+        message.message,
+        message.read_status,
+        message.receiver_id,
+        message.userId,
+      ),
+    );
+    callback('Delivered');
+  });
 
-
-  // TODO: Kindly fix where is user object coming from?
-  // socket.on("disconnect", () => {
-  //   io.emit("offline", chatUtils.generateMessageObject(user.id, user.name, user.role));
-  // })
-
-})
-
+  socket.on('disconnect', () => {
+    const [user] = chatUtils.removeUser(socket.id);
+    io.emit(
+      'offline',
+      chatUtils.generateMessageObject(user.userId, user.name, user.role),
+    );
+  });
+});
 
 // create a http server
 server.listen(port, () => {

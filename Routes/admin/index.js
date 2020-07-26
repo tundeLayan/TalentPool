@@ -1,7 +1,16 @@
 const express = require('express');
-const faqRoute = require('./faq')
 
 const router = express.Router();
-router.use('/faq', faqRoute)
+const admin = require('./admin');
+const faqRoute = require('./faq');
+const dashboard = require('./dashboard');
+const { authorisedPages } = require('../../Middleware/auth');
 
-module.exports = router
+const roleSuperAdmin = 'ROL-SUPERADMIN';
+const roleAdmin = 'ROL-ADMIN';
+
+router.use('/dashboard', authorisedPages(roleAdmin, roleSuperAdmin), dashboard);
+router.use('/', authorisedPages(roleAdmin, roleSuperAdmin), admin);
+router.use('/faq', authorisedPages(roleAdmin, roleSuperAdmin), faqRoute);
+
+module.exports = router;

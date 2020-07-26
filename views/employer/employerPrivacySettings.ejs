@@ -20,7 +20,7 @@
 </head>
 <body>
 
-    <%- include('../templates/employerDashboardSidebar .ejs') %>
+    <%- include('../templates/employerDashboardSidebar.ejs', { sideNavRoute: 'settings'}) %>
     <%- include('../templates/dashboardHeader.ejs') %>
 
     <section class="dashboard-settings-container-pt">
@@ -29,7 +29,7 @@
 
             <div class="container row">
 
-                <%- include('../templates/employerDashboardPrivacyTabs.ejs')%>
+                <%- include('../templates/employerDashboardPrivacyTabs.ejs', { tabRoute: 'privacy'})%>
 
                 <div class="col-md-9 col-12 privacy-settings">
                     <h3>

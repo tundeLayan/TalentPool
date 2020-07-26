@@ -100,7 +100,7 @@ const redirectUser = async (req, res, email, password, user) => {
       req.session.isAdmin = true;
       req.session.adminId = user.userId;
       return res.redirect(
-        '/admin/dashboard?message=Welcome, login successful!',
+        '/admin/dashboard',
       );
     }
   } else {
@@ -128,32 +128,22 @@ module.exports = {
       let user;
       const keyId = redisKeys.getHashKey(email.toString());
       const cachedUser = client.get(keyId);
-      const userData = await getUserByEmail(model, email);
 
       if (cachedUser) {
-        client.get(keyId, (err, data) => {
+        client.get(keyId, async (err, data) => {
           if (err) throw err;
 
           if (data) {
             user = JSON.parse(data);
             redirectUser(req, res, email, password, user);
           } else if (user == null) {
+            const userData = await getUserByEmail(model, email);
             if (userData) {
               user = userData.dataValues;
               // Cache User object
               client.set(email.toString(), JSON.stringify(user));
               return redirectUser(req, res, email, password, user);
             }
-            return authErrorRedirect(
-              req,
-              res,
-              null,
-              null,
-              'Something Went Wrong! Please try again...',
-              'auth/login',
-              'Login',
-              '/login',
-            );
           }
         });
       }
@@ -178,5 +168,5 @@ module.exports = {
       req.session.isLoggedIn = false;
     }
     res.redirect('/');
-  }
+  },
 };

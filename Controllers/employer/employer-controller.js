@@ -66,7 +66,6 @@ class Employer {
      * creating new employer company profile
      * verify the company logo before upload
      */
-
     const {
       employerName,
       companyCategoryId,
@@ -120,12 +119,11 @@ class Employer {
   }
 
   static async updateEmployerLogo(req, res) {
-    // const { userId } = req.session;
+    const { userId } = req.session;
     /**
      * validate company logo
      * update company logo
      */
-    const { userId } = req.body;
     const file = req.files.photo;
     try {
       imageVerification(res, file, 100000);
@@ -147,11 +145,11 @@ class Employer {
   }
 
   static async updateEmployerDetails(req, res) {
-    // const { userId } = req.session;
+    const { userId } = req.session;
     const {
       employerName,
       companyCategoryId,
-      employerType,
+      // employerType,
       description,
       employerPhoneNumber,
       employerEmail,
@@ -163,13 +161,12 @@ class Employer {
       twitter,
       linkedin,
       instagram,
-      userId,
     } = req.body;
 
     const employerInfoUpdate = {
       employerName,
       companyCategoryId,
-      employerType,
+      // employerType,
       description,
       employerPhoneNumber,
       employerEmail,
@@ -205,16 +202,37 @@ class Employer {
       }
       return displayMessage(res, 400, 'Unable to update profile');
     } catch (err) {
-      console.log(err);
+      return displayMessage(res, 500, '!oops an error occured');
+    }
+    // return true;
+  }
+
+  static async updateEmployerBasicInfo(req, res) {
+    const { userId } = req.session;
+    const { firstName, lastName, phone } = req.body;
+    const employerBasicInfo = {
+      firstName,
+      lastName,
+      phone,
+    };
+    try {
+      const result = await user.update(employerBasicInfo, {
+        where: { userId },
+        returning: true,
+        plain: true,
+      });
+      if (result[1] === 1) {
+        return displayMessage(res, 200, 'Profile info updated successfully');
+      }
+      return displayMessage(res, 400, 'Unable to update profile');
+    } catch (err) {
       return displayMessage(res, 500, '!oops an error occured');
     }
     // return true;
   }
 
   static async getEmployerDetails(req, res) {
-    // const { userId } = req.body;
-    const userId = 'berto';
-    console.log(userId);
+    const { userId } = req.session;
     const employerInfo = {};
     try {
       const employerDetails = await employerModel.findOne({

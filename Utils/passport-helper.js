@@ -55,12 +55,12 @@ const getUserData = async (req, profile, user, done) => {
 
 const createUser = async (req, profile, userRole, done) => {
   try {
-    const password = process.env.TALENT_POOL_JWT_SECRET;
+    const password = '@Qwerty123!';
     const hashedPassword = passwordHash(password);
 
     const userSave = {
-      firstName: profile.name.givenName,
-      lastName: profile.name.familyName,
+      firstName: profile.displayName.split(' ')[0],
+      lastName: profile.displayName.split(' ')[1],
       email: profile.emails[0].value,
       password: hashedPassword,
       roleId: userRole,
@@ -86,7 +86,7 @@ const createUser = async (req, profile, userRole, done) => {
 };
 
 const renderPage = async (req, res) => {
-  const user = { req };
+  const {user} =  req ;
   const data = {
     firstName: user.firstName,
     lastName: user.lastName,
@@ -98,11 +98,12 @@ const renderPage = async (req, res) => {
 
   req.session.data = data;
   req.session.isLoggedIn = true;
-  req.session.userId = user.userId;
-  req.flash('success', 'Authentication successful!');
+  // req.flash('success', 'Authentication successful!');
   if (user.userRole === 'ROL-EMPLOYER') {
+    req.session.employerId = user.userId;
     return res.redirect('/employer/dashboard');
   }
+  req.session.employeeId = user.userId;
   return res.redirect(
     `/employee/dashboard`,
   );

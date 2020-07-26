@@ -5,10 +5,12 @@ const message = require('./message');
 const employerProfileCrud = require('./employerProfileCrud');
 const { authorisedPages } = require('../../Middleware/auth');
 
+const role = 'ROL-EMPLOYER';
+
 const router = express.Router();
-router.use('/dashboard', authorisedPages, dashboard);
-router.use('/', authorisedPages, team);
-router.use('/message', authorisedPages, message);
-router.use('/', employerProfileCrud);
+router.use('/dashboard', authorisedPages(role), dashboard);
+router.use('/profile', employerProfileCrud);
+router.use('/message', authorisedPages(role), message);
+router.use('/', authorisedPages(role), team);
 
 module.exports = router;

@@ -21,13 +21,13 @@ require('./config/passport');
 const { seedSuperAdmin } = require('./Utils/seed');
 
 const employeeRoutes = require('./Routes/employee/index');
-const employerR = require('./Routes/employer/employerProfileCrud');
-// const employerRoutes = require('./Routes/employer/index');
+const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const authRoutes = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
 // const csrfProtection = csrf();
 const app = express();
+app.locals.moment = require('moment');
 
 app.use(
   cookieSession({
@@ -86,9 +86,9 @@ app.use(methodOverride('_method'));
 app.use('/', authRoutes);
 app.use('/', externalPages);
 app.use('/employee', employeeRoutes);
-// app.use('/employer', employerRoutes);
+
+app.use('/employer', employerRoutes);
 app.use('/admin', adminRoutes);
-app.use('/employer', employerR);
 // ************ END ROUTE REGISTRATION ********** //
 
 // catch 404 and forward to error handler

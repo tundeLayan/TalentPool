@@ -57,12 +57,18 @@
         background: rgba(73, 190, 255, 0.05);
       }
     </style>
-    <%- include('../templates/dashboardHead.ejs') %>
-  </head>
+ <%- include('../templates/dashboardHead')%>
+
+
+</head>
+
+<body>
+    <%- include('../templates/employerDashboardSidebar.ejs', { sideNavRoute: 'settings'})%>
+    <%- include('../templates/dashboardHeader.ejs')%>
 
   <body>
-    <%- include('../templates/employerDashboardSidebar.ejs')%> <%-
-    include('../templates/dashboardHeader.ejs')%>
+    <%- include('../templates/employerDashboardSidebar.ejs')%> 
+    <%-include('../templates/dashboardHeader.ejs')%>
 
     <main id="main">
       <!-- <div class=" row side-bar2 p-4">
