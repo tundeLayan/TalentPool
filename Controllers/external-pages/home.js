@@ -5,10 +5,10 @@ const home = (req, res) => {
     message: 'This is a General Home Page',
     firstName: 'John',
     lastName: 'Doe',
-    pageName:'Home',
-  }
+    pageName: 'Home',
+  };
 
-  renderPage(res, 'index', data, 'Demo Page')
+  renderPage(res, 'index', data, 'Demo Page');
 };
 
 module.exports.home = home;

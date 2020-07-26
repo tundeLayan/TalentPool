@@ -1,0 +1,46 @@
+.main-container {
+  margin-top: 95px;
+}
+
+.main-wrapper {
+  margin-top: 55px;
+}
+
+h1.preferences {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #04172a;
+}
+form label {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  color: #04172a;
+}
+.btn-save {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: #ffffff;
+  background: #4d49ff;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+  border-radius: 5px;
+  padding: 12px 16px;
+}
+.btn-save:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    display: block;
+    margin-left: 20px;
+  }
+}
