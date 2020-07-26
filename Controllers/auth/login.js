@@ -100,7 +100,7 @@ const redirectUser = async (req, res, email, password, user) => {
       req.session.isAdmin = true;
       req.session.adminId = user.userId;
       return res.redirect(
-        '/admin/dashboard?message=Welcome, login successful!',
+        '/admin/dashboard',
       );
     }
   } else {

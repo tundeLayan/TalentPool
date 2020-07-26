@@ -6,7 +6,7 @@ const {
 const router = express.Router();
 
 router
-  .route('/verification')
+  .route('/')
   .get(verification);
 
 module.exports = router;

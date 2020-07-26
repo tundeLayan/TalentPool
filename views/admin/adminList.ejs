@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet"/>
   <link rel="stylesheet" href="/stylesheets/adminList.css">
 
  
@@ -70,8 +71,9 @@
                             <span class="badge badge-pill badge-success">Granted</span>
                           <% } %>
                       </span>
-                    </td>
-                    <td><a href="/admin/profile/<%= admin.userId %>"><%= admin.firstName %> <%= admin.lastName %></a></td>
+                  </td>
+                  <% } %>
+                    <td><a href="#"><%= admin.firstName %> <%= admin.lastName %></a></td>
                     <td><%= admin.email %></td>
                     <td>Administrator</td>
                     <td><%= moment(admin.createdAt).format('MMMM Do YYYY') %></td>
@@ -102,8 +104,9 @@
       <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content ">
-                <form id="role-form">
+            <form id="role-form" action="/admin/add" method="POST" >
               <div class="modal-header d-flex justify-content-center">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                   <h5 class="modal-title ">Add Admin</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -115,30 +118,25 @@
                     <div class="col-md-6">
                             <div class="form-group my-4">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" name="" id="firstName" placeholder="First Name" required>
+                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required>
                                   </div>
                     </div>
                   <div class="col-md-6">
                         <div class="form-group my-4">
-                                <label for="lastName">Lastname</label>
-                                <input type="Text" class="form-control" name="" id="lastName" placeholder="Lastname" required>
+                                <label for="lastName">Last Name</label>
+                                <input type="Text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" required>
                               </div>                    
                   </div>
                   <div class="col-md-12">
                         <div class="form-group mb-4">
                                 <label for="email">Email Address</label>
-                                <input type="email" class="form-control" name="" id="email" placeholder="Email Address" required>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
                               </div>
       
                               <div class="form-group my-4">
                                       <label for="password">Password</label>
-                                      <input type="password" class="form-control" name="" id="password" placeholder="Password" required>
-                              </div>
-      
-                              <div class="form-group my-4">
-                                      <label for="phone">Phone</label>
-                                      <input type="number" class="form-control" name="" id="password" placeholder="Enter Phone Number" required>
-                                    </div>                    
+                                      <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                              </div>                 
                   </div>
                 </div>
               </div>
@@ -147,7 +145,7 @@
               <button id="button" type="submit" class="btn payment custom-button py-2 px-4">
                   Save</button>
             </div>
-                </form>
+          </form>
           </div>
         </div>
       </div>
@@ -156,7 +154,21 @@
   </main>
 <script src="/javascripts/popper.js"></script>
 <script src="/javascripts/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>   
 <script src="/javascripts/bootstrap.js"></script>
+</script>
+<script>
+    <% if (error && error.length > 0) { %>
+      toastr.error('<%= error %>');
+    <% } %>
+    
+    <% if (success && success.length > 0) { %>
+      console.log('<%= success %>')
+      toastr.success('<%= success %>'); 
+    <% } %>
+    
+</script>
+
 
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 <script>

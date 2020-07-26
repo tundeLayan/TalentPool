@@ -3,13 +3,15 @@ const dashboard = require('./dashboard');
 const profile = require('./profile');
 const updateProfile = require('./update-profile');
 const message = require('./message');
-// const { authorisedPages } = require('../../Middleware/auth');
+const { authorisedPages } = require('../../Middleware/auth');
 
 const router = express.Router();
 
-router.use('/', dashboard);
-router.use('/', profile);
-router.use('/', updateProfile);
-router.get('/message', message);
+const role ='ROL-EMPLOYEE';
+
+router.use('/', authorisedPages(role), dashboard);
+router.use('/', authorisedPages(role), profile);
+router.use('/', authorisedPages(role), updateProfile);
+router.get('/message', authorisedPages(role), message);
 
 module.exports = router;
