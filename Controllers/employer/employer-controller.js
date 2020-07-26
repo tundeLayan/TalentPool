@@ -232,9 +232,17 @@ class Employer {
   }
 
   static async getEmployerDetails(req, res) {
+    /**
+     * load company category
+     * load employer details
+     */
+
     const { userId } = req.session;
     const employerInfo = {};
     try {
+      const companyCateory = await companyType.findAll();
+      employerInfo.industries = companyCateory;
+
       const employerDetails = await employerModel.findOne({
         where: {
           userId,
