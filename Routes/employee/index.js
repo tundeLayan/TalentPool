@@ -9,7 +9,7 @@ const router = express.Router();
 
 const role ='ROL-EMPLOYEE';
 
-router.use('/dashboard', authorisedPages(role), dashboard);
+router.use('/dashboard', dashboard);
 router.use('/profile', profile);
 router.use('/update', updateProfile);
 router.use('/message', authorisedPages(role), message);

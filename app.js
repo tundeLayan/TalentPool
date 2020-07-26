@@ -25,7 +25,7 @@ const employerRoutes = require('./Routes/employer/index');
 const externalPages = require('./Routes');
 const authRoutes = require('./Routes/auth');
 const adminRoutes = require('./Routes/admin/index');
-const { subscribeToMessage } = require('./Utils/message-queue/subscriber');
+// const { subscribeToMessage } = require('./Utils/message-queue/subscriber');
 
 const csrfProtection = csrf();
 
@@ -53,7 +53,7 @@ app.use(flash());
 db.sequelize.sync().then(async () => {
   await seedSuperAdmin();
 });
-subscribeToMessage();
+// subscribeToMessage();
 
 // express file upload
 app.use(fileupload({ useTempFiles: true }));

@@ -152,25 +152,37 @@ module.exports = {
       const employeeQuery = await getEmployeeByUserId(models, data);
       const userQuery = await getUserByEmail(models, email);
       const skillsQuery = await getSkills(models, userId);
+      console.log({skillsQuery});
       const portfolioQuery = await getPortfolio(models, userId);
+      console.log({portfolioQuery});
       const teamQuery = await getEmployeeTeamDetail(models, userId)
 
       let profile;
-      const team = teamQuery.dataValues;
+      let team;
+      const skills = await skillsQuery;
+      const portfolios = await portfolioQuery;
 
       if (employeeQuery && userQuery) {
         profile = {
           user: userQuery.dataValues,
           employee: employeeQuery.dataValues,
-          skills: skillsQuery.dataValues,
-          portfolios: portfolioQuery.dataValues,          
-          team: await teamData(team),
+          skills,
+          portfolios
         };
-      } else {
+      } else if (teamQuery) {
+        team = teamQuery.dataValues;
         profile = {
           user: userQuery.dataValues,
-          skills: skillsQuery.dataValues,
-          portfolios: portfolioQuery.dataValues,
+          employee: employeeQuery.dataValues,
+          skills,
+          portfolios,         
+          team: await teamData(team),
+        }
+       } else {
+        profile = {
+          user: userQuery.dataValues,
+          skills,
+          portfolios,
         };
       }
 
@@ -183,6 +195,7 @@ module.exports = {
         '',
       );
     } catch (err) {
+      console.log(err);
       req.flash('error', 'Something went wrong. Try again');
     }
   },
