@@ -32,7 +32,7 @@ const checkUserStatus = (req, res, email, password, user) => {
       res,
       email,
       password,
-      'Invalid email or password.',
+      'Access Denied. Please contact an admnistrator.',
       'auth/login',
       'Login',
       '/login',
@@ -114,13 +114,14 @@ const redirectUser = async (req, res, email, password, user) => {
       req.session.employeeId = user.userId;
       return res.redirect('/employee/dashboard');
     }
-    if (user && user.roleId === 'ROL-ADMIN' || user.roleId === 'ROL-SUPERADMIN') {
+    if (user && (user.roleId === 'ROL-ADMIN' || user.roleId === 'ROL-SUPERADMIN')) {
       req.session.isAdmin = true;
       req.session.adminId = user.userId;
       return res.redirect(
         '/admin/dashboard',
       );
     }
+   
   } else {
     // In the event of a wrong password
     return authErrorRedirect(
