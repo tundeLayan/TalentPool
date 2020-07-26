@@ -3,7 +3,6 @@ const { renderPage } = require('../../Utils/render-page');
 
 const loginPage = (req, res) => {
   const { isLoggedIn } = req.session;
-  console.log(req.originalUrl);
 
   const success = req.flash('success');
   let message = req.flash('error');

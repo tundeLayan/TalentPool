@@ -108,8 +108,10 @@ module.exports = {
 
       // query the database to find the user
       const employeeQuery = await getEmployee(models, data);
+      console.log("HWtrybcjbjhsbch");
       const userQuery = await getUserByEmail(models, email);
 
+      // console.log("HWtrybcjbjhsbch");
       let profile;
 
       if (employeeQuery && userQuery) {

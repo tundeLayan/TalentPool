@@ -1,13 +1,11 @@
 const checkLoggedIn = (req, res, next) => {
   const { isLoggedIn, adminId, employeeId, employerId } = req.session;
 
-  if (isLoggedIn && adminId) {
+  // const { passport } = req.session;
+  if (req.session) {
+    if (isLoggedIn && adminId) {
     res.redirect('/admin/dashboard');
-  }
-
-  const { passport } = req.session;
-  if (req.session && !passport) {
-    if (isLoggedIn && employeeId) {
+    } else if (isLoggedIn && employeeId) {
       res.redirect(`/employee/dashboard`);
     } else if (isLoggedIn && employerId) {
       res.redirect('/employer/dashboard');

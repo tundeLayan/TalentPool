@@ -13,11 +13,11 @@ module.exports = {
     });
   },
   getPortfolio: (models, user) => {
-    return models.Portfolio.findAll({ where: {userId: user.userId}})
+    return models.Portfolio.findAll({ where: { userId: user }})
   },
   getEmployee: (models, user) => {
     return models.Employee.findOne({
-      where: { userId: user.userId },
+      where: { userId: user },
     });
   },
   addSkill: (models, skill) => {
@@ -31,7 +31,7 @@ module.exports = {
     });
   },
   getSkills: (models, user) => {
-    return models.Skill.findAll({ where: {userId: user.userId}})
+    return models.Skill.findAll({ where: {userId: user }})
   },
   getRecommendedInterns: (models) => {
     return models.Employee.findAll({
