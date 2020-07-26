@@ -139,6 +139,53 @@ ul li {
   padding: 0 !important;
 }
 
+.nav-pills .nav-link {
+  border-radius: 50%;
+  background: #ffffff !important;
+  color: #4d49ff !important;
+  border: 2px solid #4d49ff !important;
+}
+
+.nav-pills .nav-link.active {
+  background: #4d49ff !important;
+  border: 2px solid #4d49ff !important;
+  color: #ffffff !important;
+}
+
+.nav-tab-progress::before {
+  content: '';
+  position: absolute;
+  top: 52px;
+  left: 40%;
+  width: 19%;
+  height: 2px;
+  background: #4d49ff;
+}
+
+.modal-custom-size {
+  max-width: 700px !important;
+}
+
+.modal-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  color: #04172a;
+}
+
+.modal-input {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 21px;
+  color: #04172a;
+  height: 45px;
+  border: 1px solid rgba(4, 23, 42, 0.1);
+  border-radius: 6px;
+  text-transform: capitalize;
+}
+
 @media screen and (max-width: 991px) {
   .dashHeaderDesign,
   .dashHeaderDesign2 {

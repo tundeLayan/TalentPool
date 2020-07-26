@@ -96,3 +96,158 @@
 
 <!-- <img class="dashHeaderDesign2" src="/images/dashboard-header/dashboard-header-design-4.svg" alt="">
 <img class="dashHeaderDesign2" src="/images/dashboard-header/dashboard-header-design-3.svg" alt=""> -->
+
+
+<!-- Complete Profile Modal -->
+
+<div class="modal fade" style="padding: 25px" id="completeProfileModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-custom-size" role="document">
+        <div class="modal-content">
+            <div class="row d-flex justify-content-center">
+                <h5 class="mt-5" id="">Complete Your Profile</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form action="">
+                        <div class="nav-tab-progress d-flex justify-content-center">
+                            <ul class="d-flex nav nav-pills mb-3" id="pills-tab" role="tablist"
+                                style="position: relative;">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                        role="tab" aria-controls="pills-home" aria-selected="true">1</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                        role="tab" aria-controls="pills-profile" aria-selected="false">2</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
+                                        role="tab" aria-controls="pills-contact" aria-selected="false">3</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                aria-labelledby="pills-home-tab">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="firstname">First Name</label>
+                                            <input type="text" class="form-control modal-input" placeholder="John">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="lastname">Last Name</label>
+                                            <input type="text" class="form-control modal-input" placeholder="Doe">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="gender">Gender</label>
+                                            <select name="" id="" class="form-control modal-input">
+                                                <option disabled selected>Select Gender</option>
+                                                <option value="female">Female</option>
+                                                <option value="male">Male</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="dob">Date of birth</label>
+                                            <input type="date" class="form-control modal-input text-uppercase">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="email">Email</label>
+                                            <input type="email" class="form-control modal-input text-lowercase"
+                                                placeholder="johndoe@domain.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="phone">Phone</label>
+                                            <input type="number" class="form-control modal-input"
+                                                placeholder="+2348088800080">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                aria-labelledby="pills-profile-tab">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="usertype">User Type</label>
+                                            <select name="" id="" class="form-control modal-input">
+                                                <option disabled selected>Select User Type</option>
+                                                <option value="hng">HNG</option>
+                                                <option value="non-hng">NON HNG</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="hngid">HNG ID</label>
+                                            <input type="text" class="form-control modal-input" placeholder="HNG-01133">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="cv">CV/Resume</label>
+                                            <input type="file" class="form-control modal-input">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="location">Location</label>
+                                            <input type="text" class="form-control modal-input"
+                                                placeholder="e.g Lagos, Nigeria">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="availability">Availability</label>
+                                            <select name="" id="" class="form-control modal-input">
+                                                <option disabled selected>Select Availability Status</option>
+                                                <option value="on-site">On Site</option>
+                                                <option value="remote">Remote</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="modal-label" for="track">Track</label>
+                                            <select name="" id="" class="form-control modal-input">
+                                                <option disabled selected>Select Your Track</option>
+                                                <option value="design">Design</option>
+                                                <option value="frontend">Frontend</option>
+                                                <option value="backend">Backend</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade my-5" id="pills-contact" role="tabpanel"
+                                aria-labelledby="pills-contact-tab">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <label for="" class="modal-label">Profile Picture</label>
+                                    <input type="file" class="form-control">
+                                    <small>Upload .jpg or .png square image. 512 x 512px resolution recommended</small>
+                                </div>
+                                <div class="form-group d-flex justify-content-center mt-5 mb-3">
+                                    <button type="submit" class="btn modalBtn">Create Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End of Complete Profile Modal -->
