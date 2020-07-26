@@ -15,14 +15,56 @@
 </head>
 
 <body>
-  <%- include('../templates/navBar') %>
   <!-- Include nav here -->
+  <%- include('../templates/navBar') %>
+  <!-- Button trigger modal -->
+  <!-- REMOVE AFTER IMPLEMENTTION VIA JS -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emailVerificationModal">
+    Launch demo modal
+  </button>
+
+  <!--
+    Display the modal in JavaScript with
+      $('#myModal').modal({
+        show: true,
+        backdrop: true
+      })
+   -->
+  <!-- Email verification modal -->
+  <div class="modal fade" id="emailVerificationModal" tabindex="-1" role="dialog"
+    aria-labelledby="emailVerificationModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <img src="/images/employee-sign-up/email-verification-img.svg" alt="registration successful dialog"
+                class="col-10 img-fluid">
+              <h4 class="col-10 text-center">Email Verification</h4>
+              <p class="col-10 prj-normal-text text-center">
+                We have sent you an email which contains a link to verify your account, kindly check your mail and
+                verify your account.
+              </p>
+              <div class="justify-content-center">
+                <button type="submit" class="btn btn-lg prj-btn-primary br-5">
+                  Open Email App
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <main class="mx-auto">
     <div class="container-fluid main-container mx-auto my-auto">
       <div class="row py-4 mx-md-4 px-lg-3">
         <div class="col-md-5 mx-auto my-auto d-none d-md-block">
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <h1><a class="navbar-brand" href="/"><span class="prj-text-accent">Talent</span> <span class="prj-text-primary">Haven</span></a> </h1>
+            <h1><a class="navbar-brand" href="/"><span class="prj-text-accent">Talent</span> <span
+                  class="prj-text-primary">Haven</span></a> </h1>
             <p class="text-center">
               <a href="/login" class="prj-link">Sign in</a> or
               <a href="/employee/register" class="prj-link">Create an account</a>
@@ -36,9 +78,9 @@
           </h1>
           <form name="employeeSignUpForm" method="POST" action="">
             <% if (error && error.length > 0) { %>
-              <div role="alert" class="alert alert-danger user-message user-message--error"><%= error %></div>
+            <div role="alert" class="alert alert-danger user-message user-message--error"><%= error %></div>
             <% }if (success && success.length > 0) { %>
-                <div role="alert" class="alert alert-success user-message"><%= success %></div>
+            <div role="alert" class="alert alert-success user-message"><%= success %></div>
             <% } %>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="row">
@@ -52,33 +94,38 @@
               <div class="form-group col-12 col-md">
                 <label for="hngId" class="prj-normal-text">HNG ID</label>
                 <input type="text" name="hngId" class="form-control prj-form-control" id="hngId"
-                  placeholder="What is your ID?" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].hngId %> <%} %>"/>
+                  placeholder="What is your ID?"
+                  value="<% if(oldInput.length > 0){ %> <%- oldInput[0].hngId %> <%} %>" />
               </div>
             </div>
             <div class="row">
               <div class="form-group col-12 col-md">
                 <label for="firstName" class="prj-normal-text">First name</label>
                 <input type="text" name="firstName" class="form-control prj-form-control" id="firstName"
-                  placeholder="First name" autocapitalize="on" autocomplete="given-name" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].firstName %> <%} %>" required minlength="2" />
+                  placeholder="First name" autocapitalize="on" autocomplete="given-name"
+                  value="<% if(oldInput.length > 0){ %> <%- oldInput[0].firstName %> <%} %>" required minlength="2" />
               </div>
               <div class="form-group col-12 col-md">
                 <label for="lastName" class="prj-normal-text">Last name</label>
                 <input type="text" name="lastName" class="form-control prj-form-control" id="lastName"
-                  placeholder="Last name" autocapitalize="on" autocomplete="family-name" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].lastName %> <%} %>" required minlength="2" />
+                  placeholder="Last name" autocapitalize="on" autocomplete="family-name"
+                  value="<% if(oldInput.length > 0){ %> <%- oldInput[0].lastName %> <%} %>" required minlength="2" />
               </div>
             </div>
             <div class="row">
               <div class="form-group col">
                 <label for="email" class="prj-normal-text">Email address</label>
                 <input type="email" name="email" class="form-control prj-form-control" id="email"
-                  placeholder="Email address" autocomplete="email" value="<% if(oldInput.length > 0){ %> <%- oldInput[0].email %> <%} %>" required />
+                  placeholder="Email address" autocomplete="email"
+                  value="<% if(oldInput.length > 0){ %> <%- oldInput[0].email %> <%} %>" required />
               </div>
             </div>
             <div class="row">
               <div class="form-group col">
                 <label for="password" class="prj-normal-text">Password</label>
                 <input type="password" name="password" class="form-control prj-form-control" id="password"
-                  placeholder="Password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}" required />
+                  placeholder="Password" autocomplete="new-password"
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}" required />
               </div>
             </div>
             <div class="row">
@@ -108,17 +155,19 @@
               </p>
               <div class="col d-flex justify-content-center mt-3">
 
-                  <a href="/auth/employee/google" class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
-                    <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-google.svg"
+                <a href="/auth/employee/google"
+                  class="btn shadow-sm mr-2 d-flex justify-content-around align-items-center">
+                  <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-google.svg"
                     alt="github button image" />
-                    <span class="mb-0 prj-normal-text">Google</span>
-                  </a>
+                  <span class="mb-0 prj-normal-text">Google</span>
+                </a>
 
-                  <a href="/auth/employee/github" class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
-                    <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-github.svg"
+                <a href="/auth/employee/github"
+                  class="btn shadow-sm ml-2 d-flex justify-content-around align-items-center">
+                  <img class="img-fluid btn-img mr-2" src="/images/employee-sign-up/icon-github.svg"
                     alt="github button image" />
-                    <span class="mb-0 prj-normal-text">Github</span>
-                  </a>
+                  <span class="mb-0 prj-normal-text">Github</span>
+                </a>
 
               </div>
               <p class="prj-normal-text text-center mt-3">
