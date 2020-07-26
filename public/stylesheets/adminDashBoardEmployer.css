@@ -85,6 +85,16 @@ thead{
   border-radius: 15px 15px 0px 0px;
   color: white; 
 }
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: none;
+  font-weight: 600;
+}
+.table th, .table td {
+  padding: 0.60rem;
+  vertical-align: top;
+  border-top: 1px solid #DEE2E6;
+}
 
 div.dataTables_wrapper div.dataTables_length select{
   width: 100%;
