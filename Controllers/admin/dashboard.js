@@ -60,11 +60,10 @@ module.exports = {
       const employees = filterData(allUsers, 'ROL-EMPLOYEE', 'roleId');
       const unactiveUsers = filterData(allUsers, true, 'block');
       const employers = filterData(allUsers, 'ROL-EMPLOYER', 'roleId');
-      const hasNoTeam = filterData(employers, '', 'teamName');
-
+      const hasNoTeam = filterData(allEmployers, '', 'teamName');
 
       const latestSubscriptions = allSubscriptions.slice(0, 5);
-      const totalTeams = employers.length - hasNoTeam;
+      const totalTeams = allEmployers.length - hasNoTeam.length;
       const pendingEmployers = filterData(allEmployers, 'Pending','verificationStatus');
       const uploadedEmployers = filterData(allEmployers, 'Uploaded','verificationStatus');
       const pendingReviews =  pendingEmployees + pendingEmployers.length + uploadedEmployers.length;
@@ -91,7 +90,7 @@ module.exports = {
 
       renderPage(res, 'admin/adminDashboard', data, 'Admin | Dashboard', 'pathName');
     } catch (error) {
-      console.log(error);
+      req.flash('error', error.message);
     }
   },
 };

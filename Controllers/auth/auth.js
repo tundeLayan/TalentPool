@@ -18,6 +18,7 @@ const {
 
 const redis = require('../dao/impl/redis/redis-client');
 const redisKeys = require('../dao/impl/redis/redis-key-gen');
+const { publishMessage } = require('../../Utils/message-queue/publisher');
 
 const client = redis.getClient();
 
@@ -205,11 +206,16 @@ const registerEmployer = async (req, res) => {
     try {
      await userCreate(userSave);
       const verificationUrl = `${URL}/email/verify?verificationCode=${token}`;
-      await sendEmail({
+      publishMessage({
         email,
         subject: 'TalentPool User Email verification',
         message: await message(verificationUrl),
       });
+      // await sendEmail({
+      //   email,
+      //   subject: 'TalentPool User Email verification',
+      //   message: await message(verificationUrl),
+      // });
       req.flash('success', 'Verification email sent!');
       return res.redirect('/employer/register');
     } catch (error) {

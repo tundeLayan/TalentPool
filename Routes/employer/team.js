@@ -6,10 +6,12 @@ const {
   sendInvite,
   removeEmployee,
   addTeam,
+  viewTeam,
 } = require('../../Controllers/employer/team');
 
-appRoute.post('/add-team', sendInvite);
-appRoute.post('/team/create', addTeam);
-appRoute.get('/remove-employee', removeEmployee);
+appRoute.post('/add', sendInvite);
+appRoute.get('/', viewTeam);
+appRoute.post('/create', addTeam);
+appRoute.get('/remove/employee', removeEmployee);
 
 module.exports = appRoute;

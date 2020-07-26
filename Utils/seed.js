@@ -5,6 +5,9 @@ const { uuid } = require('uuidv4');
 const chalk = require('chalk');
 
 const model = require('../Models/index');
+const redis = require('../Controllers/dao/impl/redis/redis-client');
+
+const client = redis.getClient();
 
 const confirmPasswordInput = async (input) => {
   if (input.length < 8) {
@@ -30,6 +33,16 @@ const generateData = () => {
 };
 
 const seedSuperAdmin = async () => {
+
+  // eslint-disable-next-line consistent-return
+  client.flushdb('ASYNC', (err, reply) => {
+    if (err) {
+      debug(chalk.redBright(`[x] Error Flushing Cache: ${err}`));
+      return process.exit(1);
+    }
+    debug(chalk.green(`[✔] Cache Flush: ${reply}`));
+  });
+
   let logInit = chalk.yellowBright('[!] Initializing Super Admin!');
   debug(logInit);
   const rolesExists = await model.User.findOne({ where: { roleId: 'ROL-SUPERADMIN' } });

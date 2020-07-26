@@ -9,18 +9,26 @@ const URL =
 const sendEmail = require('../../Utils/send-email');
 const { message } = require('../../Utils/team-invite-template');
 const { renderPage } = require('../../Utils/render-page');
-const { getEmployer } = require('../dao/db-queries');
+const {
+  getEmployer,
+  deleteARecord,
+  updateARecord,
+} = require('../dao/db-queries');
 
 const team = async (req) => {
-  const { userId } = req.session;
-  const { teamName } = await model.Employer.findOne({ where: { userId } });
+  try {
+    const { userId } = req.session.data;
+    const { teamName } = await model.Employer.findOne({ where: { userId } });
 
-  return teamName;
+    return teamName;
+  } catch (err) {
+    return '';
+  }
 };
 
 const allTeamMembers = async (req) => {
   const data = [];
-  const { userId } = req.session;
+  const { userId } = req.session.data;
   const teamMembers = await model.Team.findAll({
     where: { userId },
   });
@@ -34,9 +42,8 @@ const allTeamMembers = async (req) => {
     const { image } = await model.Employee.findOne({
       where: { userId: singleEmployee.dataValues.employeeId },
     });
-
     data.push({
-      employeeId: singleEmployee.dataValues.userId,
+      employeeId: singleEmployee.dataValues.employeeId,
       image,
       name: `${firstName} ${lastName}`,
       email,
@@ -46,20 +53,38 @@ const allTeamMembers = async (req) => {
   return data;
 };
 
+const verifyTeamResult = (res, result) => {
+  return renderPage(
+    res,
+    'external-pages/teamInvite',
+    {
+      result,
+      pageName: 'Team Invite',
+    },
+    'Team Invite',
+    '/team/verify-invite',
+  );
+};
+
 module.exports = {
+  viewTeam: async (req, res) => {
+    const data = await allTeamMembers(req);
+    const teamName = await team(req);
+
+    const pageData = {
+      errorMessage: req.flash('error'),
+      success: req.flash('success'),
+      data,
+      teamName,
+    };
+    return renderPage(res, 'employer/employerAddTeam', pageData, 'Team', '');
+  },
+
   sendInvite: async (req, res, next) => {
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     const { email } = req.body;
+
     try {
-      // Get all members of the employer's team
-      const data = await allTeamMembers(req);
-
-      const pageInfo = {
-        errorMessage: req.flash('error'),
-        success: req.flash('success'),
-        data,
-      };
-
       // Get employer details
       const employer = await model.User.findOne({
         where: { userId },
@@ -72,7 +97,7 @@ module.exports = {
       });
       if (!employee) {
         req.flash('error', 'User does not exist or is not an employee!');
-        res.redirect('/employer/add-team');
+        return res.redirect('/employer/team');
       }
       const employeeData = await model.Employee.findOne({
         where: { userId: employee.userId },
@@ -80,21 +105,13 @@ module.exports = {
 
       if (!employeeData) {
         req.flash('error', 'User profile is not set-up');
-        res.redirect('/employer/add-team');
+        // return res.redirect('/employer/add/team');
+        return res.redirect('/employer/team');
       }
 
       if (employeeData.hasTeam === true) {
-        pageInfo.errorMessage = req.flash(
-          'error',
-          'Employee is already in a team',
-        );
-        return renderPage(
-          res,
-          'employer/AddTeam',
-          pageInfo,
-          'Team',
-          'employer/add-team',
-        );
+        req.flash('error', 'Employee is already in a team');
+        return res.redirect('/employer/team');
       }
 
       // Team specific actions
@@ -115,7 +132,7 @@ module.exports = {
           'error',
           'User is already in or has been invited to this team',
         );
-        res.redirect('/employer/add-team');
+        return res.redirect('/employer/team');
       }
 
       // Send email to user
@@ -128,33 +145,25 @@ module.exports = {
         });
       } catch (err) {
         req.flash('error', 'Invite link not sent. Please retry');
-        res.redirect('/employer/add-team');
+        return res.redirect('/employer/team');
       }
 
       req.flash('success', 'Invite successfully sent');
-      res.redirect('/employer/add-team');
+      return res.redirect('/employer/team');
     } catch (err) {
       const error = new Error(err);
       error.httpStatusCode = 500;
       return next(error);
     }
-    return false;
   },
 
   verifyInvite: async (req, res, next) => {
     const { referralCode, employee, response } = req.query;
 
     if (!referralCode || !employee || !response) {
-      return renderPage(
+      return verifyTeamResult(
         res,
-        'external-pages/teamInvite',
-        {
-          result:
-            "Whoops! Seems you tampered with the URL. We can't find some data. Please check your email again",
-          pageName: 'Team Invite',
-        },
-        'Team Invite',
-        '/team/verify-invite',
+        "Whoops! Seems you tampered with the URL. We can't find some data. Please check your email again",
       );
     }
     try {
@@ -163,33 +172,19 @@ module.exports = {
         where: { employeeId: employee, userId: referralCode },
       });
       if (!doesExist) {
-        return renderPage(
-          res,
-          'external-pages/teamInvite',
-          {
-            result: 'Employer or employee does not exist',
-            pageName: 'Team Invite',
-          },
-          'Team Invite',
-          '/team/verify-invite',
-        );
+        return verifyTeamResult(res, 'Employer or employee does not exist');
       }
 
       // Delete the record if the user rejects invite
       if (response === 'reject') {
-        await model.Team.destroy({
-          where: { employeeId: employee, userId: referralCode },
-          force: true,
+        await deleteARecord(model.Team, {
+          employeeId: employee,
+          userId: referralCode,
         });
-        return renderPage(
+
+        return verifyTeamResult(
           res,
-          'external-pages/teamInvite',
-          {
-            result: "Sad to see you won't be a member of the team",
-            pageName: 'Team Invite',
-          },
-          'Team Invite',
-          '/team/verify-invite',
+          "Sad to see you won't be a member of the team",
         );
       }
 
@@ -198,15 +193,9 @@ module.exports = {
         where: { userId: employee },
       });
       if (hasTeam === true) {
-        return renderPage(
+        return verifyTeamResult(
           res,
-          'external-pages/teamInvite',
-          {
-            result: "Whoops! You're already a member of a team",
-            pageName: 'Team Invite',
-          },
-          'Team Invite',
-          '/team/verify-invite',
+          "Whoops! You're already a member of a team",
         );
       }
 
@@ -219,15 +208,9 @@ module.exports = {
         { where: { employeeId: employee, userId: referralCode } },
       );
 
-      return renderPage(
+      return verifyTeamResult(
         res,
-        'external-pages/teamInvite',
-        {
-          result: 'Congratulations! You have successfully joined the team',
-          pageName: 'Team Invite',
-        },
-        'Team Invite',
-        '/team/verify-invite',
+        'Congratulations! You have successfully joined the team!',
       );
     } catch (err) {
       const error = new Error(err);
@@ -237,33 +220,37 @@ module.exports = {
   },
 
   addTeam: async (req, res) => {
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     const { teamName } = req.body;
+    const employerData = await getEmployer(model, { userId });
+
+    if (!employerData) {
+      req.flash('error', 'Your profile has not been setup');
+      return res.redirect('/employer/team');
+    }
     const addTeam = await model.Employer.update(
       { teamName },
       { where: { userId } },
     );
     if (addTeam) {
-      res.redirect('/employer/add-team');
+      res.redirect('/employer/team');
     }
   },
 
   removeEmployee: async (req, res, next) => {
     try {
       const { employeeId } = req.query;
+      const { userId } = req.session.data;
 
-      const { userId } = req.session;
-
-      await model.Employee.update(
+      await updateARecord(
+        model.Employee,
         { hasTeam: false },
-        { where: { employeeId } },
+        { userId: employeeId },
       );
-      await model.Team.destroy({
-        where: { userId, employeeId },
-        force: true,
-      });
+      await deleteARecord(model.Team, { userId, employeeId });
 
-      return res.redirect('/employer/add-team');
+      req.flash('success', 'Employee successfully removed from the team');
+      return res.redirect('/employer/team');
     } catch (err) {
       const error = new Error(err);
       error.httpStatusCode = 500;

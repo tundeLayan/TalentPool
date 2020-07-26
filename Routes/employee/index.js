@@ -9,9 +9,9 @@ const router = express.Router();
 
 const role ='ROL-EMPLOYEE';
 
-router.use('/', authorisedPages(role), dashboard);
-router.use('/', authorisedPages(role), profile);
-router.use('/', authorisedPages(role), updateProfile);
-router.get('/message', authorisedPages(role), message);
+router.use('/dashboard', authorisedPages(role), dashboard);
+router.use('/profile', authorisedPages(role), profile);
+router.use('/update', authorisedPages(role), updateProfile);
+router.use('/message', authorisedPages(role), message);
 
 module.exports = router;

@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "lint": "eslint Models/* Utils/* Controllers/* Routes/*  server.js",
+    "lint": "eslint Middleware/ Models/* Utils/* Controllers/* Routes/*  server.js",
     "lint-fix": "eslint Models/* Utils/* Controllers/* Routes/* server.js --fix",
     "start": "node server.js",
     "test": "mocha --recursive",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/hngi/TalentPool#readme",
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
+    "amqplib": "^0.6.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
