@@ -12,7 +12,15 @@
     <main id="main">
       <div id="addTeam" class="container">
         <!-- If the user has no team (Scenario 1) -->
-        <% if (!teamName) {%>
+        <% if (!teamName) {%> <% if (errorMessage && errorMessage.length > 0) {
+        %>
+        <div
+          role="alert"
+          class="alert alert-danger user-message user-message--error"
+        >
+          <%= errorMessage %>
+        </div>
+        <% } %>
         <div class="row">
           <div class="col-12 col-md-6 text-center text-md-left">
             <p class="invite-text">Create a team</p>
@@ -67,7 +75,7 @@
           </div>
         </div>
 
-        <form action="/employer/add/team" method="POST">
+        <form action="/employer/team/add" method="POST">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <div class="row">
             <div class="col-12 col-md-9">
@@ -150,7 +158,7 @@
                     </div>
                   </div>
                   <div class="d-flex justify-content-end col-6">
-                    <form action="/employer/remove-employee" method="GET">
+                    <form action="/employer/team/remove/employee" method="GET">
                       <input
                         type="hidden"
                         name="_csrf"
