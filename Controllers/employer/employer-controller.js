@@ -62,6 +62,7 @@ const imageVerification = (res, imageFile, size) => {
 
 class Employer {
   static async create(req, res) {
+    const { userId } = req.session.data;
     /**
      * creating new employer company profile
      * verify the company logo before upload
@@ -81,7 +82,6 @@ class Employer {
       twitter,
       linkedin,
       instagram,
-      userId,
     } = req.body;
     const employer = {
       employerName,
@@ -119,7 +119,7 @@ class Employer {
   }
 
   static async updateEmployerLogo(req, res) {
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     /**
      * validate company logo
      * update company logo
@@ -145,7 +145,7 @@ class Employer {
   }
 
   static async updateEmployerDetails(req, res) {
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     const {
       employerName,
       companyCategoryId,
@@ -208,7 +208,7 @@ class Employer {
   }
 
   static async updateEmployerBasicInfo(req, res) {
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     const { firstName, lastName, phone } = req.body;
     const employerBasicInfo = {
       firstName,
@@ -236,24 +236,20 @@ class Employer {
      * load company category
      * load employer details
      */
-
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     const employerInfo = {};
     try {
       const companyCateory = await companyType.findAll();
       employerInfo.industries = companyCateory;
-
+      const userInfo = await user.findOne({ where: { userId } });
+      employerInfo.user = userInfo;
       const employerDetails = await employerModel.findOne({
         where: {
           userId,
         },
-        include: [companyType, user],
+        include: [companyType],
       });
-      if (employerDetails.length <= 0) {
-        return res.send('No record found');
-      }
       employerInfo.data = employerDetails;
-
       return renderPage(
         res,
         'employer/employerProfileSettings',
@@ -268,7 +264,7 @@ class Employer {
   }
 
   static async employerDocumentUpload(req, res) {
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     const { documentName, documentNumber } = req.body;
     /**
      * check if a user selected a file
@@ -308,7 +304,7 @@ class Employer {
   }
 
   static async getEmployerDocument(req, res) {
-    const { userId } = req.session;
+    const { userId } = req.session.data;
     const employerDocuments = {};
     try {
       const getEmployerDocuments = await documentUpload.findAll({
