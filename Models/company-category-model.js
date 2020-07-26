@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     },
   );
-
   CompanyCategory.associate = (model) => {
     CompanyCategory.hasMany(model.Employer);
   };

@@ -76,13 +76,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     hasTeam: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+      defaultValue: 0,
     },
-    // teamName: {
-    //   type: DataTypes.STRING(255),
-    //   allowNull: true,
-    // },
   });
   Employee.associate = (model) => {
     Employee.belongsTo(model.User, { foreignKey: 'userId' });

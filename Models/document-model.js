@@ -20,7 +20,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    status: {
+      type: DataTypes.ENUM,
+      values: ['Approved', 'Disapproved', 'Pending'],
+      defaultValue: 'Pending',
+    },
+    comment: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     fileLink: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    userId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
 
   EmployerDocument.associate = (model) => {
     EmployerDocument.belongsTo(model.User, {
-      foreignKey: 'UserId',
+      foreignKey: 'userId',
     });
   };
 

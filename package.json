@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "lint": "eslint Models/* Utils/* Controllers/* Routes/*  server.js",
+    "lint": "eslint Middleware/ Models/* Utils/* Controllers/* Routes/*  server.js",
     "lint-fix": "eslint Models/* Utils/* Controllers/* Routes/* server.js --fix",
     "start": "node server.js",
     "test": "mocha --recursive",
@@ -36,6 +36,7 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.4",
     "express-validator": "^6.6.0",
     "http-errors": "^1.8.0",
     "inquirer": "^7.3.2",

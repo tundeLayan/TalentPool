@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     employerPhoto: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     website: {
       type: DataTypes.STRING(255),
@@ -63,10 +63,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     instagram: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
-    hearAboutUs: {
       type: DataTypes.STRING(255),
       allowNull: true,
     },
