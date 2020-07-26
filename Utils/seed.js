@@ -34,11 +34,13 @@ const generateData = () => {
 
 const seedSuperAdmin = async () => {
 
-  client.flushall( (err, reply) => {
-    let logCache;
-    if (err) logCache = chalk.redBright(`[x] Error Flushing Cache: ${err}`);
-    else logCache = chalk.green(`[✔] Cache Flush: ${reply}`);
-    debug(logCache);
+  // eslint-disable-next-line consistent-return
+  client.flushdb('ASYNC', (err, reply) => {
+    if (err) {
+      debug(chalk.redBright(`[x] Error Flushing Cache: ${err}`));
+      return process.exit(1);
+    }
+    debug(chalk.green(`[✔] Cache Flush: ${reply}`));
   });
 
   let logInit = chalk.yellowBright('[!] Initializing Super Admin!');
