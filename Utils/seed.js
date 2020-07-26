@@ -35,7 +35,7 @@ const generateData = () => {
 const seedSuperAdmin = async () => {
 
   // eslint-disable-next-line consistent-return
-  client.flushdb('ASYNC', (err, reply) => {
+  client.flushall((err, reply) => {
     if (err) {
       debug(chalk.redBright(`[x] Error Flushing Cache: ${err}`));
       return process.exit(1);
