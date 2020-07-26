@@ -63,7 +63,7 @@ module.exports = {
       const hasNoTeam = filterData(allEmployers, '', 'teamName');
 
       const latestSubscriptions = allSubscriptions.slice(0, 5);
-      const totalTeams = employers.length - hasNoTeam.length;
+      const totalTeams = allEmployers.length - hasNoTeam.length;
       const pendingEmployers = filterData(allEmployers, 'Pending','verificationStatus');
       const uploadedEmployers = filterData(allEmployers, 'Uploaded','verificationStatus');
       const pendingReviews =  pendingEmployees + pendingEmployers.length + uploadedEmployers.length;
