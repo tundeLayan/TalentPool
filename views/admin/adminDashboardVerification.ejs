@@ -60,7 +60,7 @@
                                     <td><%= employer.employerType %></td>
                                     <td><%= moment(employer.createdAt).format('MMMM Do YYYY') %></td>
                                     <td><%= employer.verificationStatus %></td>
-                                    <td onclick="alert('wassup boss')">View More</td>
+                                    <td><a href="/admin/verification/employer/documents/<%= employer.userId %>">View More</a></td>
                                 </tr>
                                 <% id +=1 %>
                             <% }); %>

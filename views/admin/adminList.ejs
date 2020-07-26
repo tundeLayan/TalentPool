@@ -57,22 +57,24 @@
                         <span><%= id %></span>
                       </span>
                     </td>
+                    <% if(admin.block == true) { %> 
                     <td class="d-flex">
                       <span>
-                          <% if(admin.block == true) { %>  
                             <i class="fa fa-lock mr-1"></i>
-                            
                             <span class="badge badge-pill badge-danger">Denied</span>
                           <!-- <span class="badge badge-pill badge-success">Granted</span> -->
-                          <% } %>
-                          <% if(!admin.block) { %>
-                            <i class="fa fa-lock mr-1"></i>
-
-                            <span class="badge badge-pill badge-success">Granted</span>
-                          <% } %>
                       </span>
-                  </td>
-                  <% } %>
+                    </td>
+                    <% } %>
+                    <% if(!admin.block) { %>
+                      <td class="d-flex">
+                        <span>
+                              <i class="fa fa-lock mr-1"></i>
+
+                              <span class="badge badge-pill badge-success">Granted</span>
+                        </span>
+                    </td>
+                    <% } %>
                     <td><a href="#"><%= admin.firstName %> <%= admin.lastName %></a></td>
                     <td><%= admin.email %></td>
                     <td>Administrator</td>

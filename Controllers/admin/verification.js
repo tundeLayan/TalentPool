@@ -1,33 +1,17 @@
-const sequelize = require('sequelize');
-const model = require('../../Models/index');
+const moment = require('moment');
 const { renderPage } = require('../../Utils/render-page');
+const { getAllUploadedEmployers, getAllEmployerDocuments, getFullEmployerProfileByUserId, } = require('../dao/db-queries');
 
-const op = sequelize.Op;
   
 module.exports = {
   verification: async (req, res) => {
     try {
-      const  pendingVerifications = await model.Employer.findAll({
-        where: {
-          verificationStatus: 'Uploaded',
-        },
-        include:[
-          {
-            model: model.User,
-            where:{
-              userId:{ [op.col]: 'Employer.userId' },
-            },
-          },
-        ],
-      });
+      const  pendingVerifications = await getAllUploadedEmployers();
 
       const data = {
         pendingVerifications,
+        moment,
       }
-      // res.status(200).json({
-      // status: 'success',
-      // data,
-      // });
       renderPage(res, 'admin/adminDashboardVerification', data, 'Admin | Verification', 'pathName');
     } catch (error) {
         console.log(error);
@@ -37,30 +21,15 @@ module.exports = {
   getEmployerDocument: async (req, res) => {
     try {
       const { userId } = req.params;
-      const employerProfile = await model.Team.findAll({
-        include: [
-          {
-            model: model.User,
-            where: {
-              userId: { [op.col]: 'Team.userId' }, 
-            },
-          },
-        ],
-      });
-      const employer = await model.Employer.findOne({ where: { userId } });
-      // const employerDocuments = await getEmployerDocuments(userId);
-      
+      const employerDocuments = await getAllEmployerDocuments(userId);
+      const employerProfile = await getFullEmployerProfileByUserId(userId);
 
       const data = {
+        employerDocuments,
         employerProfile,
-        // employerDocuments,
-        employer,
+        moment,
       }
-      // res.status(200).json({
-      //   status: 'success',
-      //   data,
-      // });
-      renderPage(res, 'PageName', data, 'Admin | Employer profile', 'pathName');
+      renderPage(res, 'admin/adminDashboardVerificationSingular', data, 'Admin | Employer verification', 'pathName');
     } catch (error) {
       console.log(error);
     }
