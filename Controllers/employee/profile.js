@@ -152,9 +152,7 @@ module.exports = {
       const employeeQuery = await getEmployeeByUserId(models, data);
       const userQuery = await getUserByEmail(models, email);
       const skillsQuery = await getSkills(models, userId);
-      console.log({skillsQuery});
       const portfolioQuery = await getPortfolio(models, userId);
-      console.log({portfolioQuery});
       const teamQuery = await getEmployeeTeamDetail(models, userId)
 
       let profile;
