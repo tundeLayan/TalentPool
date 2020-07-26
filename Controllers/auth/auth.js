@@ -213,11 +213,13 @@ const registerEmployer = async (req, res) => {
       req.flash('success', 'Verification email sent!');
       return res.redirect('/employer/register');
     } catch (error) {
+    console.log(error);
       return errorUserSignup(req, res,
         firstName ,lastName, email,
         password, 'An Error occurred,try again',);
     }
   } catch (error) {
+    console.log(error);
     req.flash('error', 'An Error occurred,try again.');
     req.flash('oldInput', employerUserData);
     return res.redirect('/employer/register');

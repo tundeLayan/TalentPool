@@ -57,6 +57,7 @@ module.exports = {
 
       user.block = 0;
       await user.save();
+      res.redirect('back');
     } catch (err) {
       res.status(500).redirect('back');
     }

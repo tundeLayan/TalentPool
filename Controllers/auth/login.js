@@ -100,7 +100,7 @@ const redirectUser = async (req, res, email, password, user) => {
       req.session.isAdmin = true;
       req.session.adminId = user.userId;
       return res.redirect(
-        '/admin/dashboard?message=Welcome, login successful!',
+        '/admin/dashboard',
       );
     }
   } else {
@@ -135,7 +135,7 @@ module.exports = {
 
           if (data) {
             user = JSON.parse(data);
-            redirectUser(req, res, email, password, user);
+            await redirectUser(req, res, email, password, user);
           } else if (user == null) {
             const userData = await getUserByEmail(model, email);
             if (userData) {
@@ -165,8 +165,8 @@ module.exports = {
   },
   logout: (req, res) => {
     if (req.session.isLoggedIn) {
-      req.session.isLoggedIn = false;
+      req.session = null;
     }
-    res.redirect('/');
+    res.redirect('/login');
   },
 };
