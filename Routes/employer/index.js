@@ -7,7 +7,7 @@ const { authorisedPages } = require('../../Middleware/auth');
 const role = 'ROL-EMPLOYER';
 
 const router = express.Router();
-router.use('/dashboard', authorisedPages(role), dashboard);
+router.use('/dashboard', authorisedPages(role),  dashboard);
 router.use('/', authorisedPages(role), team);
 router.use('/message', authorisedPages(role), message);
 

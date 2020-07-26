@@ -17,7 +17,6 @@ const {
 
 const team = async (req) => {
   const { userId } = req.session.data;
-  // const userId = '892dd61a-af18-4553-aa1f-5d3c2bfa1e9d';
   const { teamName } = await model.Employer.findOne({ where: { userId } });
 
   return teamName;
@@ -26,7 +25,6 @@ const team = async (req) => {
 const allTeamMembers = async (req) => {
   const data = [];
   const { userId } = req.session.data;
-  // const userId = '892dd61a-af18-4553-aa1f-5d3c2bfa1e9d';
   const teamMembers = await model.Team.findAll({
     where: { userId },
   });
