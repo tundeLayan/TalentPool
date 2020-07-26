@@ -39,8 +39,8 @@
                                     height: 40px; border-radius: 25px">
                         </div>
                         <div class="d-flex flex-column justify-content-center align-items-start">
-                          <span class="card-user-name">Eureka</span>
-                          <span class="card-user-title">UI/UX Designer</span>
+                          <span class="card-user-name"><%= list.name %></span>
+                          <span class="card-user-title"><%= list.track %></span>
                         </div>
                       </div>
                       <a href="#" class="d-flex justify-content-end col-2 btn">
@@ -126,8 +126,8 @@
                                     height: 40px; border-radius: 25px">
                         </div>
                         <div class="d-flex flex-column justify-content-center align-items-start">
-                          <span class="card-user-name">Eureka</span>
-                          <span class="card-user-title">UI/UX Designer</span>
+                          <span class="card-user-name"><%= list.name %></span>
+                          <span class="card-user-title"><%= list.track %></span>
                         </div>
                       </div>
                       <a href="#" class="d-flex justify-content-end col-2 btn">
@@ -211,11 +211,12 @@
       var myLineChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ["Frontend Developers", "Designers", "Quality Assurance", "Mobile Developers",
-            "Product Managers"
+          labels: ["Frontend Developers", "Designers", "Mobile Developers",
+            "Backend Developers"
           ],
           datasets: [{
-            data: [6, 5, 5, 3, 10],
+            // values [backEnd, frontEnd, design, mobile]
+            data: [6, 5, 5, 3],
             backgroundColor: ["#FADB3C", "#36D5F8", "#872DCE", "#4DCE2D", "#FF2F2F"]
           }]
         },
