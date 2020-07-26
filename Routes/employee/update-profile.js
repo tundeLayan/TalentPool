@@ -4,7 +4,7 @@ const {
   updateProfile,
 } = require('../../Controllers/employee/profile');
 
-router.get('/update/profile', getUpdateProfilepage);
-router.patch('/update/profile', updateProfile);
+router.get('/profile', getUpdateProfilepage);
+router.patch('/profile', updateProfile);
 
 module.exports = router;

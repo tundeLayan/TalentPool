@@ -79,6 +79,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false,
     },
+    // teamName: {
+    //   type: DataTypes.STRING(255),
+    //   allowNull: true,
+    // },
   });
   Employee.associate = (model) => {
     Employee.belongsTo(model.User, { foreignKey: 'userId' });

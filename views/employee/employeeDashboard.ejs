@@ -2,325 +2,222 @@
 <html lang="en">
 
 <head>
-  <%- include('../templates/dashboardHead')%>
+    <%- include('../templates/dashboardHead') %>
 
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="/stylesheets/employeeDashboard.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/employeeDashboard.css">
 
-  <title>Dashboard</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
-  <%- include('../templates/employeeDashboardSidebar.ejs', { sideNavRoute: 'dashboard'}) %>
-  <%- include('../templates/dashboardHeader.ejs') %>
-  <main id="main">
+<%- include('../templates/employeeDashboardSidebar.ejs', { sideNavRoute: 'dashboard'}) %>
+<%- include('../templates/dashboardHeader.ejs') %>
+<main id="main">
     <section id="employeeDashboard">
-      <div class="container">
-        <div class="row d-flex justify-content-between">
-          <div class="col-12 col-md-4 mb-4 mb-md-0">
-            <div class="card card1 d-flex justify-content-center align-items-center">
-              <div class="card-container d-flex flex-column justify-content-center align-items-center">
-                <p class="card-text">Your Profile was viewed</p>
-                <span class="card-text2 mb-2">48 time(s)</span>
-              </div>
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="col-12 col-md-4 mb-4 mb-md-0">
+                    <div class="card card1 d-flex justify-content-center align-items-center">
+                        <div class="card-container d-flex flex-column justify-content-center align-items-center">
+                            <p class="card-text">Your Profile Views</p>
+                            <% if(employee && employee.views) { %>
+                                <span class="card-text2 mb-2"><%= employee.views %></span>
+                            <% } else { %>
+                                <span class="card-text2 mb-2">0</span>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0">
+                    <div class="card card1 d-flex justify-content-center align-items-center">
+                        <div class="card-container d-flex flex-column justify-content-center align-items-center">
+                            <p class="card-text">Work Availability</p>
+                            <% if(employee && employee.availability) { %>
+
+                                <span class="card-text2 mb-2"><%= employee.availability %></span>
+                            <% } else { %>
+                                <span class="card-text2 mb-2">Not Set</span>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4 mb-md-0">
+                    <div class="card card1 d-flex justify-content-center align-items-center">
+                        <div class="card-container d-flex flex-column justify-content-center align-items-center">
+                            <p class="card-text">Current Team</p>
+                            <% if(employee && !employee.hasTeam) { %>
+                                <span class="card-text2 mb-2">No team yet</span>
+                            <% } else if (employee && employee.hasTeam) { %>
+                                <span class="card-text2 mb-2"><%= employee.teamName %></span>
+                            <% } else { %>
+                                <span class="card-text2 mb-2">No team yet</span>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4 mb-md-0">
-            <div class="card card1 d-flex justify-content-center align-items-center">
-              <div class="card-container d-flex flex-column justify-content-center align-items-center">
-                <p class="card-text">You are currently</p>
-                <span class="card-text2 mb-2">Available To Work</span>
-              </div>
+
+            <div class="row mt-3">
+                <div class="col-12 col-md-8 mb-4 mb-md-0">
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center">
+                            <span class="dashboard-title mr-auto">Your Portfolio</span>
+                            <a href="#" class="dashboard-link">View all -></a>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <% if(portfolios) { %>
+                            <% for(portfolio of portfolios) { %>
+                                <div class="col-12 col-md-6 mb-4">
+                                    <div class="card card2">
+                                        <span class="portfolio-title pb-2"><%= portfolio.title %></span>
+                                        <span class="portfolio-desc pb-3"><%= portfolio.description %></span>
+                                        <a href="#" class="portfolio-link">Portfolio Link</a>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% } %>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 mb-4 mb-md-0">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                            <span class="dashboard-title">Skill Set</span>
+                            <a class="btn" data-toggle="modal" data-target="#addSkillModal"><img
+                                        src="/images/employee-dashboard/pencil-edit.svg" alt=""></a>
+                        </div>
+                    </div>
+
+                    <!-- Add Skill Modal -->
+
+                    <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog"
+                         aria-labelledby="addSkillModal"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="close btn mr-3 mt-2" data-dismiss="modal"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class=" d-flex justify-content-center">
+                                    <h5 class="modal-title" id="">Add Skill</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/" method="POST">
+                                        <div class="form-group">
+                                            <label class="skill-label">Skill name</label>
+                                            <input type="text" name="skillDescription" class="form-control"
+                                                   placeholder="Write the skill name here" id="skillDescription">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="skill-label">Select skill range</label>
+                                            <input class="form-control" type="range" id="skillRange" value="0"
+                                                   name="skillRange" min="0"
+                                                   max="100" oninput="showSkillRange()">
+                                        </div>
+                                        <div class="form-group d-flex justify-content-center">
+                                            <button type="submit" class="btn modalBtn">Add Skill</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Add Skill Modal -->
+
+                    <div class="card card3 mt-2">
+                        <ul class="list-group list-group-flush">
+
+                            <% if(skills) { %>
+                                <% for (skill of skills) { %>
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between pb-1">
+                                            <span class="card-skill"><%= skill.skillDescription %></span>
+                                            <a href=""><img src="/images/employee-dashboard/delete-skill.svg"
+                                                            alt=""></a>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 95%"
+                                                 aria-valuenow="75" aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </li>
+                                <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4 mb-md-0">
-            <div class="card card1 d-flex justify-content-center align-items-center">
-              <div class="card-container d-flex flex-column justify-content-center align-items-center">
-                <p class="card-text">You have</p>
-                <span class="card-text2 mb-2">No team yet</span>
-              </div>
-            </div>
-          </div>
+
         </div>
-
-        <div class="row mt-3">
-          <div class="col-12 col-md-8 mb-4 mb-md-0">
-            <div class="row">
-              <div class="col-12 d-flex align-items-center">
-                <span class="dashboard-title mr-auto">Your Portfolio</span>
-                <a href="#" class="dashboard-link">View all -></a>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-12 col-md-6 mb-4">
-                <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
-                  <a href="#" class="portfolio-link">Portfolio Link</a>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 mb-4">
-                <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
-                  <a href="#" class="portfolio-link">Portfolio Link</a>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 mb-4">
-                <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
-                  <a href="#" class="portfolio-link">Portfolio Link</a>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 mb-4">
-                <div class="card card2">
-                  <span class="portfolio-title pb-2">TalentPool</span>
-                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
-                    amet.</span>
-                  <a href="#" class="portfolio-link">Portfolio Link</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-4 mb-4 mb-md-0">
-            <div class="row">
-              <div class="col-12 d-flex justify-content-between align-items-center">
-                <span class="dashboard-title">Skill Set</span>
-                <a class="btn" data-toggle="modal" data-target="#addSkillModal"><img
-                    src="/images/employee-dashboard/pencil-edit.svg" alt=""></a>
-              </div>
-            </div>
-
-            <!-- Add Skill Modal -->
-
-            <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal"
-              aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="d-flex justify-content-end">
-                    <button type="button" class="close btn mr-3 mt-2" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class=" d-flex justify-content-center">
-                    <h5 class="modal-title" id="">Add Skill</h5>
-                  </div>
-                  <div class="modal-body">
-                    <form action="">
-                      <div class="form-group">
-                        <label class="skill-label">Skill name</label>
-                        <input type="text" name="skill" class="form-control" placeholder="Write the skill name here">
-                      </div>
-                      <div class="form-group">
-                        <label class="skill-label">Select skill range</label>
-                        <input class="form-control" type="range" id="skillRange" value="0" name="skillRange" min="0"
-                          max="100" oninput="showSkillRange()">
-                      </div>
-                      <div class="form-group d-flex justify-content-center">
-                        <button type="submit" class="btn modalBtn">Add Skill</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- End Add Skill Modal -->
-
-            <div class="card card3 mt-2">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Angular</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Git</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Adobe XD</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Brand Strategy</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="75"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Analytical Thinking</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Figma</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Angular</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Git</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Adobe XD</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Brand Strategy</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="75"
-                      aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Analytical Thinking</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex justify-content-between pb-1">
-                    <span class="card-skill">Figma</span>
-                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </section>
 
     <!-- Complete Profile Modal -->
 
     <div class="modal fade" style="padding: 25px" id="completeProfileModal" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="row d-flex justify-content-center">
-            <h5 class="mt-5" id="">Complete Your Profile</h5>
-          </div>
-          <div class="modal-body">
-            <form action="">
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="">First name</label>
-                    <input type="text" class="form-control" placeholder="First name">
-                  </div>
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="row d-flex justify-content-center">
+                    <h5 class="mt-5" id="">Complete Your Profile</h5>
                 </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="">Last name</label>
-                    <input type="text" class="form-control" placeholder="Last name">
-                  </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">First name</label>
+                                    <input type="text" class="form-control" placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Last name</label>
+                                    <input type="text" class="form-control" placeholder="Last name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Phone number</label>
+                                    <input type="number" class="form-control" placeholder="+2348008008000">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="example@example.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group d-flex justify-content-center mt-2 mb-5">
+                            <button type="submit" class="btn modalBtn">Create Profile</button>
+                        </div>
+                    </form>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="">Phone number</label>
-                    <input type="number" class="form-control" placeholder="+2348008008000">
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="">Email Address</label>
-                    <input type="email" class="form-control" placeholder="example@example.com">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group d-flex justify-content-center mt-2 mb-5">
-                <button type="submit" class="btn modalBtn">Create Profile</button>
-              </div>
-            </form>
-          </div>
 
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- End of Complete Profile Modal -->
-  </main>
+</main>
 
-  <script>
-    showSkillRange = () => {
-      let skillRange = document.getElementById("skillRange").value;
-      document.getElementById("skillRange").style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + this.value + '%, #fff ' + this.value + '%, white 100%)'
-    }
-  </script>
+<script>
+  showSkillRange = () => {
+    let skillRange = document.getElementById('skillRange').value;
+    document.getElementById(
+      'skillRange').style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + this.value + '%, #fff ' + this.value + '%, white 100%)';
+  };
+</script>
 </body>
 
 </html>
