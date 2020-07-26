@@ -22,6 +22,7 @@ module.exports = {
       where: {
         verificationStatus: 'Approved',
       },
+      include: [{model: models.User}]
     });
   },
   getRecommendedInterns: (models) => {
@@ -30,12 +31,13 @@ module.exports = {
         userType: 'HNG',
         verificationStatus: 'Approved',
       },
+      include: [{model: models.User}]
     });
   },
   getPendingHire: (req, models) => {
     return models.Team.findAll({
       where: {
-        // userId: req.session.userId,
+        userId: req.session.employerId,
         status: 'Pending',
       },
     });
@@ -43,7 +45,7 @@ module.exports = {
   getTeamMember: (req, models) => {
     return models.Team.findAll({
       where: {
-        // userId: req.session.userId,
+        userId: req.session.employerId,
         status: 'Accepted',
       },
     });

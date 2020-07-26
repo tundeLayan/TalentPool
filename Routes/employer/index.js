@@ -5,7 +5,7 @@ const message = require('./message');
 const { authorisedPages } = require('../../Middleware/auth');
 
 const router = express.Router();
-router.use('/dashboard', authorisedPages,  dashboard);
+router.use('/', authorisedPages,  dashboard);
 router.use('/', authorisedPages, team);
 router.use('/message', authorisedPages, message);
 
