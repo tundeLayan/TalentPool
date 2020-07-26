@@ -20,6 +20,11 @@ module.exports = {
       where: { userId: user },
     });
   },
+  getEmployeeByUserId: (models, user) => {
+    return models.Employee.findOne({
+      where: { userId: user.userId },
+    });
+  },
   addSkill: (models, skill) => {
       return models.Skill.create(skill)
   },

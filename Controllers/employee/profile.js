@@ -4,17 +4,16 @@ const cloudinary = require('cloudinary').v2;
 
 const { renderPage } = require('../../Utils/render-page');
 
-const { getUserByEmail, getEmployee } = require('../dao/db-queries');
+const { getUserByEmail, getEmployeeByUserId } = require('../dao/db-queries');
 
 const models = require('../../Models');
 
-const userAttributes = ['id', 'firstName', 'lastName', 'email', 'roleId'];
+const userAttributes = ['id', 'firstName', 'lastName', 'email', 'phone', 'roleId'];
 
 const employeeAttributes = [
   'id',
   'userType',
   'verificationStatus',
-  'phoneNumber',
   'image',
   'gender',
   'hngId',
@@ -107,11 +106,11 @@ module.exports = {
       const { email, data } = employeeData(req, res);
 
       // query the database to find the user
-      const employeeQuery = await getEmployee(models, data);
-      console.log("HWtrybcjbjhsbch");
+      const employeeQuery = await getEmployeeByUserId(models, data);
+      // console.log("i got here", employeeQuery);
       const userQuery = await getUserByEmail(models, email);
 
-      // console.log("HWtrybcjbjhsbch");
+      // console.log("herr", userQuery);
       let profile;
 
       if (employeeQuery && userQuery) {
@@ -140,14 +139,16 @@ module.exports = {
   getUpdateProfilepage: async (req, res) => {
     try {
       const { email, data, options } = employeeData(req, res);
-
+      // console.log({data});
       // query the database to find the user
-      const employeeQuery = await getEmployee(models, data);
+      const employeeQuery = await getEmployeeByUserId(models, data);
+      // console.log("i got here", employeeQuery);
       const userQuery = await getUserByEmail(models, email);
 
       let profile;
 
       if (employeeQuery && userQuery) {
+        // console.log("i got here", employeeQuery);
         profile = {
           user: userQuery.dataValues,
           employee: employeeQuery.dataValues,
@@ -161,7 +162,7 @@ module.exports = {
           errorMessage: options.errorMessage,
         };
       }
-
+      // console.log("here", profile);
       return renderPage(
         res,
         'employee/employeeDashboardSettingsProfileEdit',
@@ -169,6 +170,7 @@ module.exports = {
         'Employee Update Profile',
         '',
       );
+      
     } catch (err) {
       req.flash('error', 'Something went wrong. Try again');
     }
