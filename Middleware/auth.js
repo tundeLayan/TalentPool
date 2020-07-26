@@ -21,7 +21,7 @@ const authorisedPages = (role, roleSuperAdmin = null) =>  (req, res, next) => {
   const { isLoggedIn, data } = req.session;
   if (isLoggedIn && data && data.userRole === role) return next();
   if (isLoggedIn && data && roleSuperAdmin && data.userRole === roleSuperAdmin) return next();
-  res.redirect('/');
+  res.redirect('/login');
 }
 
 module.exports = { checkLoggedIn, authorisedPages }
