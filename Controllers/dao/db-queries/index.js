@@ -12,8 +12,8 @@ module.exports = {
       where: { userId: user.userId },
     });
   },
-  getPortfolio: (models, user) => {
-    return models.Portfolio.findAll({ where: { userId: user }})
+  getPortfolio: (models, userId) => {
+    return models.Portfolio.findAll({ where: { userId }})
   },
   getEmployee: (models, user) => {
     return models.Employee.findOne({
@@ -35,8 +35,8 @@ module.exports = {
       },
     });
   },
-  getSkills: (models, user) => {
-    return models.Skill.findAll({ where: {userId: user }})
+  getSkills: (models, userId) => {
+    return models.Skill.findAll({ where: { userId }})
   },
   getRecommendedInterns: (models) => {
     return models.Employee.findAll({
@@ -240,4 +240,12 @@ module.exports = {
     });
     return fullEmployerProfile;
   },
+
+  getEmployeeTeamDetail: async (models, employeeId) => {
+    return models.Team.findOne({ where: { employeeId }})
+  },
+
+  getUserById: async (models, userId) => {
+    return models.User.findOne({ where: { userId }})
+  }
 };

@@ -71,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     hasTeam: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       defaultValue: false,
     },
     // teamName: {

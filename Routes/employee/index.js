@@ -11,7 +11,7 @@ const role ='ROL-EMPLOYEE';
 
 router.use('/dashboard', authorisedPages(role), dashboard);
 router.use('/profile', profile);
-router.use('/update', authorisedPages(role), updateProfile);
+router.use('/update', updateProfile);
 router.use('/message', authorisedPages(role), message);
 
 module.exports = router;

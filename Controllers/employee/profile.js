@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary').v2;
 
 const { renderPage } = require('../../Utils/render-page');
 
-const { getUserByEmail, getEmployeeByUserId } = require('../dao/db-queries');
+const { getUserByEmail, getEmployer, getEmployeeByUserId, getSkills, getPortfolio, getEmployeeTeamDetail, getUserById } = require('../dao/db-queries');
 
 const models = require('../../Models');
 
@@ -64,7 +64,7 @@ const employeeData = (req, res) => {
     userId = user.userId;
     req.session.user = user;
   } else {
-    userId = req.session.userId;
+    userId = req.session.userId || req.session.employeeId;
   }
 
   const { isLoggedIn, profileImage, firstName, data } = req.session;
@@ -78,7 +78,7 @@ const employeeData = (req, res) => {
   if (req.params.userId) {
     userId = req.params.userId;
   } else if (isLoggedIn && userId) {
-    userId = req.session.userId;
+    userId = req.session.userId || req.session.employeeId;
   }
 
   const { successMessage, errorStatus } = req.query;
@@ -99,7 +99,96 @@ const employeeData = (req, res) => {
   };
 };
 
+const teamData = async (team) => {
+  const { userId, teamName, status } = team;
+  const employerQuery = await getEmployer(models, userId);
+  const employerData = await  getUserById(models, userId)
+
+  const { firstName, lastName } = employerData.dataValues
+  const employerName = `${ firstName} ${lastName}`;
+
+  const {
+    employerPhoneNumber,
+    employerEmail,
+    employerCountry,
+    employerPhoto,
+    website,
+    facebook,
+    twitter,
+    instagram,
+    linkedin,
+  } = await employerQuery;
+
+  const data = {
+      name: teamName,
+      status,
+      employer: {
+        name: employerName,
+        phone: employerPhoneNumber,
+        email: employerEmail,
+        country: employerCountry,
+        photo: employerPhoto,
+        website,
+        social: {
+          facebook,
+          twitter,
+          instagram,
+          linkedin,
+        },
+      },
+  };
+
+  return data;
+};
+
 module.exports = {
+  // render employee dashboard
+  getEmployeeDashboardPage: async (req, res) => {
+    try {
+    
+      const { email, data, userId } = employeeData(req, res);
+
+      // query the database to find the user
+      const employeeQuery = await getEmployeeByUserId(models, data);
+      const userQuery = await getUserByEmail(models, email);
+      const skillsQuery = await getSkills(models, userId);
+      const portfolioQuery = await getPortfolio(models, userId);
+      const teamQuery = await getEmployeeTeamDetail(models, userId)
+
+      let profile;
+      const team = teamQuery.dataValues;
+
+      if (employeeQuery && userQuery) {
+        profile = {
+          user: userQuery.dataValues,
+          employee: employeeQuery.dataValues,
+          skills: skillsQuery.dataValues,
+          portfolios: portfolioQuery.dataValues,          
+          team: await teamData(team),
+        };
+      } else {
+        profile = {
+          user: userQuery.dataValues,
+          skills: skillsQuery.dataValues,
+          portfolios: portfolioQuery.dataValues,
+        };
+      }
+
+      console.log(profile);
+      return renderPage(
+        res,
+        'employee/employeeDashboard',
+        profile,
+        'Employee Dashboard',
+        '',
+      );
+    } catch (err) {
+      req.flash('error', 'Something went wrong. Try again');
+    }
+  },
+
+
+
   // render employee profile page
   getProfilePage: async (req, res) => {
     try {
@@ -180,6 +269,9 @@ module.exports = {
   updateProfile: async (req, res) => {
     try {
       const { userId } = employeeData(req, res);
+      
+      console.log(userId);
+      console.log("erere", req.body);
 
       // Update Profile
       const userBodyToBeUpdated = {
