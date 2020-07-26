@@ -27,7 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
   CompanyCategory.associate = (model) => {
-    CompanyCategory.hasMany(model.Employer);
+    CompanyCategory.hasMany(model.Employer, {
+      onDelete: 'cascade',
+    });
   };
 
   return CompanyCategory;
