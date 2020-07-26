@@ -192,4 +192,47 @@ module.exports = {
     });
     return admins;
   },
+
+  getAllUploadedEmployers: async () => {
+    const  pendingVerifications = await model.Employer.findAll({
+      where: {
+        verificationStatus: 'Uploaded',
+      },
+      include:[
+        {
+          model: model.User,
+          where:{
+            userId:{ [op.col]: 'Employer.userId' },
+          },
+        },
+      ],
+    });
+    return pendingVerifications;
+  },
+
+  getAllEmployerDocuments: async (userId) => {
+    const  employerDocuments = await model.EmployerDocument.findAll({
+      where: {
+        userId,
+      },
+    });
+    return employerDocuments;
+  },
+
+  getFullEmployerProfileByUserId: async (userId) =>{
+    const fullEmployerProfile = await model.Employer.findOne({
+      where:{
+        userId,
+      },
+      include:[
+        {
+          model: model.User,
+          where:{
+            userId: { [op.col]: 'Employer.userId' },
+          },
+        },
+      ],
+    });
+    return fullEmployerProfile;
+  },
 };

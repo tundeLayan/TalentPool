@@ -36,7 +36,36 @@
                  id="jobTableContainer"
                 >
                     <br>
-                    <table id="employersTable" class="table table-hover employersTable" style="cursor: pointer;"></table>
+                    <table id="employersTable" class="table table-hover employersTable" style="cursor: pointer;">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Type</th>
+                                <th>Date Joined</th>
+                                <th>Verification status</th>
+                                <th>Others</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let id = 1 %>
+                            <% pendingVerifications.forEach(function(employer){ %>
+                                <tr>
+                                    <td><%= id %></td>
+                                    <td><%= employer.User.firstName %> <%= employer.User.lastName %></td>
+                                    <td><%= employer.employerPhoneNumber %></td>
+                                    <td><%= employer.employerEmail %></td>
+                                    <td><%= employer.employerType %></td>
+                                    <td><%= moment(employer.createdAt).format('MMMM Do YYYY') %></td>
+                                    <td><%= employer.verificationStatus %></td>
+                                    <td><a href="/admin/verification/employer/documents/<%= employer.userId %>">View More</a></td>
+                                </tr>
+                                <% id +=1 %>
+                            <% }); %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -44,10 +73,6 @@
 
     </section>
 
-    <!-- Bootstrap JS -->
-    <!-- <script src="/javascripts/jquery.js"></script>
-    <script src="/javascripts/bootstrap.min.js"></script>
-    <script src="/javascripts/popper.js"></script> -->
 
     <!-- Dashboard JS -->
     <script src="/javascripts/dashboardNav.js"></script>
@@ -57,9 +82,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
 
     <script src="/javascripts/admin-dashboard-verification.js"></script>
+    <script>
+    const setDataTable = () => {
+    $(document).ready(function() {
+        $('#employersTable').DataTable();
+    } );
+    };
+    </script>
 </body>
 </html>

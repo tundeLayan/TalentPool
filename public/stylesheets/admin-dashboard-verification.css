@@ -2,12 +2,11 @@ html {
     height: 100%;
 }
 body {
-    min-height: calc(100% - 110px);
-    max-height: calc(100% - 110px);
-    height: calc(100% - 110px);
+    height: 100%;
 }
 .admin-dashboard-verification-container-pt {
     /*width: 100%;*/
+    padding-top: 98px;
     height: 100%;
     width: calc(100% - 110px);
     margin-left: auto;
