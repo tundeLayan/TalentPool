@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 const sequelize = require('sequelize');
 const model = require('../../../Models/index');
 
@@ -28,6 +29,7 @@ module.exports = {
       where: {
         verificationStatus: 'Approved',
       },
+      include: [{model: models.User}]
     });
   },
   getSkills: (models, user) => {
@@ -39,23 +41,130 @@ module.exports = {
         userType: 'HNG',
         verificationStatus: 'Approved',
       },
+      include: [{model: models.User}]
     });
   },
-  getPendingHire: (req, models) => {
-    return models.Team.findAll({
+  getPendingHire: async (req, models) => {
+    const data = [];
+    const teamMembers = await models.Team.findAll({
       where: {
-        // userId: req.session.userId,
+        userId: req.session.employerId,
         status: 'Pending',
       },
     });
+    for (const singleEmployee of teamMembers) {
+      const { firstName, lastName } = await model.User.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId },
+      });
+  
+      const { track } = await model.Employee.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId },
+      });
+      data.push({
+        track,
+        name: `${firstName} ${lastName}`,
+      });
+    }
+    return data;
   },
-  getTeamMember: (req, models) => {
-    return models.Team.findAll({
+  getTeamMember: async (req, models) => {
+    const data = [];
+    const teamMembers = await models.Team.findAll({
       where: {
-        // userId: req.session.userId,
+        userId: req.session.employerId,
         status: 'Accepted',
       },
     });
+    for (const singleEmployee of teamMembers) {
+      const { firstName, lastName } = await model.User.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId },
+      });
+  
+      const { track } = await model.Employee.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId },
+      });
+      data.push({
+        track,
+        name: `${firstName} ${lastName}`,
+      });
+    }
+    return data;
+  },
+  getBEinTeam: async (req, models) => {
+    const data = [];
+    const teamMembers = await models.Team.findAll({
+      where: {
+        userId: req.session.employerId,
+        status: 'Accepted',
+      },
+    });
+    for (const singleEmployee of teamMembers) {
+  
+      const { track } = await model.Employee.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId, track: 'Backend' },
+      });
+      data.push({
+        track,
+      });
+    }
+    return data;
+  },
+  getFEinTeam: async (req, models) => {
+    const data = [];
+    const teamMembers = await models.Team.findAll({
+      where: {
+        userId: req.session.employerId,
+        status: 'Accepted',
+      },
+    });
+    for (const singleEmployee of teamMembers) {
+  
+      const { track } = await model.Employee.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId, track: 'Frontend' },
+      });
+      data.push({
+        track,
+      });
+    }
+    return data;
+  },
+  getDesigninTeam: async (req, models) => {
+    const data = [];
+    const teamMembers = await models.Team.findAll({
+      where: {
+        userId: req.session.employerId,
+        status: 'Accepted',
+      },
+    });
+    for (const singleEmployee of teamMembers) {
+  
+      const { track } = await model.Employee.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId, track: 'Design' },
+      });
+      data.push({
+        track,
+      });
+    }
+    return data;
+  },
+  getMobileinTeam: async (req, models) => {
+    const data = [];
+    const teamMembers = await models.Team.findAll({
+      where: {
+        userId: req.session.employerId,
+        status: 'Accepted',
+      },
+    });
+    for (const singleEmployee of teamMembers) {
+  
+      const { track } = await model.Employee.findOne({
+        where: { userId: singleEmployee.dataValues.employeeId, track: 'Mobile' },
+      });
+      data.push({
+        track,
+      });
+    }
+    return data;
   },
   employerChatUsers: async () => {
     const users = await model.Employer.findAll({
