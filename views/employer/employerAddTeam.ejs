@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <form action="/employer/add/team" method="POST">
+        <form action="/employer/team/add" method="POST">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <div class="row">
             <div class="col-12 col-md-9">
@@ -150,7 +150,7 @@
                     </div>
                   </div>
                   <div class="d-flex justify-content-end col-6">
-                    <form action="/employer/remove-employee" method="GET">
+                    <form action="/employer/team/remove/employee" method="GET">
                       <input
                         type="hidden"
                         name="_csrf"
