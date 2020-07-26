@@ -18,11 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'Pending',
     },
-    phoneNumber: {
-      type: DataTypes.STRING(250),
-      allowNull: false,
-      unique: true,
-    },
     image: {
       type: DataTypes.STRING(255),
       allowNull: true,
