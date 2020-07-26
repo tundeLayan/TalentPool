@@ -11,7 +11,7 @@ const roleSuperAdmin = 'ROL-SUPERADMIN';
 const roleAdmin = 'ROL-ADMIN';
 
 router.use('/dashboard', authorisedPages(roleAdmin, roleSuperAdmin), dashboard);
-router.use('/', authorisedPages(roleAdmin, roleSuperAdmin), admin);
+router.use('/', authorisedPages(roleSuperAdmin), admin);
 router.use('/faq', authorisedPages(roleAdmin, roleSuperAdmin), faqRoute);
 router.use('/verification', authorisedPages(roleAdmin, roleSuperAdmin), verification);
 

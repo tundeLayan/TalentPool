@@ -81,6 +81,7 @@ module.exports = {
         userId,
         roleId: 'ROL-ADMIN',
         password: hashedPassword,
+        status: '1',
       };
       await createUser(model, user);
       // send login details to admin
