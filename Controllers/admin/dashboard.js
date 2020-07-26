@@ -1,6 +1,6 @@
 const moment = require('moment');
-const { getAllApprovedEmployees, getAllApprovedEmployers, 
-        getAllDisapprovedEmployees, getAllDisapprovedEmployers, 
+const { getAllApprovedEmployees, getAllApprovedEmployers,
+        getAllDisapprovedEmployees, getAllDisapprovedEmployers,
         getAllUsers, getAllEmployers, getPendingEmployees, getLatestEmployers, getAllSubscriptions,
       } = require('../dao/db-queries');
 
@@ -9,37 +9,35 @@ const { renderPage } = require('../../Utils/render-page');
 const approvedUsers = async () => {
   const approvedEmployers = await getAllApprovedEmployers();
   const approvedEmployees = await getAllApprovedEmployees();
-  const totalApprovedUsers = approvedEmployers.length + approvedEmployees.length;
-  return totalApprovedUsers;
+  return approvedEmployers.length + approvedEmployees.length;
 };
 
 const disapprovedUsers = async () => {
   const disapprovedEmployers = await getAllDisapprovedEmployers();
   const disapprovedEmployees = await getAllDisapprovedEmployees();
-  const totalDisapprovedUsers = disapprovedEmployers.length + disapprovedEmployees.length;
-  return totalDisapprovedUsers;
+  return disapprovedEmployers.length + disapprovedEmployees.length;
 };
 
 const filterData = (data, value, key) => {
   let filteredData;
-  if(key === 'roleId') { filteredData = data.filter( (myData) => { 
-      return myData.roleId === value; 
+  if(key === 'roleId') { filteredData = data.filter( (myData) => {
+      return myData.roleId === value;
     });
   }
-  if(key === 'block'){ filteredData = data.filter( (myData) => { 
-      return myData.block === value; 
+  if(key === 'block'){ filteredData = data.filter( (myData) => {
+      return myData.block === value;
     });
   }
-  if(key === 'teamName'){ filteredData = data.filter( (myData) => { 
-      return myData.teamName === value; 
+  if(key === 'teamName'){ filteredData = data.filter( (myData) => {
+      return myData.teamName === value;
     });
   }
-  if(key === 'active'){ filteredData = data.filter( (myData) => { 
-      return myData.active === value; 
+  if(key === 'active'){ filteredData = data.filter( (myData) => {
+      return myData.active === value;
     });
   }
-  if(key === 'verificationStatus'){ filteredData = data.filter( (myData) => { 
-    return myData.verificationStatus === value; 
+  if(key === 'verificationStatus'){ filteredData = data.filter( (myData) => {
+    return myData.verificationStatus === value;
   });
 }
   return filteredData;
@@ -58,20 +56,19 @@ module.exports = {
       const allUsers = await getAllUsers();
       const pendingEmployees = await getPendingEmployees();
       const allEmployers =  await getAllEmployers();
-      
+
       const employees = filterData(allUsers, 'ROL-EMPLOYEE', 'roleId');
       const unactiveUsers = filterData(allUsers, true, 'block');
       const employers = filterData(allUsers, 'ROL-EMPLOYER', 'roleId');
-      const hasNoTeam = filterData(employers, '', 'teamName');
-      
+      const hasNoTeam = filterData(allEmployers, '', 'teamName');
 
       const latestSubscriptions = allSubscriptions.slice(0, 5);
-      const totalTeams = employers.length - hasNoTeam;
+      const totalTeams = allEmployers.length - hasNoTeam.length;
       const pendingEmployers = filterData(allEmployers, 'Pending','verificationStatus');
       const uploadedEmployers = filterData(allEmployers, 'Uploaded','verificationStatus');
       const pendingReviews =  pendingEmployees + pendingEmployers.length + uploadedEmployers.length;
-      
-      
+
+
 
       const data = {
         totalEmployer: employers,
@@ -93,7 +90,7 @@ module.exports = {
 
       renderPage(res, 'admin/adminDashboard', data, 'Admin | Dashboard', 'pathName');
     } catch (error) {
-      console.log(error);
+      req.flash('error', error.message);
     }
   },
 };
