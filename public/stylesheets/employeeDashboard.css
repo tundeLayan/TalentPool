@@ -2,11 +2,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Manrope';
 }
 
 @media screen and (min-width: 992px) {
   #employeeDashboard .container {
     width: 80%;
+  }
+}
+
+@media screen and (max-width: 574px) {
+  #employeeDashboard {
+    padding-top: 140px;
   }
 }
 
@@ -22,35 +29,61 @@
 }
 
 #employeeDashboard .card1 {
-  height: 160px !important;
-  max-height: 160px !important;
-}
-
-#employeeDashboard .card-number {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 34px;
-  line-height: 48px;
-  text-align: center;
-  color: #04172a;
+  height: 130px !important;
+  max-height: 130px !important;
 }
 
 #employeeDashboard .card-text {
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 14px;
   line-height: 21px;
   text-align: center;
   color: #04172a;
 }
 
+#employeeDashboard .card-text2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 48px;
+  text-align: center;
+  color: #04172a;
+}
+
 #employeeDashboard .card2 {
-  height: 315px !important;
-  max-height: 315px !important;
+  height: 152px;
+  max-height: 152px;
+  padding: 20px 20px !important;
 }
 
 #employeeDashboard .card3 {
+  height: 327px !important;
+  max-height: 327px !important;
   padding: 20px 20px !important;
+}
+
+#employeeDashboard .portfolio-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #04172a;
+}
+
+#employeeDashboard .portfolio-desc {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #04172a;
+}
+
+#employeeDashboard .portfolio-link {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: #04172a;
 }
 
 #employeeDashboard .empty-card {
@@ -68,6 +101,76 @@
   color: #04172a;
 }
 
+#employeeDashboard .dashboard-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: #04172a;
+}
+
+#employeeDashboard .dashboard-link {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 21px;
+  color: #04172a;
+}
+
+#employeeDashboard .progress {
+  height: 0.3em;
+  background: #e6e8ea;
+  margin-bottom: 0.4em;
+}
+
+#employeeDashboard .progress-bar {
+  background: #4d49ff;
+}
+
+#employeeDashboard .card-skill {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: #04172a;
+}
+
+#employeeDashboard .list-group {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  /* Hide scrollbar for IE, Edge and Firefox  */
+  -ms-overflow-style: none; /* IE and Edge  */
+  scrollbar-width: none; /*  Firefox  */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera  */
+#employeeDashboard .list-group::-webkit-scrollbar {
+  display: none;
+}
+
+#employeeDashboard .list-group-item {
+  border: none !important;
+  padding: 4px 0 !important;
+}
+
+.modalBtn {
+  background: #4d49ff;
+  box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+#employeeDashboard .skill-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  color: #04172a;
+}
+
+
+/* 
 #employeeDashboard .see-all {
   position: absolute;
   right: 0;
@@ -97,23 +200,15 @@
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  Hide scrollbar for IE, Edge and Firefox 
+  -ms-overflow-style: none;  IE and Edge 
+  scrollbar-width: none;  Firefox 
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
+Hide scrollbar for Chrome, Safari and Opera 
 #employeeDashboard .list-group::-webkit-scrollbar {
   display: none;
-}
-
-#employeeDashboard .dashboard-title {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 32px;
-  color: #04172a;
-}
+} 
 
 #employeeDashboard .card-employer-name {
   font-style: normal;
@@ -135,21 +230,4 @@
 #employeeDashboard .list-group-item {
   background-color: transparent !important;
 }
-
-#employeeDashboard .progress {
-  height: 0.3em;
-  background: #e6e8ea;
-  margin-bottom: 0.4em;
-}
-
-#employeeDashboard .progress-bar {
-  background: #4d49ff;
-}
-
-#employeeDashboard .card-skill {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
-  color: #04172a;
-}
+*/

@@ -12,324 +12,315 @@
 </head>
 
 <body>
-  <%- include('../templates/employeeDashboardSidebar.ejs') %>
+  <%- include('../templates/employeeDashboardSidebar.ejs', { sideNavRoute: 'dashboard'}) %>
   <%- include('../templates/dashboardHeader.ejs') %>
   <main id="main">
     <section id="employeeDashboard">
       <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-between">
           <div class="col-12 col-md-4 mb-4 mb-md-0">
             <div class="card card1 d-flex justify-content-center align-items-center">
               <div class="card-container d-flex flex-column justify-content-center align-items-center">
-                <span class="card-number mb-2">48</span>
-                <p class="card-text">Times your profile was viewed</p>
+                <p class="card-text">Your Profile was viewed</p>
+                <span class="card-text2 mb-2">48 time(s)</span>
               </div>
             </div>
           </div>
           <div class="col-12 col-md-4 mb-4 mb-md-0">
             <div class="card card1 d-flex justify-content-center align-items-center">
               <div class="card-container d-flex flex-column justify-content-center align-items-center">
-                <span class="card-number mb-2">12</span>
-                <p class="card-text">Accepted detail requests</p>
+                <p class="card-text">You are currently</p>
+                <span class="card-text2 mb-2">Available To Work</span>
               </div>
             </div>
           </div>
           <div class="col-12 col-md-4 mb-4 mb-md-0">
             <div class="card card1 d-flex justify-content-center align-items-center">
               <div class="card-container d-flex flex-column justify-content-center align-items-center">
-                <span class="card-number mb-2">16</span>
-                <p class="card-text">Pending detail requests</p>
+                <p class="card-text">You have</p>
+                <span class="card-text2 mb-2">No team yet</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="row mt-3">
-          <div class="col-12 col-md-4 mb-4 mb-md-0">
-            <span class="dashboard-title">Available Employers</span>
-            <div class="card card2 mt-2">
-
-              <ul class="list-group list-group-flush card-list">
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Google</span>
-                        <span class="card-employer-base">Product Based</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Facebook</span>
-                        <span class="card-employer-base">Service Based</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Amazon</span>
-                        <span class="card-employer-base">Product Based</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Google</span>
-                        <span class="card-employer-base">Product Based</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Amazon</span>
-                        <span class="card-employer-base">Service Based</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Facebook</span>
-                        <span class="card-employer-base">Service Based</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-
-              </ul>
-
-              <div class="see-all d-flex justify-content-center align-items-center">
-                <span class="see-all-text">See all candidates </span>
-                <a href="#" class="col-2 btn">
-                  <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                </a>
-              </div>
-
-            </div>
-          </div>
-          <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <div class="col-12 col-md-8 mb-4 mb-md-0">
             <div class="row">
-              <div class="col-12 d-flex justify-content-between align-items-center">
-                <span class="dashboard-title">Detail Requests</span>
-                <a href="#"><img src="/images/employee-dashboard/pencil-edit.svg" alt=""></a>
+              <div class="col-12 d-flex align-items-center">
+                <span class="dashboard-title mr-auto">Your Portfolio</span>
+                <a href="#" class="dashboard-link">View all -></a>
               </div>
             </div>
-            <!-- <div class="card card2 mt-2">
-
-              <ul class="list-group list-group-flush card-list">
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Google</span>
-                        <span class="card-employer-state">Accepted</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
+            <div class="row mt-2">
+              <div class="col-12 col-md-6 mb-4">
+                <div class="card card2">
+                  <span class="portfolio-title pb-2">TalentPool</span>
+                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
+                    amet.</span>
+                  <a href="#" class="portfolio-link">Portfolio Link</a>
                 </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Facebook</span>
-                        <span class="card-employer-state">Pending</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Amazon</span>
-                        <span class="card-employer-state">Rejected</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Google</span>
-                        <span class="card-employer-state">Accepted</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Facebook</span>
-                        <span class="card-employer-state">Pending</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-                <div class="list-group-item">
-                  <div class="row d-flex align-items-center">
-                    <div class="d-flex col-10">
-                      <div class="d-flex flex-column justify-content-center mr-3">
-                        <img src="/images/Tobi.jpg" alt="" class="d-sm-flex img-fluid" style="width: 40px;
-                                  height: 40px; border-radius: 25px">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center align-items-start">
-                        <span class="card-employer-name">Amazon</span>
-                        <span class="card-employer-state">Rejected</span>
-                      </div>
-                    </div>
-                    <a href="#" class="d-flex justify-content-end col-2 btn">
-                      <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                    </a>
-                  </div>
-                </div>
-              </ul>
-
-              <div class="see-all d-flex justify-content-center align-items-center">
-                <span class="see-all-text">See all requests </span>
-                <a href="#" class="col-2 btn">
-                  <img src="/images/employer-dashboard/view-arrow.svg" alt="">
-                </a>
               </div>
-
-            </div> -->
-
-            <!-- If there are no pending requests -->
-            <div class="card card2 mt-2">
-              <div class="empty-card mt-2 d-flex flex-column align-items-center justify-content-center">
-                <img class="mb-4" src="/images/employee-dashboard/no-pending.svg" alt="">
-                <p class="empty-card-text">No pending requests</p>
+              <div class="col-12 col-md-6 mb-4">
+                <div class="card card2">
+                  <span class="portfolio-title pb-2">TalentPool</span>
+                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
+                    amet.</span>
+                  <a href="#" class="portfolio-link">Portfolio Link</a>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 mb-4">
+                <div class="card card2">
+                  <span class="portfolio-title pb-2">TalentPool</span>
+                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
+                    amet.</span>
+                  <a href="#" class="portfolio-link">Portfolio Link</a>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 mb-4">
+                <div class="card card2">
+                  <span class="portfolio-title pb-2">TalentPool</span>
+                  <span class="portfolio-desc pb-3">This is the description of TalentPool. Lorem ipsum dolor sit
+                    amet.</span>
+                  <a href="#" class="portfolio-link">Portfolio Link</a>
+                </div>
               </div>
             </div>
-
           </div>
+
           <div class="col-12 col-md-4 mb-4 mb-md-0">
             <div class="row">
               <div class="col-12 d-flex justify-content-between align-items-center">
                 <span class="dashboard-title">Skill Set</span>
-                <a href="#"><img src="/images/employee-dashboard/pencil-edit.svg" alt=""></a>
+                <a class="btn" data-toggle="modal" data-target="#addSkillModal"><img
+                    src="/images/employee-dashboard/pencil-edit.svg" alt=""></a>
               </div>
             </div>
-            <div class="card card2 card3 mt-2">
-              <p class="card-skill">Figma</p>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                  aria-valuemax="100"></div>
+
+            <!-- Add Skill Modal -->
+
+            <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="addSkillModal"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="close btn mr-3 mt-2" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class=" d-flex justify-content-center">
+                    <h5 class="modal-title" id="">Add Skill</h5>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <div class="form-group">
+                        <label class="skill-label">Skill name</label>
+                        <input type="text" name="skill" class="form-control" placeholder="Write the skill name here">
+                      </div>
+                      <div class="form-group">
+                        <label class="skill-label">Select skill range</label>
+                        <input class="form-control" type="range" id="skillRange" value="0" name="skillRange" min="0"
+                          max="100" oninput="showSkillRange()">
+                      </div>
+                      <div class="form-group d-flex justify-content-center">
+                        <button type="submit" class="btn modalBtn">Add Skill</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
-              <p class="card-skill">Adobe XD</p>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                  aria-valuemax="100"></div>
-              </div>
-              <p class="card-skill">Photoshop</p>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                  aria-valuemax="100"></div>
-              </div>
-              <p class="card-skill">Brand Strategy</p>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                  aria-valuemax="100"></div>
-              </div>
+            </div>
+
+            <!-- End Add Skill Modal -->
+
+            <div class="card card3 mt-2">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Angular</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Git</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Adobe XD</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Brand Strategy</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="75"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Analytical Thinking</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Figma</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Angular</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Git</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Adobe XD</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Brand Strategy</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="75"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Analytical Thinking</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between pb-1">
+                    <span class="card-skill">Figma</span>
+                    <a href=""><img src="/images/employee-dashboard/delete-skill.svg" alt=""></a>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 35%" aria-valuenow="75" aria-valuemin="0"
+                      aria-valuemax="100"></div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
+
       </div>
     </section>
+
+    <!-- Complete Profile Modal -->
+
+    <div class="modal fade" style="padding: 25px" id="completeProfileModal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="row d-flex justify-content-center">
+            <h5 class="mt-5" id="">Complete Your Profile</h5>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">First name</label>
+                    <input type="text" class="form-control" placeholder="First name">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Last name</label>
+                    <input type="text" class="form-control" placeholder="Last name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Phone number</label>
+                    <input type="number" class="form-control" placeholder="+2348008008000">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Email Address</label>
+                    <input type="email" class="form-control" placeholder="example@example.com">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group d-flex justify-content-center mt-2 mb-5">
+                <button type="submit" class="btn modalBtn">Create Profile</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- End of Complete Profile Modal -->
   </main>
+
+  <script>
+    showSkillRange = () => {
+      let skillRange = document.getElementById("skillRange").value;
+      document.getElementById("skillRange").style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + this.value + '%, #fff ' + this.value + '%, white 100%)'
+    }
+  </script>
 </body>
 
 </html>

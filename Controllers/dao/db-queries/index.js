@@ -160,4 +160,27 @@ module.exports = {
       where: param,
     });
   },
+
+  getAdmin: async (userId) => {
+    const admin = await model.User.findOne({
+      where: { userId },
+      roleId: 'ROL-ADMIN',
+    });
+    return admin;
+  },
+  activityLog: async (userId) => {
+    const activities = await model.Activitylog.findAll({
+      where: { userId },
+    });
+    return activities;
+  },
+
+  allAdmin: async () => {
+    const admins = await model.User.findAll({
+      where: {
+        roleId: 'ROL-ADMIN',
+      },
+    });
+    return admins;
+  },
 };

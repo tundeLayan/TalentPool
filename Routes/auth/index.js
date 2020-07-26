@@ -23,18 +23,18 @@ const { validateSignup, validateEmail } = require('../../Utils/validators/auth-v
 const router = express.Router();
 
 router.get('/auth/employer/google', checkLoggedIn, getUserProfile('google-employer'));
-router.get('/auth/employee/google', checkLoggedIn, getUserProfile('google-employer'));
+router.get('/auth/employee/google', checkLoggedIn, getUserProfile('google-employee'));
 
-router.get('/auth/employer/google/callback', checkLoggedIn, authCallbackHandler('google-employer'), handAuthCallback);
-router.get('/auth/employee/google/callback', checkLoggedIn, authCallbackHandler('google-employee'), handAuthCallback);
+router.get('/auth/employer/google/callback', authCallbackHandler('google-employer'), handAuthCallback);
+router.get('/auth/employee/google/callback', authCallbackHandler('google-employee'), handAuthCallback);
 
 router.get('/auth/employer/github', checkLoggedIn, passport.authenticate('github-employer'));
 router.get('/auth/employee/github', checkLoggedIn, passport.authenticate('github-employee'));
 
 router.get(
-  '/auth/github/callback', checkLoggedIn, authCallbackHandler('github-employer'), handAuthCallback);
+  '/auth/github/callback', authCallbackHandler('github-employer'), handAuthCallback);
 router.get(
-  '/auth/employee/github/callback/', checkLoggedIn, authCallbackHandler('github-employer'),handAuthCallback
+  '/auth/employee/github/callback/', authCallbackHandler('github-employee'),handAuthCallback
 );
 
 router.get('/employee/register', checkLoggedIn, registerEmployeePage);

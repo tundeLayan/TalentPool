@@ -16,111 +16,209 @@
     <link rel="stylesheet" href="/stylesheets/dashboardSidenav.css">
     <link rel="stylesheet" href="/stylesheets/dashboardHeader.css">
     <link rel="stylesheet" href="/stylesheets/employer-dashboard-privacy-settings.css">
+    <link rel="stylesheet" href="/stylesheets/employerSubscription.css">
     <style>
-      .body{
-        font-size: 20px;
-      }
-      .modal {
-        position: fixed;
-        top: 30px;
-        bottom: 0;
-        z-index: 10040;
-        overflow: auto;
-        overflow-y: auto;
-      }
-      .custom-button{
-        width: 20%;
-        text-align: center;
-        margin: auto;
-        margin-bottom: 2em;
-        background: #4D49FF;
-        box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
-        border-radius: 5px;
-      }
-      .custom-button:hover,
-      .payment:hover{
-        color:#fff;
-        background: rgb(43, 39, 255);
-      }
-
-      .payment{
-        background: #4D49FF;
-        box-shadow: 0px 5px 25px rgba(77, 73, 255, 0.25);
-        border-radius: 5px;
-      }
-    
+     
     </style>
 </head>
 <body>
 
-    <%- include('../templates/employerDashboardSidebar.ejs') %>
+    <%- include('../templates/employerDashboardSidebar.ejs', { sideNavRoute: 'settings'}) %>
     <%- include('../templates/dashboardHeader.ejs') %>
 
     <section class="dashboard-settings-container-pt">
 
         <section class="dashboard-settings-main-pt">
 
-            <div class="container row">
+            <div class="container row employer-sub-custom-container">
 
                 <%- include('../templates/employerDashboardPrivacyTabs.ejs', { tabRoute: 'subscription'})%>
 
-                <div class="col-md-9 col-12 privacy-settings">
-                  <div class="container">
-                 <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary custom-button" data-toggle="modal" data-target="#exampleModalLong">
-              Upgrade now
-            </button>
+                <div class="col-md-9 col-12 subscription-settings">
+                  <div class="container px-4 py-5">
 
 
-<!-- Modal -->
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header d-flex justify-content-center">
-                <h5 class="modal-title ">Upgrade to premium</h5>
-              </div>
-          <div class="modal-body" style="padding: 0 !important">
-            <div class="container-fluid px-0">
-              <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group my-4">
-                        <label for="fullName">Payer's full name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="John Doe">
-                      </div>
-                    <div class="form-group my-4">
-                        <label for="phoneNumber">Payer's Phone Number</label>
-                        <input type="number" class="form-control" id="phoneNumber" placeholder="+1803457934973">
-                      </div>
-                      <label class="">Currency</label>
-                      <select class="form-control mb-4">
-                          <option id="currency">Select your currency</option>
-                          <option>Naira</option>
-                          <option>Dollars</option>
-                        </select>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group my-4">
-                        <label for="email">Payer's Email Address</label>
-                        <input type="email" class="form-control" id="email" placeholder="email@domain.com">
-                      </div>
-                      
-                      <label for="currency" >Currency</label>
-                      <select class="form-control mb-4">
-                            <option id="currency">Select your currency</option>
-                            <option>Naira</option>
-                            <option>Dollars</option>
-                          </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-secondary payment" data-dismiss="modal">Initiate Payment</button>
-          </div>
+<!-- ------------------------------------active--------------------------- -->
+                    <!-- <h4 class="mb-4">Subscription</h4>
+                    <p><b>Status:</b> Premium Member</p>
+                    <p>Your subscription will expire in 14 days.<br/>
+                        Renewed on: 08-05-2020</p>
+                        <section class="mb-5">
+                            <h5 class="m-5 ">Subscription Plan</h5>
+                                    <div class="row d-flex align-items-center"> 
+                                        <div class="col-md-4 px-0 custom-card-free">
+                                            <div class="card card1 d-flex justify-content-center align-items-center py-3">
+                                              <div class="card-container d-flex flex-column justify-content-center align-items-center pt-1">
+                                                <h5>Free</h5>
+                                                <h3>$0</h3>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        <div class="col-md-3 px-0">
+                                            <div class="card card1 d-flex justify-content-center align-items-center py-3">
+                                                <span class="badge badge-pill badge-success custom-pill ">Active</span>
+                                                
+                                              <div class="card-container d-flex flex-column justify-content-center align-items-center pt-2">
+                                                <p>Premium</p>
+                                                <p>Unlimited Access</p>
+                                                <span><b style="font-size: 1.4em;">$50/</b>month</span>
+                                              </div>
+                                              <button type="button" class="btn custom-renew-button">Renew Now</button>
+                                            </div>
+                                          </div>
+                                    </div> 
+                                  </section> -->
+
+<!-- ----------------------------------------end of active-------------------- ------------------------------------->
+
+<!-- ------------------------------------inactive--------------------------- -->
+                    <h4 class="mb-4">Subscription</h4>
+                    <p><b>Status:</b> Free Member</p>
+                    <p>Your subscription will expire in 2 days.<br/>
+                        Renewed on: 08-05-2020</p> 
+                        <button type="button" class="btn mb-3 custom-unsubscribe-button" data-toggle="modal" data-target="#exampleModalLong">Upgrade now</button> 
+                         <section class="mb-5">
+                          <h5 class="m-5 ">Subscription Plan</h5>
+                            <div class="row d-flex align-items-center">
+                              <div class="col-md-4 px-0 custom-card-free">
+                                  <div class="card card1 d-flex justify-content-center align-items-center py-3">
+                                      <span class="badge badge-pill badge-success custom-pill ">Active</span>
+                                    <div class="card-container d-flex flex-column justify-content-center align-items-center pt-1">
+                                      <h5>Free</h5>
+                                      <h3>$0</h3>
+                                    </div>
+                                  </div>
+                                </div>
+                              <div class="col-md-3 px-0">
+                                  <div class="card card1 d-flex justify-content-center align-items-center py-3">
+   
+                                      
+                                    <div class="card-container d-flex flex-column justify-content-center align-items-center pt-2">
+                                      <p>Premium</p>
+                                      <p>Unlimited Access</p>
+                                      <span><b style="font-size: 1.4em;">$50/</b>month</span>
+                                    </div>
+                                    
+                                    <button type="button" class="btn custom-renew-button" data-toggle="modal" data-target="#exampleModalLong">Upgrade</button>
+                                  </div>
+                                </div>
+                          </div> 
+                        </section>
+                     
+
+<!-- ----------------------------------------end of inactive-------------------- -->
+
+                 
+<!-- Button trigger modal -->
+<button type="button" class="btn custom-renew-button" data-toggle="modal" data-target="#paymentModal">
+    Toggle Payment Success
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+            <img
+            class="check-mark"
+            src="/images/check_circle_new.svg"
+            alt=""
+          />
+              
+            <h4>Payment Successful</h4>
+            <p>Thank you for subscribing to Talent Haven</p>
         </div>
       </div>
     </div>
-</div>
+  </div>
+
+
+
+
+
+<!-------------------------------------------------- Upgrade Modal ------------------------>
+                  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <form >
+                            <div class="modal-header d-flex justify-content-center">
+                                <h5 class="modal-title ">Upgrade to premium</h5>
+                              </div>
+                          <div class="modal-body" style="padding: 0 !important">
+                            <div class="container-fluid px-0">
+                              <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group my-4">
+                                        <label for="fullName">Payer's full name</label>
+                                        <input type="text" class="form-control" id="fullName" placeholder="John Doe" required>
+                                      </div>
+                                    <div class="form-group my-4">
+                                        <label for="phoneNumber">Payer's Phone Number</label>
+                                        <input type="number" class="form-control" id="phoneNumber" placeholder="+1803457934973" required>
+                                      </div>
+                                      <label class="">Currency</label>
+                                      <select class="form-control mb-4" required>
+                                          <option id="" value="">Select your currency</option>
+                                          <option name="BIF" value="BIF">Burundi Franc - BIF</option>
+                                          <option name="CAD" value="CAD">Canadian Dollar - CAD</option>
+                                          <option name="CDF" value="CDF">Congolese Franc - CDF</option>
+                                          <option name="CVE" value="CVE">Cape Verdean Escudo - CVE</option>
+                                          <option name="EUR" value="EUR">Euro - EUR</option>
+                                          <option name="GBP" value="GBP">British Pound Sterling - GBP</option>
+                                          <option name="GHS" value="GHS">Ghanian Cedi - GHS</option>
+                                          <option name="GMD" value="GMD">Ghambian Dalasi - GMD</option>
+                                          <option name="GNF" value="GNF">Guinean Franc - GNF</option>
+                                          <option name="KES" value="KES">Kenyan Shilling - KES</option>
+                                          <option name="LRD" value="LRD">Liberian Dollar - LRD</option>
+                                          <option name="MWK" value="MWK">Malawian Kwacha - MWK</option>
+                                          <option name="MZN" value="MZN">Mozambican Metical - MZN</option>
+                                          <option name="NGN" value="NGN">Nigerian Naira - NGN</option>
+                                          <option name="RWF" value="RWF">Rwandan Franc - RWF</option>
+                                          <option name="SLL" value="SLL">Sierra Leonean Leone - SLL</option>
+                                          <option name="STD" value="STD">Sao Tome and Principe Dobra - STD</option>
+                                          <option name="TZS" value="TZS">Tanzanian Shilling - TZS</option>
+                                          <option name="UGX" value="UGX">Ugandan Shilling - UGX</option>
+                                          <option name="USD" value="USD">United States Dollar - USD</option>
+                                          <option name="XAF" value="XAF">CFA Franc BEAC - XAF</option>
+                                          <option name="XOF" value="XOF">CFA Franc BCEAO - XOF</option>
+                                          <option name="ZMK" value="ZMK">Zambian Kwacha(pre-2013) - ZMK</option>
+                                          <option name="ZMW" value="ZMW">Zambian Kwacha - ZMW</option>
+                                          <option name="ZWD" value="ZWD">Zimbabwean Dollar - ZWD</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group my-4">
+                                        <label for="email">Payer's Email Address</label>
+                                        <input type="email" class="form-control" id="email" placeholder="email@domain.com" required>
+                                      </div>
+                                      
+                                      <label for="currency" >Payment Method</label>
+                                      <select class="form-control mb-4" required>
+                                            <option id="currency" value="">Select Payment Method</option>
+                                            <option name="barter" value="barter">Barter</option>
+                                            <option name="ussd" value="ussd">USSD</option>
+                                            <option name="card" value="card">Payment with Card</option>
+                                            <option name="banktransfer" value="banktransfer">Bank Transfer</option>
+                                          </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer d-flex justify-content-center">
+                            <button type="submit" class="btn btn-secondary payment" >Initiate Payment</button>
+                          </div>
+                        </form>
+                      </div>
+                      </div>
+                  
+                  </div>
+<!-- --------------------------------------end of upgrade modal --------------------------->
+
+<!----------------------------------------------Success Modal ------------------------------->
+
+<!----------------------------------------------End of Success Modal ------------------------------->
+            
+                </div>
                     
                   </div>
                 </div>
