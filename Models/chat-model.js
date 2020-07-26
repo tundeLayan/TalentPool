@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
   Chat.associate = (model) => {
-    Chat.belongsTo(model.User, { foreignKey: 'user_id' });
+    Chat.belongsTo(model.User, { foreignKey: 'userId' });
   };
 
   return Chat;

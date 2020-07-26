@@ -16,10 +16,14 @@ const {
 } = require('../dao/db-queries');
 
 const team = async (req) => {
-  const { userId } = req.session.data;
-  const { teamName } = await model.Employer.findOne({ where: { userId } });
+  try {
+    const { userId } = req.session.data;
+    const { teamName } = await model.Employer.findOne({ where: { userId } });
 
-  return teamName;
+    return teamName;
+  } catch (err) {
+    return '';
+  }
 };
 
 const allTeamMembers = async (req) => {
@@ -63,6 +67,19 @@ const verifyTeamResult = (res, result) => {
 };
 
 module.exports = {
+  viewTeam: async (req, res) => {
+    const data = await allTeamMembers(req);
+    const teamName = await team(req);
+
+    const pageData = {
+      errorMessage: req.flash('error'),
+      success: req.flash('success'),
+      data,
+      teamName,
+    };
+    return renderPage(res, 'employer/employerAddTeam', pageData, 'Team', '');
+  },
+
   sendInvite: async (req, res, next) => {
     const { userId } = req.session.data;
     const { email } = req.body;
@@ -80,7 +97,7 @@ module.exports = {
       });
       if (!employee) {
         req.flash('error', 'User does not exist or is not an employee!');
-        return res.redirect('/employer/dashboard/add/team');
+        return res.redirect('/employer/team');
       }
       const employeeData = await model.Employee.findOne({
         where: { userId: employee.userId },
@@ -88,12 +105,13 @@ module.exports = {
 
       if (!employeeData) {
         req.flash('error', 'User profile is not set-up');
-        return res.redirect('/employer/dashboard/add/team');
+        // return res.redirect('/employer/add/team');
+        return res.redirect('/employer/team');
       }
 
       if (employeeData.hasTeam === true) {
         req.flash('error', 'Employee is already in a team');
-        return res.redirect('/employer/dashboard/add/team');
+        return res.redirect('/employer/team');
       }
 
       // Team specific actions
@@ -114,7 +132,7 @@ module.exports = {
           'error',
           'User is already in or has been invited to this team',
         );
-        return res.redirect('/employer/dashboard/add/team');
+        return res.redirect('/employer/team');
       }
 
       // Send email to user
@@ -127,11 +145,11 @@ module.exports = {
         });
       } catch (err) {
         req.flash('error', 'Invite link not sent. Please retry');
-        return res.redirect('/employer/dashboard/add/team');
+        return res.redirect('/employer/team');
       }
 
       req.flash('success', 'Invite successfully sent');
-      return res.redirect('/employer/dashboard/add/team');
+      return res.redirect('/employer/team');
     } catch (err) {
       const error = new Error(err);
       error.httpStatusCode = 500;
@@ -204,12 +222,18 @@ module.exports = {
   addTeam: async (req, res) => {
     const { userId } = req.session.data;
     const { teamName } = req.body;
+    const employerData = await getEmployer(model, { userId });
+
+    if (!employerData) {
+      req.flash('error', 'Your profile has not been setup');
+      return res.redirect('/employer/team');
+    }
     const addTeam = await model.Employer.update(
       { teamName },
       { where: { userId } },
     );
     if (addTeam) {
-      res.redirect('/employer/dashboard/add/team');
+      res.redirect('/employer/team');
     }
   },
 
@@ -226,7 +250,7 @@ module.exports = {
       await deleteARecord(model.Team, { userId, employeeId });
 
       req.flash('success', 'Employee successfully removed from the team');
-      return res.redirect('/employer/dashboard/add/team');
+      return res.redirect('/employer/team');
     } catch (err) {
       const error = new Error(err);
       error.httpStatusCode = 500;
